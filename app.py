@@ -36,9 +36,9 @@ def search():
         df.columns = ResultProxy.keys()
         
         #Some algo to sort this correctly
-        print(df)
-        df.sort_values(by=['author_id'], ascending=False)   
-            
+        
+        df = df.sort_values(by=['author_id'], ascending=False)   
+     
         #Pagination
         if isinstance(page, str):
             page = int(page)
