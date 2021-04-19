@@ -30,14 +30,13 @@ def search():
     q = request.args.get('q')
     page = request.args.get('page')
     try:
-        query = "%" + q + "%"
-        ResultProxy = connection.execute('SELECT ind.key_text, ind.article_title, ind.author_id, au.author, ind.article_id, ind.url, ind.article_date FROM search_index ind LEFT JOIN authors au ON ind.author_id = au.author_id WHERE ind.key_text LIKE %s OR ind.article_title LIKE %s OR au.author LIKE %s LIMIT 10000;', (query,query, query))
+        ResultProxy = connection.execute('SELECT ind.key_text, ind.article_title, ind.author_id, au.author, ind.article_id, ind.url, ind.article_date FROM search_index ind LEFT JOIN authors au ON ind.author_id = au.author_id WHERE MATCH(ind.key_text, ind.article_title, ind.url) AGAINST(%s IN NATURAL LANGUAGE MODE);', (q))
+               
         df = DataFrame(ResultProxy.fetchall())
         df.columns = ResultProxy.keys()
-        
+              
         #Some algo to sort this correctly
-        
-        df = df.sort_values(by=['author_id'], ascending=False)   
+        #df = df.sort_values(by=['author_id'], ascending=False)   
      
         #Pagination
         if isinstance(page, str):
