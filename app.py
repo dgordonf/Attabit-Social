@@ -27,47 +27,14 @@ def homepage():
 
 @app.route('/camp/<id>')
 def camp(id):
-    id = int()
-    q = request.args.get('q')
-    page = request.args.get('page')
+    id = int(id)
     try:
-        ResultProxy = connection.execute('SELECT ind.key_text, ind.article_title, ind.author_id, au.author, ind.article_id, ind.url, ind.article_date FROM search_index ind LEFT JOIN authors au ON ind.author_id = au.author_id WHERE MATCH(ind.key_text, ind.article_title, ind.url) AGAINST(%s IN NATURAL LANGUAGE MODE);', (q))
+        ResultProxy = connection.execute('SELECT * FROM posts WHERE camp_id = %s;', (id))
                
         df = DataFrame(ResultProxy.fetchall())
         df.columns = ResultProxy.keys()
-              
-        #Some algo to sort this correctly
-        #df = df.sort_values(by=['author_id'], ascending=False)   
-     
-        #Pagination
-        if isinstance(page, str):
-            page = int(page)
-            page_end = page + 10
-            if (page_end) > len(df.index):
-                page_end = len(df.index)
-        else: 
-            page = int(0)
-            page_end = int(10)
         
-        df = df.iloc[page:page_end]
-
-        #Get sentences for each Article ID
-        ids = ', '.join(f'"{w}"' for w in df.article_id)
-        ids = "(" + ids + ")"
-        
-        ResultProxy = connection.execute('SELECT * FROM sentences WHERE article_id IN %s AND text_color < 5 ORDER BY article_sentence_number;' % ids)
-        sen_df = DataFrame(ResultProxy.fetchall())
-        sen_df.columns = ResultProxy.keys()
-        sen_df.text_color = sen_df.text_color.round()
-
-        #Create sentence_link for next page
-        datalist = []    
-        for values in sen_df.sentence_text:
-            datalist.append(re.sub(" ", "%20",str(values)))
-                    
-        sen_df['sentence_link'] = datalist
-        
-        return render_template('search.html',  q=q, data=df, sentences = sen_df)
+        return render_template('camp.html',  data=df)
     except Exception as e:
         # e holds description of the error
         error_text = "<p>The error:<br>" + str(e) + "</p>"
