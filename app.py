@@ -32,8 +32,10 @@ def camp(camp_id):
                
         df = DataFrame(ResultProxy.fetchall())
         df.columns = ResultProxy.keys()
+
+        df = df.sort_values(by=['creation_time'], ascending=False)   
         
-        return render_template('camp.html',  data=df, camp_id=camp_id)
+        return render_template('camp.html',  posts=df, camp_id=camp_id)
     except Exception as e:
         # e holds description of the error
         error_text = "<p>The error:<br>" + str(e) + "</p>"

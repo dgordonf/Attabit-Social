@@ -81,7 +81,7 @@ padding-left: 10px;
       </form> 
 
       
-      {% for index, row in data.iterrows() %}
+      {% for index, row in posts.iterrows() %}
          <p class = "post" >{{row['post_text']}}</p>
          
         <form action="/posts" method="post">  
