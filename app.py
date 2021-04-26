@@ -1,20 +1,23 @@
 from flask import Flask, request, render_template, redirect
-from flask import request
 from string import Template
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy as db
 from pandas import DataFrame
 import re
 from flask_gtts import gtts
+from config import Config
+from flask_login import LoginManager
 
 ## A place to think --  and index for thoughts
 
 app = Flask(__name__)
 gtts(app)
+login = LoginManager(app)
+app.config.from_object(Config)
+
 try:
-    engine = db.create_engine('mysql://admin:Graceless-Pursuit-Small2@meadow-1-instance-1.c1qv3kvmac8s.us-east-1.rds.amazonaws.com/meadow')
+    engine = db.create_engine(app.config['DATABASE'])
     connection = engine.connect()
-    db = SQLAlchemy(app)
     print("connected")
 except:
     print ("I am unable to connect to the database")
@@ -24,7 +27,6 @@ except:
 def homepage():
     return render_template('index.html')
 
-
 @app.route('/camp/<int:camp_id>', methods = ['GET'])
 def camp(camp_id):
     try:
@@ -33,9 +35,14 @@ def camp(camp_id):
         df = DataFrame(ResultProxy.fetchall())
         df.columns = ResultProxy.keys()
 
-        df = df.sort_values(by=['creation_time'], ascending=False)   
-        
-        return render_template('camp.html',  posts=df, camp_id=camp_id)
+        posts = df[df["reply_to_id"].isnull()]
+        posts = posts.sort_values(by=['creation_time'], ascending=False)  
+
+        replys = df[df["reply_to_id"].notnull()]
+        replys = replys.sort_values(by=['creation_time'], ascending=True)  
+
+
+        return render_template('camp.html',  posts=posts, replys=replys, camp_id=camp_id)
     except Exception as e:
         # e holds description of the error
         error_text = "<p>The error:<br>" + str(e) + "</p>"
@@ -48,8 +55,9 @@ def posts():
         try:
             camp_id = request.form.get('camp_id')
             user_id = request.form.get('user_id')
+            reply_to_id = request.form.get('reply_to_id')
             post_text = request.form.get('post_text')
-            connection.execute('INSERT INTO posts (camp_id, user_id, post_text) VALUES (%s, %s, %s);', (camp_id, user_id, post_text))
+            connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, post_text) VALUES (%s, %s, %s, %s);', (camp_id, user_id, reply_to_id, post_text))
 
             return redirect("camp/1")    
         

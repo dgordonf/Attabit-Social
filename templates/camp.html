@@ -77,18 +77,27 @@ padding-left: 10px;
         <input class= post_bar type="text" name= "post_text">
         <input type="hidden" name= "camp_id" value="{{ camp_id }}">
         <input type="hidden" name= "user_id" value="1">
-        <input type="hidden" name= "type" value="post">
+        <input type="hidden" name= "type" value="1">
       </form> 
 
       
-      {% for index, row in posts.iterrows() %}
-         <p class = "post" >{{row['post_text']}}</p>
-         
+      {% for index, posts in posts.iterrows() %}
+         <p class = "post" >{{posts['post_text']}}</p>
+          
+          {% for key, reply in replys.iterrows() %}
+            {% if reply['reply_to_id'] == posts['post_id']%}
+              
+            <p class = "reply" >{{reply['post_text']}}</p>
+            {% endif %}
+          {% endfor %}
+
         <form action="/posts" method="post">  
           <input class= post_bar type="text" name= "post_text">
           <input type="hidden" name= "camp_id" value="{{ camp_id }}">
           <input type="hidden" name= "user_id" value="1">
-          <input type="hidden" name= "type" value="reply">
+          <input type="hidden" name= "reply_to_id" value={{posts['post_id']}}>
+          <input type="hidden" name= "type" value="2">
+
         </form> 
       {% endfor %}
       </div>
