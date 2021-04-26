@@ -12,7 +12,7 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 gtts(app)
-login = LoginManager(app)
+#login = LoginManager(app)
 app.config.from_object(Config)
 
 try:
@@ -21,7 +21,6 @@ try:
     print("connected")
 except:
     print ("I am unable to connect to the database")
-
 
 @app.route('/')
 def homepage():

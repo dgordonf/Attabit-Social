@@ -13,7 +13,7 @@
 
 
 body {
-   background-color: #f5f5f5; 
+   background-color: #fafafa; 
    z-index: 0;
 }
 
@@ -22,55 +22,93 @@ h1 {
 }
 
 .header {
-  background-color: #275e8b;
-  border-color: #2c2c2c;
-  border: 2px;
+  background: linear-gradient(269deg,  #ffffff, #ffffff);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 59s ease infinite;
+    -moz-animation: AnimationName 59s ease infinite;
+    animation: AnimationName 59s ease infinite;
+
   position: -webkit-sticky;
   position: sticky;
   top: 0; 
-  box-shadow: 10px 5px 8px 10px #2c2c2c0a;
+  padding: 5px;
+  border-bottom: 1.5px solid lightgrey;
 }   
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
 
 .header_title {
 font-size: 23px;
 font-weight: 500;
 text-decoration: none;
-color: #fcfcfc;
-margin: .5%;
-padding-left: 1.5%;
+color: #222222;
+}
+
+.header_title a:hover, a:visited, a:link, a:active{
+  color: #222222;
+  text-decoration: none;
+}
+
+
+.header_content {
+  width: 83%;
+  max-width:600px;
+  margin: 0 auto;
 
 }
 
-.header_title:hover {
-text-decoration: none;
-color: #ffffff;
-}
+#posts {
+  width: 83%;
+  max-width:600px;
+  margin: 0 auto;
+ }
 
 .post_bar {
 word-wrap: break-word;
 word-break: break-all;
 font-size: 15px;
-margin-top: .5%;    
+margin-bottom: 18px;        
 width: 100%;
 border: 0;
 outline: 0;
 background: transparent;
 border-bottom: 2.5px solid #bebebeee;
-
 padding: 3px;
 padding-left: 10px;
 }
 
- #posts {
-  width: 800px;
-  margin: 0 auto;
- }
-
  
+
+.post {
+  padding-left: 13px;
+
+}
+ 
+.reply {
+  padding-left: 13px;
+
+} 
 </style>
 
 <div class = "header" id= "header">
+  <div class="header_content">
   <a href="/" class = "header_title">campfire</a>
+  </div>
 </div>
       <div id= "posts">
       <form action="/posts" method="post">  
