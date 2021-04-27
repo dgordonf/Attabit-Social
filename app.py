@@ -1,22 +1,24 @@
 from flask import Flask, request, render_template, redirect
 from string import Template
 from flask_sqlalchemy import SQLAlchemy
-import sqlalchemy as db
+import sqlalchemy
 from pandas import DataFrame
 import re
 from flask_gtts import gtts
 from config import Config
 from flask_login import LoginManager
 
-## A place to think --  and index for thoughts
-
+# Not the entire world, just your best friends. 
 app = Flask(__name__)
+app.secret_key = app.config['SECRET_KEY']
+db = SQLAlchemy(app)
+
 gtts(app)
 #login = LoginManager(app)
 app.config.from_object(Config)
 
 try:
-    engine = db.create_engine(app.config['DATABASE'])
+    engine = sqlalchemy.create_engine(app.config['DATABASE'])
     connection = engine.connect()
     print("connected")
 except:
@@ -39,7 +41,6 @@ def camp(camp_id):
 
         replys = df[df["reply_to_id"].notnull()]
         replys = replys.sort_values(by=['creation_time'], ascending=True)  
-
 
         return render_template('camp.html',  posts=posts, replys=replys, camp_id=camp_id)
     except Exception as e:
