@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for, flash
 from string import Template
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
@@ -8,6 +8,12 @@ from flask_gtts import gtts
 from config import Config
 from flask_login import LoginManager
 import flask_bcrypt
+from models import RegistrationForm
+
+from wtforms import validators
+from wtforms.fields.html5 import EmailField
+import email_validator
+from passlib.hash import sha256_crypt
 
 # Not the entire world, just your best friends. 
 app = Flask(__name__)
@@ -33,34 +39,22 @@ def homepage():
 
 @app.route('/login')
 def login():
-    return render_template('index.html')  
+    form = RegistrationForm(request.form)
+    return render_template('index.html', form=form)
 
 
 @app.route('/signup', methods = ['POST'])
-def signup():
-    if request.method == 'POST':
-        try:
-            username = request.form.get('username')
-            email = request.form.get('email')
-            first_name = request.form.get('first_name')
-            last_name = request.form.get('last_name')
-            password_hash = request.form.get('password')
-            
-            connection.execute("INSERT INTO users (username, email, password_hash, first_name, last_name) VALUES (%s, %s, %s, %s, %s);", (username, email, password_hash, first_name, last_name))
-
-            return redirect("camp/1")    
-        
-        except Exception as e:
-            # e holds description of the error
-            error_text = "<p>The error:<br>" + str(e) + "</p>"
-            hed = '<h1>Something is broken.</h1>'
-            return hed + error_text 
-
-
-
-    return render_template('index.html')         
-
-
+def signup(): 
+    form = RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+        username = form.username.data
+        name = form.name.data
+        email = form.email.data
+        password_hash = sha256_crypt.encrypt(form.password.data)
+        connection.execute("INSERT INTO users (username, first_name, email, password_hash) VALUES (%s, %s, %s, %s);", (username, name, email, password_hash))
+        return redirect("camp/1")
+    return render_template('index.html', form=form)
+    
 @app.route('/camp/<int:camp_id>', methods = ['GET'])
 def camp(camp_id):
     try:

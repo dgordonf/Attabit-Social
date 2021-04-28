@@ -75,18 +75,17 @@ var check = function() {
     <div class="container">
       <h1>...or signup</h1>
       <br>
-      <form action="/signup" method="post">
-         <input type="text" placeholder="First Name" name="first_name" value="{{ request.form.first_name }}"> <input type="text" placeholder="Last Name" name="last_name" value="{{ request.form.last_name }}"><br>
-         <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}"><br>
-         <input type="text" placeholder="Email" name="email" value="{{ request.form.email }}"><br>
-         <input id= "password" type="password" placeholder="Password" name="password" value="{{ request.form.password }}"><br>
-         <input id = "confirm_password" type="password" placeholder="Confirm Password" name="password_confirm" value="{{ request.form.password_confirm }}"><br>
-         <span id='message'></span>
-        <input class="btn btn-default" type="submit" value="Signup">
+        {% from "_formhelpers.html" import render_field %}
+      <form action = "/signup" method=post>
+        <dl>
+          {{ render_field(form.username) }}
+          {{ render_field(form.name) }}
+          {{ render_field(form.email) }}
+          {{ render_field(form.password) }}
+          {{ render_field(form.confirm) }}
+        </dl>
+        <p><input type=submit value=Register>
       </form>
-      {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}
-      {% endif %}
     </div>  
 
 
