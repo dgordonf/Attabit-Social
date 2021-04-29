@@ -7,13 +7,13 @@ import re
 from flask_gtts import gtts
 from config import Config
 from flask_login import LoginManager
-import flask_bcrypt
-from models import RegistrationForm
+from models import LoginForm, RegistrationForm, User
 
 from wtforms import validators
 from wtforms.fields.html5 import EmailField
 import email_validator
 from passlib.hash import sha256_crypt
+from flask_login import login_user, logout_user, login_required
 
 # Not the entire world, just your best friends. 
 app = Flask(__name__)
@@ -34,13 +34,22 @@ except:
 
 @app.route('/')
 def homepage():
-    return render_template('index.html')
+    form = LoginForm(request.form)
+    return render_template('login.html', form=form)
 
-
-@app.route('/login')
+@app.route('/login', methods = ['POST'])
 def login():
-    form = RegistrationForm(request.form)
-    return render_template('index.html', form=form)
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User.query.get(form.email.data)
+        if user:
+            if bcrypt.check_password_hash(user.password, form.password.data):
+                user.authenticated = True
+                db.session.add(user)
+                db.session.commit()
+                login_user(user, remember=True)
+                return redirect(url_for("camp/1"))
+    return redirect("/")
 
 
 @app.route('/signup', methods = ['POST'])
@@ -55,6 +64,7 @@ def signup():
         return redirect("camp/1")
     return render_template('index.html', form=form)
     
+
 @app.route('/camp/<int:camp_id>', methods = ['GET'])
 def camp(camp_id):
     try:
