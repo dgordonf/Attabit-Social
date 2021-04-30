@@ -14,11 +14,13 @@ from wtforms.fields.html5 import EmailField
 import email_validator
 from passlib.hash import sha256_crypt
 from flask_login import login_user, logout_user, login_required
+import bcrypt
 
 # Not the entire world, just your best friends. 
 app = Flask(__name__)
 app.secret_key = app.config['SECRET_KEY']
-db = SQLAlchemy(app)
+db = SQLAlchemy()
+db.init_app(app)
 
 gtts(app)
 #login = LoginManager(app)
@@ -40,10 +42,13 @@ def homepage():
 @app.route('/login', methods = ['POST'])
 def login():
     form = LoginForm(request.form)
+    print(1)
     if request.method == 'POST' and form.validate():
         user = User.query.get(form.email.data)
+        print(1)
         if user:
-            if bcrypt.check_password_hash(user.password, form.password.data):
+            print(1)
+            if bcrypt.checkpw(user.password, form.password.data):
                 user.authenticated = True
                 db.session.add(user)
                 db.session.commit()
@@ -52,15 +57,17 @@ def login():
     return redirect("/")
 
 
-@app.route('/signup', methods = ['POST'])
+@app.route('/signup', methods = ['POST', 'GET'])
 def signup(): 
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
         username = form.username.data
         name = form.name.data
         email = form.email.data
-        password_hash = sha256_crypt.encrypt(form.password.data)
-        connection.execute("INSERT INTO users (username, first_name, email, password_hash) VALUES (%s, %s, %s, %s);", (username, name, email, password_hash))
+        password = form.password.data.encode('utf-8')
+        salt = bcrypt.gensalt()
+        password_hash = bcrypt.hashpw(password, salt)
+        connection.execute("INSERT INTO users (username, first_name, email, password) VALUES (%s, %s, %s, %s);", (username, name, email, password_hash))
         return redirect("camp/1")
     return render_template('index.html', form=form)
     
@@ -85,6 +92,7 @@ def camp(camp_id):
         error_text = "<p>The error:<br>" + str(e) + "</p>"
         hed = '<h1>Something is broken.</h1>'
         return hed + error_text
+
 
 @app.route('/posts', methods = ['POST'])
 def posts():

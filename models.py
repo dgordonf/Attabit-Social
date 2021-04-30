@@ -24,8 +24,8 @@ class User(db.Model):
     :param str password: encrypted password for the user
 
     """
-    __tablename__ = 'user'
-
+    __tablename__ = 'users'
+ 
     email = db.Column(db.String, primary_key=True)
     password = db.Column(db.String)
     authenticated = db.Column(db.Boolean, default=False)

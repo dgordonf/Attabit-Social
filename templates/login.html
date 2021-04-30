@@ -63,7 +63,7 @@ var check = function() {
         <h1>Please login</h1>
       <br>
         {% from "_formhelpers.html" import render_field %}
-      <form action = "/signup" method=post>
+      <form action = "/login" method=post>
         <dl>
           {{ render_field(form.email) }}
           {{ render_field(form.password) }}
