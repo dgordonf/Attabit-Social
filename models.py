@@ -18,18 +18,12 @@ class LoginForm(Form):
 db = SQLAlchemy()
 
 class User(db.Model):
-    """An admin user capable of viewing reports.
 
-    :param str email: email address of user
-    :param str password: encrypted password for the user
-
-    """
     __tablename__ = 'users'
- 
     email = db.Column(db.String, primary_key=True)
     password = db.Column(db.String)
-    authenticated = db.Column(db.Boolean, default=False)
-
+    #authenticated = db.Column(db.Boolean, default=False)
+    
     def is_active(self):
         """True, as all users are active."""
         return True

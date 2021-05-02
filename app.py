@@ -8,19 +8,20 @@ from flask_gtts import gtts
 from config import Config
 from flask_login import LoginManager
 from models import LoginForm, RegistrationForm, User
-
 from wtforms import validators
 from wtforms.fields.html5 import EmailField
 import email_validator
 from passlib.hash import sha256_crypt
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 import bcrypt
+
 
 # Not the entire world, just your best friends. 
 app = Flask(__name__)
 app.secret_key = app.config['SECRET_KEY']
 db = SQLAlchemy()
 db.init_app(app)
+
 
 gtts(app)
 #login = LoginManager(app)
@@ -39,40 +40,72 @@ def homepage():
     form = LoginForm(request.form)
     return render_template('login.html', form=form)
 
+### AUTH SECTION ###
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
+@login_manager.user_loader
+def load_user(user_id):
+    """Check if user is logged-in on every page load."""
+    if user_id is not None:
+        return User.query.get(user_id)
+    return None
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    flash('You must be logged in to view that page.')
+    return redirect('/')
+
 @app.route('/login', methods = ['POST'])
 def login():
     form = LoginForm(request.form)
-    print(1)
     if request.method == 'POST' and form.validate():
         user = User.query.get(form.email.data)
-        print(1)
         if user:
-            print(1)
-            if bcrypt.checkpw(user.password, form.password.data):
-                user.authenticated = True
-                db.session.add(user)
-                db.session.commit()
+            form_password = form.password.data.encode('utf-8')
+            user_password = user.password.encode('utf-8')
+            if bcrypt.checkpw(form_password, user_password):
+                #user.authenticated = True
+                #db.session.add(user)
+                #db.session.commit()
                 login_user(user, remember=True)
-                return redirect(url_for("camp/1"))
+                return redirect("camp/1")
+            else: 
+                print("Nope") 
+        else:
+            print("Not a user")        
+
+    return redirect("/")
+
+@app.route("/logout")
+def logout():
+    logout_user()
     return redirect("/")
 
 
 @app.route('/signup', methods = ['POST', 'GET'])
 def signup(): 
     form = RegistrationForm(request.form)
-    if request.method == 'POST' and form.validate():
+    print(User.query.filter_by(email=form.email.data).first())
+    if request.method == 'POST' and form.validate() and User.query.filter_by(email=form.email.data).first() is None:
         username = form.username.data
         name = form.name.data
         email = form.email.data
         password = form.password.data.encode('utf-8')
+
         salt = bcrypt.gensalt()
         password_hash = bcrypt.hashpw(password, salt)
+        password_hash = password_hash.decode('utf8')
+        
         connection.execute("INSERT INTO users (username, first_name, email, password) VALUES (%s, %s, %s, %s);", (username, name, email, password_hash))
         return redirect("camp/1")
+    print("Already a user")    
     return render_template('index.html', form=form)
-    
+       
 
 @app.route('/camp/<int:camp_id>', methods = ['GET'])
+@login_required
 def camp(camp_id):
     try:
         ResultProxy = connection.execute('SELECT * FROM posts WHERE camp_id = %s;', (camp_id))
@@ -95,6 +128,7 @@ def camp(camp_id):
 
 
 @app.route('/posts', methods = ['POST'])
+@login_required
 def posts():
     if request.method == 'POST':
         try:
