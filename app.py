@@ -104,47 +104,54 @@ def signup():
     return render_template('index.html', form=form)
        
 
-@app.route('/camp/<int:camp_id>', methods = ['GET'])
+@app.route('/camp/<int:camp_id>', methods = ['POST', 'GET'])
 @login_required
 def camp(camp_id):
-    try:
-        ResultProxy = connection.execute('SELECT * FROM posts WHERE camp_id = %s;', (camp_id))
-               
-        df = DataFrame(ResultProxy.fetchall())
-        df.columns = ResultProxy.keys()
-
-        posts = df[df["reply_to_id"].isnull()]
-        posts = posts.sort_values(by=['creation_time'], ascending=False)  
-
-        replys = df[df["reply_to_id"].notnull()]
-        replys = replys.sort_values(by=['creation_time'], ascending=True)  
-
-        return render_template('camp.html',  posts=posts, replys=replys, camp_id=camp_id)
-    except Exception as e:
-        # e holds description of the error
-        error_text = "<p>The error:<br>" + str(e) + "</p>"
-        hed = '<h1>Something is broken.</h1>'
-        return hed + error_text
-
-
-@app.route('/posts', methods = ['POST'])
-@login_required
-def posts():
+    user_id =  current_user.get_user_id()
+    
     if request.method == 'POST':
         try:
-            camp_id = request.form.get('camp_id')
-            user_id = request.form.get('user_id')
             reply_to_id = request.form.get('reply_to_id')
             post_text = request.form.get('post_text')
             connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, post_text) VALUES (%s, %s, %s, %s);', (camp_id, user_id, reply_to_id, post_text))
-
-            return redirect("camp/1")    
         
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"
             hed = '<h1>Something is broken.</h1>'
             return hed + error_text        
+
+    ResultProxy = connection.execute('SELECT * FROM camp_directory cd WHERE cd.camp_id = %s AND cd.user_id = %s;', (camp_id, user_id))
+    df = DataFrame(ResultProxy.fetchall())
+
+    if len(df.index) > 0: 
+        try:
+            ResultProxy = connection.execute('SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.creation_time, p.post_text, p.opacity, u.id, u.username, u.first_name FROM posts p LEFT JOIN users u ON p.user_id = u.id WHERE p.camp_id = %s;', (camp_id))
+            
+            df = DataFrame(ResultProxy.fetchall())
+            if len(df.index) > 0:
+                df.columns = ResultProxy.keys()
+                
+                posts = df[df["reply_to_id"].isnull()]
+                posts = posts.sort_values(by=['creation_time'], ascending=False)  
+                
+                replys = df[df["reply_to_id"].notnull()]
+                replys = replys.sort_values(by=['creation_time'], ascending=True)  
+            else :
+                posts = df
+                replys = df
+            
+            return render_template('camp.html',  posts=posts, replys=replys, camp_id=camp_id)
+        except Exception as e:
+            # e holds description of the error
+            error_text = "<p>The error:<br>" + str(e) + "</p>"
+            hed = '<h1>Something is broken.</h1>'
+            return hed + error_text
+    else:
+        flash('You are not a member of that camp')
+        return redirect('/')
+    
+  
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)

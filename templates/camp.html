@@ -84,11 +84,19 @@ color: #222222;
 
 }
 
-#posts {
+#feed {
   width: 83%;
   max-width:600px;
   margin: 0 auto;
+  margin-top:25px;
+  
+  
  }
+
+.posts_top {
+  padding-top: 25px;
+
+}
 
 .post_bar {
 word-wrap: break-word;
@@ -104,17 +112,60 @@ padding: 3px;
 padding-left: 10px;
 }
 
- 
-
 .post {
+  padding:10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius:5px;
+  border: 2px solid rgb(236, 236, 236);
+ 
+}
+
+.post_text {
+  padding: 5px;
+  padding-left: 13px;
+  font-size: 20px;
+ 
+}
+ 
+.post_person {
+  color: #16161686;
+  font-size: 17px;
+}
+
+.reply {
+  padding: 5px;
   padding-left: 13px;
 
 }
- 
-.reply {
-  padding-left: 13px;
 
-} 
+.reply_person {
+  text-align:center;
+  font-weight: bold;
+  color: #f7f7f7;
+  background-color: #000000ce;
+  border: 1px solid rgb(77, 77, 77);
+  border-radius:3px;
+  margin:2px;
+  margin-right:7px;
+  padding:2px;
+  padding-left: 4px;
+  padding-right: 4px;
+
+}
+
+.arrows {
+  color:rgba(192, 192, 192, 0.63);
+  font-size: 18px;
+  padding-left: 3px;
+  float: right;
+  z-index: 2;
+  position: relative;
+  bottom: 7px;
+  
+}
+
 </style>
 
 <div class = "header" id= "header">
@@ -122,33 +173,33 @@ padding-left: 10px;
   <a href="/" class = "header_title">campfire</a> <a href="/logout" class = "header_logout">Logout</a> 
   </div>
 </div>
-      <div id= "posts">
-      <form action="/posts" method="post">  
-        <input class= post_bar type="text" name= "post_text">
-        <input type="hidden" name= "camp_id" value="{{ camp_id }}">
-        <input type="hidden" name= "user_id" value="1">
-        <input type="hidden" name= "type" value="1">
-      </form> 
 
+      <div id= "feed">
+        <div class = "posts_top">
+          <form action="/camp/{{ camp_id }}" method="post">  
+            <input class= post_bar type="text" name= "post_text" placeholder="Say something...">
+            <input type="hidden" name= "type" value="1">
+          </form> 
+        </div>
       
       {% for index, posts in posts.iterrows() %}
-         <p class = "post" >{{posts['post_text']}}</p>
+      <div class = "post">
+        <span class = "arrows">&#x25B3;&#x25BD;</span><p class = "post_text" > <span class= "post_person">{{posts['first_name']}}&#8202;&#x25B8;</span> {{posts['post_text']}}</p> 
           
           {% for key, reply in replys.iterrows() %}
             {% if reply['reply_to_id'] == posts['post_id']%}
               
-            <p class = "reply" >{{reply['post_text']}}</p>
+            <p class = "reply" > <span class = "arrows" style>&#x25B3;&#x25BD;</span> <span class = "reply_person" > {{reply['first_name']}}</span>{{reply['post_text']}}</p> 
             {% endif %}
           {% endfor %}
 
-        <form action="/posts" method="post">  
+        <form action="/camp/{{ camp_id }}" method="post">  
           <input class= post_bar type="text" name= "post_text">
-          <input type="hidden" name= "camp_id" value="{{ camp_id }}">
-          <input type="hidden" name= "user_id" value="1">
-          <input type="hidden" name= "reply_to_id" value={{posts['post_id']}}>
+          <input type="hidden" name= "reply_to_id" value={{posts['post_id']}} >
           <input type="hidden" name= "type" value="2">
 
         </form> 
+      </div>
       {% endfor %}
       </div>
         

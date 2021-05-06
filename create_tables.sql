@@ -24,3 +24,22 @@ CREATE TABLE meadow.users (
     up_points   	INT
     
 );
+
+CREATE TABLE meadow.camp_directory (
+    record_id INT AUTO_INCREMENT PRIMARY KEY,
+    camp_id INT,
+    user_id INT,
+    added_time     DATETIME DEFAULT   CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE meadow.post_votes (
+    vote_id INT AUTO_INCREMENT PRIMARY KEY,
+    camp_id INT,
+    user_id INT,
+    record_id INT,
+    value DECIMAL(5, 3),
+    added_time     DATETIME DEFAULT   CURRENT_TIMESTAMP
+);
+
+
