@@ -15,6 +15,9 @@ from passlib.hash import sha256_crypt
 from flask_login import login_user, logout_user, login_required, current_user
 import bcrypt
 
+# Google Guide: https://medium.com/@dmahugh_70618/deploying-a-flask-app-to-google-app-engine-faa883b5ffab
+# Google logs: https://console.cloud.google.com/logs/query;cursorTimestamp=2021-05-07T03:05:12.893756097Z?_ga=2.160806973.127202062.1620251132-947977456.1620251132&query=%0A&authuser=1&project=tough-chassis-241600
+
 
 # Not the entire world, just your best friends. 
 app = Flask(__name__)
@@ -154,4 +157,4 @@ def camp(camp_id):
   
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+    app.run(debug=True, use_reloader = True)
