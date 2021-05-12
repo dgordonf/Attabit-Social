@@ -21,16 +21,16 @@ import bcrypt
 # AWS guide: https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
 
 # Not the entire world, just your best friends. 
-app = Flask(__name__)
-app.secret_key = app.config['SECRET_KEY']
+application = Flask(__name__)
+application.secret_key = application.config['SECRET_KEY']
 
-app.config.from_object(Config)
+application.config.from_object(Config)
 
 db = SQLAlchemy()
-db.init_app(app)
+db.init_app(application)
 
 try:
-    engine = sqlalchemy.create_engine(app.config['DATABASE'])
+    engine = sqlalchemy.create_engine(application.config['DATABASE'])
     connection = engine.connect()
     print("connected")
 except:
@@ -38,11 +38,11 @@ except:
 
 ### AUTH SECTION ###
 login_manager = LoginManager()
-login_manager.init_app(app)
+login_manager.init_app(application)
 login_manager.login_view = 'login'
 
 
-@app.route('/')
+@application.route('/')
 def homepage():
     form = LoginForm(request.form)
     return render_template('login.html', form=form)
@@ -59,7 +59,7 @@ def unauthorized():
     flash('You must be logged in to view that page.')
     return redirect('/')
 
-@app.route('/login', methods = ['POST'])
+@application.route('/login', methods = ['POST'])
 def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -80,13 +80,13 @@ def login():
 
     return redirect("/")
 
-@app.route("/logout")
+@application.route("/logout")
 def logout():
     logout_user()
     return redirect("/")
 
 
-@app.route('/signup', methods = ['POST', 'GET'])
+@application.route('/signup', methods = ['POST', 'GET'])
 def signup(): 
     form = RegistrationForm(request.form)
     print(User.query.filter_by(email=form.email.data).first())
@@ -106,7 +106,7 @@ def signup():
     return render_template('index.html', form=form)
        
 
-@app.route('/camp/<int:camp_id>', methods = ['POST', 'GET'])
+@application.route('/camp/<int:camp_id>', methods = ['POST', 'GET'])
 @login_required
 def camp(camp_id):
     user_id =  current_user.get_user_id()
@@ -156,4 +156,4 @@ def camp(camp_id):
   
 
 if __name__ == '__main__':
-    app.run(port=8080, debug=True, use_reloader = True)
+    application.run(port=8080, debug=True, use_reloader = True)
