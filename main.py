@@ -18,7 +18,7 @@ import bcrypt
 
 # Google Guide: https://medium.com/@dmahugh_70618/deploying-a-flask-app-to-google-app-engine-faa883b5ffab
 # Google logs: https://console.cloud.google.com/logs/query;cursorTimestamp=2021-05-07T03:05:12.893756097Z?_ga=2.160806973.127202062.1620251132-947977456.1620251132&query=%0A&authuser=1&project=tough-chassis-241600
-
+# AWS guide: https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
 
 # Not the entire world, just your best friends. 
 app = Flask(__name__)
