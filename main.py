@@ -15,6 +15,7 @@ from passlib.hash import sha256_crypt
 from flask_login import login_user, logout_user, login_required, current_user
 import bcrypt
 
+
 # Google Guide: https://medium.com/@dmahugh_70618/deploying-a-flask-app-to-google-app-engine-faa883b5ffab
 # Google logs: https://console.cloud.google.com/logs/query;cursorTimestamp=2021-05-07T03:05:12.893756097Z?_ga=2.160806973.127202062.1620251132-947977456.1620251132&query=%0A&authuser=1&project=tough-chassis-241600
 
@@ -22,31 +23,29 @@ import bcrypt
 # Not the entire world, just your best friends. 
 app = Flask(__name__)
 app.secret_key = app.config['SECRET_KEY']
+
+app.config.from_object(Config)
+
 db = SQLAlchemy()
 db.init_app(app)
-
-
-gtts(app)
-#login = LoginManager(app)
-app.config.from_object(Config)
 
 try:
     engine = sqlalchemy.create_engine(app.config['DATABASE'])
     connection = engine.connect()
     print("connected")
 except:
-    print ("I am unable to connect to the database")
+    print ("I am unable to connect to the database, bro")
+
+### AUTH SECTION ###
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 
 @app.route('/')
 def homepage():
     form = LoginForm(request.form)
     return render_template('login.html', form=form)
-
-### AUTH SECTION ###
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -157,4 +156,4 @@ def camp(camp_id):
   
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader = True)
+    app.run(port=8080, debug=True, use_reloader = True)
