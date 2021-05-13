@@ -80,6 +80,7 @@ def login():
 
     return redirect("/")
 
+
 @application.route("/logout")
 def logout():
     logout_user()
@@ -89,7 +90,6 @@ def logout():
 @application.route('/signup', methods = ['POST', 'GET'])
 def signup(): 
     form = RegistrationForm(request.form)
-    print(User.query.filter_by(email=form.email.data).first())
     if request.method == 'POST' and form.validate() and User.query.filter_by(email=form.email.data).first() is None:
         username = form.username.data
         name = form.name.data
