@@ -1,6 +1,8 @@
 packages: 
   yum:
-    python3-devel:[]
     mysql-devel:[]
+    gcc:[]
+    gcc-devel:[]
+    python3-devel:[]
     mariadb-devel:[]
     mysql-python:[]
