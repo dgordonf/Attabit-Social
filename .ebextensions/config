@@ -1,7 +1,4 @@
-commands:
-  command1:
-    command: amazon-linux-extras install libsqlite3-devel
-  command2:
-    command: amazon-linux-extras install mysql-python
-  command3:
-    command: amazon-linux-extras install mysqlclient
+packages: 
+  yum:
+    python3-devel: []
+    mariadb-devel: []
