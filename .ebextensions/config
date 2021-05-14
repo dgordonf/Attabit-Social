@@ -3,4 +3,4 @@ packages:
     python3-devel:[]
     mysql-devel:[]
     mariadb-devel:[]
-    mysql:[]
+    mysql-python:[]
