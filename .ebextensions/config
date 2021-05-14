@@ -1,4 +1,6 @@
 packages: 
   yum:
-    python3-devel: []
-    mariadb-devel: []
+    python3-devel:[]
+    mysql-devel:[]
+    mariadb-devel:[]
+    mysql:[]
