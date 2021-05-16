@@ -1,3 +1,4 @@
+from flask import Flask
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
@@ -16,7 +17,12 @@ class LoginForm(Form):
     email = StringField('Email Address', [validators.DataRequired(), validators.Email()])
     password = PasswordField('Password', [validators.DataRequired()])    
 
-db = SQLAlchemy()
+application = Flask(__name__)
+application.secret_key = application.config['SECRET_KEY']
+
+application.config.from_object(Config)
+
+db = SQLAlchemy(application)
 
 class User(db.Model):
 
