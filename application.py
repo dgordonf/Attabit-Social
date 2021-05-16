@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for, flash
 from string import Template
+
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
 from pandas import DataFrame
@@ -29,12 +30,12 @@ application.secret_key = application.config['SECRET_KEY']
 
 application.config.from_object(Config)
 
-db = SQLAlchemy()
+db = SQLAlchemy(application)
 db.init_app(application)
 
 try:
     engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
-    connection = engine.connect()
+    connection = engine.connect()   
     print("connected")
 except:
     print ("I am unable to connect to the database, bro")

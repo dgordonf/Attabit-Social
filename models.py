@@ -1,5 +1,6 @@
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
 from flask_sqlalchemy import SQLAlchemy
+from config import Config
 
 class RegistrationForm(Form):
     username = StringField('Username', [validators.DataRequired(), validators.Length(min=4, max=25)])
