@@ -33,7 +33,7 @@ db = SQLAlchemy()
 db.init_app(application)
 
 try:
-    engine = sqlalchemy.create_engine(application.config['DATABASE'])
+    engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
     connection = engine.connect()
     print("connected")
 except:
