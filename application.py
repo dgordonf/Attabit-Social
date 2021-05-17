@@ -31,13 +31,6 @@ application.config.from_object(Config)
 db = SQLAlchemy(application)
 db.init_app(application)
 
-try:
-    engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
-    connection = engine.connect()   
-    print("connected")
-except:
-    print ("I am unable to connect to the database, bro")
-
 ### AUTH SECTION ###
 login_manager = LoginManager()
 login_manager.init_app(application)
@@ -102,7 +95,13 @@ def signup():
         password_hash = bcrypt.hashpw(password, salt)
         password_hash = password_hash.decode('utf8')
         
-        connection.execute("INSERT INTO users (username, first_name, email, password) VALUES (%s, %s, %s, %s);", (username, name, email, password_hash))
+        try:
+            engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
+            connection = engine.connect()   
+            connection.execute("INSERT INTO users (username, first_name, email, password) VALUES (%s, %s, %s, %s);", (username, name, email, password_hash))
+        finally:
+            connection.close()
+        
         return redirect("camp/1")
     print("Already a user")    
     return render_template('index.html', form=form)
@@ -130,7 +129,7 @@ def camp(camp_id):
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"
             hed = '<h1>Something is broken.</h1>'
-            return hed + error_text        
+            return hed + error_text 
 
     ResultProxy = connection.execute('SELECT * FROM camp_directory cd WHERE cd.camp_id = %s AND cd.user_id = %s;', (camp_id, user_id))
     df = DataFrame(ResultProxy.fetchall())
@@ -158,6 +157,8 @@ def camp(camp_id):
             error_text = "<p>The error:<br>" + str(e) + "</p>"
             hed = '<h1>Something is broken.</h1>'
             return hed + error_text
+        finally:
+            connection.close()     
     else:
         flash('You are not a member of that camp')
         return redirect('/')
