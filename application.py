@@ -112,7 +112,14 @@ def signup():
 @login_required
 def camp(camp_id):
     user_id =  current_user.get_user_id()
-    
+
+    try:
+        engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
+        connection = engine.connect()   
+        print("connected")
+    except:
+        print ("I am unable to connect to the database, bro")
+
     if request.method == 'POST':
         try:
             reply_to_id = request.form.get('reply_to_id')
