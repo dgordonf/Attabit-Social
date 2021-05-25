@@ -45,6 +45,9 @@ border-left: 2.5px solid black;
 }
 </style>
 
+{% extends "layout.html" %}
+{% block body %}
+
 <script>
 var check = function() {
   if (document.getElementById('password').value ==
@@ -73,6 +76,6 @@ var check = function() {
     </div>  
 
 
-
+{% endblock %}   
   </body>
 </html>

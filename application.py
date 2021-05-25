@@ -19,7 +19,6 @@ import bcrypt
 
 # AWS guide: https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
 # God Man: https://stackoverflow.com/questions/62111066/mysqlclient-installation-error-in-aws-elastic-beanstalk
-
 #Read this: https://stackoverflow.com/questions/53024891/modulenotfounderror-no-module-named-mysqldb/54031440
 
 # Not the entire world, just your best friends. 
@@ -163,7 +162,11 @@ def camp(camp_id):
         flash('You are not a member of that camp')
         return redirect('/')
     
-  
+@application.teardown_request
+def teardown_request(exception):
+    if exception:
+        db.session.rollback()
+    db.session.remove()  
 
 if __name__ == '__main__':
     application.run(port=8080, debug=True, use_reloader = True)
