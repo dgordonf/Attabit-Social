@@ -119,16 +119,31 @@ def camp(camp_id):
         print ("I am unable to connect to the database, bro")
 
     if request.method == 'POST':
-        try:
-            reply_to_id = request.form.get('reply_to_id')
-            post_text = request.form.get('post_text')
-            connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, post_text) VALUES (%s, %s, %s, %s);', (camp_id, user_id, reply_to_id, post_text))
-        
-        except Exception as e:
-            # e holds description of the error
-            error_text = "<p>The error:<br>" + str(e) + "</p>"
-            hed = '<h1>Something is broken.</h1>'
-            return hed + error_text 
+        type = request.form.get('update_type')    
+        if type == 'post_text':
+            try:
+                reply_to_id = request.form.get('reply_to_id')
+                post_text = request.form.get('post_text')
+                connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, post_text) VALUES (%s, %s, %s, %s);', (camp_id, user_id, reply_to_id, post_text))
+            
+            except Exception as e:
+                # e holds description of the error
+                error_text = "<p>The error:<br>" + str(e) + "</p>"
+                hed = '<h1>Something is broken.</h1>'
+                return hed + error_text 
+
+        if type == 'post_vote':
+            try:
+                value = request.form.get('post_vote')
+                post_id = request.form.get('post_id')
+                connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
+            
+            except Exception as e:
+                # e holds description of the error
+                error_text = "<p>The error:<br>" + str(e) + "</p>"
+                hed = '<h1>Something is broken.</h1>'
+                return hed + error_text 
+
 
     ResultProxy = connection.execute('SELECT * FROM camp_directory cd WHERE cd.camp_id = %s AND cd.user_id = %s;', (camp_id, user_id))
     df = DataFrame(ResultProxy.fetchall())
