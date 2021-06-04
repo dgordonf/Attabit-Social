@@ -3,6 +3,7 @@ from string import Template
 
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
+import pandas as pd
 from pandas import DataFrame
 import re
 from flask_gtts import gtts
@@ -15,7 +16,8 @@ import email_validator
 from passlib.hash import sha256_crypt
 from flask_login import login_user, logout_user, login_required, current_user
 import bcrypt
-
+from datetime import datetime
+from dateutil import tz
 
 # AWS guide: https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
 # God Man: https://stackoverflow.com/questions/62111066/mysqlclient-installation-error-in-aws-elastic-beanstalk
@@ -144,18 +146,26 @@ def camp(camp_id):
                 hed = '<h1>Something is broken.</h1>'
                 return hed + error_text 
 
-
+    ##Are they in this camp?
     ResultProxy = connection.execute('SELECT * FROM camp_directory cd WHERE cd.camp_id = %s AND cd.user_id = %s;', (camp_id, user_id))
     df = DataFrame(ResultProxy.fetchall())
 
+    #If yes, load page
     if len(df.index) > 0: 
         try:
-            ResultProxy = connection.execute('SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.creation_time, p.post_text, p.opacity, u.id, u.username, u.first_name FROM posts p LEFT JOIN users u ON p.user_id = u.id WHERE p.camp_id = %s;', (camp_id))
-            
+            ResultProxy = connection.execute('SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.creation_time, p.post_text, SUM(pv.value) AS opacity, u.id, u.username, u.first_name FROM posts p LEFT JOIN users u ON p.user_id = u.id LEFT JOIN post_votes pv ON p.camp_id = pv.camp_id AND p.post_id = pv.post_id WHERE p.camp_id = %s GROUP BY p.post_id;', (camp_id))
             df = DataFrame(ResultProxy.fetchall())
+            
             if len(df.index) > 0:
                 df.columns = ResultProxy.keys()
-                
+
+                #Correct Timezone
+                to_zone = tz.tzlocal()
+
+                df['creation_time'] = pd.to_datetime(df['creation_time'])
+                df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
+                df['creation_time'] = df['creation_time'].dt.strftime('%b %d, %Y')
+
                 posts = df[df["reply_to_id"].isnull()]
                 posts = posts.sort_values(by=['creation_time'], ascending=False)  
                 
