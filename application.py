@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from string import Template
 
 from flask_sqlalchemy import SQLAlchemy
+from numpy import isnan
 import sqlalchemy
 import pandas as pd
 from pandas import DataFrame
@@ -18,6 +19,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 import bcrypt
 from datetime import datetime
 from dateutil import tz
+from colour import Color
 
 # AWS guide: https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
 # God Man: https://stackoverflow.com/questions/62111066/mysqlclient-installation-error-in-aws-elastic-beanstalk
@@ -41,7 +43,8 @@ login_manager.login_view = 'login'
 @application.route('/')
 def homepage():
     form = LoginForm(request.form)
-    return render_template('login.html', form=form)
+    form2 = RegistrationForm(request.form)
+    return render_template('login.html', form=form, form2=form2)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -112,7 +115,7 @@ def signup():
 @login_required
 def camp(camp_id):
     user_id =  current_user.get_user_id()
-
+    
     try:
         engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
         connection = engine.connect()   
@@ -137,6 +140,11 @@ def camp(camp_id):
         if type == 'post_vote':
             try:
                 value = request.form.get('post_vote')
+                value = float(value)
+                if value >= 0:
+                    value = 1
+                else:
+                    value = -1
                 post_id = request.form.get('post_id')
                 connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
             
@@ -146,14 +154,38 @@ def camp(camp_id):
                 hed = '<h1>Something is broken.</h1>'
                 return hed + error_text 
 
-    ##Are they in this camp?
-    ResultProxy = connection.execute('SELECT * FROM camp_directory cd WHERE cd.camp_id = %s AND cd.user_id = %s;', (camp_id, user_id))
+    ##Are they in this camp? If yes also grab their color
+    ResultProxy = connection.execute("""SELECT * FROM camp_directory cd 
+                                        LEFT JOIN
+                                            (	SELECT  u.id, u.username, SUM(p1.value) AS user_score
+                                                FROM    users u
+                                                LEFT JOIN posts p ON p.user_id = u.id
+                                                LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                GROUP   BY u.username
+                                            ) b ON b.id = cd.user_id
+                                        WHERE cd.camp_id = %s AND cd.user_id = %s; """, (camp_id, user_id))
     df = DataFrame(ResultProxy.fetchall())
 
     #If yes, load page
     if len(df.index) > 0: 
         try:
-            ResultProxy = connection.execute('SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.creation_time, p.post_text, SUM(pv.value) AS opacity, u.id, u.username, u.first_name FROM posts p LEFT JOIN users u ON p.user_id = u.id LEFT JOIN post_votes pv ON p.camp_id = pv.camp_id AND p.post_id = pv.post_id WHERE p.camp_id = %s GROUP BY p.post_id;', (camp_id))
+            df.columns = ResultProxy.keys()
+            user_badge_score = int(round(df['user_score'][0], 0))
+            
+            ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, u.id, u.username, u.first_name 
+                                                FROM posts p 
+                                                LEFT JOIN users u ON p.user_id = u.id 
+                                                LEFT JOIN post_votes pv ON p.camp_id = pv.camp_id AND p.post_id = pv.post_id 
+                                                LEFT JOIN
+                                                        (
+                                                            SELECT  u.username, SUM(p1.value) AS user_score
+                                                            FROM    users u
+                                                            LEFT JOIN posts p ON p.user_id = u.id
+                                                            LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                            GROUP   BY u.username
+                                                        ) b ON b.username = u.username
+                                                WHERE p.camp_id = %s 
+                                                GROUP BY p.post_id; """, (camp_id))
             df = DataFrame(ResultProxy.fetchall())
             
             if len(df.index) > 0:
@@ -166,6 +198,31 @@ def camp(camp_id):
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                 df['creation_time'] = df['creation_time'].dt.strftime('%b %d, %Y')
 
+                #Correct Update Post Score (All posts begin at a score of 1)
+                df['post_score'] = df['post_score'] + 1
+                df['user_score'] = df['user_score'] + 1
+
+                ##Create User Colors
+                red = Color("#fff1ad")
+                colors = list(red.range_to(Color("#db3232"), 100))
+
+                #Replace NAs    
+                df['user_score'] = df['user_score'].fillna(0)
+                
+                datalist = []    
+                for values in df.user_score:
+                    score = int(round(values, 0))
+                    if score < 0:
+                        score = 0
+                    color = colors[score]
+                    datalist.append(color)
+                            
+                df['user_color'] = datalist
+                
+                ##Get current user color
+                user_badge_color = colors[user_badge_score]
+
+                ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]
                 posts = posts.sort_values(by=['creation_time'], ascending=False)  
                 
@@ -175,7 +232,7 @@ def camp(camp_id):
                 posts = df
                 replys = df
             
-            return render_template('camp.html',  posts=posts, replys=replys, camp_id=camp_id)
+            return render_template('camp.html',  posts=posts, replys=replys, camp_id=camp_id, user_badge_color=user_badge_color)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"

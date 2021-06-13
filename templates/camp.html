@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/sentence.css') }}">
-  <title>Volume</title>
+  <title>Campfire</title>
 </head>
 <body>
 <style>
@@ -102,7 +102,6 @@ color: #222222;
 word-wrap: break-word;
 word-break: break-all;
 font-size: 15px;
-margin-bottom: 18px;        
 width: 100%;
 border: 0;
 outline: 0;
@@ -112,6 +111,25 @@ padding: 3px;
 padding-left: 10px;
 }
 
+.reply_bar {
+word-wrap: break-word;
+word-break: break-all;
+font-size: 15px;
+width: 90%;
+border: 0;
+outline: 0;
+background: transparent;
+border-bottom: 2.5px solid #bebebeee;
+padding: 3px;
+padding-left: 10px;
+flex-grow: 1; 
+}
+
+.reply_bar::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #bebebeee;
+}
+
+
 .post_box {
   padding:10px;
   margin-top: 15px;
@@ -119,13 +137,7 @@ padding-left: 10px;
   background-color: white;
   border-radius:5px;
   border: 2px solid rgb(236, 236, 236);
- 
-}
-
-.posts_top {
-  display: flex;
-
-}
+ }
 
 .badge {
   float: left;
@@ -135,12 +147,14 @@ padding-left: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color:rgba(29, 29, 29);
 }
+
 
 
 .post_text {
   padding: 5px;
-  padding-left: 5px;
+  padding-left: 18px;
   font-size: 15px;
  
 }
@@ -154,31 +168,74 @@ padding-left: 10px;
 
 .post_time {
   color: #4d4d4d;
-  font-size: 15px;
   margin-left: 7px;
   height: 15px;
-  font-size: 13px;;
+  font-size: 11px;;
 }
 
-.reply {
+
+.reply_box {
   padding: 5px;
-  padding-left: 13px;
+  padding-left: 9px;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+ }
+
+.reply_badge {
+  font-size: 11px;
+  margin-top: 6px;
+  float: left;
+  border-radius: 50%;
+  width: 33px;
+  height: 33px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:rgba(29, 29, 29);
+  
+}
+
+.reply_details {
+  padding-left: 5px;
 
 }
 
 .reply_person {
-  text-align:center;
-  font-weight: bold;
-  color: #f7f7f7;
-  background-color: #000000ce;
-  border: 1px solid rgb(77, 77, 77);
-  border-radius:3px;
-  margin:2px;
-  margin-right:7px;
-  padding:2px;
-  padding-left: 4px;
+  color: #818181;
+  font-size: small;
+  line-height: 13px;
+  padding-left: 2px;
   padding-right: 4px;
+}
 
+.reply_text {
+  padding-left: 5px;
+  padding-right:5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+  max-width: 500px;
+}
+
+.user_reply_box {
+  padding: 5px;
+  padding-left: 9px;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+ }
+
+.user_badge {
+  float: left;
+  border-radius: 50%;
+  width: 33px;
+  height: 33px; 
+  
+  justify-content: center;
+  align-items: center;
+  background-color: {{user_badge_color}}
 }
 
 .arrows {
@@ -212,7 +269,7 @@ padding-left: 10px;
 {% block body %}
 <div class = "header" id= "header">
   <div class="header_content">
-  <a href="/" class = "header_title">Volume</a> <a href="/logout" class = "header_logout">Logout</a> 
+  <a href="/" class = "header_title">Campfire</a> <a href="/logout" class = "header_logout">Logout</a> 
   </div>
 </div>
 
@@ -229,10 +286,10 @@ padding-left: 10px;
       {% for index, posts in posts.iterrows() %}
       <div class = "post_box">
         <div class = "post_top">
-          <div class = "badge">
+          <div class = "badge" style=background-color:{{posts['user_color']}}>
             <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
               <input class= hidden name= "update_type" value = "post_vote">  
-              <input class= hidden name= "post_vote" value = 0.25>
+              <input class= hidden name= "post_vote" value = 1>
               <input type="hidden" name= "post_id" value={{posts['post_id']}} >
               <button type="submit" class="arrow_button">
                 &#x25B3;
@@ -242,7 +299,7 @@ padding-left: 10px;
             
             <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
               <input class= hidden name= "update_type" value = "post_vote">  
-              <input class= hidden name= "post_vote" value = -0.25>
+              <input class= hidden name= "post_vote" value = -1>
               <input type="hidden" name= "post_id" value={{posts['post_id']}} >
               <button type="submit" class="arrow_button">
                 &#x25BD;
@@ -257,29 +314,80 @@ padding-left: 10px;
           <div>
             <span class= "post_time">{{posts['creation_time']}}</span>
           </div>
-          <div class = "post_text" style="opacity:{{posts['opacity']}};">
-            {{posts['post_text']}}
+          <div class = "post_text" style="post_score:{{posts['post_score']}};">
+            
+              {% if posts['post_score'] > 1 %}
+                <span  style="font-size:{{posts['post_score'] * posts['post_score']  + 15}}px;Score:{{posts['post_score']}}"> 
+              {% else %}
+                <span  style="font-size:{{13 - (posts['post_score'] * posts['post_score'])}}px;Score:{{posts['post_score']}}"> 
+              {% endif %} 
+                {{posts['post_text']}}
+                </span>
           </div>
           </div>  
-
+          <hr style='margin-top: 5px; margin-bottom: 5px;'> 
           
           
           
           {% for key, reply in replys.iterrows() %}
             {% if reply['reply_to_id'] == posts['post_id']%}
+            <div class= "reply_box">
+            <div class = "reply_badge" style=background-color:{{reply['user_color']}}>
+              <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
+                <input class= hidden name= "update_type" value = "post_vote">  
+                <input class= hidden name= "post_vote" value = 1>
+                <input type="hidden" name= "post_id" value={{reply['post_id']}} >
+                <button type="submit" class="arrow_button">
+                  &#x25B3;
+                </button>
+              </form>
               
-            <p class = "reply" > <span class = "arrows" style>&#x25B3;&#x25BD;</span> <span class = "reply_person" > {{reply['first_name']}}</span>{{reply['post_text']}}</p> 
+              
+              <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
+                <input class= hidden name= "update_type" value = "post_vote">  
+                <input class= hidden name= "post_vote" value = -1>
+                <input type="hidden" name= "post_id" value={{reply['post_id']}} >
+                <button type="submit" class="arrow_button">
+                  &#x25BD;
+                </button>
+              </form> 
+            
+            </div>
+            
+            <div class= "reply_details">
+              <div class = "reply_person">{{reply['first_name']}}</div>
+              <div class = "reply_text"> 
+              {% if reply['post_score'] > 1 %}
+                <span  style="font-size:{{reply['post_score'] * reply['post_score']  + 15}}px;Score:{{reply['post_score']}}"> 
+              {% else %}
+                <span  style="font-size:{{13 - (reply['post_score'] * reply['post_score'])}}px;Score:{{reply['post_score']}}"> 
+              {% endif %}    
+                  {{reply['post_text']}}
+                </span>
+              </div>
+              
+
+              
+            </div>
+          </div>
+
             {% endif %}
           {% endfor %}
 
-        <form action="/camp/{{ camp_id }}" method="post">
+        <div class = "user_reply_box"> 
+          <div class = "user_badge">
+            
+          
+          </div>
+        <form action="/camp/{{ camp_id }}" method="post" style='flex-grow: 1;'>
           <input class= hidden name= "update_type" value = "post_text">  
-          <input class= post_bar type="text" name= "post_text">
+          <input class= reply_bar type="text" name= "post_text" placeholder="Reply">
           <input type="hidden" name= "reply_to_id" value={{posts['post_id']}} >
           <input type="hidden" name= "type" value="2">
           <input type="submit" style="display: none" />
 
         </form> 
+        </div>                                    
       </div>
       {% endfor %}
       </div>

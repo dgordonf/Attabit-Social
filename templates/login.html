@@ -75,6 +75,21 @@ var check = function() {
       </form>
     </div>  
 
+    <div class="container">
+      <h1>Signup</h1>
+      <br>
+        {% from "_formhelpers.html" import render_field %}
+      <form action = "/signup" method=post>
+        <dl>
+          {{ render_field(form2.username) }}
+          {{ render_field(form2.name) }}
+          {{ render_field(form2.email) }}
+          {{ render_field(form2.password) }}
+          {{ render_field(form2.confirm) }}
+        </dl>
+        <p><input type=submit value=Register>
+      </form>
+    </div>  
 
 {% endblock %}   
   </body>
