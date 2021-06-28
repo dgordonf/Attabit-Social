@@ -62,7 +62,9 @@ def unauthorized():
 def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
+        print(form.email.data)
         user = User.query.get(form.email.data)
+        print(user)
         if user:
             form_password = form.password.data.encode('utf-8')
             user_password = user.password.encode('utf-8')
@@ -90,7 +92,6 @@ def logout():
 def signup(): 
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate() and User.query.filter_by(email=form.email.data).first() is None:
-        username = form.username.data
         name = form.name.data
         email = form.email.data
         password = form.password.data.encode('utf-8')
@@ -102,7 +103,7 @@ def signup():
         try:
             engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
             connection = engine.connect()   
-            connection.execute("INSERT INTO users (username, first_name, email, password) VALUES (%s, %s, %s, %s);", (username, name, email, password_hash))
+            connection.execute("INSERT INTO users (first_name, email, password) VALUES (%s, %s, %s);", (name, email, password_hash))
         finally:
             connection.close()
         
@@ -157,11 +158,11 @@ def camp(camp_id):
     ##Are they in this camp? If yes also grab their color
     ResultProxy = connection.execute("""SELECT * FROM camp_directory cd 
                                         LEFT JOIN
-                                            (	SELECT  u.id, u.username, SUM(p1.value) AS user_score
+                                            (	SELECT  u.id, SUM(p1.value) AS user_score
                                                 FROM    users u
                                                 LEFT JOIN posts p ON p.user_id = u.id
                                                 LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
-                                                GROUP   BY u.username
+                                                GROUP   BY u.id
                                             ) b ON b.id = cd.user_id
                                         WHERE cd.camp_id = %s AND cd.user_id = %s; """, (camp_id, user_id))
     df = DataFrame(ResultProxy.fetchall())
@@ -170,20 +171,23 @@ def camp(camp_id):
     if len(df.index) > 0: 
         try:
             df.columns = ResultProxy.keys()
-            user_badge_score = int(round(df['user_score'][0], 0))
+            if df['user_score'][0] is None:
+                user_badge_score = 0
+            else:
+                user_badge_score = int(round(df['user_score'][0], 0))
             
-            ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, u.id, u.username, u.first_name 
+            ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, u.id, u.first_name 
                                                 FROM posts p 
                                                 LEFT JOIN users u ON p.user_id = u.id 
                                                 LEFT JOIN post_votes pv ON p.camp_id = pv.camp_id AND p.post_id = pv.post_id 
                                                 LEFT JOIN
                                                         (
-                                                            SELECT  u.username, SUM(p1.value) AS user_score
+                                                            SELECT  u.id, SUM(p1.value) AS user_score
                                                             FROM    users u
                                                             LEFT JOIN posts p ON p.user_id = u.id
                                                             LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
-                                                            GROUP   BY u.username
-                                                        ) b ON b.username = u.username
+                                                            GROUP   BY u.id
+                                                        ) b ON b.id = u.id
                                                 WHERE p.camp_id = %s 
                                                 GROUP BY p.post_id; """, (camp_id))
             df = DataFrame(ResultProxy.fetchall())
@@ -201,7 +205,7 @@ def camp(camp_id):
                 #Correct Update Post Score (All posts begin at a score of 1)
                 df['post_score'] = df['post_score'] + 1
                 df['user_score'] = df['user_score'] + 1
-
+                
                 ##Create User Colors
                 red = Color("#fff1ad")
                 colors = list(red.range_to(Color("#db3232"), 100))
@@ -224,10 +228,11 @@ def camp(camp_id):
 
                 ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]
-                posts = posts.sort_values(by=['creation_time'], ascending=False)  
+                posts = posts.sort_values(by=['post_id'], ascending=False)  
                 
                 replys = df[df["reply_to_id"].notnull()]
-                replys = replys.sort_values(by=['creation_time'], ascending=True)  
+                replys = replys.sort_values(by=['post_id'], ascending=True)  
+
             else :
                 posts = df
                 replys = df

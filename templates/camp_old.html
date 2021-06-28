@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/e0661229f6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/sentence.css') }}">
   <title>Campfire</title>
 </head>
@@ -132,11 +131,11 @@ flex-grow: 1;
 
 
 .post_box {
-  padding:20px;
+  padding:10px;
   margin-top: 15px;
-  margin-bottom: 2px;
+  margin-bottom: 15px;
   background-color: white;
-  border-radius:15px;
+  border-radius:5px;
   border: 2px solid rgb(236, 236, 236);
  }
 
@@ -155,16 +154,16 @@ flex-grow: 1;
 
 .post_text {
   padding: 5px;
+  padding-left: 18px;
+  font-size: 15px;
  
 }
  
 .post_person {
-  font-weight: 550;
+  font-weight: 600;
   color: #161616;
-  font-size: 14.5px;
+  font-size: 15px;
   margin-left: 7px;
-  height:16px;
-  text-transform: lowercase;
 }
 
 .post_time {
@@ -174,42 +173,13 @@ flex-grow: 1;
   font-size: 11px;;
 }
 
-.controls {
-  float: right;
-  display: flex;
- 
-}
-
-.controls2 {
-  margin-right: 10px;
-  float: right;
-  display: flex;
- 
-}
-
-.arrows {
-  color:rgb(223, 223, 223);
-  font-size:18px;
-  padding-right:3px;
-  padding-left:3px;
-}
-
-.score {
-  color:rgb(194, 194, 194);
-  font-size:14px;
-  padding-right:5px;
-  padding-left:5px;
-  
-}
 
 .reply_box {
-  margin-top: 0px;
-  margin-bottom: 2px;
-  margin-left: 33px;
-  padding:10px;
-  background-color: white;
-  border-radius:15px;
-  border: 2px solid rgb(236, 236, 236);
+  padding: 5px;
+  padding-left: 9px;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
  }
 
 .reply_badge {
@@ -223,6 +193,12 @@ flex-grow: 1;
   justify-content: center;
   align-items: center;
   color:rgba(29, 29, 29);
+  
+}
+
+.reply_details {
+  padding-left: 5px;
+
 }
 
 .reply_person {
@@ -234,13 +210,13 @@ flex-grow: 1;
 }
 
 .reply_text {
-  margin-left: 40px;
-  max-width: 500px;
-}
-
-.reply_details {
   padding-left: 5px;
-
+  padding-right:5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+  max-width: 500px;
 }
 
 .user_reply_box {
@@ -259,7 +235,18 @@ flex-grow: 1;
   
   justify-content: center;
   align-items: center;
-  background-color: {{user_badge_color}};
+  background-color: {{user_badge_color}}
+}
+
+.arrows {
+  color:rgba(192, 192, 192, 0.63);
+  font-size: 18px;
+  padding-left: 3px;
+  float: right;
+  z-index: 2;
+  position: relative;
+  bottom: 7px;
+  
 }
 
 .arrow_button {
@@ -274,23 +261,7 @@ flex-grow: 1;
   align-items: center;
 }
 
-.border-gradient {
-  border: 10px solid;
-  border-image-slice: 1;
-  border-width: 5px;
-}
 
-.border-gradient-purple {
-  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
-}
-
-.rounded-corners-gradient-borders {
-  border: double 2px transparent;
-  border-radius: 15px;
-  background-image: linear-gradient(white, white), radial-gradient(circle at top left, #f00,#3020ff);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-}
 
 </style>
 
@@ -302,7 +273,7 @@ flex-grow: 1;
   </div>
 </div>
 
-  <div id= "feed">
+      <div id= "feed">
         <div class = "posts_top">
           <form action="/camp/{{ camp_id }}" method="post">  
             <input class= hidden name= "update_type" value = "post_text">  
@@ -313,42 +284,32 @@ flex-grow: 1;
         </div>
       
       {% for index, posts in posts.iterrows() %}
-    <div class="rounded-corners-gradient-borders">
       <div class = "post_box">
         <div class = "post_top">
           <div class = "badge" style=background-color:{{posts['user_color']}}>
+            <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
+              <input class= hidden name= "update_type" value = "post_vote">  
+              <input class= hidden name= "post_vote" value = 1>
+              <input type="hidden" name= "post_id" value={{posts['post_id']}} >
+              <button type="submit" class="arrow_button">
+                &#x25B3;
+              </button>
+            </form>
+            
+            
+            <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
+              <input class= hidden name= "update_type" value = "post_vote">  
+              <input class= hidden name= "post_vote" value = -1>
+              <input type="hidden" name= "post_id" value={{posts['post_id']}} >
+              <button type="submit" class="arrow_button">
+                &#x25BD;
+              </button>
+            </form> 
+          
           </div>
           
-          <div style= 'height: 15px;'>
-            <span class= "post_person">{{posts['first_name']}} </span>
-
-              <div class = 'controls'>
-                <div class = 'arrows'>
-                <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
-                  <input class= hidden name= "update_type" value = "post_vote">  
-                  <input class= hidden name= "post_vote" value = 1>
-                  <input type="hidden" name= "post_id" value={{posts['post_id']}} >
-                  <button type="submit" class="arrow_button">
-                    <i class="fas fa-caret-square-up"></i>
-                  </button>
-                </form>
-                </div>
-                
-                <div class = "score">
-               
-                </div>    
-                        
-                <div class = "arrows">
-                <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
-                  <input class= hidden name= "update_type" value = "post_vote">  
-                  <input class= hidden name= "post_vote" value = -1>
-                  <input type="hidden" name= "post_id" value={{posts['post_id']}} >
-                  <button type="submit" class="arrow_button">
-                    <i class="fas fa-caret-square-down"></i>
-                  </button>
-                </form> 
-               </div>
-              </div>  
+          <div style='height:16px;'>
+            <span class= "post_person">{{posts['first_name']}}
           </div>
           <div>
             <span class= "post_time">{{posts['creation_time']}}</span>
@@ -356,77 +317,78 @@ flex-grow: 1;
           <div class = "post_text" style="post_score:{{posts['post_score']}};">
             
               {% if posts['post_score'] > 1 %}
-                <span  style="Score:{{posts['post_score']}}"> 
+                <span  style="font-size:{{posts['post_score'] * posts['post_score']  + 15}}px;Score:{{posts['post_score']}}"> 
               {% else %}
                 <span  style="font-size:{{13 - (posts['post_score'] * posts['post_score'])}}px;Score:{{posts['post_score']}}"> 
               {% endif %} 
                 {{posts['post_text']}}
                 </span>
           </div>
-
-        
-        </div>  
-      </div>
-    </div>   
-
-          {% for key, reply in replys.iterrows() %}
-          {% if reply['reply_to_id'] == posts['post_id']%}
+          </div>  
+          <hr style='margin-top: 5px; margin-bottom: 5px;'> 
           
-          <div class = "reply_box">
-            <div class = "post_top">
-              <div class = "badge" style=background-color:{{reply['user_color']}}>
+          
+          
+          {% for key, reply in replys.iterrows() %}
+            {% if reply['reply_to_id'] == posts['post_id']%}
+            <div class= "reply_box">
+            <div class = "reply_badge" style=background-color:{{reply['user_color']}}>
+              <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
+                <input class= hidden name= "update_type" value = "post_vote">  
+                <input class= hidden name= "post_vote" value = 1>
+                <input type="hidden" name= "post_id" value={{reply['post_id']}} >
+                <button type="submit" class="arrow_button">
+                  &#x25B3;
+                </button>
+              </form>
+              
+              
+              <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
+                <input class= hidden name= "update_type" value = "post_vote">  
+                <input class= hidden name= "post_vote" value = -1>
+                <input type="hidden" name= "post_id" value={{reply['post_id']}} >
+                <button type="submit" class="arrow_button">
+                  &#x25BD;
+                </button>
+              </form> 
+            
+            </div>
+            
+            <div class= "reply_details">
+              <div class = "reply_person">{{reply['first_name']}}</div>
+              <div class = "reply_text"> 
+              {% if reply['post_score'] > 1 %}
+                <span  style="font-size:{{reply['post_score'] * reply['post_score']  + 15}}px;Score:{{reply['post_score']}}"> 
+              {% else %}
+                <span  style="font-size:{{13 - (reply['post_score'] * reply['post_score'])}}px;Score:{{reply['post_score']}}"> 
+              {% endif %}    
+                  {{reply['post_text']}}
+                </span>
               </div>
               
-              <span class= "post_person">{{reply['first_name']}}</span>
-              <div class = 'controls2'>
-                <div class = 'arrows'>
-                  <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
-                    <input class= hidden name= "update_type" value = "post_vote">  
-                    <input class= hidden name= "post_vote" value = 1>
-                    <input type="hidden" name= "post_id" value={{posts['post_id']}} >
-                    <button type="submit" class="arrow_button">
-                      <i class="fas fa-caret-square-up"></i>
-                    </button>
-                  </form>
-                </div>
-                
-                <div class = "score">
-         
-                </div>    
-                        
-                <div class = "arrows">
-                  <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
-                    <input class= hidden name= "update_type" value = "post_vote">  
-                    <input class= hidden name= "post_vote" value = -1>
-                    <input type="hidden" name= "post_id" value={{posts['post_id']}} >
-                    <button type="submit" class="arrow_button">
-                      <i class="fas fa-caret-square-down"></i>
-                    </button>
-                  </form> 
-                </div>
-              </div>
 
-              <div class = "reply_text">
-                
-                {% if reply['post_score'] > 1 %}
-                  <span  style="Score:{{reply['post_score']}}"> 
-                {% else %}
-                  <span  style="font-size:{{13 - (reply['post_score'] * reply['post_score'])}}px;Score:{{reply['post_score']}}"> 
-                {% endif %} 
-                  {{reply['post_text']}}
-                  </span>
-                  
-              </div>
-                  
+              
+            </div>
+          </div>
+
+            {% endif %}
+          {% endfor %}
+
+        <div class = "user_reply_box"> 
+          <div class = "user_badge">
             
-          </div>  
-        </div> 
-        
-
-          {% endif %}
-        {% endfor %}  
-
           
+          </div>
+        <form action="/camp/{{ camp_id }}" method="post" style='flex-grow: 1;'>
+          <input class= hidden name= "update_type" value = "post_text">  
+          <input class= reply_bar type="text" name= "post_text" placeholder="Reply">
+          <input type="hidden" name= "reply_to_id" value={{posts['post_id']}} >
+          <input type="hidden" name= "type" value="2">
+          <input type="submit" style="display: none" />
+
+        </form> 
+        </div>                                    
+      </div>
       {% endfor %}
       </div>
 

@@ -81,7 +81,6 @@ var check = function() {
         {% from "_formhelpers.html" import render_field %}
       <form action = "/signup" method=post>
         <dl>
-          {{ render_field(form2.username) }}
           {{ render_field(form2.name) }}
           {{ render_field(form2.email) }}
           {{ render_field(form2.password) }}
