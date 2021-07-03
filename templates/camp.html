@@ -12,6 +12,9 @@
 <body>
 <style>
 
+html {
+  scroll-behavior: smooth;
+}
 
 body {
    background-color: #fafafa; 
@@ -91,6 +94,7 @@ color: #222222;
   max-width:600px;
   margin: 0 auto;
   margin-top:25px;
+  margin-bottom: 75px;
  
  }
 
@@ -112,15 +116,13 @@ padding: 3px;
 padding-left: 10px;
 }
 
-.reply_bar {
+.reply_input {
 word-wrap: break-word;
 word-break: break-all;
-font-size: 15px;
 width: 90%;
 border: 0;
 outline: 0;
 background: transparent;
-border-bottom: 2.5px solid #bebebeee;
 padding: 3px;
 padding-left: 10px;
 flex-grow: 1; 
@@ -133,11 +135,11 @@ flex-grow: 1;
 
 .post_box {
   padding:20px;
-  margin-top: 15px;
+
   margin-bottom: 2px;
   background-color: white;
   border-radius:15px;
-  border: 2px solid rgb(236, 236, 236);
+
  }
 
 .badge {
@@ -188,7 +190,7 @@ flex-grow: 1;
 }
 
 .arrows {
-  color:rgb(223, 223, 223);
+  color:rgb(204, 204, 204);
   font-size:18px;
   padding-right:3px;
   padding-left:3px;
@@ -203,8 +205,7 @@ flex-grow: 1;
 }
 
 .reply_box {
-  margin-top: 0px;
-  margin-bottom: 2px;
+  margin-top: .5px;
   margin-left: 33px;
   padding:10px;
   background-color: white;
@@ -274,23 +275,34 @@ flex-grow: 1;
   align-items: center;
 }
 
-.border-gradient {
-  border: 10px solid;
-  border-image-slice: 1;
-  border-width: 5px;
+.reply_reveal{
+  font-size:20px;
+  color:rgb(214, 214, 214);
+  margin:3px;
+  margin-left:53px;
 }
 
-.border-gradient-purple {
-  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+
+.border {
+  margin-top: 15px;
+  border-radius:15px;
 }
 
-.rounded-corners-gradient-borders {
+.border-0 {
+  border: 2px solid rgb(236, 236, 236);
+}
+
+.border_positive {
   border: double 2px transparent;
-  border-radius: 15px;
-  background-image: linear-gradient(white, white), radial-gradient(circle at top left, #f00,#3020ff);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
+
+.border-1 {
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left, rgb(236, 236, 236),#f8bc4d);
+}
+
+
 
 </style>
 
@@ -313,7 +325,11 @@ flex-grow: 1;
         </div>
       
       {% for index, posts in posts.iterrows() %}
-    <div class="rounded-corners-gradient-borders">
+      {% if posts['post_score'] <= 0 %}
+    <div class="border border-0">
+      {% else %}
+    <div class="border border_positive border-{{posts['post_score']}}">
+      {% endif %} 
       <div class = "post_box">
         <div class = "post_top">
           <div class = "badge" style=background-color:{{posts['user_color']}}>
@@ -329,7 +345,7 @@ flex-grow: 1;
                   <input class= hidden name= "post_vote" value = 1>
                   <input type="hidden" name= "post_id" value={{posts['post_id']}} >
                   <button type="submit" class="arrow_button">
-                    <i class="fas fa-caret-square-up"></i>
+                    <i class="far fa-caret-square-up"></i>
                   </button>
                 </form>
                 </div>
@@ -344,7 +360,7 @@ flex-grow: 1;
                   <input class= hidden name= "post_vote" value = -1>
                   <input type="hidden" name= "post_id" value={{posts['post_id']}} >
                   <button type="submit" class="arrow_button">
-                    <i class="fas fa-caret-square-down"></i>
+                    <i class="far fa-caret-square-down"></i>
                   </button>
                 </form> 
                </div>
@@ -383,9 +399,9 @@ flex-grow: 1;
                   <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
                     <input class= hidden name= "update_type" value = "post_vote">  
                     <input class= hidden name= "post_vote" value = 1>
-                    <input type="hidden" name= "post_id" value={{posts['post_id']}} >
+                    <input type="hidden" name= "post_id" value={{reply['post_id']}} >
                     <button type="submit" class="arrow_button">
-                      <i class="fas fa-caret-square-up"></i>
+                      <i class="far fa-caret-square-up"></i>
                     </button>
                   </form>
                 </div>
@@ -398,9 +414,9 @@ flex-grow: 1;
                   <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
                     <input class= hidden name= "update_type" value = "post_vote">  
                     <input class= hidden name= "post_vote" value = -1>
-                    <input type="hidden" name= "post_id" value={{posts['post_id']}} >
+                    <input type="hidden" name= "post_id" value={{reply['post_id']}} >
                     <button type="submit" class="arrow_button">
-                      <i class="fas fa-caret-square-down"></i>
+                      <i class="far fa-caret-square-down"></i>
                     </button>
                   </form> 
                 </div>
@@ -424,9 +440,22 @@ flex-grow: 1;
         
 
           {% endif %}
-        {% endfor %}  
-
-          
+        {% endfor %}
+        <div class = "reply_box"> 
+          <div class = "post_top">
+             <div class = "user_badge"></div>
+            </div>
+        <div style= "padding-top:5px;padding-bottom:5px;">
+          <form action="/camp/{{ camp_id }}" method="post" >
+            <input class= hidden name= "update_type" value = "post_text">  
+            <input class= reply_input type="textbox"  name= "post_text" placeholder="Reply..">
+            <input type="hidden" name= "reply_to_id" value={{posts['post_id']}} >
+            <input type="hidden" name= "type" value="2">
+            <input type="submit" style="display: none" />
+    
+          </form> 
+          </div> 
+        </div> 
       {% endfor %}
       </div>
 

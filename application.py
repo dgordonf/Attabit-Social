@@ -107,6 +107,17 @@ def signup():
         finally:
             connection.close()
         
+        user = User.query.get(email)
+        login_user(user, remember=True)
+        user_id =  current_user.get_user_id()
+
+        try:
+            engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
+            connection = engine.connect()   
+            connection.execute("INSERT INTO camp_directory (camp_id, user_id) VALUES (%s, %s);", (1, user_id))
+        finally:
+            connection.close()
+        
         return redirect("camp/1")
     print("Already a user")    
     return render_template('index.html', form=form)
@@ -202,17 +213,14 @@ def camp(camp_id):
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                 df['creation_time'] = df['creation_time'].dt.strftime('%b %d, %Y')
 
-                #Correct Update Post Score (All posts begin at a score of 1)
-                df['post_score'] = df['post_score'] + 1
-                df['user_score'] = df['user_score'] + 1
-                
+                #Correct Update Post Score (All posts begin at a score of 0) and round
+                df['post_score'] = df['post_score'].fillna(0).astype(int)
+                df['user_score'] = df['user_score'].fillna(0).astype(int)
+               
                 ##Create User Colors
                 red = Color("#fff1ad")
                 colors = list(red.range_to(Color("#db3232"), 100))
-
-                #Replace NAs    
-                df['user_score'] = df['user_score'].fillna(0)
-                
+               
                 datalist = []    
                 for values in df.user_score:
                     score = int(round(values, 0))
