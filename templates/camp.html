@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/e0661229f6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/sentence.css') }}">
-  <title>Campfire</title>
+  <title>hideaway</title>
 </head>
 <body>
 <style>
@@ -19,7 +19,7 @@ html {
 body {
    background-color: #fafafa; 
    z-index: 0;
-   line-height: 20px;
+
 }
 
 h1 {
@@ -39,23 +39,8 @@ h1 {
   top: 0; 
   padding: 5px;
   border-bottom: 1.5px solid lightgrey;
+  z-index: 999;
 }   
-
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
 
 .header_title {
 font-size: 23px;
@@ -92,34 +77,42 @@ color: #222222;
 #feed {
   width: 83%;
   max-width:600px;
+  min-width: 325px;
   margin: 0 auto;
   margin-top:25px;
   margin-bottom: 75px;
  
  }
 
+.post_wrap {
+  padding-bottom: 25px;
+
+}
+
 .posts_top {
   padding-top: 25px;
 
 }
 
-.post_bar {
+.post_input {
+position:relative; 
+top:5px;
 word-wrap: break-word;
 word-break: break-all;
-font-size: 15px;
-width: 100%;
+width: 85%;
 border: 0;
 outline: 0;
 background: transparent;
-border-bottom: 2.5px solid #bebebeee;
 padding: 3px;
 padding-left: 10px;
+flex-grow: 1; 
 }
 
 .reply_input {
+position:relative; 
 word-wrap: break-word;
 word-break: break-all;
-width: 90%;
+width: 85%;
 border: 0;
 outline: 0;
 background: transparent;
@@ -132,16 +125,6 @@ flex-grow: 1;
   color: #bebebeee;
 }
 
-
-.post_box {
-  padding:20px;
-
-  margin-bottom: 2px;
-  background-color: white;
-  border-radius:15px;
-
- }
-
 .badge {
   float: left;
   border-radius: 50%;
@@ -153,11 +136,8 @@ flex-grow: 1;
   color:rgba(29, 29, 29);
 }
 
-
-
 .post_text {
   padding: 5px;
- 
 }
  
 .post_person {
@@ -204,15 +184,6 @@ flex-grow: 1;
   
 }
 
-.reply_box {
-  margin-top: .5px;
-  margin-left: 33px;
-  padding:10px;
-  background-color: white;
-  border-radius:15px;
-  border: 2px solid rgb(236, 236, 236);
- }
-
 .reply_badge {
   font-size: 11px;
   margin-top: 6px;
@@ -257,7 +228,7 @@ flex-grow: 1;
   border-radius: 50%;
   width: 33px;
   height: 33px; 
-  
+  opacity:0.85;
   justify-content: center;
   align-items: center;
   background-color: {{user_badge_color}};
@@ -275,77 +246,190 @@ flex-grow: 1;
   align-items: center;
 }
 
-.reply_reveal{
-  font-size:20px;
-  color:rgb(214, 214, 214);
-  margin:3px;
-  margin-left:53px;
+.reply_expand{
+  margin:4px;
+  margin-right: 36px;
+  float:right;
+  border-radius: 50%;
+  border: 1px solid #c9c9c9;
+  box-shadow: 2px 2px 0px 0px #ececec;
 }
-
 
 .border {
   margin-top: 15px;
-  border-radius:15px;
+  border-radius:10px;
+}
+
+.post_box {
+  padding:20px;
+
+  background-color: white;
+  border-radius:10px;
+ }
+
+.reply_box {
+  padding:10px;
+  background-color: white;
+  border-radius:10px;
+ }
+
+ .post_submit {
+  position:absolute;
+  overflow:hidden;
+  margin-right: 25px;
+  padding:3px;
+ 
+  background-color: transparent;
+  color:rgb(148, 148, 148);
+  
+  border-color: transparent;
+}
+ .reply_submit {
+  bottom:27px;
+  margin-right: 25px;
+  padding:3px;
+  float:right;
+  background-color: transparent;
+  color:rgb(148, 148, 148);
+  position:relative; 
+  border-color: transparent;
+}
+.reply_border {
+  margin-left: 33px;
+  border-radius:10px;
 }
 
 .border-0 {
-  border: 2px solid rgb(236, 236, 236);
+  border: 1.5px solid #ECECEC;
+  box-shadow: 2px 3px 0px 0px  #ECECEC;
 }
 
+/*
 .border_positive {
   border: double 2px transparent;
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
+*/
 
 .border-1 {
-  background-image: linear-gradient(white, white), radial-gradient(circle at top left, rgb(236, 236, 236),#f8bc4d);
+  border: 1.5px solid #577590cc;
+  box-shadow: 2px 3px 0px 0px  #577590cc;
 }
-
-
-
+.border-2 {
+  border: 1.5px solid #4D908Ecc;
+  box-shadow: 2px 3px 0px 0px  #4D908Ecc;
+}
+.border-3 {
+  border: 1.5px solid #43AA8Bcc;
+  box-shadow: 2px 3px 0px 0px  #43AA8Bcc;
+}
+.border-4 {
+  border: 1.5px solid #90BE6Dcc;
+  box-shadow: 2px 3px 0px 0px  #90BE6Dcc;
+}
+.border-5 {
+  border: 1.5px solid #F9C74Fcc;
+  box-shadow: 2px 3px 0px 0px  #F9C74Fcc;
+}
+.border-6 {
+  border: 1.5px solid #F9844Acc;
+  box-shadow: 2px 3px 0px 0px  #F9844Acc;
+}
+.border-7 {
+  border: 1.5px solid #F8961Ecc;
+  box-shadow: 2px 3px 0px 0px  #F8961Ecc;
+}
+.border-8 {
+  border: 1.5px solid #F3722Ccc;
+  box-shadow: 2px 3px 0px 0px  #F3722Ccc;
+}
+.border-9 {
+  border: 1.5px solid #F3722Ccc;
+  box-shadow: 2px 3px 0px 0px  #F3722Ccc;
+}
+.border-10 {
+  border: 1.5px solid #F3722Ccc;
+  box-shadow: 2px 3px 0px 0px  #F3722Ccc;
+}
 </style>
+<script>
+  function reply_reveal(id) {
+      var reply = "reply_";
+      var reply_id = reply + id;
+      var R = document.getElementById(reply_id),
+          displayValue = "";
+      
+      R.style.display = displayValue;
+
+      var button = "reply_button_";
+      var reply_button_id = button + id;
+      var B = document.getElementById(reply_button_id),
+          displayValue = "none";
+      
+      B.style.display = displayValue;
+
+      var input = "_input";
+      var reply_id_input = reply_id + input;
+
+      document.getElementById(reply_id_input).focus();
+      document.getElementById(reply_id_input).select();
+      
+  }
+</script>
 
 {% extends "layout.html" %}
 {% block body %}
 <div class = "header" id= "header">
   <div class="header_content">
-  <a href="/" class = "header_title">Campfire</a> <a href="/logout" class = "header_logout">Logout</a> 
+  <a href="" class = "header_title">hideaway</a> <a href="/logout" class = "header_logout">sign out</a> 
   </div>
 </div>
 
   <div id= "feed">
-        <div class = "posts_top">
-          <form action="/camp/{{ camp_id }}" method="post">  
-            <input class= hidden name= "update_type" value = "post_text">  
-            <input class= post_bar type="text" name= "post_text" placeholder="Say something...">
-            <input type="hidden" name= "type" value="1">
-            <input type="submit" style="display: none" />
-          </form> 
-        </div>
-      
+    <div class = "post_box" style="border: 2px solid {{user_badge_color}}cc;padding-bottom: 25px;box-shadow: 2px 3px 0px 0px {{user_badge_color}}cc;"> 
+      <div class = "post_top">
+        <div class = "user_badge"></div>
+        <form action="/camp/{{ camp_id }}" method="post">  
+          <input class= hidden name= "update_type" value = "post_text">  
+          <input class= post_input type="text" name= "post_text" placeholder="Post something...">
+          <input type="hidden" name= "type" value="1">
+          <input type="submit" style="visibility:hidden;position:absolute;">
+          
+        </form>
+      </div>  
+    </div>
+    
       {% for index, posts in posts.iterrows() %}
+    <div class = "post_wrap">  
       {% if posts['post_score'] <= 0 %}
-    <div class="border border-0">
+    <div class="post_box border border-0">
+      {% elif posts['post_score'] >= 8 %}
+    <div class="post_box border border_positive border-8">
       {% else %}
-    <div class="border border_positive border-{{posts['post_score']}}">
+    <div class="post_box border border_positive border-{{posts['post_score']}}">
       {% endif %} 
-      <div class = "post_box">
+      
         <div class = "post_top">
-          <div class = "badge" style=background-color:{{posts['user_color']}}>
+          <div class = "badge" style="opacity:0.85;background-color:{{posts['user_color']}}">
           </div>
           
           <div style= 'height: 15px;'>
+            {% if posts['post_score'] < 0 %}
+            <span class= "post_person" opacity=".45">{{posts['first_name']}} </span>
+            {% else %}
             <span class= "post_person">{{posts['first_name']}} </span>
+            {% endif %} 
+            
 
               <div class = 'controls'>
                 <div class = 'arrows'>
                 <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
                   <input class= hidden name= "update_type" value = "post_vote">  
-                  <input class= hidden name= "post_vote" value = 1>
+                  <input class= hidden name= "post_vote" value = -1>
                   <input type="hidden" name= "post_id" value={{posts['post_id']}} >
                   <button type="submit" class="arrow_button">
-                    <i class="far fa-caret-square-up"></i>
+                    <i class="far fa-caret-square-down"></i>
                   </button>
                 </form>
                 </div>
@@ -357,10 +441,10 @@ flex-grow: 1;
                 <div class = "arrows">
                 <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
                   <input class= hidden name= "update_type" value = "post_vote">  
-                  <input class= hidden name= "post_vote" value = -1>
+                  <input class= hidden name= "post_vote" value = 1>
                   <input type="hidden" name= "post_id" value={{posts['post_id']}} >
                   <button type="submit" class="arrow_button">
-                    <i class="far fa-caret-square-down"></i>
+                    <i class="far fa-caret-square-up"></i>
                   </button>
                 </form> 
                </div>
@@ -371,10 +455,12 @@ flex-grow: 1;
           </div>
           <div class = "post_text" style="post_score:{{posts['post_score']}};">
             
-              {% if posts['post_score'] > 1 %}
+              {% if posts['post_score'] >= 0 %}
                 <span  style="Score:{{posts['post_score']}}"> 
+              {% elif posts['post_score'] <= -4 %}
+                <span  style="font-size:1px; Score:{{posts['post_score']}}"> 
               {% else %}
-                <span  style="font-size:{{13 - (posts['post_score'] * posts['post_score'])}}px;Score:{{posts['post_score']}}"> 
+                <span  style="font-size:{{10 + (posts['post_score'] * 2)}}px;Score:{{posts['post_score']}}"> 
               {% endif %} 
                 {{posts['post_text']}}
                 </span>
@@ -382,26 +468,38 @@ flex-grow: 1;
 
         
         </div>  
-      </div>
+      
     </div>   
 
           {% for key, reply in replys.iterrows() %}
           {% if reply['reply_to_id'] == posts['post_id']%}
+      
+      {% if reply['post_score'] <= 0 %}
+      <div class="reply_box reply_border border-0">
+      {% elif reply['post_score'] >= 8 %}
+      <div class="reply_box reply_border border_positive border-8">
+      {% else %}
+      <div class="reply_box reply_border border_positive border-{{reply['post_score']}}">
+      {% endif %} 
+
           
-          <div class = "reply_box">
             <div class = "post_top">
-              <div class = "badge" style=background-color:{{reply['user_color']}}>
+              <div class = "badge" style="opacity:0.85;background-color:{{reply['user_color']}}"">
               </div>
               
+              {% if reply['post_score'] < 0 %}
+              <span class= "post_person" style="opacity: .45;">{{reply['first_name']}}</span>
+              {% else %}
               <span class= "post_person">{{reply['first_name']}}</span>
+              {% endif %} 
               <div class = 'controls2'>
                 <div class = 'arrows'>
                   <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
                     <input class= hidden name= "update_type" value = "post_vote">  
-                    <input class= hidden name= "post_vote" value = 1>
+                    <input class= hidden name= "post_vote" value = -1>
                     <input type="hidden" name= "post_id" value={{reply['post_id']}} >
                     <button type="submit" class="arrow_button">
-                      <i class="far fa-caret-square-up"></i>
+                      <i class="far fa-caret-square-down"></i>
                     </button>
                   </form>
                 </div>
@@ -413,52 +511,56 @@ flex-grow: 1;
                 <div class = "arrows">
                   <form action="/camp/{{ camp_id }}" method="post" class = "form_arrows">
                     <input class= hidden name= "update_type" value = "post_vote">  
-                    <input class= hidden name= "post_vote" value = -1>
+                    <input class= hidden name= "post_vote" value = 1>
                     <input type="hidden" name= "post_id" value={{reply['post_id']}} >
                     <button type="submit" class="arrow_button">
-                      <i class="far fa-caret-square-down"></i>
+                      <i class="far fa-caret-square-up"></i>
                     </button>
                   </form> 
                 </div>
               </div>
 
               <div class = "reply_text">
-                
-                {% if reply['post_score'] > 1 %}
+                {% if reply['post_score'] >= 0 %}
                   <span  style="Score:{{reply['post_score']}}"> 
+                {% elif posts['post_score'] <= -4 %}
+                  <span  style="font-size:3px; Score:{{reply['post_score']}}"> 
                 {% else %}
-                  <span  style="font-size:{{13 - (reply['post_score'] * reply['post_score'])}}px;Score:{{reply['post_score']}}"> 
+                  <span  style="font-size:{{13 + (reply['post_score'] * 2)}}px; Score:{{reply['post_score']}}"> 
                 {% endif %} 
                   {{reply['post_text']}}
                   </span>
                   
               </div>
-                  
-            
-          </div>  
-        </div> 
-        
+          </div> 
+        </div>
+          
 
           {% endif %}
         {% endfor %}
-        <div class = "reply_box"> 
+      <button class = "reply_expand" id = "reply_button_{{index}}" value = '{{index}}' onclick="reply_reveal(this.value)"> + </button>  
+ 
+      <div id = reply_{{index}} style="display:none" class="reply_box reply_border border-0">
           <div class = "post_top">
              <div class = "user_badge"></div>
-            </div>
+          </div>
         <div style= "padding-top:5px;padding-bottom:5px;">
           <form action="/camp/{{ camp_id }}" method="post" >
             <input class= hidden name= "update_type" value = "post_text">  
-            <input class= reply_input type="textbox"  name= "post_text" placeholder="Reply..">
+            <input id = reply_{{index}}_input class= reply_input type="textbox"  name= "post_text" placeholder="Reply..">
             <input type="hidden" name= "reply_to_id" value={{posts['post_id']}} >
             <input type="hidden" name= "type" value="2">
-            <input type="submit" style="display: none" />
-    
+            <input type="submit" style="visibility:hidden;position:absolute;">
+              
           </form> 
           </div> 
-        </div> 
+        </div>
+      </div>  
       {% endfor %}
-      </div>
+  </div>
 
-{% endblock %}      
+{% endblock %}    
+
+
 </body>
 </html>

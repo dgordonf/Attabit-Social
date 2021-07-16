@@ -2,6 +2,8 @@ from flask import Flask
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
+import sqlalchemy
+import os
 
 class RegistrationForm(Form):
     name = StringField('Name', [validators.DataRequired(), validators.Length(min=2, max=25)])
@@ -46,7 +48,3 @@ class User(db.Model):
     def is_authenticated(self):
         """Return True if the user is authenticated."""
         return self.authenticated
-
-    def is_anonymous(self):
-        """False, as anonymous users aren't supported."""
-        return False    
