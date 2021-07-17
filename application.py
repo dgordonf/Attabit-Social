@@ -45,6 +45,12 @@ login_manager = LoginManager()
 login_manager.init_app(application)
 login_manager.login_view = 'login'
 
+def cleanup(session):
+    """
+    This method cleans up the session object and also closes the connection pool using the dispose method.
+    """
+    session.close()
+    engine_container.dispose()
 
 @application.route('/')
 def homepage():
@@ -86,6 +92,8 @@ def login():
                 #db.session.add(user)
                 #db.session.commit()
                 login_user(user, remember=True)
+                db.session.close()
+                db.engine.dispose()
                 return redirect("camp/1")
             else: 
                 print("Nope") 
@@ -130,8 +138,12 @@ def signup():
 @application.route('/camp/<int:camp_id>', methods = ['POST', 'GET'])
 @login_required
 def camp(camp_id):
-    user_id =  current_user.get_user_id()
-  
+    try:
+        user_id =  current_user.get_user_id()
+    finally:
+        db.session.close()
+        db.engine.dispose()
+
     if request.method == 'POST':
         type = request.form.get('update_type')    
         if type == 'post_text':

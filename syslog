@@ -1,348 +1,293 @@
-Jul 14 06:25:01 ip-172-31-92-31 rsyslogd:  [origin software="rsyslogd" swVersion="8.32.0" x-pid="896" x-info="http://www.rsyslog.com"] rsyslogd was HUPed
-Jul 14 06:31:23 ip-172-31-92-31 snapd[875]: storehelpers.go:551: cannot refresh: snap has no updates available: "amazon-ssm-agent", "core18", "snapd"
-Jul 14 06:31:23 ip-172-31-92-31 snapd[875]: autorefresh.go:513: auto-refresh: all snaps are up-to-date
-Jul 14 06:51:17 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 06:51:17 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 06:51:17 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 07:17:01 ip-172-31-92-31 CRON[2679]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 14 07:21:18 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 07:21:18 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 07:21:18 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 07:42:30 ip-172-31-92-31 systemd[1]: Starting Daily apt download activities...
-Jul 14 07:42:39 ip-172-31-92-31 systemd[1]: Started Daily apt download activities.
-Jul 14 07:51:18 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 07:51:18 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 07:51:18 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 07:54:36 ip-172-31-92-31 systemd[1]: Starting Message of the Day...
-Jul 14 07:54:42 ip-172-31-92-31 50-motd-news[3091]:  * Super-optimized for small spaces - read how we shrank the memory
-Jul 14 07:54:42 ip-172-31-92-31 50-motd-news[3091]:    footprint of MicroK8s to make it the smallest full K8s around.
-Jul 14 07:54:42 ip-172-31-92-31 50-motd-news[3091]:    https://ubuntu.com/blog/microk8s-memory-optimisation
-Jul 14 07:54:42 ip-172-31-92-31 systemd[1]: Started Message of the Day.
-Jul 14 08:17:01 ip-172-31-92-31 CRON[3180]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 14 08:21:18 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 08:21:18 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 08:21:18 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 08:51:17 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 08:51:17 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 08:51:17 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 09:17:01 ip-172-31-92-31 CRON[3246]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 14 09:21:17 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 09:21:17 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 09:21:17 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 09:51:17 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 09:51:17 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 09:51:17 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 10:17:01 ip-172-31-92-31 CRON[3312]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 14 10:21:16 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 10:21:16 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 10:21:16 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 10:51:17 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 10:51:17 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 10:51:17 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 11:17:01 ip-172-31-92-31 CRON[3379]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 14 11:21:17 ip-172-31-92-31 systemd-networkd[715]: eth0: Configured
-Jul 14 11:21:17 ip-172-31-92-31 systemd-timesyncd[556]: Network configuration changed, trying to establish connection.
-Jul 14 11:21:17 ip-172-31-92-31 systemd-timesyncd[556]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: [2021-07-14 11:33:23,130] ERROR in app: Exception on /camp/1 [GET]
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: Traceback (most recent call last):
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 756, in _write_bytes
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     self._sock.sendall(data)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: TimeoutError: [Errno 110] Connection timed out
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: During handling of the above exception, another exception occurred:
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: Traceback (most recent call last):
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1771, in _execute_context
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     cursor, statement, parameters, context
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     cursor.execute(statement, parameters)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 148, in execute
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     result = self._query(query)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 310, in _query
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     conn.query(q)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 547, in query
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     self._execute_command(COMMAND.COM_QUERY, sql)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 814, in _execute_command
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     self._write_bytes(packet)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 760, in _write_bytes
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     CR.CR_SERVER_GONE_ERROR, "MySQL server has gone away (%r)" % (e,)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: pymysql.err.OperationalError: (2006, "MySQL server has gone away (TimeoutError(110, 'Connection timed out'))")
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: The above exception was the direct cause of the following exception:
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: Traceback (most recent call last):
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     response = self.full_dispatch_request()
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     rv = self.handle_user_exception(e)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     rv = self.dispatch_request()
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 270, in decorated_view
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     elif not current_user.is_authenticated:
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 422, in __get__
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     obj = instance._get_current_object()
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 544, in _get_current_object
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     return self.__local()  # type: ignore
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     current_user = LocalProxy(lambda: _get_user())
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     current_app.login_manager._load_user()
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     user = self._user_callback(user_id)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/application.py", line 62, in load_user
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     return User.query.get(user_id)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "<string>", line 2, in get
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     return fn(*args, **kwargs)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     return self._get_impl(ident, loading.load_on_pk_identity)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     execution_options=self._execution_options,
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     load_options=load_options,
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     bind_arguments=bind_arguments,
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     result = conn._execute_20(statement, params or {}, execution_options)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     return meth(self, args_10style, kwargs_10style, execution_options)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     self, multiparams, params, execution_options
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     cache_hit=cache_hit,
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1814, in _execute_context
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     e, statement, parameters, cursor, context
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1995, in _handle_dbapi_exception
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     sqlalchemy_exception, with_traceback=exc_info[2], from_=e
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     raise exception
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1771, in _execute_context
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     cursor, statement, parameters, context
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     cursor.execute(statement, parameters)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 148, in execute
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     result = self._query(query)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 310, in _query
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     conn.query(q)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 547, in query
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     self._execute_command(COMMAND.COM_QUERY, sql)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 814, in _execute_command
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     self._write_bytes(packet)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 760, in _write_bytes
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]:     CR.CR_SERVER_GONE_ERROR, "MySQL server has gone away (%r)" % (e,)
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2006, "MySQL server has gone away (TimeoutError(110, 'Connection timed out'))")
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: [SQL: SELECT users.email AS users_email, users.id AS users_id, users.password AS users_password
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: FROM users
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: WHERE users.email = %(pk_1)s]
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: [parameters: {'pk_1': 'gordondavidf@gmail.com'}]
-Jul 14 11:33:23 ip-172-31-92-31 gunicorn[854]: (Background on this error at: http://sqlalche.me/e/14/e3q8)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]: [2021-07-14 11:33:28,545] ERROR in app: Exception on / [GET]
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]: Traceback (most recent call last):
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/application.py", line 46, in homepage
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     user_id =  current_user.get_user_id()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 422, in __get__
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     obj = instance._get_current_object()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 544, in _get_current_object
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return self.__local()  # type: ignore
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     current_user = LocalProxy(lambda: _get_user())
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     current_app.login_manager._load_user()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     user = self._user_callback(user_id)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/application.py", line 62, in load_user
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return User.query.get(user_id)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "<string>", line 2, in get
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return fn(*args, **kwargs)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return self._get_impl(ident, loading.load_on_pk_identity)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     execution_options=self._execution_options,
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     load_options=load_options,
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     bind_arguments=bind_arguments,
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     result = conn._execute_20(statement, params or {}, execution_options)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return meth(self, args_10style, kwargs_10style, execution_options)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     self, multiparams, params, execution_options
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     cache_hit=cache_hit,
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     conn = self._revalidate_connection()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     self._invalid_transaction()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     code="8s2b",
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]: During handling of the above exception, another exception occurred:
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]: Traceback (most recent call last):
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     response = self.full_dispatch_request()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     rv = self.handle_user_exception(e)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     rv = self.dispatch_request()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/application.py", line 56, in homepage
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return render_template('login.html', form=form, form2=form2)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/templating.py", line 146, in render_template
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     ctx.app.update_template_context(context)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 756, in update_template_context
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     context.update(func())
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 379, in _user_context_processor
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return dict(current_user=_get_user())
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     current_app.login_manager._load_user()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     user = self._user_callback(user_id)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/application.py", line 62, in load_user
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return User.query.get(user_id)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "<string>", line 2, in get
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return fn(*args, **kwargs)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return self._get_impl(ident, loading.load_on_pk_identity)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     execution_options=self._execution_options,
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     load_options=load_options,
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     bind_arguments=bind_arguments,
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     result = conn._execute_20(statement, params or {}, execution_options)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     return meth(self, args_10style, kwargs_10style, execution_options)
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     self, multiparams, params, execution_options
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     cache_hit=cache_hit,
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     conn = self._revalidate_connection()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     self._invalid_transaction()
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]:     code="8s2b",
-Jul 14 11:33:28 ip-172-31-92-31 gunicorn[854]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
-Jul 14 11:39:00 ip-172-31-92-31 systemd[1]: Created slice User Slice of ubuntu.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[1]: Starting User Manager for UID 1000...
-Jul 14 11:39:00 ip-172-31-92-31 systemd[1]: Started Session 20 of user ubuntu.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Listening on REST API socket for snapd user session agent.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Listening on GnuPG network certificate management daemon.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Reached target Timers.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Listening on GnuPG cryptographic agent and passphrase cache.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Reached target Sockets.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Reached target Paths.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Reached target Basic System.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[1]: Started User Manager for UID 1000.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Reached target Default.
-Jul 14 11:39:00 ip-172-31-92-31 systemd[3408]: Startup finished in 35ms.
-Jul 14 11:39:07 ip-172-31-92-31 systemd[1]: Starting The Apache HTTP Server...
-Jul 14 11:39:07 ip-172-31-92-31 apachectl[3563]: (98)Address already in use: AH00072: make_sock: could not bind to address [::]:80
-Jul 14 11:39:07 ip-172-31-92-31 apachectl[3563]: (98)Address already in use: AH00072: make_sock: could not bind to address 0.0.0.0:80
-Jul 14 11:39:07 ip-172-31-92-31 apachectl[3563]: no listening sockets available, shutting down
-Jul 14 11:39:07 ip-172-31-92-31 apachectl[3563]: AH00015: Unable to open logs
-Jul 14 11:39:07 ip-172-31-92-31 apachectl[3563]: Action 'start' failed.
-Jul 14 11:39:07 ip-172-31-92-31 apachectl[3563]: The Apache error log may have more information.
-Jul 14 11:39:07 ip-172-31-92-31 systemd[1]: apache2.service: Control process exited, code=exited status=1
-Jul 14 11:39:07 ip-172-31-92-31 systemd[1]: apache2.service: Failed with result 'exit-code'.
-Jul 14 11:39:07 ip-172-31-92-31 systemd[1]: Failed to start The Apache HTTP Server.
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]: [2021-07-14 11:40:34,393] ERROR in app: Exception on / [GET]
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]: Traceback (most recent call last):
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/application.py", line 46, in homepage
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     user_id =  current_user.get_user_id()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 422, in __get__
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     obj = instance._get_current_object()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 544, in _get_current_object
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return self.__local()  # type: ignore
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     current_user = LocalProxy(lambda: _get_user())
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     current_app.login_manager._load_user()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     user = self._user_callback(user_id)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/application.py", line 62, in load_user
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return User.query.get(user_id)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "<string>", line 2, in get
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return fn(*args, **kwargs)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return self._get_impl(ident, loading.load_on_pk_identity)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     execution_options=self._execution_options,
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     load_options=load_options,
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     bind_arguments=bind_arguments,
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     result = conn._execute_20(statement, params or {}, execution_options)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return meth(self, args_10style, kwargs_10style, execution_options)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     self, multiparams, params, execution_options
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     cache_hit=cache_hit,
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     conn = self._revalidate_connection()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     self._invalid_transaction()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     code="8s2b",
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]: During handling of the above exception, another exception occurred:
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]: Traceback (most recent call last):
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     response = self.full_dispatch_request()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     rv = self.handle_user_exception(e)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     rv = self.dispatch_request()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/application.py", line 56, in homepage
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return render_template('login.html', form=form, form2=form2)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/templating.py", line 146, in render_template
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     ctx.app.update_template_context(context)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 756, in update_template_context
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     context.update(func())
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 379, in _user_context_processor
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return dict(current_user=_get_user())
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     current_app.login_manager._load_user()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     user = self._user_callback(user_id)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/application.py", line 62, in load_user
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return User.query.get(user_id)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "<string>", line 2, in get
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return fn(*args, **kwargs)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return self._get_impl(ident, loading.load_on_pk_identity)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     execution_options=self._execution_options,
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     load_options=load_options,
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     bind_arguments=bind_arguments,
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     result = conn._execute_20(statement, params or {}, execution_options)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     return meth(self, args_10style, kwargs_10style, execution_options)
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     self, multiparams, params, execution_options
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     cache_hit=cache_hit,
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     conn = self._revalidate_connection()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     self._invalid_transaction()
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]:     code="8s2b",
-Jul 14 11:40:34 ip-172-31-92-31 gunicorn[854]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
-Jul 14 11:44:32 ip-172-31-92-31 systemd[1]: Started Session 22 of user ubuntu.
-Jul 14 11:44:51 ip-172-31-92-31 systemd[1]: Started Session 23 of user ubuntu.
+Jul 16 06:25:01 ip-172-31-92-31 rsyslogd:  [origin software="rsyslogd" swVersion="8.32.0" x-pid="842" x-info="http://www.rsyslog.com"] rsyslogd was HUPed
+Jul 16 06:35:46 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 06:35:46 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 06:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 07:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 07:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 07:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 07:08:08 ip-172-31-92-31 systemd[1]: Starting Message of the Day...
+Jul 16 07:08:14 ip-172-31-92-31 50-motd-news[1847]:  * Super-optimized for small spaces - read how we shrank the memory
+Jul 16 07:08:14 ip-172-31-92-31 50-motd-news[1847]:    footprint of MicroK8s to make it the smallest full K8s around.
+Jul 16 07:08:14 ip-172-31-92-31 50-motd-news[1847]:    https://ubuntu.com/blog/microk8s-memory-optimisation
+Jul 16 07:08:14 ip-172-31-92-31 systemd[1]: Started Message of the Day.
+Jul 16 07:17:01 ip-172-31-92-31 CRON[1924]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jul 16 07:35:48 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 07:35:48 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 07:35:48 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 08:04:08 ip-172-31-92-31 systemd[1]: Starting Daily apt download activities...
+Jul 16 08:04:08 ip-172-31-92-31 systemd[1]: Started Daily apt download activities.
+Jul 16 08:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 08:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 08:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 08:17:01 ip-172-31-92-31 CRON[2063]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jul 16 08:35:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 08:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 08:35:48 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 09:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 09:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 09:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 09:17:01 ip-172-31-92-31 CRON[2131]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jul 16 09:35:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 09:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 09:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 10:00:55 ip-172-31-92-31 snapd[855]: storehelpers.go:551: cannot refresh: snap has no updates available: "amazon-ssm-agent", "core18", "snapd"
+Jul 16 10:00:55 ip-172-31-92-31 snapd[855]: autorefresh.go:513: auto-refresh: all snaps are up-to-date
+Jul 16 10:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 10:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 10:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 10:17:01 ip-172-31-92-31 CRON[2199]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jul 16 10:35:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 10:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 10:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 11:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 11:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 11:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 11:17:01 ip-172-31-92-31 CRON[2266]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jul 16 11:35:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
+Jul 16 11:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
+Jul 16 11:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: [2021-07-16 11:43:52,092] ERROR in app: Exception on / [GET]
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1771, in _execute_context
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cursor, statement, parameters, context
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cursor.execute(statement, parameters)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 148, in execute
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result = self._query(query)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 310, in _query
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     conn.query(q)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 548, in query
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 775, in _read_query_result
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result.read()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 1156, in read
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     first_packet = self.connection._read_packet()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 692, in _read_packet
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     packet_header = self._read_bytes(4)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 749, in _read_bytes
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     CR.CR_SERVER_LOST, "Lost connection to MySQL server during query"
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query')
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: The above exception was the direct cause of the following exception:
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 52, in homepage
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     user_id =  current_user.get_user_id()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 422, in __get__
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     obj = instance._get_current_object()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 544, in _get_current_object
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return self.__local()  # type: ignore
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     current_user = LocalProxy(lambda: _get_user())
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     current_app.login_manager._load_user()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     user = self._user_callback(user_id)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 68, in load_user
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return User.query.get(user_id)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "<string>", line 2, in get
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return fn(*args, **kwargs)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return self._get_impl(ident, loading.load_on_pk_identity)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     execution_options=self._execution_options,
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     load_options=load_options,
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     bind_arguments=bind_arguments,
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result = conn._execute_20(statement, params or {}, execution_options)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return meth(self, args_10style, kwargs_10style, execution_options)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self, multiparams, params, execution_options
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cache_hit=cache_hit,
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1814, in _execute_context
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     e, statement, parameters, cursor, context
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1995, in _handle_dbapi_exception
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     raise exception
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1771, in _execute_context
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cursor, statement, parameters, context
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cursor.execute(statement, parameters)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 148, in execute
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result = self._query(query)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 310, in _query
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     conn.query(q)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 548, in query
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 775, in _read_query_result
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result.read()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 1156, in read
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     first_packet = self.connection._read_packet()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 692, in _read_packet
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     packet_header = self._read_bytes(4)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 749, in _read_bytes
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     CR.CR_SERVER_LOST, "Lost connection to MySQL server during query"
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query')
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: [SQL: SELECT users.email AS users_email, users.id AS users_id, users.password AS users_password
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: FROM users
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: WHERE users.email = %(pk_1)s]
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: [parameters: {'pk_1': 'gordondavidf@gmail.com'}]
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: (Background on this error at: http://sqlalche.me/e/14/e3q8)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: During handling of the above exception, another exception occurred:
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     response = self.full_dispatch_request()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     rv = self.handle_user_exception(e)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     rv = self.dispatch_request()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 62, in homepage
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return render_template('login.html', form=form, form2=form2)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/templating.py", line 146, in render_template
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     ctx.app.update_template_context(context)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 756, in update_template_context
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     context.update(func())
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 379, in _user_context_processor
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return dict(current_user=_get_user())
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     current_app.login_manager._load_user()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     user = self._user_callback(user_id)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 68, in load_user
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return User.query.get(user_id)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "<string>", line 2, in get
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return fn(*args, **kwargs)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return self._get_impl(ident, loading.load_on_pk_identity)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     execution_options=self._execution_options,
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     load_options=load_options,
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     bind_arguments=bind_arguments,
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result = conn._execute_20(statement, params or {}, execution_options)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return meth(self, args_10style, kwargs_10style, execution_options)
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self, multiparams, params, execution_options
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cache_hit=cache_hit,
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     conn = self._revalidate_connection()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self._invalid_transaction()
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     code="8s2b",
+Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: [2021-07-16 11:44:00,932] ERROR in app: Exception on / [GET]
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 52, in homepage
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     user_id =  current_user.get_user_id()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 422, in __get__
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     obj = instance._get_current_object()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 544, in _get_current_object
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return self.__local()  # type: ignore
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     current_user = LocalProxy(lambda: _get_user())
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     current_app.login_manager._load_user()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     user = self._user_callback(user_id)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 68, in load_user
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return User.query.get(user_id)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "<string>", line 2, in get
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return fn(*args, **kwargs)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return self._get_impl(ident, loading.load_on_pk_identity)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     execution_options=self._execution_options,
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     load_options=load_options,
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     bind_arguments=bind_arguments,
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     result = conn._execute_20(statement, params or {}, execution_options)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return meth(self, args_10style, kwargs_10style, execution_options)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     self, multiparams, params, execution_options
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     cache_hit=cache_hit,
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     conn = self._revalidate_connection()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     self._invalid_transaction()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     code="8s2b",
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: During handling of the above exception, another exception occurred:
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     response = self.full_dispatch_request()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     rv = self.handle_user_exception(e)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     rv = self.dispatch_request()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 62, in homepage
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return render_template('login.html', form=form, form2=form2)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/templating.py", line 146, in render_template
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     ctx.app.update_template_context(context)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 756, in update_template_context
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     context.update(func())
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 379, in _user_context_processor
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return dict(current_user=_get_user())
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     current_app.login_manager._load_user()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     user = self._user_callback(user_id)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 68, in load_user
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return User.query.get(user_id)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "<string>", line 2, in get
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return fn(*args, **kwargs)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return self._get_impl(ident, loading.load_on_pk_identity)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     execution_options=self._execution_options,
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     load_options=load_options,
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     bind_arguments=bind_arguments,
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     result = conn._execute_20(statement, params or {}, execution_options)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return meth(self, args_10style, kwargs_10style, execution_options)
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     self, multiparams, params, execution_options
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     cache_hit=cache_hit,
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     conn = self._revalidate_connection()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     self._invalid_transaction()
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     code="8s2b",
+Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
+Jul 16 11:44:15 ip-172-31-92-31 systemd[1]: Created slice User Slice of ubuntu.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[1]: Starting User Manager for UID 1000...
+Jul 16 11:44:15 ip-172-31-92-31 systemd[1]: Started Session 12 of user ubuntu.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG network certificate management daemon.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG cryptographic agent and passphrase cache.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Timers.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on REST API socket for snapd user session agent.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Sockets.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Paths.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Basic System.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[1]: Started User Manager for UID 1000.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Default.
+Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Startup finished in 65ms.
+Jul 16 11:44:26 ip-172-31-92-31 systemd[1]: Started Session 14 of user ubuntu.
