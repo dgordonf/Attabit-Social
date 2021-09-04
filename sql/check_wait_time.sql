@@ -1,0 +1,1 @@
+SHOW GLOBAL VARIABLES LIKE "wait_timeout";

@@ -42,4 +42,11 @@ CREATE TABLE meadow.post_votes (
     added_time     DATETIME DEFAULT   CURRENT_TIMESTAMP
 );
 
+CREATE TABLE meadow.media (
+    photo_id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT,
+    photo_url VARCHAR(64) NULL,
+    added_time     DATETIME DEFAULT   CURRENT_TIMESTAMP
+);
+
 

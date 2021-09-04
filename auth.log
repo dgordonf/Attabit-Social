@@ -1,0 +1,543 @@
+Aug  9 06:25:06 ip-172-31-92-31 CRON[2390]: pam_unix(cron:session): session closed for user root
+Aug  9 07:17:01 ip-172-31-92-31 CRON[2696]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 07:17:01 ip-172-31-92-31 CRON[2696]: pam_unix(cron:session): session closed for user root
+Aug  9 08:17:01 ip-172-31-92-31 CRON[2762]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 08:17:01 ip-172-31-92-31 CRON[2762]: pam_unix(cron:session): session closed for user root
+Aug  9 09:17:01 ip-172-31-92-31 CRON[2828]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 09:17:01 ip-172-31-92-31 CRON[2828]: pam_unix(cron:session): session closed for user root
+Aug  9 10:17:01 ip-172-31-92-31 CRON[2894]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 10:17:01 ip-172-31-92-31 CRON[2894]: pam_unix(cron:session): session closed for user root
+Aug  9 11:17:01 ip-172-31-92-31 CRON[2962]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 11:17:01 ip-172-31-92-31 CRON[2962]: pam_unix(cron:session): session closed for user root
+Aug  9 12:17:01 ip-172-31-92-31 CRON[3028]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 12:17:01 ip-172-31-92-31 CRON[3028]: pam_unix(cron:session): session closed for user root
+Aug  9 13:01:01 ip-172-31-92-31 CRON[3079]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 13:01:01 ip-172-31-92-31 CRON[3079]: pam_unix(cron:session): session closed for user root
+Aug  9 13:17:01 ip-172-31-92-31 CRON[3100]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 13:17:01 ip-172-31-92-31 CRON[3100]: pam_unix(cron:session): session closed for user root
+Aug  9 14:17:01 ip-172-31-92-31 CRON[3166]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 14:17:01 ip-172-31-92-31 CRON[3166]: pam_unix(cron:session): session closed for user root
+Aug  9 15:17:01 ip-172-31-92-31 CRON[3638]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 15:17:01 ip-172-31-92-31 CRON[3638]: pam_unix(cron:session): session closed for user root
+Aug  9 16:17:01 ip-172-31-92-31 CRON[3705]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 16:17:01 ip-172-31-92-31 CRON[3705]: pam_unix(cron:session): session closed for user root
+Aug  9 17:17:01 ip-172-31-92-31 CRON[3771]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 17:17:01 ip-172-31-92-31 CRON[3771]: pam_unix(cron:session): session closed for user root
+Aug  9 18:17:01 ip-172-31-92-31 CRON[3904]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 18:17:02 ip-172-31-92-31 CRON[3904]: pam_unix(cron:session): session closed for user root
+Aug  9 19:17:01 ip-172-31-92-31 CRON[3970]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 19:17:01 ip-172-31-92-31 CRON[3970]: pam_unix(cron:session): session closed for user root
+Aug  9 19:35:44 ip-172-31-92-31 sshd[1610]: pam_unix(sshd:session): session closed for user ubuntu
+Aug  9 19:35:44 ip-172-31-92-31 systemd-logind[877]: Removed session 1.
+Aug  9 20:17:01 ip-172-31-92-31 CRON[4042]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 20:17:01 ip-172-31-92-31 CRON[4042]: pam_unix(cron:session): session closed for user root
+Aug  9 21:17:01 ip-172-31-92-31 CRON[4109]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 21:17:01 ip-172-31-92-31 CRON[4109]: pam_unix(cron:session): session closed for user root
+Aug  9 22:17:01 ip-172-31-92-31 CRON[4175]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 22:17:01 ip-172-31-92-31 CRON[4175]: pam_unix(cron:session): session closed for user root
+Aug  9 23:17:01 ip-172-31-92-31 CRON[4241]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug  9 23:17:01 ip-172-31-92-31 CRON[4241]: pam_unix(cron:session): session closed for user root
+Aug 10 00:17:01 ip-172-31-92-31 CRON[4307]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 00:17:01 ip-172-31-92-31 CRON[4307]: pam_unix(cron:session): session closed for user root
+Aug 10 00:40:23 ip-172-31-92-31 sshd[4335]: Accepted publickey for ubuntu from 98.109.88.186 port 60511 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 00:40:23 ip-172-31-92-31 sshd[4335]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 00:40:23 ip-172-31-92-31 systemd: pam_unix(systemd-user:session): session opened for user ubuntu by (uid=0)
+Aug 10 00:40:23 ip-172-31-92-31 systemd-logind[877]: New session 27 of user ubuntu.
+Aug 10 00:40:31 ip-172-31-92-31 sshd[4456]: Accepted publickey for ubuntu from 98.109.88.186 port 60519 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 00:40:31 ip-172-31-92-31 sshd[4456]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 00:40:31 ip-172-31-92-31 systemd-logind[877]: New session 29 of user ubuntu.
+Aug 10 00:40:32 ip-172-31-92-31 sshd[4540]: Accepted publickey for ubuntu from 98.109.88.186 port 60522 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 00:40:32 ip-172-31-92-31 sshd[4540]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 00:40:32 ip-172-31-92-31 systemd-logind[877]: New session 30 of user ubuntu.
+Aug 10 00:41:37 ip-172-31-92-31 sshd[4456]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 00:41:37 ip-172-31-92-31 systemd-logind[877]: Removed session 29.
+Aug 10 00:41:37 ip-172-31-92-31 sshd[4540]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 00:41:37 ip-172-31-92-31 systemd-logind[877]: Removed session 30.
+Aug 10 00:42:17 ip-172-31-92-31 sshd[4625]: Accepted publickey for ubuntu from 98.109.88.186 port 57152 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 00:42:17 ip-172-31-92-31 sshd[4625]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 00:42:17 ip-172-31-92-31 systemd-logind[877]: New session 31 of user ubuntu.
+Aug 10 00:43:35 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/apt install python-pip
+Aug 10 00:43:35 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 00:44:14 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 00:46:52 ip-172-31-92-31 sshd[10355]: Accepted publickey for ubuntu from 98.109.88.186 port 59267 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 00:46:52 ip-172-31-92-31 sshd[10355]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 00:46:52 ip-172-31-92-31 systemd-logind[877]: New session 32 of user ubuntu.
+Aug 10 00:47:53 ip-172-31-92-31 sshd[10355]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 00:47:53 ip-172-31-92-31 systemd-logind[877]: Removed session 32.
+Aug 10 00:48:11 ip-172-31-92-31 sshd[4625]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 00:48:11 ip-172-31-92-31 systemd-logind[877]: Removed session 31.
+Aug 10 00:48:18 ip-172-31-92-31 sshd[10514]: Accepted publickey for ubuntu from 98.109.88.186 port 64778 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 00:48:18 ip-172-31-92-31 sshd[10514]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 00:48:18 ip-172-31-92-31 systemd-logind[877]: New session 33 of user ubuntu.
+Aug 10 00:49:09 ip-172-31-92-31 sshd[10611]: Accepted publickey for ubuntu from 98.109.88.186 port 64821 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 00:49:09 ip-172-31-92-31 sshd[10611]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 00:49:09 ip-172-31-92-31 systemd-logind[877]: New session 34 of user ubuntu.
+Aug 10 00:50:09 ip-172-31-92-31 sshd[10611]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 00:50:09 ip-172-31-92-31 systemd-logind[877]: Removed session 34.
+Aug 10 00:59:52 ip-172-31-92-31 sshd[10727]: Accepted publickey for ubuntu from 98.109.88.186 port 58345 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 00:59:52 ip-172-31-92-31 sshd[10727]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 00:59:52 ip-172-31-92-31 systemd-logind[877]: New session 35 of user ubuntu.
+Aug 10 01:01:32 ip-172-31-92-31 sshd[10727]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 01:01:32 ip-172-31-92-31 systemd-logind[877]: Removed session 35.
+Aug 10 01:02:41 ip-172-31-92-31 sshd[10514]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 01:02:41 ip-172-31-92-31 systemd-logind[877]: Removed session 33.
+Aug 10 01:03:35 ip-172-31-92-31 systemd: pam_unix(systemd-user:session): session closed for user ubuntu
+Aug 10 01:03:35 ip-172-31-92-31 sshd[4335]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 01:03:35 ip-172-31-92-31 sshd[4335]: pam_systemd(sshd:session): Failed to release session: Interrupted system call
+Aug 10 01:21:22 ip-172-31-92-31 systemd-logind[913]: Watching system buttons on /dev/input/event0 (Power Button)
+Aug 10 01:21:22 ip-172-31-92-31 systemd-logind[913]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Aug 10 01:21:22 ip-172-31-92-31 systemd-logind[913]: Watching system buttons on /dev/input/event2 (AT Translated Set 2 keyboard)
+Aug 10 01:21:22 ip-172-31-92-31 systemd-logind[913]: New seat seat0.
+Aug 10 01:21:23 ip-172-31-92-31 sshd[949]: Server listening on 0.0.0.0 port 22.
+Aug 10 01:21:23 ip-172-31-92-31 sshd[949]: Server listening on :: port 22.
+Aug 10 01:51:05 ip-172-31-92-31 sshd[1977]: Accepted publickey for ubuntu from 98.109.88.186 port 56026 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 01:51:05 ip-172-31-92-31 sshd[1977]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 01:51:05 ip-172-31-92-31 systemd: pam_unix(systemd-user:session): session opened for user ubuntu by (uid=0)
+Aug 10 01:51:05 ip-172-31-92-31 systemd-logind[913]: New session 1 of user ubuntu.
+Aug 10 01:52:11 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl restart campfire
+Aug 10 01:52:11 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 01:52:11 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 02:17:01 ip-172-31-92-31 CRON[2360]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 02:17:01 ip-172-31-92-31 CRON[2360]: pam_unix(cron:session): session closed for user root
+Aug 10 02:17:47 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/nano /etc/systemd/system/helloworld.service
+Aug 10 02:17:47 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 02:17:50 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 02:17:58 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/nano /etc/systemd/system/campfire.service
+Aug 10 02:17:58 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 02:18:34 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 02:18:43 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl daemon-reload
+Aug 10 02:18:43 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 02:18:43 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 02:18:52 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl start helloworld
+Aug 10 02:18:52 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 02:18:52 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 02:19:04 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl start campfire
+Aug 10 02:19:04 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 02:19:04 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 02:19:11 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl enable campfire
+Aug 10 02:19:11 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 02:19:11 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 02:48:11 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu/var/www/campfire ; USER=root ; COMMAND=/usr/bin/apt-get update
+Aug 10 02:48:11 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 02:48:16 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 02:48:23 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu/var/www/campfire ; USER=root ; COMMAND=/usr/bin/apt-get install python3-venv
+Aug 10 02:48:23 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 02:48:24 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 02:56:45 ip-172-31-92-31 sshd[3257]: Accepted publickey for ubuntu from 98.109.88.186 port 64003 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 02:56:45 ip-172-31-92-31 sshd[3257]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 02:56:45 ip-172-31-92-31 systemd-logind[913]: New session 4 of user ubuntu.
+Aug 10 02:59:00 ip-172-31-92-31 sshd[3377]: Accepted publickey for ubuntu from 98.109.88.186 port 58335 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 02:59:00 ip-172-31-92-31 sshd[3377]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 02:59:00 ip-172-31-92-31 systemd-logind[913]: New session 5 of user ubuntu.
+Aug 10 02:59:25 ip-172-31-92-31 sshd[3462]: Accepted publickey for ubuntu from 98.109.88.186 port 58353 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 10 02:59:25 ip-172-31-92-31 sshd[3462]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 10 02:59:25 ip-172-31-92-31 systemd-logind[913]: New session 6 of user ubuntu.
+Aug 10 03:00:00 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu/var/www/campfire ; USER=root ; COMMAND=/bin/systemctl restart campfire
+Aug 10 03:00:00 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 10 03:00:00 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 10 03:00:25 ip-172-31-92-31 sshd[3462]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 03:00:25 ip-172-31-92-31 systemd-logind[913]: Removed session 6.
+Aug 10 03:00:34 ip-172-31-92-31 sshd[3377]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 03:00:34 ip-172-31-92-31 systemd-logind[913]: Removed session 5.
+Aug 10 03:17:01 ip-172-31-92-31 CRON[3614]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 03:17:01 ip-172-31-92-31 CRON[3614]: pam_unix(cron:session): session closed for user root
+Aug 10 04:17:01 ip-172-31-92-31 CRON[3680]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 04:17:01 ip-172-31-92-31 CRON[3680]: pam_unix(cron:session): session closed for user root
+Aug 10 05:17:01 ip-172-31-92-31 CRON[3746]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 05:17:01 ip-172-31-92-31 CRON[3746]: pam_unix(cron:session): session closed for user root
+Aug 10 06:17:01 ip-172-31-92-31 CRON[3909]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 06:17:01 ip-172-31-92-31 CRON[3909]: pam_unix(cron:session): session closed for user root
+Aug 10 06:25:01 ip-172-31-92-31 CRON[3922]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 06:25:09 ip-172-31-92-31 CRON[3922]: pam_unix(cron:session): session closed for user root
+Aug 10 07:17:01 ip-172-31-92-31 CRON[4167]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 07:17:01 ip-172-31-92-31 CRON[4167]: pam_unix(cron:session): session closed for user root
+Aug 10 08:17:01 ip-172-31-92-31 CRON[4233]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 08:17:01 ip-172-31-92-31 CRON[4233]: pam_unix(cron:session): session closed for user root
+Aug 10 09:17:01 ip-172-31-92-31 CRON[4299]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 09:17:01 ip-172-31-92-31 CRON[4299]: pam_unix(cron:session): session closed for user root
+Aug 10 10:17:01 ip-172-31-92-31 CRON[4365]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 10:17:01 ip-172-31-92-31 CRON[4365]: pam_unix(cron:session): session closed for user root
+Aug 10 11:17:01 ip-172-31-92-31 CRON[4432]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 11:17:01 ip-172-31-92-31 CRON[4432]: pam_unix(cron:session): session closed for user root
+Aug 10 12:17:01 ip-172-31-92-31 CRON[4498]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 12:17:01 ip-172-31-92-31 CRON[4498]: pam_unix(cron:session): session closed for user root
+Aug 10 13:01:01 ip-172-31-92-31 CRON[4550]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 13:01:01 ip-172-31-92-31 CRON[4550]: pam_unix(cron:session): session closed for user root
+Aug 10 13:06:29 ip-172-31-92-31 sshd[1977]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 13:06:29 ip-172-31-92-31 systemd-logind[913]: Removed session 1.
+Aug 10 13:17:01 ip-172-31-92-31 CRON[4570]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 13:17:01 ip-172-31-92-31 CRON[4570]: pam_unix(cron:session): session closed for user root
+Aug 10 13:52:22 ip-172-31-92-31 sshd[3257]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 10 13:52:22 ip-172-31-92-31 systemd-logind[913]: Removed session 4.
+Aug 10 14:17:01 ip-172-31-92-31 CRON[4638]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 14:17:01 ip-172-31-92-31 CRON[4638]: pam_unix(cron:session): session closed for user root
+Aug 10 15:17:01 ip-172-31-92-31 CRON[4704]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 15:17:01 ip-172-31-92-31 CRON[4704]: pam_unix(cron:session): session closed for user root
+Aug 10 16:17:01 ip-172-31-92-31 CRON[4770]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 16:17:01 ip-172-31-92-31 CRON[4770]: pam_unix(cron:session): session closed for user root
+Aug 10 17:17:01 ip-172-31-92-31 CRON[5139]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 17:17:01 ip-172-31-92-31 CRON[5139]: pam_unix(cron:session): session closed for user root
+Aug 10 18:17:01 ip-172-31-92-31 CRON[5205]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 18:17:01 ip-172-31-92-31 CRON[5205]: pam_unix(cron:session): session closed for user root
+Aug 10 19:17:01 ip-172-31-92-31 CRON[5271]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 19:17:01 ip-172-31-92-31 CRON[5271]: pam_unix(cron:session): session closed for user root
+Aug 10 20:17:01 ip-172-31-92-31 CRON[5338]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 20:17:01 ip-172-31-92-31 CRON[5338]: pam_unix(cron:session): session closed for user root
+Aug 10 21:17:01 ip-172-31-92-31 CRON[5404]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 21:17:01 ip-172-31-92-31 CRON[5404]: pam_unix(cron:session): session closed for user root
+Aug 10 22:17:01 ip-172-31-92-31 CRON[5470]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 22:17:01 ip-172-31-92-31 CRON[5470]: pam_unix(cron:session): session closed for user root
+Aug 10 23:17:01 ip-172-31-92-31 CRON[5536]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 10 23:17:01 ip-172-31-92-31 CRON[5536]: pam_unix(cron:session): session closed for user root
+Aug 11 00:17:01 ip-172-31-92-31 CRON[5602]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 00:17:01 ip-172-31-92-31 CRON[5602]: pam_unix(cron:session): session closed for user root
+Aug 11 01:17:01 ip-172-31-92-31 CRON[5668]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 01:17:01 ip-172-31-92-31 CRON[5668]: pam_unix(cron:session): session closed for user root
+Aug 11 02:17:01 ip-172-31-92-31 CRON[5758]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 02:17:01 ip-172-31-92-31 CRON[5758]: pam_unix(cron:session): session closed for user root
+Aug 11 02:34:07 ip-172-31-92-31 sshd[5780]: Accepted publickey for ubuntu from 98.109.88.186 port 58283 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 11 02:34:07 ip-172-31-92-31 sshd[5780]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 11 02:34:07 ip-172-31-92-31 systemd-logind[913]: New session 33 of user ubuntu.
+Aug 11 02:34:07 ip-172-31-92-31 systemd: pam_unix(systemd-user:session): session opened for user ubuntu by (uid=0)
+Aug 11 02:36:25 ip-172-31-92-31 sshd[5899]: Accepted publickey for ubuntu from 98.109.88.186 port 54846 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 11 02:36:25 ip-172-31-92-31 sshd[5899]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 11 02:36:25 ip-172-31-92-31 systemd-logind[913]: New session 35 of user ubuntu.
+Aug 11 02:37:26 ip-172-31-92-31 sshd[5899]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 11 02:37:26 ip-172-31-92-31 systemd-logind[913]: Removed session 35.
+Aug 11 03:03:12 ip-172-31-92-31 sshd[5780]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 11 03:03:12 ip-172-31-92-31 systemd-logind[913]: Removed session 33.
+Aug 11 03:03:12 ip-172-31-92-31 sshd[6016]: Accepted publickey for ubuntu from 98.109.88.186 port 49888 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 11 03:03:12 ip-172-31-92-31 sshd[6016]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 11 03:03:12 ip-172-31-92-31 systemd: pam_unix(systemd-user:session): session opened for user ubuntu by (uid=0)
+Aug 11 03:03:12 ip-172-31-92-31 systemd-logind[913]: New session 36 of user ubuntu.
+Aug 11 03:03:20 ip-172-31-92-31 sshd[6123]: Accepted publickey for ubuntu from 98.109.88.186 port 49897 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 11 03:03:20 ip-172-31-92-31 sshd[6123]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 11 03:03:20 ip-172-31-92-31 systemd-logind[913]: New session 38 of user ubuntu.
+Aug 11 03:03:33 ip-172-31-92-31 sshd[6207]: Accepted publickey for ubuntu from 98.109.88.186 port 49915 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 11 03:03:33 ip-172-31-92-31 sshd[6207]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 11 03:03:33 ip-172-31-92-31 systemd-logind[913]: New session 39 of user ubuntu.
+Aug 11 03:03:36 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl restart campfire
+Aug 11 03:03:36 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 03:03:36 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 03:03:40 ip-172-31-92-31 sshd[6207]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 11 03:03:40 ip-172-31-92-31 systemd-logind[913]: Removed session 39.
+Aug 11 03:04:21 ip-172-31-92-31 sshd[6123]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 11 03:04:21 ip-172-31-92-31 systemd-logind[913]: Removed session 38.
+Aug 11 03:17:01 ip-172-31-92-31 CRON[6353]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 03:17:01 ip-172-31-92-31 CRON[6353]: pam_unix(cron:session): session closed for user root
+Aug 11 04:17:01 ip-172-31-92-31 CRON[6419]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 04:17:01 ip-172-31-92-31 CRON[6419]: pam_unix(cron:session): session closed for user root
+Aug 11 05:17:01 ip-172-31-92-31 CRON[6485]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 05:17:01 ip-172-31-92-31 CRON[6485]: pam_unix(cron:session): session closed for user root
+Aug 11 06:17:01 ip-172-31-92-31 CRON[6978]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 06:17:01 ip-172-31-92-31 CRON[6978]: pam_unix(cron:session): session closed for user root
+Aug 11 06:25:01 ip-172-31-92-31 CRON[6991]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 06:25:08 ip-172-31-92-31 CRON[6991]: pam_unix(cron:session): session closed for user root
+Aug 11 07:17:01 ip-172-31-92-31 CRON[7289]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 07:17:01 ip-172-31-92-31 CRON[7289]: pam_unix(cron:session): session closed for user root
+Aug 11 08:17:01 ip-172-31-92-31 CRON[7355]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 08:17:01 ip-172-31-92-31 CRON[7355]: pam_unix(cron:session): session closed for user root
+Aug 11 09:17:01 ip-172-31-92-31 CRON[7421]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 09:17:01 ip-172-31-92-31 CRON[7421]: pam_unix(cron:session): session closed for user root
+Aug 11 10:17:01 ip-172-31-92-31 CRON[7487]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 10:17:01 ip-172-31-92-31 CRON[7487]: pam_unix(cron:session): session closed for user root
+Aug 11 11:17:01 ip-172-31-92-31 CRON[7553]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 11:17:01 ip-172-31-92-31 CRON[7553]: pam_unix(cron:session): session closed for user root
+Aug 11 11:22:09 ip-172-31-92-31 sshd[7566]: Accepted publickey for ubuntu from 98.109.88.186 port 62241 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 11 11:22:09 ip-172-31-92-31 sshd[7566]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 11 11:22:09 ip-172-31-92-31 systemd-logind[913]: New session 50 of user ubuntu.
+Aug 11 11:23:10 ip-172-31-92-31 sshd[7566]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 11 11:23:10 ip-172-31-92-31 systemd-logind[913]: Removed session 50.
+Aug 11 11:28:23 ip-172-31-92-31 sshd[7683]: Accepted publickey for ubuntu from 98.109.88.186 port 63245 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 11 11:28:23 ip-172-31-92-31 sshd[7683]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 11 11:28:23 ip-172-31-92-31 systemd-logind[913]: New session 51 of user ubuntu.
+Aug 11 11:28:30 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/apt-get remove unattended-upgrades
+Aug 11 11:28:30 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 11:28:40 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 11:29:32 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl stop apt-daily.timer
+Aug 11 11:29:32 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 11:29:32 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 11:29:38 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl disable apt-daily.timer
+Aug 11 11:29:38 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 11:29:39 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 11:29:45 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl disable apt-daily.service
+Aug 11 11:29:45 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 11:29:46 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 11:29:50 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl daemon-reload
+Aug 11 11:29:50 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 11:29:51 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 11:29:55 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl restart campfire
+Aug 11 11:29:55 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 11:29:55 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 11:47:18 ip-172-31-92-31 sshd[7683]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 11 11:47:18 ip-172-31-92-31 systemd-logind[913]: Removed session 51.
+Aug 11 12:17:01 ip-172-31-92-31 CRON[8134]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 12:17:01 ip-172-31-92-31 CRON[8134]: pam_unix(cron:session): session closed for user root
+Aug 11 13:01:01 ip-172-31-92-31 CRON[8184]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 13:01:01 ip-172-31-92-31 CRON[8184]: pam_unix(cron:session): session closed for user root
+Aug 11 13:03:24 ip-172-31-92-31 sshd[6016]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 11 13:03:24 ip-172-31-92-31 systemd-logind[913]: Removed session 36.
+Aug 11 13:17:01 ip-172-31-92-31 CRON[8206]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 13:17:01 ip-172-31-92-31 CRON[8206]: pam_unix(cron:session): session closed for user root
+Aug 11 14:17:01 ip-172-31-92-31 CRON[8273]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 14:17:01 ip-172-31-92-31 CRON[8273]: pam_unix(cron:session): session closed for user root
+Aug 11 15:17:01 ip-172-31-92-31 CRON[8339]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 15:17:01 ip-172-31-92-31 CRON[8339]: pam_unix(cron:session): session closed for user root
+Aug 11 16:17:01 ip-172-31-92-31 CRON[8405]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 16:17:01 ip-172-31-92-31 CRON[8405]: pam_unix(cron:session): session closed for user root
+Aug 11 17:17:01 ip-172-31-92-31 CRON[8471]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 17:17:01 ip-172-31-92-31 CRON[8471]: pam_unix(cron:session): session closed for user root
+Aug 11 18:17:01 ip-172-31-92-31 CRON[8605]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 18:17:01 ip-172-31-92-31 CRON[8605]: pam_unix(cron:session): session closed for user root
+Aug 11 19:17:01 ip-172-31-92-31 CRON[8672]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 19:17:01 ip-172-31-92-31 CRON[8672]: pam_unix(cron:session): session closed for user root
+Aug 11 20:17:01 ip-172-31-92-31 CRON[8738]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 20:17:01 ip-172-31-92-31 CRON[8738]: pam_unix(cron:session): session closed for user root
+Aug 11 21:17:01 ip-172-31-92-31 CRON[8804]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 21:17:01 ip-172-31-92-31 CRON[8804]: pam_unix(cron:session): session closed for user root
+Aug 11 21:50:04 ip-172-31-92-31 sshd[8841]: Accepted publickey for ubuntu from 98.109.88.186 port 50898 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 11 21:50:04 ip-172-31-92-31 sshd[8841]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 11 21:50:04 ip-172-31-92-31 systemd: pam_unix(systemd-user:session): session opened for user ubuntu by (uid=0)
+Aug 11 21:50:04 ip-172-31-92-31 systemd-logind[913]: New session 63 of user ubuntu.
+Aug 11 21:53:29 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/etc/nginx ; USER=root ; COMMAND=/usr/bin/vi nginx.conf
+Aug 11 21:53:29 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 21:54:57 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 21:55:08 ip-172-31-92-31 polkitd(authority=local): Registered Authentication Agent for unix-process:8990:16043981 (system bus name :1.39 [/usr/bin/pkttyagent --notify-fd 5 --fallback], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale C.UTF-8)
+Aug 11 21:55:15 ip-172-31-92-31 polkit-agent-helper-1[9002]: pam_unix(polkit-1:auth): authentication failure; logname= uid=1000 euid=0 tty= ruser=ubuntu rhost=  user=ubuntu
+Aug 11 21:55:17 ip-172-31-92-31 polkitd(authority=local): Operator of unix-process:8990:16043981 FAILED to authenticate to gain authorization for action org.freedesktop.systemd1.manage-units for system-bus-name::1.40 [systemctl reload nginx.service] (owned by unix-user:ubuntu)
+Aug 11 21:55:17 ip-172-31-92-31 polkitd(authority=local): Unregistered Authentication Agent for unix-process:8990:16043981 (system bus name :1.39, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale C.UTF-8) (disconnected from bus)
+Aug 11 21:55:21 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/etc/nginx ; USER=root ; COMMAND=/usr/sbin/service nginx reload
+Aug 11 21:55:21 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 21:55:21 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 21:55:46 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl restart campfire
+Aug 11 21:55:46 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 11 21:55:46 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 11 22:17:01 ip-172-31-92-31 CRON[9077]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 22:17:01 ip-172-31-92-31 CRON[9077]: pam_unix(cron:session): session closed for user root
+Aug 11 23:17:01 ip-172-31-92-31 CRON[9143]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 11 23:17:01 ip-172-31-92-31 CRON[9143]: pam_unix(cron:session): session closed for user root
+Aug 12 00:17:01 ip-172-31-92-31 CRON[9209]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 00:17:01 ip-172-31-92-31 CRON[9209]: pam_unix(cron:session): session closed for user root
+Aug 12 01:17:01 ip-172-31-92-31 CRON[9275]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 01:17:01 ip-172-31-92-31 CRON[9275]: pam_unix(cron:session): session closed for user root
+Aug 12 02:17:01 ip-172-31-92-31 CRON[9364]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 02:17:01 ip-172-31-92-31 CRON[9364]: pam_unix(cron:session): session closed for user root
+Aug 12 03:17:01 ip-172-31-92-31 CRON[9430]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 03:17:01 ip-172-31-92-31 CRON[9430]: pam_unix(cron:session): session closed for user root
+Aug 12 04:03:05 ip-172-31-92-31 sshd[8841]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 12 04:03:05 ip-172-31-92-31 systemd-logind[913]: Removed session 63.
+Aug 12 04:17:01 ip-172-31-92-31 CRON[9499]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 04:17:01 ip-172-31-92-31 CRON[9499]: pam_unix(cron:session): session closed for user root
+Aug 12 05:17:01 ip-172-31-92-31 CRON[9565]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 05:17:01 ip-172-31-92-31 CRON[9565]: pam_unix(cron:session): session closed for user root
+Aug 12 06:17:01 ip-172-31-92-31 CRON[9708]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 06:17:01 ip-172-31-92-31 CRON[9708]: pam_unix(cron:session): session closed for user root
+Aug 12 06:25:01 ip-172-31-92-31 CRON[9721]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 06:25:05 ip-172-31-92-31 CRON[9721]: pam_unix(cron:session): session closed for user root
+Aug 12 07:17:01 ip-172-31-92-31 CRON[9931]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 07:17:01 ip-172-31-92-31 CRON[9931]: pam_unix(cron:session): session closed for user root
+Aug 12 08:17:01 ip-172-31-92-31 CRON[10070]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 08:17:01 ip-172-31-92-31 CRON[10070]: pam_unix(cron:session): session closed for user root
+Aug 12 09:17:01 ip-172-31-92-31 CRON[10136]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 09:17:01 ip-172-31-92-31 CRON[10136]: pam_unix(cron:session): session closed for user root
+Aug 12 10:17:01 ip-172-31-92-31 CRON[10202]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 10:17:01 ip-172-31-92-31 CRON[10202]: pam_unix(cron:session): session closed for user root
+Aug 12 11:09:16 ip-172-31-92-31 sshd[10260]: Accepted publickey for ubuntu from 98.109.88.186 port 51833 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 12 11:09:16 ip-172-31-92-31 sshd[10260]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 12 11:09:16 ip-172-31-92-31 systemd: pam_unix(systemd-user:session): session opened for user ubuntu by (uid=0)
+Aug 12 11:09:16 ip-172-31-92-31 systemd-logind[913]: New session 79 of user ubuntu.
+Aug 12 11:09:19 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl restart campfire
+Aug 12 11:09:19 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 12 11:09:19 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 12 11:14:19 ip-172-31-92-31 sshd[10439]: Accepted publickey for ubuntu from 98.109.88.186 port 65530 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 12 11:14:19 ip-172-31-92-31 sshd[10439]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 12 11:14:19 ip-172-31-92-31 systemd-logind[913]: New session 81 of user ubuntu.
+Aug 12 11:14:34 ip-172-31-92-31 sshd[10523]: Accepted publickey for ubuntu from 98.109.88.186 port 49158 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 12 11:14:34 ip-172-31-92-31 sshd[10523]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 12 11:14:34 ip-172-31-92-31 systemd-logind[913]: New session 82 of user ubuntu.
+Aug 12 11:15:37 ip-172-31-92-31 sshd[10523]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 12 11:15:37 ip-172-31-92-31 systemd-logind[913]: Removed session 82.
+Aug 12 11:17:01 ip-172-31-92-31 CRON[10612]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 11:17:01 ip-172-31-92-31 CRON[10612]: pam_unix(cron:session): session closed for user root
+Aug 12 11:17:45 ip-172-31-92-31 sshd[10615]: Accepted publickey for ubuntu from 98.109.88.186 port 64193 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 12 11:17:45 ip-172-31-92-31 sshd[10615]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 12 11:17:45 ip-172-31-92-31 systemd-logind[913]: New session 84 of user ubuntu.
+Aug 12 11:17:48 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/1 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/ps -aux
+Aug 12 11:17:48 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 12 11:17:48 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 12 11:18:22 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/1 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/sbin/service nginx configtest
+Aug 12 11:18:22 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 12 11:18:22 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 12 12:17:01 ip-172-31-92-31 CRON[10804]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 12:17:01 ip-172-31-92-31 CRON[10804]: pam_unix(cron:session): session closed for user root
+Aug 12 12:30:09 ip-172-31-92-31 sshd[10822]: Accepted publickey for ubuntu from 98.109.88.186 port 51618 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 12 12:30:09 ip-172-31-92-31 sshd[10822]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 12 12:30:09 ip-172-31-92-31 systemd-logind[913]: New session 86 of user ubuntu.
+Aug 12 12:30:10 ip-172-31-92-31 sshd[10928]: Accepted publickey for ubuntu from 98.109.88.186 port 63332 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 12 12:30:10 ip-172-31-92-31 sshd[10928]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 12 12:30:10 ip-172-31-92-31 systemd-logind[913]: New session 87 of user ubuntu.
+Aug 12 12:30:40 ip-172-31-92-31 sshd[10439]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 12 12:30:40 ip-172-31-92-31 systemd-logind[913]: Removed session 81.
+Aug 12 12:30:41 ip-172-31-92-31 sshd[11012]: Accepted publickey for ubuntu from 98.109.88.186 port 61802 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 12 12:30:41 ip-172-31-92-31 sshd[11012]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 12 12:30:41 ip-172-31-92-31 systemd-logind[913]: New session 88 of user ubuntu.
+Aug 12 12:31:09 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/1 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl restart campfire
+Aug 12 12:31:09 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 12 12:31:09 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 12 12:31:54 ip-172-31-92-31 sshd[10822]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 12 12:31:54 ip-172-31-92-31 systemd-logind[913]: Removed session 86.
+Aug 12 12:31:54 ip-172-31-92-31 sshd[10928]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 12 12:31:54 ip-172-31-92-31 systemd-logind[913]: Removed session 87.
+Aug 12 13:01:01 ip-172-31-92-31 CRON[11167]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 13:01:01 ip-172-31-92-31 CRON[11167]: pam_unix(cron:session): session closed for user root
+Aug 12 13:17:01 ip-172-31-92-31 CRON[11187]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 13:17:01 ip-172-31-92-31 CRON[11187]: pam_unix(cron:session): session closed for user root
+Aug 12 14:17:01 ip-172-31-92-31 CRON[11253]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 14:17:01 ip-172-31-92-31 CRON[11253]: pam_unix(cron:session): session closed for user root
+Aug 12 14:57:06 ip-172-31-92-31 sshd[10260]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 12 14:57:06 ip-172-31-92-31 systemd-logind[913]: Removed session 79.
+Aug 12 15:17:01 ip-172-31-92-31 CRON[11320]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 15:17:01 ip-172-31-92-31 CRON[11320]: pam_unix(cron:session): session closed for user root
+Aug 12 16:17:01 ip-172-31-92-31 CRON[11387]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 16:17:01 ip-172-31-92-31 CRON[11387]: pam_unix(cron:session): session closed for user root
+Aug 12 17:17:01 ip-172-31-92-31 CRON[11453]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 17:17:01 ip-172-31-92-31 CRON[11453]: pam_unix(cron:session): session closed for user root
+Aug 12 18:17:01 ip-172-31-92-31 CRON[11519]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 18:17:01 ip-172-31-92-31 CRON[11519]: pam_unix(cron:session): session closed for user root
+Aug 12 19:17:01 ip-172-31-92-31 CRON[11585]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 19:17:01 ip-172-31-92-31 CRON[11585]: pam_unix(cron:session): session closed for user root
+Aug 12 20:17:01 ip-172-31-92-31 CRON[11651]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 20:17:01 ip-172-31-92-31 CRON[11651]: pam_unix(cron:session): session closed for user root
+Aug 12 21:17:01 ip-172-31-92-31 CRON[11717]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 21:17:01 ip-172-31-92-31 CRON[11717]: pam_unix(cron:session): session closed for user root
+Aug 12 22:17:01 ip-172-31-92-31 CRON[11851]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 22:17:01 ip-172-31-92-31 CRON[11851]: pam_unix(cron:session): session closed for user root
+Aug 12 23:17:01 ip-172-31-92-31 CRON[11917]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 12 23:17:01 ip-172-31-92-31 CRON[11917]: pam_unix(cron:session): session closed for user root
+Aug 13 00:17:01 ip-172-31-92-31 CRON[11983]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 00:17:01 ip-172-31-92-31 CRON[11983]: pam_unix(cron:session): session closed for user root
+Aug 13 01:17:01 ip-172-31-92-31 CRON[12050]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 01:17:01 ip-172-31-92-31 CRON[12050]: pam_unix(cron:session): session closed for user root
+Aug 13 02:17:01 ip-172-31-92-31 CRON[12139]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 02:17:01 ip-172-31-92-31 CRON[12139]: pam_unix(cron:session): session closed for user root
+Aug 13 03:17:01 ip-172-31-92-31 CRON[12206]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 03:17:01 ip-172-31-92-31 CRON[12206]: pam_unix(cron:session): session closed for user root
+Aug 13 04:17:01 ip-172-31-92-31 CRON[12272]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 04:17:01 ip-172-31-92-31 CRON[12272]: pam_unix(cron:session): session closed for user root
+Aug 13 05:17:01 ip-172-31-92-31 CRON[12338]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 05:17:01 ip-172-31-92-31 CRON[12338]: pam_unix(cron:session): session closed for user root
+Aug 13 06:17:01 ip-172-31-92-31 CRON[12478]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 06:17:01 ip-172-31-92-31 CRON[12478]: pam_unix(cron:session): session closed for user root
+Aug 13 06:25:01 ip-172-31-92-31 CRON[12491]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 06:25:03 ip-172-31-92-31 CRON[12491]: pam_unix(cron:session): session closed for user root
+Aug 13 07:17:01 ip-172-31-92-31 CRON[12696]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 07:17:01 ip-172-31-92-31 CRON[12696]: pam_unix(cron:session): session closed for user root
+Aug 13 08:17:01 ip-172-31-92-31 CRON[12762]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 08:17:01 ip-172-31-92-31 CRON[12762]: pam_unix(cron:session): session closed for user root
+Aug 13 09:17:01 ip-172-31-92-31 CRON[12828]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 09:17:01 ip-172-31-92-31 CRON[12828]: pam_unix(cron:session): session closed for user root
+Aug 13 10:17:01 ip-172-31-92-31 CRON[12895]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 10:17:01 ip-172-31-92-31 CRON[12895]: pam_unix(cron:session): session closed for user root
+Aug 13 11:17:01 ip-172-31-92-31 CRON[12961]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 11:17:01 ip-172-31-92-31 CRON[12961]: pam_unix(cron:session): session closed for user root
+Aug 13 12:17:01 ip-172-31-92-31 CRON[13099]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 12:17:01 ip-172-31-92-31 CRON[13099]: pam_unix(cron:session): session closed for user root
+Aug 13 12:53:30 ip-172-31-92-31 sshd[13208]: Accepted publickey for ubuntu from 98.109.88.186 port 61881 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 13 12:53:30 ip-172-31-92-31 sshd[13208]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 13 12:53:30 ip-172-31-92-31 systemd-logind[913]: New session 115 of user ubuntu.
+Aug 13 12:53:53 ip-172-31-92-31 sshd[13321]: Accepted publickey for ubuntu from 98.109.88.186 port 61925 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 13 12:53:53 ip-172-31-92-31 sshd[13321]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 13 12:53:53 ip-172-31-92-31 systemd-logind[913]: New session 116 of user ubuntu.
+Aug 13 12:55:32 ip-172-31-92-31 sshd[11012]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 13 12:55:32 ip-172-31-92-31 systemd-logind[913]: Removed session 88.
+Aug 13 12:56:23 ip-172-31-92-31 sshd[13321]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 13 12:56:23 ip-172-31-92-31 systemd-logind[913]: Removed session 116.
+Aug 13 12:58:01 ip-172-31-92-31 sshd[13208]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 13 12:58:01 ip-172-31-92-31 systemd-logind[913]: Removed session 115.
+Aug 13 12:58:02 ip-172-31-92-31 sshd[13410]: Accepted publickey for ubuntu from 98.109.88.186 port 57952 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 13 12:58:02 ip-172-31-92-31 sshd[13410]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 13 12:58:02 ip-172-31-92-31 systemd-logind[913]: New session 117 of user ubuntu.
+Aug 13 12:58:09 ip-172-31-92-31 sshd[13494]: Accepted publickey for ubuntu from 98.109.88.186 port 57961 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 13 12:58:09 ip-172-31-92-31 sshd[13494]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 13 12:58:09 ip-172-31-92-31 systemd-logind[913]: New session 118 of user ubuntu.
+Aug 13 12:58:09 ip-172-31-92-31 sshd[13495]: Accepted publickey for ubuntu from 98.109.88.186 port 57962 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 13 12:58:09 ip-172-31-92-31 sshd[13495]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 13 12:58:09 ip-172-31-92-31 systemd-logind[913]: New session 119 of user ubuntu.
+Aug 13 12:58:21 ip-172-31-92-31 sudo:   ubuntu : TTY=pts/1 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/bin/systemctl restart campfire
+Aug 13 12:58:21 ip-172-31-92-31 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Aug 13 12:58:21 ip-172-31-92-31 sudo: pam_unix(sudo:session): session closed for user root
+Aug 13 12:58:45 ip-172-31-92-31 sshd[10615]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 13 12:58:45 ip-172-31-92-31 systemd-logind[913]: Removed session 84.
+Aug 13 12:58:46 ip-172-31-92-31 sshd[13494]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 13 12:58:46 ip-172-31-92-31 systemd-logind[913]: Removed session 118.
+Aug 13 12:58:46 ip-172-31-92-31 sshd[13495]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 13 12:58:46 ip-172-31-92-31 systemd-logind[913]: Removed session 119.
+Aug 13 12:58:46 ip-172-31-92-31 sshd[13410]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 13 12:58:46 ip-172-31-92-31 systemd-logind[913]: Removed session 117.
+Aug 13 12:58:46 ip-172-31-92-31 systemd: pam_unix(systemd-user:session): session closed for user ubuntu
+Aug 13 13:01:01 ip-172-31-92-31 CRON[13703]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 13:01:01 ip-172-31-92-31 CRON[13703]: pam_unix(cron:session): session closed for user root
+Aug 13 13:17:01 ip-172-31-92-31 CRON[13724]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 13:17:01 ip-172-31-92-31 CRON[13724]: pam_unix(cron:session): session closed for user root
+Aug 13 14:17:01 ip-172-31-92-31 CRON[13790]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 14:17:01 ip-172-31-92-31 CRON[13790]: pam_unix(cron:session): session closed for user root
+Aug 13 15:17:01 ip-172-31-92-31 CRON[13856]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 15:17:01 ip-172-31-92-31 CRON[13856]: pam_unix(cron:session): session closed for user root
+Aug 13 16:17:01 ip-172-31-92-31 CRON[13923]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 16:17:01 ip-172-31-92-31 CRON[13923]: pam_unix(cron:session): session closed for user root
+Aug 13 17:17:01 ip-172-31-92-31 CRON[13989]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 17:17:01 ip-172-31-92-31 CRON[13989]: pam_unix(cron:session): session closed for user root
+Aug 13 18:17:01 ip-172-31-92-31 CRON[14055]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 18:17:01 ip-172-31-92-31 CRON[14055]: pam_unix(cron:session): session closed for user root
+Aug 13 19:17:01 ip-172-31-92-31 CRON[14121]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 19:17:01 ip-172-31-92-31 CRON[14121]: pam_unix(cron:session): session closed for user root
+Aug 13 20:17:01 ip-172-31-92-31 CRON[14187]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 20:17:01 ip-172-31-92-31 CRON[14187]: pam_unix(cron:session): session closed for user root
+Aug 13 21:17:01 ip-172-31-92-31 CRON[14253]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 21:17:01 ip-172-31-92-31 CRON[14253]: pam_unix(cron:session): session closed for user root
+Aug 13 22:17:01 ip-172-31-92-31 CRON[14319]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 22:17:01 ip-172-31-92-31 CRON[14319]: pam_unix(cron:session): session closed for user root
+Aug 13 23:17:01 ip-172-31-92-31 CRON[14385]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 13 23:17:01 ip-172-31-92-31 CRON[14385]: pam_unix(cron:session): session closed for user root
+Aug 14 00:17:01 ip-172-31-92-31 CRON[14451]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 00:17:01 ip-172-31-92-31 CRON[14451]: pam_unix(cron:session): session closed for user root
+Aug 14 01:17:01 ip-172-31-92-31 CRON[14517]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 01:17:01 ip-172-31-92-31 CRON[14517]: pam_unix(cron:session): session closed for user root
+Aug 14 02:17:01 ip-172-31-92-31 CRON[14606]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 02:17:01 ip-172-31-92-31 CRON[14606]: pam_unix(cron:session): session closed for user root
+Aug 14 03:17:01 ip-172-31-92-31 CRON[14672]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 03:17:01 ip-172-31-92-31 CRON[14672]: pam_unix(cron:session): session closed for user root
+Aug 14 04:17:01 ip-172-31-92-31 CRON[14738]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 04:17:01 ip-172-31-92-31 CRON[14738]: pam_unix(cron:session): session closed for user root
+Aug 14 05:17:01 ip-172-31-92-31 CRON[14804]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 05:17:01 ip-172-31-92-31 CRON[14804]: pam_unix(cron:session): session closed for user root
+Aug 14 06:17:01 ip-172-31-92-31 CRON[14870]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 06:17:01 ip-172-31-92-31 CRON[14870]: pam_unix(cron:session): session closed for user root
+Aug 14 06:25:01 ip-172-31-92-31 CRON[14883]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 06:25:02 ip-172-31-92-31 CRON[14883]: pam_unix(cron:session): session closed for user root
+Aug 14 07:17:01 ip-172-31-92-31 CRON[15167]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 07:17:01 ip-172-31-92-31 CRON[15167]: pam_unix(cron:session): session closed for user root
+Aug 14 08:17:01 ip-172-31-92-31 CRON[15233]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 08:17:01 ip-172-31-92-31 CRON[15233]: pam_unix(cron:session): session closed for user root
+Aug 14 09:17:01 ip-172-31-92-31 CRON[15299]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 09:17:01 ip-172-31-92-31 CRON[15299]: pam_unix(cron:session): session closed for user root
+Aug 14 10:17:01 ip-172-31-92-31 CRON[15365]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 10:17:01 ip-172-31-92-31 CRON[15365]: pam_unix(cron:session): session closed for user root
+Aug 14 11:17:01 ip-172-31-92-31 CRON[15498]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 11:17:01 ip-172-31-92-31 CRON[15498]: pam_unix(cron:session): session closed for user root
+Aug 14 12:17:01 ip-172-31-92-31 CRON[15564]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 12:17:01 ip-172-31-92-31 CRON[15564]: pam_unix(cron:session): session closed for user root
+Aug 14 13:01:01 ip-172-31-92-31 CRON[15615]: pam_unix(cron:session): session opened for user root by (uid=0)
+Aug 14 13:01:01 ip-172-31-92-31 CRON[15615]: pam_unix(cron:session): session closed for user root
+Aug 14 13:09:11 ip-172-31-92-31 sshd[15627]: Accepted publickey for ubuntu from 98.109.88.186 port 62069 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 14 13:09:11 ip-172-31-92-31 sshd[15627]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 14 13:09:11 ip-172-31-92-31 systemd: pam_unix(systemd-user:session): session opened for user ubuntu by (uid=0)
+Aug 14 13:09:11 ip-172-31-92-31 systemd-logind[913]: New session 147 of user ubuntu.
+Aug 14 13:09:25 ip-172-31-92-31 sshd[15751]: Accepted publickey for ubuntu from 98.109.88.186 port 62083 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 14 13:09:25 ip-172-31-92-31 sshd[15751]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 14 13:09:25 ip-172-31-92-31 systemd-logind[913]: New session 149 of user ubuntu.
+Aug 14 13:11:21 ip-172-31-92-31 sshd[15751]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 14 13:11:21 ip-172-31-92-31 systemd-logind[913]: Removed session 149.
+Aug 14 13:11:39 ip-172-31-92-31 sshd[15837]: Accepted publickey for ubuntu from 98.109.88.186 port 64230 ssh2: RSA SHA256:SAFGP8rO9R2QKceqnqsCfTInBR3k1WRg4JmOL99bJT0
+Aug 14 13:11:39 ip-172-31-92-31 sshd[15837]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 14 13:11:39 ip-172-31-92-31 systemd-logind[913]: New session 150 of user ubuntu.

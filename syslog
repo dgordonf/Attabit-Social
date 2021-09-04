@@ -1,293 +1,1350 @@
-Jul 16 06:25:01 ip-172-31-92-31 rsyslogd:  [origin software="rsyslogd" swVersion="8.32.0" x-pid="842" x-info="http://www.rsyslog.com"] rsyslogd was HUPed
-Jul 16 06:35:46 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 06:35:46 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 06:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 07:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 07:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 07:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 07:08:08 ip-172-31-92-31 systemd[1]: Starting Message of the Day...
-Jul 16 07:08:14 ip-172-31-92-31 50-motd-news[1847]:  * Super-optimized for small spaces - read how we shrank the memory
-Jul 16 07:08:14 ip-172-31-92-31 50-motd-news[1847]:    footprint of MicroK8s to make it the smallest full K8s around.
-Jul 16 07:08:14 ip-172-31-92-31 50-motd-news[1847]:    https://ubuntu.com/blog/microk8s-memory-optimisation
-Jul 16 07:08:14 ip-172-31-92-31 systemd[1]: Started Message of the Day.
-Jul 16 07:17:01 ip-172-31-92-31 CRON[1924]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 16 07:35:48 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 07:35:48 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 07:35:48 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 08:04:08 ip-172-31-92-31 systemd[1]: Starting Daily apt download activities...
-Jul 16 08:04:08 ip-172-31-92-31 systemd[1]: Started Daily apt download activities.
-Jul 16 08:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 08:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 08:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 08:17:01 ip-172-31-92-31 CRON[2063]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 16 08:35:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 08:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 08:35:48 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 09:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 09:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 09:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 09:17:01 ip-172-31-92-31 CRON[2131]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 16 09:35:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 09:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 09:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 10:00:55 ip-172-31-92-31 snapd[855]: storehelpers.go:551: cannot refresh: snap has no updates available: "amazon-ssm-agent", "core18", "snapd"
-Jul 16 10:00:55 ip-172-31-92-31 snapd[855]: autorefresh.go:513: auto-refresh: all snaps are up-to-date
-Jul 16 10:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 10:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 10:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 10:17:01 ip-172-31-92-31 CRON[2199]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 16 10:35:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 10:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 10:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 11:05:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 11:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 11:05:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 11:17:01 ip-172-31-92-31 CRON[2266]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
-Jul 16 11:35:47 ip-172-31-92-31 systemd-networkd[690]: eth0: Configured
-Jul 16 11:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Network configuration changed, trying to establish connection.
-Jul 16 11:35:47 ip-172-31-92-31 systemd-timesyncd[539]: Synchronized to time server 91.189.94.4:123 (ntp.ubuntu.com).
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: [2021-07-16 11:43:52,092] ERROR in app: Exception on / [GET]
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1771, in _execute_context
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cursor, statement, parameters, context
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cursor.execute(statement, parameters)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 148, in execute
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result = self._query(query)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 310, in _query
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     conn.query(q)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 548, in query
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self._affected_rows = self._read_query_result(unbuffered=unbuffered)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 775, in _read_query_result
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result.read()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 1156, in read
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     first_packet = self.connection._read_packet()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 692, in _read_packet
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     packet_header = self._read_bytes(4)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 749, in _read_bytes
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     CR.CR_SERVER_LOST, "Lost connection to MySQL server during query"
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query')
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: The above exception was the direct cause of the following exception:
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 52, in homepage
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     user_id =  current_user.get_user_id()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 422, in __get__
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     obj = instance._get_current_object()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 544, in _get_current_object
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return self.__local()  # type: ignore
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     current_user = LocalProxy(lambda: _get_user())
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     current_app.login_manager._load_user()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     user = self._user_callback(user_id)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 68, in load_user
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return User.query.get(user_id)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "<string>", line 2, in get
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return fn(*args, **kwargs)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return self._get_impl(ident, loading.load_on_pk_identity)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     execution_options=self._execution_options,
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     load_options=load_options,
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     bind_arguments=bind_arguments,
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result = conn._execute_20(statement, params or {}, execution_options)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return meth(self, args_10style, kwargs_10style, execution_options)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self, multiparams, params, execution_options
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cache_hit=cache_hit,
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1814, in _execute_context
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     e, statement, parameters, cursor, context
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1995, in _handle_dbapi_exception
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     sqlalchemy_exception, with_traceback=exc_info[2], from_=e
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     raise exception
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1771, in _execute_context
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cursor, statement, parameters, context
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cursor.execute(statement, parameters)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 148, in execute
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result = self._query(query)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/cursors.py", line 310, in _query
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     conn.query(q)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 548, in query
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self._affected_rows = self._read_query_result(unbuffered=unbuffered)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 775, in _read_query_result
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result.read()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 1156, in read
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     first_packet = self.connection._read_packet()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 692, in _read_packet
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     packet_header = self._read_bytes(4)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/pymysql/connections.py", line 749, in _read_bytes
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     CR.CR_SERVER_LOST, "Lost connection to MySQL server during query"
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query')
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: [SQL: SELECT users.email AS users_email, users.id AS users_id, users.password AS users_password
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: FROM users
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: WHERE users.email = %(pk_1)s]
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: [parameters: {'pk_1': 'gordondavidf@gmail.com'}]
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: (Background on this error at: http://sqlalche.me/e/14/e3q8)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: During handling of the above exception, another exception occurred:
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     response = self.full_dispatch_request()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     rv = self.handle_user_exception(e)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     rv = self.dispatch_request()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 62, in homepage
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return render_template('login.html', form=form, form2=form2)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/templating.py", line 146, in render_template
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     ctx.app.update_template_context(context)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 756, in update_template_context
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     context.update(func())
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 379, in _user_context_processor
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return dict(current_user=_get_user())
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     current_app.login_manager._load_user()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     user = self._user_callback(user_id)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 68, in load_user
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return User.query.get(user_id)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "<string>", line 2, in get
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return fn(*args, **kwargs)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return self._get_impl(ident, loading.load_on_pk_identity)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     execution_options=self._execution_options,
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     load_options=load_options,
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     bind_arguments=bind_arguments,
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     result = conn._execute_20(statement, params or {}, execution_options)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     return meth(self, args_10style, kwargs_10style, execution_options)
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self, multiparams, params, execution_options
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     cache_hit=cache_hit,
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     conn = self._revalidate_connection()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     self._invalid_transaction()
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]:     code="8s2b",
-Jul 16 11:43:52 ip-172-31-92-31 gunicorn[822]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: [2021-07-16 11:44:00,932] ERROR in app: Exception on / [GET]
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 52, in homepage
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     user_id =  current_user.get_user_id()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 422, in __get__
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     obj = instance._get_current_object()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/werkzeug/local.py", line 544, in _get_current_object
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return self.__local()  # type: ignore
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     current_user = LocalProxy(lambda: _get_user())
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     current_app.login_manager._load_user()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     user = self._user_callback(user_id)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 68, in load_user
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return User.query.get(user_id)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "<string>", line 2, in get
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return fn(*args, **kwargs)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return self._get_impl(ident, loading.load_on_pk_identity)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     execution_options=self._execution_options,
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     load_options=load_options,
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     bind_arguments=bind_arguments,
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     result = conn._execute_20(statement, params or {}, execution_options)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return meth(self, args_10style, kwargs_10style, execution_options)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     self, multiparams, params, execution_options
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     cache_hit=cache_hit,
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     conn = self._revalidate_connection()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     self._invalid_transaction()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     code="8s2b",
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: During handling of the above exception, another exception occurred:
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: Traceback (most recent call last):
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     response = self.full_dispatch_request()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     rv = self.handle_user_exception(e)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     rv = self.dispatch_request()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 62, in homepage
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return render_template('login.html', form=form, form2=form2)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/templating.py", line 146, in render_template
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     ctx.app.update_template_context(context)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask/app.py", line 756, in update_template_context
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     context.update(func())
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 379, in _user_context_processor
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return dict(current_user=_get_user())
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/utils.py", line 346, in _get_user
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     current_app.login_manager._load_user()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 318, in _load_user
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     user = self._user_callback(user_id)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/application.py", line 68, in load_user
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return User.query.get(user_id)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "<string>", line 2, in get
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return fn(*args, **kwargs)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 933, in get
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return self._get_impl(ident, loading.load_on_pk_identity)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 945, in _get_impl
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     execution_options=self._execution_options,
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2843, in _get_impl
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     load_options=load_options,
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 535, in load_on_pk_identity
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     bind_arguments=bind_arguments,
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1689, in execute
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     result = conn._execute_20(statement, params or {}, execution_options)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1582, in _execute_20
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     return meth(self, args_10style, kwargs_10style, execution_options)
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     self, multiparams, params, execution_options
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1461, in _execute_clauseelement
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     cache_hit=cache_hit,
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1668, in _execute_context
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     conn = self._revalidate_connection()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 560, in _revalidate_connection
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     self._invalid_transaction()
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 540, in _invalid_transaction
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]:     code="8s2b",
-Jul 16 11:44:00 ip-172-31-92-31 gunicorn[822]: sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: http://sqlalche.me/e/14/8s2b)
-Jul 16 11:44:15 ip-172-31-92-31 systemd[1]: Created slice User Slice of ubuntu.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[1]: Starting User Manager for UID 1000...
-Jul 16 11:44:15 ip-172-31-92-31 systemd[1]: Started Session 12 of user ubuntu.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG network certificate management daemon.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG cryptographic agent and passphrase cache.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Timers.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on REST API socket for snapd user session agent.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Sockets.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Paths.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Basic System.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[1]: Started User Manager for UID 1000.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Reached target Default.
-Jul 16 11:44:15 ip-172-31-92-31 systemd[2310]: Startup finished in 65ms.
-Jul 16 11:44:26 ip-172-31-92-31 systemd[1]: Started Session 14 of user ubuntu.
+Aug 29 06:47:01 ip-172-31-92-31 CRON[19322]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly ))
+Aug 29 06:47:01 ip-172-31-92-31 CRON[19321]: (CRON) info (No MTA installed, discarding output)
+Aug 29 06:49:23 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 06:49:23 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 06:49:23 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 07:17:01 ip-172-31-92-31 CRON[19367]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 07:19:23 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 07:19:23 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 07:19:23 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 07:49:23 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 07:49:23 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 07:49:23 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 07:56:32 ip-172-31-92-31 snapd[7899]: storehelpers.go:551: cannot refresh: snap has no updates available: "amazon-ssm-agent", "core18", "snapd"
+Aug 29 07:56:32 ip-172-31-92-31 snapd[7899]: autorefresh.go:513: auto-refresh: all snaps are up-to-date
+Aug 29 08:17:01 ip-172-31-92-31 CRON[19434]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 08:19:24 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 08:19:24 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 08:19:24 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 08:49:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 08:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 08:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 09:17:01 ip-172-31-92-31 CRON[19500]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 09:19:26 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 09:19:26 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 09:19:26 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 09:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 09:49:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 09:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 10:17:01 ip-172-31-92-31 CRON[19566]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 10:19:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 10:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 10:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 10:49:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 10:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 10:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 11:17:01 ip-172-31-92-31 CRON[19632]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 11:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 11:19:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 11:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 11:49:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 11:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 11:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 12:17:01 ip-172-31-92-31 CRON[19698]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 12:19:24 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 12:19:24 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 12:19:24 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 12:49:24 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 12:49:24 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 12:49:24 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 13:01:01 ip-172-31-92-31 CRON[19748]: (root) CMD (   test -x /etc/cron.daily/popularity-contest && /etc/cron.daily/popularity-contest --crond)
+Aug 29 13:17:01 ip-172-31-92-31 CRON[19768]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 13:19:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 13:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 13:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 13:49:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 13:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 13:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 14:16:32 ip-172-31-92-31 snapd[7899]: storehelpers.go:551: cannot refresh: snap has no updates available: "amazon-ssm-agent", "core18", "snapd"
+Aug 29 14:16:32 ip-172-31-92-31 snapd[7899]: autorefresh.go:513: auto-refresh: all snaps are up-to-date
+Aug 29 14:17:01 ip-172-31-92-31 CRON[19835]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 14:19:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 14:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 14:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 14:49:24 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 14:49:24 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 14:49:24 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 15:17:01 ip-172-31-92-31 CRON[19901]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 15:19:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 15:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 15:19:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 15:49:25 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 15:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 15:49:25 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 16:17:01 ip-172-31-92-31 CRON[19967]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug 29 16:19:26 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 16:19:26 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 16:19:26 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 16:49:26 ip-172-31-92-31 systemd-networkd[717]: eth0: Configured
+Aug 29 16:49:26 ip-172-31-92-31 systemd-timesyncd[552]: Network configuration changed, trying to establish connection.
+Aug 29 16:49:26 ip-172-31-92-31 systemd-timesyncd[552]: Synchronized to time server 91.189.89.199:123 (ntp.ubuntu.com).
+Aug 29 16:55:30 ip-172-31-92-31 systemd[1]: Created slice User Slice of ubuntu.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[1]: Starting User Manager for UID 1000...
+Aug 29 16:55:30 ip-172-31-92-31 systemd[1]: Started Session 617 of user ubuntu.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Reached target Paths.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Listening on GnuPG network certificate management daemon.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Listening on REST API socket for snapd user session agent.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Reached target Timers.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Reached target Sockets.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Reached target Basic System.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[1]: Started User Manager for UID 1000.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Reached target Default.
+Aug 29 16:55:30 ip-172-31-92-31 systemd[20013]: Startup finished in 29ms.
+Aug 29 16:55:36 ip-172-31-92-31 systemd[1]: Started Session 619 of user ubuntu.
+Aug 29 16:55:36 ip-172-31-92-31 systemd[1]: Started Session 620 of user ubuntu.
+Aug 29 16:55:47 ip-172-31-92-31 systemd[1]: Started Session 621 of user ubuntu.
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: [2021-08-29 16:55:49 +0000] [17916] [INFO] Handling signal: term
+Aug 29 16:55:49 ip-172-31-92-31 systemd[1]: Stopping Gunicorn instance for campfire...
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: [2021-08-29 16:55:49 +0000] [17942] [INFO] Worker exiting (pid: 17942)
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: Already a user
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: Nope
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: Nope
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: Already a user
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: Nope
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: Nope
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: Already a user
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: Nope
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: [2021-08-29 16:55:49 +0000] [17916] [WARNING] Worker with pid 17942 was terminated due to signal 15
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[17916]: [2021-08-29 16:55:49 +0000] [17916] [INFO] Shutting down: Master
+Aug 29 16:55:49 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:55:49 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[20415]: [2021-08-29 16:55:49 +0000] [20415] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[20415]: [2021-08-29 16:55:49 +0000] [20415] [INFO] Listening at: http://127.0.0.1:8000 (20415)
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[20415]: [2021-08-29 16:55:49 +0000] [20415] [INFO] Using worker: sync
+Aug 29 16:55:49 ip-172-31-92-31 gunicorn[20415]: [2021-08-29 16:55:49 +0000] [20444] [INFO] Booting worker with pid: 20444
+Aug 29 16:56:08 ip-172-31-92-31 gunicorn[20415]: [2021-08-29 16:56:08 +0000] [20415] [INFO] Handling signal: term
+Aug 29 16:56:08 ip-172-31-92-31 systemd[1]: Stopping Gunicorn instance for campfire...
+Aug 29 16:56:08 ip-172-31-92-31 gunicorn[20415]: [2021-08-29 16:56:08 +0000] [20444] [INFO] Worker exiting (pid: 20444)
+Aug 29 16:56:08 ip-172-31-92-31 gunicorn[20415]: [2021-08-29 16:56:08 +0000] [20415] [WARNING] Worker with pid 20444 was terminated due to signal 15
+Aug 29 16:56:08 ip-172-31-92-31 gunicorn[20415]: [2021-08-29 16:56:08 +0000] [20415] [INFO] Shutting down: Master
+Aug 29 16:56:08 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:56:08 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:56:08 ip-172-31-92-31 gunicorn[20453]: [2021-08-29 16:56:08 +0000] [20453] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:56:08 ip-172-31-92-31 gunicorn[20453]: [2021-08-29 16:56:08 +0000] [20453] [INFO] Listening at: http://127.0.0.1:8000 (20453)
+Aug 29 16:56:08 ip-172-31-92-31 gunicorn[20453]: [2021-08-29 16:56:08 +0000] [20453] [INFO] Using worker: sync
+Aug 29 16:56:08 ip-172-31-92-31 gunicorn[20453]: [2021-08-29 16:56:08 +0000] [20478] [INFO] Booting worker with pid: 20478
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]: [2021-08-29 16:56:09 +0000] [20478] [ERROR] Exception in worker process
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]: Traceback (most recent call last):
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:     worker.init_process()
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:     self.load_wsgi()
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:     self.wsgi = self.app.wsgi()
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:     self.callable = self.load()
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:     return self.load_wsgiapp()
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:     return util.import_app(self.app_uri)
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:     mod = importlib.import_module(module)
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]:     from PIL import Image
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:56:09 ip-172-31-92-31 gunicorn[20453]: [2021-08-29 16:56:09 +0000] [20478] [INFO] Worker exiting (pid: 20478)
+Aug 29 16:56:10 ip-172-31-92-31 gunicorn[20453]: [2021-08-29 16:56:10 +0000] [20453] [INFO] Shutting down: Master
+Aug 29 16:56:10 ip-172-31-92-31 gunicorn[20453]: [2021-08-29 16:56:10 +0000] [20453] [INFO] Reason: Worker failed to boot.
+Aug 29 16:56:10 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:56:10 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:56:10 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:56:10 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 1.
+Aug 29 16:56:10 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:56:10 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:56:10 ip-172-31-92-31 gunicorn[20495]: [2021-08-29 16:56:10 +0000] [20495] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:56:10 ip-172-31-92-31 gunicorn[20495]: [2021-08-29 16:56:10 +0000] [20495] [INFO] Listening at: http://127.0.0.1:8000 (20495)
+Aug 29 16:56:10 ip-172-31-92-31 gunicorn[20495]: [2021-08-29 16:56:10 +0000] [20495] [INFO] Using worker: sync
+Aug 29 16:56:10 ip-172-31-92-31 gunicorn[20495]: [2021-08-29 16:56:10 +0000] [20519] [INFO] Booting worker with pid: 20519
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]: [2021-08-29 16:56:11 +0000] [20519] [ERROR] Exception in worker process
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]: Traceback (most recent call last):
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:     worker.init_process()
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:     self.load_wsgi()
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:     self.wsgi = self.app.wsgi()
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:     self.callable = self.load()
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:     return self.load_wsgiapp()
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:     return util.import_app(self.app_uri)
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:     mod = importlib.import_module(module)
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]:     from PIL import Image
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]: [2021-08-29 16:56:11 +0000] [20519] [INFO] Worker exiting (pid: 20519)
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]: [2021-08-29 16:56:11 +0000] [20495] [INFO] Shutting down: Master
+Aug 29 16:56:11 ip-172-31-92-31 gunicorn[20495]: [2021-08-29 16:56:11 +0000] [20495] [INFO] Reason: Worker failed to boot.
+Aug 29 16:56:11 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:56:11 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:56:11 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:56:11 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 2.
+Aug 29 16:56:11 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:56:11 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:56:12 ip-172-31-92-31 gunicorn[20535]: [2021-08-29 16:56:12 +0000] [20535] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:56:12 ip-172-31-92-31 gunicorn[20535]: [2021-08-29 16:56:12 +0000] [20535] [INFO] Listening at: http://127.0.0.1:8000 (20535)
+Aug 29 16:56:12 ip-172-31-92-31 gunicorn[20535]: [2021-08-29 16:56:12 +0000] [20535] [INFO] Using worker: sync
+Aug 29 16:56:12 ip-172-31-92-31 gunicorn[20535]: [2021-08-29 16:56:12 +0000] [20558] [INFO] Booting worker with pid: 20558
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]: [2021-08-29 16:56:13 +0000] [20558] [ERROR] Exception in worker process
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]: Traceback (most recent call last):
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:     worker.init_process()
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:     self.load_wsgi()
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:     self.wsgi = self.app.wsgi()
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:     self.callable = self.load()
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:     return self.load_wsgiapp()
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:     return util.import_app(self.app_uri)
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:     mod = importlib.import_module(module)
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]:     from PIL import Image
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]: [2021-08-29 16:56:13 +0000] [20558] [INFO] Worker exiting (pid: 20558)
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]: [2021-08-29 16:56:13 +0000] [20535] [INFO] Shutting down: Master
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20535]: [2021-08-29 16:56:13 +0000] [20535] [INFO] Reason: Worker failed to boot.
+Aug 29 16:56:13 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:56:13 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:56:13 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:56:13 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 3.
+Aug 29 16:56:13 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:56:13 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20575]: [2021-08-29 16:56:13 +0000] [20575] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20575]: [2021-08-29 16:56:13 +0000] [20575] [INFO] Listening at: http://127.0.0.1:8000 (20575)
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20575]: [2021-08-29 16:56:13 +0000] [20575] [INFO] Using worker: sync
+Aug 29 16:56:13 ip-172-31-92-31 gunicorn[20575]: [2021-08-29 16:56:13 +0000] [20600] [INFO] Booting worker with pid: 20600
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]: [2021-08-29 16:56:14 +0000] [20600] [ERROR] Exception in worker process
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]: Traceback (most recent call last):
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:     worker.init_process()
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:     self.load_wsgi()
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:     self.wsgi = self.app.wsgi()
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:     self.callable = self.load()
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:     return self.load_wsgiapp()
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:     return util.import_app(self.app_uri)
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:     mod = importlib.import_module(module)
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]:     from PIL import Image
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]: [2021-08-29 16:56:14 +0000] [20600] [INFO] Worker exiting (pid: 20600)
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]: [2021-08-29 16:56:14 +0000] [20575] [INFO] Shutting down: Master
+Aug 29 16:56:14 ip-172-31-92-31 gunicorn[20575]: [2021-08-29 16:56:14 +0000] [20575] [INFO] Reason: Worker failed to boot.
+Aug 29 16:56:14 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:56:14 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:56:14 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:56:14 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 4.
+Aug 29 16:56:14 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:56:14 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:56:15 ip-172-31-92-31 gunicorn[20615]: [2021-08-29 16:56:15 +0000] [20615] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:56:15 ip-172-31-92-31 gunicorn[20615]: [2021-08-29 16:56:15 +0000] [20615] [INFO] Listening at: http://127.0.0.1:8000 (20615)
+Aug 29 16:56:15 ip-172-31-92-31 gunicorn[20615]: [2021-08-29 16:56:15 +0000] [20615] [INFO] Using worker: sync
+Aug 29 16:56:15 ip-172-31-92-31 gunicorn[20615]: [2021-08-29 16:56:15 +0000] [20640] [INFO] Booting worker with pid: 20640
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]: [2021-08-29 16:56:16 +0000] [20640] [ERROR] Exception in worker process
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]: Traceback (most recent call last):
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:     worker.init_process()
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:     self.load_wsgi()
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:     self.wsgi = self.app.wsgi()
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:     self.callable = self.load()
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:     return self.load_wsgiapp()
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:     return util.import_app(self.app_uri)
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:     mod = importlib.import_module(module)
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]:     from PIL import Image
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]: [2021-08-29 16:56:16 +0000] [20640] [INFO] Worker exiting (pid: 20640)
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]: [2021-08-29 16:56:16 +0000] [20615] [INFO] Shutting down: Master
+Aug 29 16:56:16 ip-172-31-92-31 gunicorn[20615]: [2021-08-29 16:56:16 +0000] [20615] [INFO] Reason: Worker failed to boot.
+Aug 29 16:56:16 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:56:16 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:56:16 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:56:16 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 5.
+Aug 29 16:56:16 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:56:16 ip-172-31-92-31 systemd[1]: campfire.service: Start request repeated too quickly.
+Aug 29 16:56:16 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:56:16 ip-172-31-92-31 systemd[1]: Failed to start Gunicorn instance for campfire.
+Aug 29 16:56:54 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]: [2021-08-29 16:56:55 +0000] [20672] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]: [2021-08-29 16:56:55 +0000] [20672] [INFO] Listening at: http://127.0.0.1:8000 (20672)
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]: [2021-08-29 16:56:55 +0000] [20672] [INFO] Using worker: sync
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]: [2021-08-29 16:56:55 +0000] [20697] [INFO] Booting worker with pid: 20697
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]: [2021-08-29 16:56:55 +0000] [20697] [ERROR] Exception in worker process
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]: Traceback (most recent call last):
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:     worker.init_process()
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:     self.load_wsgi()
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:     self.wsgi = self.app.wsgi()
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:     self.callable = self.load()
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:     return self.load_wsgiapp()
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:     return util.import_app(self.app_uri)
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:     mod = importlib.import_module(module)
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]:     from PIL import Image
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:56:55 ip-172-31-92-31 gunicorn[20672]: [2021-08-29 16:56:55 +0000] [20697] [INFO] Worker exiting (pid: 20697)
+Aug 29 16:56:56 ip-172-31-92-31 gunicorn[20672]: [2021-08-29 16:56:56 +0000] [20672] [INFO] Shutting down: Master
+Aug 29 16:56:56 ip-172-31-92-31 gunicorn[20672]: [2021-08-29 16:56:56 +0000] [20672] [INFO] Reason: Worker failed to boot.
+Aug 29 16:56:56 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:56:56 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:56:56 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:56:56 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 1.
+Aug 29 16:56:56 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:56:56 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:56:56 ip-172-31-92-31 gunicorn[20712]: [2021-08-29 16:56:56 +0000] [20712] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:56:56 ip-172-31-92-31 gunicorn[20712]: [2021-08-29 16:56:56 +0000] [20712] [INFO] Listening at: http://127.0.0.1:8000 (20712)
+Aug 29 16:56:56 ip-172-31-92-31 gunicorn[20712]: [2021-08-29 16:56:56 +0000] [20712] [INFO] Using worker: sync
+Aug 29 16:56:56 ip-172-31-92-31 gunicorn[20712]: [2021-08-29 16:56:56 +0000] [20737] [INFO] Booting worker with pid: 20737
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]: [2021-08-29 16:56:57 +0000] [20737] [ERROR] Exception in worker process
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]: Traceback (most recent call last):
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:     worker.init_process()
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:     self.load_wsgi()
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:     self.wsgi = self.app.wsgi()
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:     self.callable = self.load()
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:     return self.load_wsgiapp()
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:     return util.import_app(self.app_uri)
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:     mod = importlib.import_module(module)
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]:     from PIL import Image
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]: [2021-08-29 16:56:57 +0000] [20737] [INFO] Worker exiting (pid: 20737)
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]: [2021-08-29 16:56:57 +0000] [20712] [INFO] Shutting down: Master
+Aug 29 16:56:57 ip-172-31-92-31 gunicorn[20712]: [2021-08-29 16:56:57 +0000] [20712] [INFO] Reason: Worker failed to boot.
+Aug 29 16:56:57 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:56:57 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:56:57 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:56:57 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 2.
+Aug 29 16:56:57 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:56:57 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]: [2021-08-29 16:56:58 +0000] [20752] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]: [2021-08-29 16:56:58 +0000] [20752] [INFO] Listening at: http://127.0.0.1:8000 (20752)
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]: [2021-08-29 16:56:58 +0000] [20752] [INFO] Using worker: sync
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]: [2021-08-29 16:56:58 +0000] [20774] [INFO] Booting worker with pid: 20774
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]: [2021-08-29 16:56:58 +0000] [20774] [ERROR] Exception in worker process
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]: Traceback (most recent call last):
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:     worker.init_process()
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:     self.load_wsgi()
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:     self.wsgi = self.app.wsgi()
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:     self.callable = self.load()
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:     return self.load_wsgiapp()
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:     return util.import_app(self.app_uri)
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:     mod = importlib.import_module(module)
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]:     from PIL import Image
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:56:58 ip-172-31-92-31 gunicorn[20752]: [2021-08-29 16:56:58 +0000] [20774] [INFO] Worker exiting (pid: 20774)
+Aug 29 16:56:59 ip-172-31-92-31 gunicorn[20752]: [2021-08-29 16:56:59 +0000] [20752] [INFO] Shutting down: Master
+Aug 29 16:56:59 ip-172-31-92-31 gunicorn[20752]: [2021-08-29 16:56:59 +0000] [20752] [INFO] Reason: Worker failed to boot.
+Aug 29 16:56:59 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:56:59 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:56:59 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:56:59 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 3.
+Aug 29 16:56:59 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:56:59 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:56:59 ip-172-31-92-31 gunicorn[20792]: [2021-08-29 16:56:59 +0000] [20792] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:56:59 ip-172-31-92-31 gunicorn[20792]: [2021-08-29 16:56:59 +0000] [20792] [INFO] Listening at: http://127.0.0.1:8000 (20792)
+Aug 29 16:56:59 ip-172-31-92-31 gunicorn[20792]: [2021-08-29 16:56:59 +0000] [20792] [INFO] Using worker: sync
+Aug 29 16:56:59 ip-172-31-92-31 gunicorn[20792]: [2021-08-29 16:56:59 +0000] [20817] [INFO] Booting worker with pid: 20817
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]: [2021-08-29 16:57:00 +0000] [20817] [ERROR] Exception in worker process
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]: Traceback (most recent call last):
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:     worker.init_process()
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:     self.load_wsgi()
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:     self.wsgi = self.app.wsgi()
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:     self.callable = self.load()
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:     return self.load_wsgiapp()
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:     return util.import_app(self.app_uri)
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:     mod = importlib.import_module(module)
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]:     from PIL import Image
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]: [2021-08-29 16:57:00 +0000] [20817] [INFO] Worker exiting (pid: 20817)
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]: [2021-08-29 16:57:00 +0000] [20792] [INFO] Shutting down: Master
+Aug 29 16:57:00 ip-172-31-92-31 gunicorn[20792]: [2021-08-29 16:57:00 +0000] [20792] [INFO] Reason: Worker failed to boot.
+Aug 29 16:57:00 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:57:00 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:57:00 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:57:00 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 4.
+Aug 29 16:57:00 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:57:00 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:57:01 ip-172-31-92-31 gunicorn[20832]: [2021-08-29 16:57:01 +0000] [20832] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:57:01 ip-172-31-92-31 gunicorn[20832]: [2021-08-29 16:57:01 +0000] [20832] [INFO] Listening at: http://127.0.0.1:8000 (20832)
+Aug 29 16:57:01 ip-172-31-92-31 gunicorn[20832]: [2021-08-29 16:57:01 +0000] [20832] [INFO] Using worker: sync
+Aug 29 16:57:01 ip-172-31-92-31 gunicorn[20832]: [2021-08-29 16:57:01 +0000] [20856] [INFO] Booting worker with pid: 20856
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]: [2021-08-29 16:57:02 +0000] [20856] [ERROR] Exception in worker process
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]: Traceback (most recent call last):
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:     worker.init_process()
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:     self.load_wsgi()
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:     self.wsgi = self.app.wsgi()
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:     self.callable = self.load()
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:     return self.load_wsgiapp()
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:     return util.import_app(self.app_uri)
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:     mod = importlib.import_module(module)
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]:     from PIL import Image
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]: ModuleNotFoundError: No module named 'PIL'
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]: [2021-08-29 16:57:02 +0000] [20856] [INFO] Worker exiting (pid: 20856)
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]: [2021-08-29 16:57:02 +0000] [20832] [INFO] Shutting down: Master
+Aug 29 16:57:02 ip-172-31-92-31 gunicorn[20832]: [2021-08-29 16:57:02 +0000] [20832] [INFO] Reason: Worker failed to boot.
+Aug 29 16:57:02 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:57:02 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:57:02 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:57:02 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 5.
+Aug 29 16:57:02 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:57:02 ip-172-31-92-31 systemd[1]: campfire.service: Start request repeated too quickly.
+Aug 29 16:57:02 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:57:02 ip-172-31-92-31 systemd[1]: Failed to start Gunicorn instance for campfire.
+Aug 29 16:57:18 ip-172-31-92-31 systemd[1]: Started Session 622 of user ubuntu.
+Aug 29 16:57:18 ip-172-31-92-31 systemd[1]: Started Session 623 of user ubuntu.
+Aug 29 16:59:10 ip-172-31-92-31 systemd[1]: Started Session 624 of user ubuntu.
+Aug 29 16:59:36 ip-172-31-92-31 systemd[1]: Started Session 625 of user ubuntu.
+Aug 29 16:59:46 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:59:46 ip-172-31-92-31 gunicorn[21238]: [2021-08-29 16:59:46 +0000] [21238] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:59:46 ip-172-31-92-31 gunicorn[21238]: [2021-08-29 16:59:46 +0000] [21238] [INFO] Listening at: http://127.0.0.1:8000 (21238)
+Aug 29 16:59:46 ip-172-31-92-31 gunicorn[21238]: [2021-08-29 16:59:46 +0000] [21238] [INFO] Using worker: sync
+Aug 29 16:59:46 ip-172-31-92-31 gunicorn[21238]: [2021-08-29 16:59:46 +0000] [21267] [INFO] Booting worker with pid: 21267
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]: [2021-08-29 16:59:47 +0000] [21267] [ERROR] Exception in worker process
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]: Traceback (most recent call last):
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:     worker.init_process()
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:     self.load_wsgi()
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:     self.wsgi = self.app.wsgi()
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:     self.callable = self.load()
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:     return self.load_wsgiapp()
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:     return util.import_app(self.app_uri)
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:     mod = importlib.import_module(module)
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]:     import Image
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]: ModuleNotFoundError: No module named 'Image'
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]: [2021-08-29 16:59:47 +0000] [21267] [INFO] Worker exiting (pid: 21267)
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]: [2021-08-29 16:59:47 +0000] [21238] [INFO] Shutting down: Master
+Aug 29 16:59:47 ip-172-31-92-31 gunicorn[21238]: [2021-08-29 16:59:47 +0000] [21238] [INFO] Reason: Worker failed to boot.
+Aug 29 16:59:47 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:59:47 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:59:48 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:59:48 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 1.
+Aug 29 16:59:48 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:59:48 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:59:48 ip-172-31-92-31 gunicorn[21282]: [2021-08-29 16:59:48 +0000] [21282] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:59:48 ip-172-31-92-31 gunicorn[21282]: [2021-08-29 16:59:48 +0000] [21282] [INFO] Listening at: http://127.0.0.1:8000 (21282)
+Aug 29 16:59:48 ip-172-31-92-31 gunicorn[21282]: [2021-08-29 16:59:48 +0000] [21282] [INFO] Using worker: sync
+Aug 29 16:59:48 ip-172-31-92-31 gunicorn[21282]: [2021-08-29 16:59:48 +0000] [21306] [INFO] Booting worker with pid: 21306
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]: [2021-08-29 16:59:49 +0000] [21306] [ERROR] Exception in worker process
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]: Traceback (most recent call last):
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:     worker.init_process()
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:     self.load_wsgi()
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:     self.wsgi = self.app.wsgi()
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:     self.callable = self.load()
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:     return self.load_wsgiapp()
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:     return util.import_app(self.app_uri)
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:     mod = importlib.import_module(module)
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]:     import Image
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]: ModuleNotFoundError: No module named 'Image'
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]: [2021-08-29 16:59:49 +0000] [21306] [INFO] Worker exiting (pid: 21306)
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]: [2021-08-29 16:59:49 +0000] [21282] [INFO] Shutting down: Master
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21282]: [2021-08-29 16:59:49 +0000] [21282] [INFO] Reason: Worker failed to boot.
+Aug 29 16:59:49 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:59:49 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:59:49 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:59:49 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 2.
+Aug 29 16:59:49 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:59:49 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21322]: [2021-08-29 16:59:49 +0000] [21322] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21322]: [2021-08-29 16:59:49 +0000] [21322] [INFO] Listening at: http://127.0.0.1:8000 (21322)
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21322]: [2021-08-29 16:59:49 +0000] [21322] [INFO] Using worker: sync
+Aug 29 16:59:49 ip-172-31-92-31 gunicorn[21322]: [2021-08-29 16:59:49 +0000] [21347] [INFO] Booting worker with pid: 21347
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]: [2021-08-29 16:59:50 +0000] [21347] [ERROR] Exception in worker process
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]: Traceback (most recent call last):
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:     worker.init_process()
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:     self.load_wsgi()
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:     self.wsgi = self.app.wsgi()
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:     self.callable = self.load()
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:     return self.load_wsgiapp()
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:     return util.import_app(self.app_uri)
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:     mod = importlib.import_module(module)
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]:     import Image
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]: ModuleNotFoundError: No module named 'Image'
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]: [2021-08-29 16:59:50 +0000] [21347] [INFO] Worker exiting (pid: 21347)
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]: [2021-08-29 16:59:50 +0000] [21322] [INFO] Shutting down: Master
+Aug 29 16:59:50 ip-172-31-92-31 gunicorn[21322]: [2021-08-29 16:59:50 +0000] [21322] [INFO] Reason: Worker failed to boot.
+Aug 29 16:59:50 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:59:50 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:59:51 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:59:51 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 3.
+Aug 29 16:59:51 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:59:51 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:59:51 ip-172-31-92-31 gunicorn[21362]: [2021-08-29 16:59:51 +0000] [21362] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:59:51 ip-172-31-92-31 gunicorn[21362]: [2021-08-29 16:59:51 +0000] [21362] [INFO] Listening at: http://127.0.0.1:8000 (21362)
+Aug 29 16:59:51 ip-172-31-92-31 gunicorn[21362]: [2021-08-29 16:59:51 +0000] [21362] [INFO] Using worker: sync
+Aug 29 16:59:51 ip-172-31-92-31 gunicorn[21362]: [2021-08-29 16:59:51 +0000] [21387] [INFO] Booting worker with pid: 21387
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]: [2021-08-29 16:59:52 +0000] [21387] [ERROR] Exception in worker process
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]: Traceback (most recent call last):
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:     worker.init_process()
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:     self.load_wsgi()
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:     self.wsgi = self.app.wsgi()
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:     self.callable = self.load()
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:     return self.load_wsgiapp()
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:     return util.import_app(self.app_uri)
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:     mod = importlib.import_module(module)
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]:     import Image
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]: ModuleNotFoundError: No module named 'Image'
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]: [2021-08-29 16:59:52 +0000] [21387] [INFO] Worker exiting (pid: 21387)
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]: [2021-08-29 16:59:52 +0000] [21362] [INFO] Shutting down: Master
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21362]: [2021-08-29 16:59:52 +0000] [21362] [INFO] Reason: Worker failed to boot.
+Aug 29 16:59:52 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:59:52 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:59:52 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:59:52 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 4.
+Aug 29 16:59:52 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:59:52 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21402]: [2021-08-29 16:59:52 +0000] [21402] [INFO] Starting gunicorn 20.1.0
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21402]: [2021-08-29 16:59:52 +0000] [21402] [INFO] Listening at: http://127.0.0.1:8000 (21402)
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21402]: [2021-08-29 16:59:52 +0000] [21402] [INFO] Using worker: sync
+Aug 29 16:59:52 ip-172-31-92-31 gunicorn[21402]: [2021-08-29 16:59:52 +0000] [21424] [INFO] Booting worker with pid: 21424
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]: [2021-08-29 16:59:53 +0000] [21424] [ERROR] Exception in worker process
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]: Traceback (most recent call last):
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:     worker.init_process()
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:     self.load_wsgi()
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:     self.wsgi = self.app.wsgi()
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:     self.callable = self.load()
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:     return self.load_wsgiapp()
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:     return util.import_app(self.app_uri)
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:     mod = importlib.import_module(module)
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]:     import Image
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]: ModuleNotFoundError: No module named 'Image'
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]: [2021-08-29 16:59:53 +0000] [21424] [INFO] Worker exiting (pid: 21424)
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]: [2021-08-29 16:59:53 +0000] [21402] [INFO] Shutting down: Master
+Aug 29 16:59:53 ip-172-31-92-31 gunicorn[21402]: [2021-08-29 16:59:53 +0000] [21402] [INFO] Reason: Worker failed to boot.
+Aug 29 16:59:53 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 16:59:53 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:59:54 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 16:59:54 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 5.
+Aug 29 16:59:54 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 16:59:54 ip-172-31-92-31 systemd[1]: campfire.service: Start request repeated too quickly.
+Aug 29 16:59:54 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 16:59:54 ip-172-31-92-31 systemd[1]: Failed to start Gunicorn instance for campfire.
+Aug 29 17:01:50 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:01:50 ip-172-31-92-31 gunicorn[21485]: [2021-08-29 17:01:50 +0000] [21485] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:01:50 ip-172-31-92-31 gunicorn[21485]: [2021-08-29 17:01:50 +0000] [21485] [INFO] Listening at: http://127.0.0.1:8000 (21485)
+Aug 29 17:01:50 ip-172-31-92-31 gunicorn[21485]: [2021-08-29 17:01:50 +0000] [21485] [INFO] Using worker: sync
+Aug 29 17:01:50 ip-172-31-92-31 gunicorn[21485]: [2021-08-29 17:01:50 +0000] [21510] [INFO] Booting worker with pid: 21510
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]: [2021-08-29 17:01:51 +0000] [21510] [ERROR] Exception in worker process
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]: Traceback (most recent call last):
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:     worker.init_process()
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:     self.load_wsgi()
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:     self.wsgi = self.app.wsgi()
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:     self.callable = self.load()
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:     return self.load_wsgiapp()
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:     return util.import_app(self.app_uri)
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:     mod = importlib.import_module(module)
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]:     import Image
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]: [2021-08-29 17:01:51 +0000] [21510] [INFO] Worker exiting (pid: 21510)
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]: [2021-08-29 17:01:51 +0000] [21485] [INFO] Shutting down: Master
+Aug 29 17:01:51 ip-172-31-92-31 gunicorn[21485]: [2021-08-29 17:01:51 +0000] [21485] [INFO] Reason: Worker failed to boot.
+Aug 29 17:01:51 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:01:51 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:01:52 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:01:52 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 1.
+Aug 29 17:01:52 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:01:52 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:01:52 ip-172-31-92-31 gunicorn[21531]: [2021-08-29 17:01:52 +0000] [21531] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:01:52 ip-172-31-92-31 gunicorn[21531]: [2021-08-29 17:01:52 +0000] [21531] [INFO] Listening at: http://127.0.0.1:8000 (21531)
+Aug 29 17:01:52 ip-172-31-92-31 gunicorn[21531]: [2021-08-29 17:01:52 +0000] [21531] [INFO] Using worker: sync
+Aug 29 17:01:52 ip-172-31-92-31 gunicorn[21531]: [2021-08-29 17:01:52 +0000] [21558] [INFO] Booting worker with pid: 21558
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]: [2021-08-29 17:01:53 +0000] [21558] [ERROR] Exception in worker process
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]: Traceback (most recent call last):
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:     worker.init_process()
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:     self.load_wsgi()
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:     self.wsgi = self.app.wsgi()
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:     self.callable = self.load()
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:     return self.load_wsgiapp()
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:     return util.import_app(self.app_uri)
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:     mod = importlib.import_module(module)
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]:     import Image
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]: [2021-08-29 17:01:53 +0000] [21558] [INFO] Worker exiting (pid: 21558)
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]: [2021-08-29 17:01:53 +0000] [21531] [INFO] Shutting down: Master
+Aug 29 17:01:53 ip-172-31-92-31 gunicorn[21531]: [2021-08-29 17:01:53 +0000] [21531] [INFO] Reason: Worker failed to boot.
+Aug 29 17:01:53 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:01:53 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:01:53 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:01:53 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 2.
+Aug 29 17:01:53 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:01:53 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]: [2021-08-29 17:01:54 +0000] [21574] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]: [2021-08-29 17:01:54 +0000] [21574] [INFO] Listening at: http://127.0.0.1:8000 (21574)
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]: [2021-08-29 17:01:54 +0000] [21574] [INFO] Using worker: sync
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]: [2021-08-29 17:01:54 +0000] [21598] [INFO] Booting worker with pid: 21598
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]: [2021-08-29 17:01:54 +0000] [21598] [ERROR] Exception in worker process
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]: Traceback (most recent call last):
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:     worker.init_process()
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:     self.load_wsgi()
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:     self.wsgi = self.app.wsgi()
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:     self.callable = self.load()
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:     return self.load_wsgiapp()
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:     return util.import_app(self.app_uri)
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:     mod = importlib.import_module(module)
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]:     import Image
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:01:54 ip-172-31-92-31 gunicorn[21574]: [2021-08-29 17:01:54 +0000] [21598] [INFO] Worker exiting (pid: 21598)
+Aug 29 17:01:55 ip-172-31-92-31 gunicorn[21574]: [2021-08-29 17:01:55 +0000] [21574] [INFO] Shutting down: Master
+Aug 29 17:01:55 ip-172-31-92-31 gunicorn[21574]: [2021-08-29 17:01:55 +0000] [21574] [INFO] Reason: Worker failed to boot.
+Aug 29 17:01:55 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:01:55 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:01:55 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:01:55 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 3.
+Aug 29 17:01:55 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:01:55 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:01:55 ip-172-31-92-31 gunicorn[21614]: [2021-08-29 17:01:55 +0000] [21614] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:01:55 ip-172-31-92-31 gunicorn[21614]: [2021-08-29 17:01:55 +0000] [21614] [INFO] Listening at: http://127.0.0.1:8000 (21614)
+Aug 29 17:01:55 ip-172-31-92-31 gunicorn[21614]: [2021-08-29 17:01:55 +0000] [21614] [INFO] Using worker: sync
+Aug 29 17:01:55 ip-172-31-92-31 gunicorn[21614]: [2021-08-29 17:01:55 +0000] [21639] [INFO] Booting worker with pid: 21639
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]: [2021-08-29 17:01:56 +0000] [21639] [ERROR] Exception in worker process
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]: Traceback (most recent call last):
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:     worker.init_process()
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:     self.load_wsgi()
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:     self.wsgi = self.app.wsgi()
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:     self.callable = self.load()
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:     return self.load_wsgiapp()
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:     return util.import_app(self.app_uri)
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:     mod = importlib.import_module(module)
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]:     import Image
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]: [2021-08-29 17:01:56 +0000] [21639] [INFO] Worker exiting (pid: 21639)
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]: [2021-08-29 17:01:56 +0000] [21614] [INFO] Shutting down: Master
+Aug 29 17:01:56 ip-172-31-92-31 gunicorn[21614]: [2021-08-29 17:01:56 +0000] [21614] [INFO] Reason: Worker failed to boot.
+Aug 29 17:01:56 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:01:56 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:01:56 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:01:56 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 4.
+Aug 29 17:01:56 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:01:56 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]: [2021-08-29 17:01:57 +0000] [21654] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]: [2021-08-29 17:01:57 +0000] [21654] [INFO] Listening at: http://127.0.0.1:8000 (21654)
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]: [2021-08-29 17:01:57 +0000] [21654] [INFO] Using worker: sync
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]: [2021-08-29 17:01:57 +0000] [21678] [INFO] Booting worker with pid: 21678
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]: [2021-08-29 17:01:57 +0000] [21678] [ERROR] Exception in worker process
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]: Traceback (most recent call last):
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:     worker.init_process()
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:     self.load_wsgi()
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:     self.wsgi = self.app.wsgi()
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:     self.callable = self.load()
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:     return self.load_wsgiapp()
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:     return util.import_app(self.app_uri)
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:     mod = importlib.import_module(module)
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]:     import Image
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:01:57 ip-172-31-92-31 gunicorn[21654]: [2021-08-29 17:01:57 +0000] [21678] [INFO] Worker exiting (pid: 21678)
+Aug 29 17:01:58 ip-172-31-92-31 gunicorn[21654]: [2021-08-29 17:01:58 +0000] [21654] [INFO] Shutting down: Master
+Aug 29 17:01:58 ip-172-31-92-31 gunicorn[21654]: [2021-08-29 17:01:58 +0000] [21654] [INFO] Reason: Worker failed to boot.
+Aug 29 17:01:58 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:01:58 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:01:58 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:01:58 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 5.
+Aug 29 17:01:58 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:01:58 ip-172-31-92-31 systemd[1]: campfire.service: Start request repeated too quickly.
+Aug 29 17:01:58 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:01:58 ip-172-31-92-31 systemd[1]: Failed to start Gunicorn instance for campfire.
+Aug 29 17:03:10 ip-172-31-92-31 systemd[1]: Started Session 626 of user ubuntu.
+Aug 29 17:03:16 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:03:16 ip-172-31-92-31 gunicorn[21823]: [2021-08-29 17:03:16 +0000] [21823] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:03:16 ip-172-31-92-31 gunicorn[21823]: [2021-08-29 17:03:16 +0000] [21823] [INFO] Listening at: http://127.0.0.1:8000 (21823)
+Aug 29 17:03:16 ip-172-31-92-31 gunicorn[21823]: [2021-08-29 17:03:16 +0000] [21823] [INFO] Using worker: sync
+Aug 29 17:03:16 ip-172-31-92-31 gunicorn[21823]: [2021-08-29 17:03:16 +0000] [21847] [INFO] Booting worker with pid: 21847
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]: [2021-08-29 17:03:17 +0000] [21847] [ERROR] Exception in worker process
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]: Traceback (most recent call last):
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:     worker.init_process()
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:     self.load_wsgi()
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:     self.wsgi = self.app.wsgi()
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:     self.callable = self.load()
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:     return self.load_wsgiapp()
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:     return util.import_app(self.app_uri)
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:     mod = importlib.import_module(module)
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]:     import Image
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]: [2021-08-29 17:03:17 +0000] [21847] [INFO] Worker exiting (pid: 21847)
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]: [2021-08-29 17:03:17 +0000] [21823] [INFO] Shutting down: Master
+Aug 29 17:03:17 ip-172-31-92-31 gunicorn[21823]: [2021-08-29 17:03:17 +0000] [21823] [INFO] Reason: Worker failed to boot.
+Aug 29 17:03:17 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:03:17 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:03:18 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:03:18 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 1.
+Aug 29 17:03:18 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:03:18 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:03:18 ip-172-31-92-31 gunicorn[21867]: [2021-08-29 17:03:18 +0000] [21867] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:03:18 ip-172-31-92-31 gunicorn[21867]: [2021-08-29 17:03:18 +0000] [21867] [INFO] Listening at: http://127.0.0.1:8000 (21867)
+Aug 29 17:03:18 ip-172-31-92-31 gunicorn[21867]: [2021-08-29 17:03:18 +0000] [21867] [INFO] Using worker: sync
+Aug 29 17:03:18 ip-172-31-92-31 gunicorn[21867]: [2021-08-29 17:03:18 +0000] [21893] [INFO] Booting worker with pid: 21893
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]: [2021-08-29 17:03:19 +0000] [21893] [ERROR] Exception in worker process
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]: Traceback (most recent call last):
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:     worker.init_process()
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:     self.load_wsgi()
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:     self.wsgi = self.app.wsgi()
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:     self.callable = self.load()
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:     return self.load_wsgiapp()
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:     return util.import_app(self.app_uri)
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:     mod = importlib.import_module(module)
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]:     import Image
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]: [2021-08-29 17:03:19 +0000] [21893] [INFO] Worker exiting (pid: 21893)
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]: [2021-08-29 17:03:19 +0000] [21867] [INFO] Shutting down: Master
+Aug 29 17:03:19 ip-172-31-92-31 gunicorn[21867]: [2021-08-29 17:03:19 +0000] [21867] [INFO] Reason: Worker failed to boot.
+Aug 29 17:03:19 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:03:19 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:03:19 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:03:19 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 2.
+Aug 29 17:03:19 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:03:19 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:03:20 ip-172-31-92-31 gunicorn[21909]: [2021-08-29 17:03:20 +0000] [21909] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:03:20 ip-172-31-92-31 gunicorn[21909]: [2021-08-29 17:03:20 +0000] [21909] [INFO] Listening at: http://127.0.0.1:8000 (21909)
+Aug 29 17:03:20 ip-172-31-92-31 gunicorn[21909]: [2021-08-29 17:03:20 +0000] [21909] [INFO] Using worker: sync
+Aug 29 17:03:20 ip-172-31-92-31 gunicorn[21909]: [2021-08-29 17:03:20 +0000] [21933] [INFO] Booting worker with pid: 21933
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]: [2021-08-29 17:03:21 +0000] [21933] [ERROR] Exception in worker process
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]: Traceback (most recent call last):
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:     worker.init_process()
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:     self.load_wsgi()
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:     self.wsgi = self.app.wsgi()
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:     self.callable = self.load()
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:     return self.load_wsgiapp()
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:     return util.import_app(self.app_uri)
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:     mod = importlib.import_module(module)
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]:     import Image
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]: [2021-08-29 17:03:21 +0000] [21933] [INFO] Worker exiting (pid: 21933)
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]: [2021-08-29 17:03:21 +0000] [21909] [INFO] Shutting down: Master
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21909]: [2021-08-29 17:03:21 +0000] [21909] [INFO] Reason: Worker failed to boot.
+Aug 29 17:03:21 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:03:21 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:03:21 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:03:21 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 3.
+Aug 29 17:03:21 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:03:21 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21949]: [2021-08-29 17:03:21 +0000] [21949] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21949]: [2021-08-29 17:03:21 +0000] [21949] [INFO] Listening at: http://127.0.0.1:8000 (21949)
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21949]: [2021-08-29 17:03:21 +0000] [21949] [INFO] Using worker: sync
+Aug 29 17:03:21 ip-172-31-92-31 gunicorn[21949]: [2021-08-29 17:03:21 +0000] [21971] [INFO] Booting worker with pid: 21971
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]: [2021-08-29 17:03:22 +0000] [21971] [ERROR] Exception in worker process
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]: Traceback (most recent call last):
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:     worker.init_process()
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:     self.load_wsgi()
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:     self.wsgi = self.app.wsgi()
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:     self.callable = self.load()
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:     return self.load_wsgiapp()
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:     return util.import_app(self.app_uri)
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:     mod = importlib.import_module(module)
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]:     import Image
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]: [2021-08-29 17:03:22 +0000] [21971] [INFO] Worker exiting (pid: 21971)
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]: [2021-08-29 17:03:22 +0000] [21949] [INFO] Shutting down: Master
+Aug 29 17:03:22 ip-172-31-92-31 gunicorn[21949]: [2021-08-29 17:03:22 +0000] [21949] [INFO] Reason: Worker failed to boot.
+Aug 29 17:03:22 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:03:22 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:03:22 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:03:22 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 4.
+Aug 29 17:03:22 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:03:22 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:03:23 ip-172-31-92-31 gunicorn[21989]: [2021-08-29 17:03:23 +0000] [21989] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:03:23 ip-172-31-92-31 gunicorn[21989]: [2021-08-29 17:03:23 +0000] [21989] [INFO] Listening at: http://127.0.0.1:8000 (21989)
+Aug 29 17:03:23 ip-172-31-92-31 gunicorn[21989]: [2021-08-29 17:03:23 +0000] [21989] [INFO] Using worker: sync
+Aug 29 17:03:23 ip-172-31-92-31 gunicorn[21989]: [2021-08-29 17:03:23 +0000] [22014] [INFO] Booting worker with pid: 22014
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]: [2021-08-29 17:03:24 +0000] [22014] [ERROR] Exception in worker process
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]: Traceback (most recent call last):
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:     worker.init_process()
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:     self.load_wsgi()
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:     self.wsgi = self.app.wsgi()
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:     self.callable = self.load()
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:     return self.load_wsgiapp()
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:     return util.import_app(self.app_uri)
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:     mod = importlib.import_module(module)
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]:     import Image
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]: [2021-08-29 17:03:24 +0000] [22014] [INFO] Worker exiting (pid: 22014)
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]: [2021-08-29 17:03:24 +0000] [21989] [INFO] Shutting down: Master
+Aug 29 17:03:24 ip-172-31-92-31 gunicorn[21989]: [2021-08-29 17:03:24 +0000] [21989] [INFO] Reason: Worker failed to boot.
+Aug 29 17:03:24 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:03:24 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:03:24 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:03:24 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 5.
+Aug 29 17:03:24 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:03:24 ip-172-31-92-31 systemd[1]: campfire.service: Start request repeated too quickly.
+Aug 29 17:03:24 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:03:24 ip-172-31-92-31 systemd[1]: Failed to start Gunicorn instance for campfire.
+Aug 29 17:09:32 ip-172-31-92-31 systemd[1]: Started Session 627 of user ubuntu.
+Aug 29 17:09:47 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:09:48 ip-172-31-92-31 gunicorn[22560]: [2021-08-29 17:09:48 +0000] [22560] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:09:48 ip-172-31-92-31 gunicorn[22560]: [2021-08-29 17:09:48 +0000] [22560] [INFO] Listening at: http://127.0.0.1:8000 (22560)
+Aug 29 17:09:48 ip-172-31-92-31 gunicorn[22560]: [2021-08-29 17:09:48 +0000] [22560] [INFO] Using worker: sync
+Aug 29 17:09:48 ip-172-31-92-31 gunicorn[22560]: [2021-08-29 17:09:48 +0000] [22588] [INFO] Booting worker with pid: 22588
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]: [2021-08-29 17:09:49 +0000] [22588] [ERROR] Exception in worker process
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]: Traceback (most recent call last):
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:     worker.init_process()
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:     self.load_wsgi()
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:     self.wsgi = self.app.wsgi()
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:     self.callable = self.load()
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:     return self.load_wsgiapp()
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:     return util.import_app(self.app_uri)
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:     mod = importlib.import_module(module)
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]:     import Image
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]: [2021-08-29 17:09:49 +0000] [22588] [INFO] Worker exiting (pid: 22588)
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]: [2021-08-29 17:09:49 +0000] [22560] [INFO] Shutting down: Master
+Aug 29 17:09:49 ip-172-31-92-31 gunicorn[22560]: [2021-08-29 17:09:49 +0000] [22560] [INFO] Reason: Worker failed to boot.
+Aug 29 17:09:49 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:09:49 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:09:50 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:09:50 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 1.
+Aug 29 17:09:50 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:09:50 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:09:50 ip-172-31-92-31 gunicorn[22615]: [2021-08-29 17:09:50 +0000] [22615] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:09:50 ip-172-31-92-31 gunicorn[22615]: [2021-08-29 17:09:50 +0000] [22615] [INFO] Listening at: http://127.0.0.1:8000 (22615)
+Aug 29 17:09:50 ip-172-31-92-31 gunicorn[22615]: [2021-08-29 17:09:50 +0000] [22615] [INFO] Using worker: sync
+Aug 29 17:09:50 ip-172-31-92-31 gunicorn[22615]: [2021-08-29 17:09:50 +0000] [22641] [INFO] Booting worker with pid: 22641
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]: [2021-08-29 17:09:51 +0000] [22641] [ERROR] Exception in worker process
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]: Traceback (most recent call last):
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:     worker.init_process()
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:     self.load_wsgi()
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:     self.wsgi = self.app.wsgi()
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:     self.callable = self.load()
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:     return self.load_wsgiapp()
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:     return util.import_app(self.app_uri)
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:     mod = importlib.import_module(module)
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]:     import Image
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]: [2021-08-29 17:09:51 +0000] [22641] [INFO] Worker exiting (pid: 22641)
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]: [2021-08-29 17:09:51 +0000] [22615] [INFO] Shutting down: Master
+Aug 29 17:09:51 ip-172-31-92-31 gunicorn[22615]: [2021-08-29 17:09:51 +0000] [22615] [INFO] Reason: Worker failed to boot.
+Aug 29 17:09:51 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:09:51 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:09:51 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:09:51 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 2.
+Aug 29 17:09:51 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:09:51 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:09:52 ip-172-31-92-31 gunicorn[22656]: [2021-08-29 17:09:52 +0000] [22656] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:09:52 ip-172-31-92-31 gunicorn[22656]: [2021-08-29 17:09:52 +0000] [22656] [INFO] Listening at: http://127.0.0.1:8000 (22656)
+Aug 29 17:09:52 ip-172-31-92-31 gunicorn[22656]: [2021-08-29 17:09:52 +0000] [22656] [INFO] Using worker: sync
+Aug 29 17:09:52 ip-172-31-92-31 gunicorn[22656]: [2021-08-29 17:09:52 +0000] [22681] [INFO] Booting worker with pid: 22681
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]: [2021-08-29 17:09:52 +0000] [22681] [ERROR] Exception in worker process
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]: Traceback (most recent call last):
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:     worker.init_process()
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:     self.load_wsgi()
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:     self.wsgi = self.app.wsgi()
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:     self.callable = self.load()
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:     return self.load_wsgiapp()
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:     return util.import_app(self.app_uri)
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:     mod = importlib.import_module(module)
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]:     import Image
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]: [2021-08-29 17:09:53 +0000] [22681] [INFO] Worker exiting (pid: 22681)
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]: [2021-08-29 17:09:53 +0000] [22656] [INFO] Shutting down: Master
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22656]: [2021-08-29 17:09:53 +0000] [22656] [INFO] Reason: Worker failed to boot.
+Aug 29 17:09:53 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:09:53 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:09:53 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:09:53 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 3.
+Aug 29 17:09:53 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:09:53 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22696]: [2021-08-29 17:09:53 +0000] [22696] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22696]: [2021-08-29 17:09:53 +0000] [22696] [INFO] Listening at: http://127.0.0.1:8000 (22696)
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22696]: [2021-08-29 17:09:53 +0000] [22696] [INFO] Using worker: sync
+Aug 29 17:09:53 ip-172-31-92-31 gunicorn[22696]: [2021-08-29 17:09:53 +0000] [22720] [INFO] Booting worker with pid: 22720
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]: [2021-08-29 17:09:54 +0000] [22720] [ERROR] Exception in worker process
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]: Traceback (most recent call last):
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:     worker.init_process()
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:     self.load_wsgi()
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:     self.wsgi = self.app.wsgi()
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:     self.callable = self.load()
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:     return self.load_wsgiapp()
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:     return util.import_app(self.app_uri)
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:     mod = importlib.import_module(module)
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]:     import Image
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]: [2021-08-29 17:09:54 +0000] [22720] [INFO] Worker exiting (pid: 22720)
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]: [2021-08-29 17:09:54 +0000] [22696] [INFO] Shutting down: Master
+Aug 29 17:09:54 ip-172-31-92-31 gunicorn[22696]: [2021-08-29 17:09:54 +0000] [22696] [INFO] Reason: Worker failed to boot.
+Aug 29 17:09:54 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:09:54 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:09:54 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:09:54 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 4.
+Aug 29 17:09:54 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:09:54 ip-172-31-92-31 systemd[1]: Started Gunicorn instance for campfire.
+Aug 29 17:09:55 ip-172-31-92-31 gunicorn[22736]: [2021-08-29 17:09:55 +0000] [22736] [INFO] Starting gunicorn 20.1.0
+Aug 29 17:09:55 ip-172-31-92-31 gunicorn[22736]: [2021-08-29 17:09:55 +0000] [22736] [INFO] Listening at: http://127.0.0.1:8000 (22736)
+Aug 29 17:09:55 ip-172-31-92-31 gunicorn[22736]: [2021-08-29 17:09:55 +0000] [22736] [INFO] Using worker: sync
+Aug 29 17:09:55 ip-172-31-92-31 gunicorn[22736]: [2021-08-29 17:09:55 +0000] [22760] [INFO] Booting worker with pid: 22760
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]: [2021-08-29 17:09:56 +0000] [22760] [ERROR] Exception in worker process
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]: Traceback (most recent call last):
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:     worker.init_process()
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:     self.load_wsgi()
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:     self.wsgi = self.app.wsgi()
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:     self.callable = self.load()
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:     return self.load_wsgiapp()
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:     return util.import_app(self.app_uri)
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "/home/ubuntu/var/www/campfire/venv/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:     mod = importlib.import_module(module)
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:     return _bootstrap._gcd_import(name[level:], package, level)
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:   File "/home/ubuntu/var/www/campfire/application.py", line 27, in <module>
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]:     import Image
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]: ModuleNotFoundError: No module named 'Image'
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]: [2021-08-29 17:09:56 +0000] [22760] [INFO] Worker exiting (pid: 22760)
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]: [2021-08-29 17:09:56 +0000] [22736] [INFO] Shutting down: Master
+Aug 29 17:09:56 ip-172-31-92-31 gunicorn[22736]: [2021-08-29 17:09:56 +0000] [22736] [INFO] Reason: Worker failed to boot.
+Aug 29 17:09:56 ip-172-31-92-31 systemd[1]: campfire.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+Aug 29 17:09:56 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:09:56 ip-172-31-92-31 systemd[1]: campfire.service: Service hold-off time over, scheduling restart.
+Aug 29 17:09:56 ip-172-31-92-31 systemd[1]: campfire.service: Scheduled restart job, restart counter is at 5.
+Aug 29 17:09:56 ip-172-31-92-31 systemd[1]: Stopped Gunicorn instance for campfire.
+Aug 29 17:09:56 ip-172-31-92-31 systemd[1]: campfire.service: Start request repeated too quickly.
+Aug 29 17:09:56 ip-172-31-92-31 systemd[1]: campfire.service: Failed with result 'exit-code'.
+Aug 29 17:09:56 ip-172-31-92-31 systemd[1]: Failed to start Gunicorn instance for campfire.
+Aug 29 17:10:30 ip-172-31-92-31 systemd[1]: Started Session 628 of user ubuntu.
+Aug 29 17:10:52 ip-172-31-92-31 systemd[1]: Started Session 629 of user ubuntu.

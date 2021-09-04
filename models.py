@@ -4,6 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 from config import Config
 import sqlalchemy
 import os
+import boto3, botocore
+from config import Config, S3_KEY, S3_SECRET, S3_BUCKET
+
 
 class RegistrationForm(Form):
     name = StringField('Name', [validators.DataRequired(), validators.Length(min=2, max=25)])
@@ -23,28 +26,33 @@ application.secret_key = application.config['SECRET_KEY']
 
 application.config.from_object(Config)
 
-db = SQLAlchemy(application)
+#Enginge options here: https://flask-sqlalchemy.palletsprojects.com/en/2.x/api/
+#db = SQLAlchemy(application, engine_options={"pool_recycle": 1800})
 
-class User(db.Model):
 
-    __tablename__ = 'users'
-    email = db.Column(db.String, primary_key=True)
-    id = db.Column(db.String)
-    password = db.Column(db.String)
-    #authenticated = db.Column(db.Boolean, default=False)
-    
-    def is_active(self):
-        """True, as all users are active."""
-        return True
-    
-    def get_id(self):
-        """Return the email address to satisfy Flask-Login's requirements."""
-        return self.email
 
-    def get_user_id(self):
-        """Return the email address to satisfy Flask-Login's requirements."""
-        return self.id    
+
+#Set up S3
+s3 = boto3.client(
+   "s3",
+   aws_access_key_id = S3_KEY,
+   aws_secret_access_key = S3_SECRET
+)
+
+def upload_file_to_s3(file, bucket_name, acl="public-read"):
+    try:
+        s3.upload_fileobj(
+            file,
+            bucket_name,
+            file.filename,
+            ExtraArgs={
+                "ACL": acl,
+                "ContentType": file.content_type
+            }
+        )
         
-    def is_authenticated(self):
-        """Return True if the user is authenticated."""
-        return self.authenticated
+
+    except Exception as e:
+        # This is a catch all exception, edit this part to fit your needs.
+        print("Something Happened: ", e)
+        return e

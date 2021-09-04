@@ -7,4 +7,9 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hJxQNbgptG5VEXtdut4HL5yZJCkpXa5Qa'
     PRESERVE_CONTEXT_ON_EXCEPTION = True
     
-       
+S3_BUCKET = os.environ.get('S3_BUCKET') or "hideawayy"
+S3_KEY = os.environ.get('S3_KEY') or "AKIA57G5CFWXILLMX2JA"
+S3_SECRET = os.environ.get('S3_SECRET') or "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"
+S3_LOCATION = 'http://{}.s3.amazonaws.com/media/'.format(S3_BUCKET)
+
+SECRET_KEY  = os.urandom(32)
