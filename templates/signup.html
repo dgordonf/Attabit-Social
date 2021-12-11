@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <title>login</title>
+</head>
+
+<style>
+
+body {
+  background-color: #fafafa; 
+  z-index: 0;
+  font-size:14px;
+  font-family: 'Inter';
+}
+
+#feed {
+  width: 97%;
+  max-width:400px;
+  min-width: 325px;
+  margin: 0 auto;
+  margin-top:75px;
+  margin-bottom: 75px;
+}
+
+.container {
+  border: solid 2px black;
+  border-radius: 15px;
+  background-color: white;
+  width: 350px;
+  max-width: 600px;
+  min-width: 300px;
+
+}
+
+.inner_container {
+  margin: 25px;
+
+}
+
+.form {
+  padding: 10px;
+
+}
+
+.inputs {
+  width: 50%;
+
+}
+
+
+</style>
+
+{% extends "layout.html" %}
+{% block body %}
+
+<script>
+var check = function() {
+  if (document.getElementById('password').value == document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+  }
+}
+</script>
+
+  <body>
+    <div id = "feed">
+      <div class="container">
+          <div class = "inner_container">
+          
+          <span style="padding:10px;">Create an account to join</span>
+          <br>
+            {% from "_formhelpers.html" import render_field %}
+          <form class = "form" action = "/signup" method=post>
+            <dl class = "inputs">
+              {{ render_field(form.email) }}
+              {{ render_field(form.name) }}
+              {{ render_field(form.username) }}
+              {{ render_field(form.password) }}
+              {{ render_field(form.confirm) }}
+            </dl>
+          <button id= "form_submit" type="submit">
+            <span style="font-size:17px;"> Sign Up </span>
+          </button>
+            <br>
+            <div style = "margin-top: 10px;">If you have an account, <a href = "/login" style="font-weight: 600;">Login</a></div>
+          </form>
+        </div>
+      </div>  
+    </div>
+{% endblock %}   
+  </body>
+</html>

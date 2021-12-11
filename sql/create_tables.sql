@@ -49,4 +49,22 @@ CREATE TABLE meadow.media (
     added_time     DATETIME DEFAULT   CURRENT_TIMESTAMP
 );
 
+CREATE TABLE meadow.camps (
+    camp_id INT AUTO_INCREMENT PRIMARY KEY,
+    camp_hash VARCHAR(25) NULL,
+    camp_name VARCHAR(10000) NULL,
+    camp_type INT,
+    creation_time     DATETIME DEFAULT   CURRENT_TIMESTAMP,
+    last_update_time  DATETIME ON UPDATE CURRENT_TIMESTAMP,
+    camp_img_url    VARCHAR(200) NULL
+);
 
+CREATE TABLE meadow.follows (
+    follow_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    following INT,
+    follow_value INT,
+    creation_time     DATETIME DEFAULT   CURRENT_TIMESTAMP,
+    last_update_time  DATETIME ON UPDATE CURRENT_TIMESTAMP
+   
+);

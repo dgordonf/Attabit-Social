@@ -9,17 +9,18 @@ from config import Config, S3_KEY, S3_SECRET, S3_BUCKET
 
 
 class RegistrationForm(Form):
-    name = StringField('Name', [validators.DataRequired(), validators.Length(min=2, max=25)])
-    email = StringField('Email Address', [validators.DataRequired(), validators.Email()])
+    email = StringField('Email Address', [validators.DataRequired(message='Email field is required'), validators.Email(message='Please enter a valid email address')])
+    name = StringField('Full Name', [validators.DataRequired(message='Please enter an appearance name for your account'), validators.Length(min=2, max=25, message='Name must be between 2 and 25 characters')])
+    username = StringField('Username', [validators.DataRequired(message='Please enter a username for your account'), validators.Length(min=2, max=25, message='Username must be between 2 and 25 characters')])
     password = PasswordField('Password', [
-        validators.DataRequired(),
+        validators.DataRequired(message='This field cannot be blank'),
         validators.EqualTo('confirm', message='Passwords must match')
     ])
     confirm = PasswordField('Confirm Password')
 
 class LoginForm(Form):
-    email = StringField('Email Address', [validators.DataRequired(), validators.Email()])
-    password = PasswordField('Password', [validators.DataRequired()])    
+    email = StringField('Email Address', [validators.DataRequired(message='Email field is required'), validators.Email(message='Please enter a valid email address')])
+    password = PasswordField('Password', [validators.DataRequired(message='Please enter your password')])    
 
 application = Flask(__name__)
 application.secret_key = application.config['SECRET_KEY']

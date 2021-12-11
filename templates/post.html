@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  
+  <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/e0661229f6.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script src="{{url_for('static', filename='cropper.js')}}"></script>
+  <link  href="{{url_for('static', filename='cropper.css')}} " rel="stylesheet">
+  <script src="{{url_for('static', filename='jquery-cropper.js')}}"></script>
+  
+  <title>PostUp</title>
+</head>
+<body>
+<style>
+
+html {
+  scroll-behavior: smooth;
+  
+}
+
+::selection {
+  color: #fafafa;
+  background: #181818; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  color: #fafafa;
+  background: #181818; /* Gecko Browsers */
+}
+
+body {
+  background-color: #fafafa; 
+  z-index: 0;
+  font-size:14px;
+  font-family: 'Inter';
+}
+
+h1 {
+   font-size: 50px; 
+}
+
+.header {
+  background: #ffffff;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0; 
+  padding: 5px;
+  border-bottom: 1.5px solid lightgrey;
+  z-index: 999;
+}   
+
+.header_title {
+font-size: 23px;
+font-weight: 500;
+text-decoration: none;
+color: #222222;
+}
+
+.header_title:hover, header_title:visited, header_title:link, header_title:active{
+  color: #222222;
+  text-decoration: none;
+}
+
+.header_content {
+  margin: 0 auto;
+  display:flex;
+  flex-direction: row;
+  padding-right: 20px;
+  padding-left: 20px;
+  max-width: 825px
+  
+}
+
+.header_icons {
+  display:flex;
+  flex-direction: row;
+ 
+}
+
+
+.header_groups{
+  float:right;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #222222;
+}
+
+.header_groups::focus { color: #5e5e5e; }
+.header_groups:hover { color: #161616; }
+.header_groups:active { color: #c0c0c0; }
+
+
+.header_groups_inactive {
+  float:right;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #949494;
+}
+
+.header_groups_inactive::focus { color: #949494; }
+.header_groups_inactive:hover { color: #949494; }
+.header_groups_inactive:active { color: #c0c0c0; }
+
+
+.header_logout{
+  float:right;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #222222;
+  margin-left: 22px;
+}
+
+.header_logout:hover, .header_logout:visited, .header_logout:link, .header_logout:active{
+  color: #222222;
+  text-decoration: none;
+}
+
+
+#feed {
+  width: 97%;
+  max-width:550px;
+  min-width: 325px;
+  margin: 0 auto;
+  margin-top:25px;
+  margin-bottom: 75px;
+ 
+ }
+
+
+.post_icons {
+  display:flex;
+  flex-direction: row;
+
+}
+
+.post_input {
+position:relative; 
+top:5px;
+word-wrap: break-word;
+word-break: break-all;
+width: 85%;
+border: 0;
+outline: 0;
+background: transparent;
+padding: 7px;
+}
+
+.reply_input {
+position:relative; 
+word-wrap: break-word;
+word-break: break-all;
+width: 85%;
+border: 0;
+outline: 0;
+background: transparent;
+padding: 3px;
+padding-left: 10px;
+flex-grow: 1; 
+}
+
+.reply_bar::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #bebebeee;
+}
+
+.post_text {
+  padding: 7px;
+  margin-left: 7px;
+  margin-top: 7px;
+  min-height: 20px;
+
+}
+ 
+.post_person {
+  font-weight: 550;
+  color: #161616;
+  font-size: 14.5px;
+  margin-left: 7px;
+  height:16px;
+ 
+}
+
+.post_time {
+  color: #4d4d4d;
+  margin-left: 7px;
+  height: 15px;
+  font-size: 11px;;
+}
+
+.handle {
+  font-weight: 600;
+  color: #161616;
+  margin-left: 7px;
+  font-size: 17px;
+}
+
+.controls {
+  float: right;
+  display: flex;
+ 
+}
+
+.controls2 {
+  margin-right: 10px;
+  float: right;
+  display: flex;
+ 
+}
+
+.arrows {
+  color:rgb(204, 204, 204);
+  font-size:18px;
+  padding-right:3px;
+  padding-left:3px;
+}
+
+.score {
+  color:rgb(194, 194, 194);
+  font-size:14px;
+  padding-right:5px;
+  padding-left:5px;
+  
+}
+
+.reply_badge {
+  font-size: 11px;
+  margin-top: 6px;
+  float: left;
+  border-radius: 50%;
+  width: 33px;
+  height: 33px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:rgba(29, 29, 29);
+}
+
+.reply_person {
+  color: #818181;
+  font-size: small;
+  line-height: 13px;
+  padding-left: 2px;
+  padding-right: 4px;
+}
+
+.reply_text {
+  margin-left: 40px;
+  max-width: 500px;
+  overflow-wrap: break-word;
+}
+
+.reply_details {
+  padding-left: 5px;
+
+}
+
+.user_reply_box {
+  padding: 3px;
+  padding-left: 9px;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+ }
+
+ 
+ .badge {
+  float: left;
+  background-size: cover;
+  background-color:#ffffff;
+  border: 1px solid black;
+
+  border-radius: 50%;
+  width: 56px;
+  height: 56px; 
+  position: relative;
+  color:rgba(29, 29, 29);
+
+}
+
+.user_badge {
+  float: left;
+  background-size: cover;
+  background-color:#ffffff;
+  border: 1px solid black;
+  
+  border-radius: 50%;
+  width: 56px;
+  height: 56px; 
+  position: relative;
+  /*background: conic-gradient(from 250deg, {{user_badge_color}});*/
+  background:transparent;
+}
+
+
+
+.badge_inner {
+  background-size: cover;
+  
+  position: absolute;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px; 
+  background-color:#ffffff;
+  top: 50%;
+  left: 50%;
+  margin: -24px 0px 0px -24px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.arrow_button {
+  background: none;
+  padding: 0px;
+  border: none;
+
+}
+
+.form_arrows {
+
+}
+
+.reply_button{
+  border: 0px solid #c9c9c9;
+  background-color: transparent;
+}
+
+.border {
+  border-radius:7px;
+}
+
+
+.reply_box {
+  margin-left: 7px;
+  padding:2px;
+  padding-top: 1px;
+  background-color: white;
+ }
+
+
+ .post_submit {
+  position:absolute;
+  overflow:hidden;
+  margin-right: 25px;
+  padding:3px;
+ 
+  background-color: transparent;
+  color:rgb(148, 148, 148);
+  
+  border-color: transparent;
+}
+ .reply_submit {
+  bottom:27px;
+  margin-right: 25px;
+  padding:3px;
+  float:right;
+  background-color: transparent;
+  color:rgb(148, 148, 148);
+  position:relative; 
+  border-color: transparent;
+}
+.reply_border {
+
+  border-radius:7px;
+
+}
+
+.user_post_box {
+  padding: 2px;
+  background: #efefef;
+  border-radius:7px;
+ 
+
+}
+
+.user_post_box_inner {
+  background-color: white;
+  border-radius:7px;
+  
+}
+
+.post_box {
+  margin-top: 20px;
+  padding:2px;
+  
+  background-color: white;
+  border-radius:7px;
+  }
+
+ .post_inner {
+  padding: 23px;
+  background-color: #ffffff;
+  border-radius:7px;
+  padding-bottom: 16px;
+}
+
+.reply_inner {
+  padding: 17px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  background-color: #ffffff;
+  border-radius:7px;
+}
+
+.border-0 {
+  background-color: #efefef;
+  
+}
+
+.border-1 {
+  background-color: #b1b1b1;
+}
+.border-2 {
+  background-color: #8b8b8b;
+}
+.border-3 {
+  background-color: #555555;
+}
+.border-4 {
+  background-color: #313131;
+}
+.border-5 {
+  background-color: #000000;
+}
+
+.border-1 {
+  background-color: #efefef;
+  
+}
+.border-2 {
+  background-color: #efefef;
+  
+}
+.border-3 {
+  background-color: #efefef;
+ 
+}
+.border-4 {
+  background-color: #efefef;
+
+}
+.border-5 {
+  background-color: #efefef;
+
+}
+
+/*
+.border-1 {
+  background: conic-gradient(from 133deg, #efefef, #5adbf0, #efefef);
+}
+.border-2 {
+  background: conic-gradient(from 133deg, #efefef, #775bec, #5adbf0, #efefef);
+}
+.border-3 {
+  background: conic-gradient(from 133deg, #5adbf0, #775bec, #5adbf0);
+}
+.border-4 {
+  background: conic-gradient(from 133deg, #5adbf0, #e65978, #775bec, #5adbf0);
+}
+.border-5 {
+ background: conic-gradient(from 133deg, #5adbf0,#775bec,#e65978, #f6594c, #5adbf0);
+}
+*/
+#img_container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 125%;
+  border-radius: 5px 5px 0px 0px;
+  background-color: #ffffff;
+  
+/*
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position:center;
+  max-height: 560px;
+  height: auto;
+  width: auto;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: 1px;
+*/
+}
+
+#img_container img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  object-fit: cover;
+  border-radius: 5px 5px 0px 0px;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+
+}
+
+.image-upload>input {
+  display: none;
+  
+}
+
+.image-icon {
+  font-size: 20px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.image-not-loaded {
+  color:#383838;
+
+}
+
+.image-loaded {
+  color:#383838;
+   
+}
+
+#post_form {
+  width: 100%;
+}
+
+.reply_form {
+  padding: 5px;
+}
+
+#post_text_icon_container {
+  position: relative;
+  width:100%;
+}
+
+.profile_info {
+  width: 97%;
+  max-width:700px;
+  min-width: 325px;
+  margin-top:15px;
+  margin-bottom: 15px;
+  padding: 25px;
+  margin: 0 auto;
+  
+}
+
+.profile_flex {
+  display:flex;
+  flex-direction: row;
+
+}
+
+.profile_badge {
+  border-radius: 50%;
+  width: 100%;
+ 
+  /*background: conic-gradient(from 250deg, {{ profile_badge_color }});*/
+  background:transparent;
+}
+
+.profile_badge_edit {
+  border-radius: 50%;
+  min-width: 155px;
+  width: 155px;
+  height: 155px; 
+  opacity:0.95;
+  position: relative;
+  /*background: conic-gradient(from 250deg, {{ profile_badge_color }});*/
+  background:transparent;
+}
+
+.profile_badge_inner {
+  background-size: contain;
+  position: absolute;
+  border-radius: 50%;
+  width: 146px;
+  height: 146px; 
+  background-color:#ffffff;
+  top: 50%;
+  left: 50%;
+  margin: -73px 0px 0px -73px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000000;
+}
+
+.profile_details {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-left: 20px;
+  
+}
+
+.follow {
+  float: right;
+  position: relative;
+  
+  
+}
+.follow button {
+ float: right; 
+background: #313131;
+ color: white;
+ font-weight: 600;
+ font-size: 17px;
+ border-radius: 13px;
+ padding-left: 15px;
+ padding-right: 15px;
+ padding-top: 5px;
+ padding-bottom: 5px;
+ border: 0px solid #c9c9c9;
+
+}
+
+.profile_link:hover, profile_link:visited, profile_link:link, profile_link:active{
+  text-decoration: none;
+}
+
+#post_delete {
+  float: right;
+}
+
+.delete_button {
+  background: transparent;
+  border: none;
+  color: #585858;
+}
+
+#modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+   /* Enable scroll if needed */
+  background-color: rgb(102, 102, 102); /* Fallback color */
+  background-color: rgba(102, 102, 102, 0.4); /* Black w/ opacity */
+}
+
+#edit_profile {
+  width: 85%;
+  height: 90%;
+  max-width:500px;
+  min-width: 325px;
+  background-color: #fefefe;
+  margin: 2% auto; /* 15% from the top and centered */
+  border-radius: 15px;
+}
+
+#close_edit_button{
+  font-size: 25px;
+  background: transparent;
+  float:right;
+  border: 0px;
+}
+
+#modal2 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+   /* Enable scroll if needed */
+  background-color: rgb(102, 102, 102); /* Fallback color */
+  background-color: rgba(102, 102, 102, 0.4); /* Black w/ opacity */
+}
+
+#edit_profile2 {
+  width: 85%;
+  height: 90%;
+  z-index: 1001;
+  max-width:500px;
+  min-width: 325px;
+  background-color: #fefefe;
+  margin: 2% auto; /* 15% from the top and centered */
+  border-radius: 15px;
+}
+
+
+#close_edit_button2 {
+  font-size: 25px;
+  background: transparent;
+  float:right;
+  border: 0px;
+}
+
+.grow-wrap {
+  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+  display: grid;
+  font-size:16px;
+}
+.grow-wrap::after {
+  /* Note the weird space! Needed to preventy jumpy behavior */
+  content: attr(data-replicated-value) " ";
+
+  /* This is how textarea text behaves */
+  white-space: pre-wrap;
+
+  /* Hidden from view, clicks, and screen readers */
+  visibility: hidden;
+}
+.grow-wrap > textarea {
+  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+  resize: none;
+
+  /* Firefox shows scrollbar on growth, you can hide like this. */
+  overflow: hidden;
+}
+.grow-wrap > textarea,
+.grow-wrap::after {
+  /* Identical styling required!! */
+  
+  padding: 0.7rem;
+  font: inherit;
+
+  /* Place on top of each other */
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.non-glow {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: 600;
+
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #414141;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+
+.glow-on-hover {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: 600;
+
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #414141;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 1px);
+    height: calc(100% + 1px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:active {
+  background: #161616;
+}
+
+.glow-on-hover:active:after {
+    background: #161616;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #383838;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+
+.crop_container{
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+  overflow: hidden;
+  
+}
+
+#image img {
+  display: block;
+  max-width: 100%;
+}
+
+#image {
+max-height: 175px;
+max-width: 100%;
+padding: 1px;
+position: relative;
+}
+
+#canvas {
+  height: 400px;
+  width: 200px;
+  background-color: #ffffff;
+  cursor: default;
+  border: 1px solid black;
+}
+
+#result img {
+  height: 200px;
+  width: 200px;
+  border: 1px solid black;
+}
+
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.post_info_box {
+  display:flex;
+
+}
+
+.voted_button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: 600;
+
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #414141;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    
+}
+
+.post_link{
+  display: block;
+  text-decoration: none;
+  color: #000000;
+}
+
+.post_link:hover {
+  color: #222222;
+}
+
+</style>
+
+
+
+<script>
+
+  //Up vote
+  //Wait until Doc is ready
+  $(document).ready(function(){
+  /* attach a submit handler to the form */
+  $(document).on("submit", ".form_arrows", function(event) {
+    /* stop form from submitting normally */
+    event.preventDefault();
+    /* get the action attribute from the <form action=""> element */
+    var $form = $(this),
+      url = $form.attr('action');
+    /* Send the data using post */
+    req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize() //Encode form elements as a string for submission.
+        //If using serialize(), name attribute in form elements is required
+    })
+    req.done(function( data ) {
+      $("#feed_inner").html($("#feed_inner", data).html());
+     });
+  });
+  
+  });
+
+  //Add Comment
+  //Wait until Doc is ready
+  $(document).ready(function(){
+  /* attach a submit handler to the form */
+  $(document).on("submit", ".reply_form", function(event) {
+    /* stop form from submitting normally */
+    event.preventDefault();
+    /* get the action attribute from the <form action=""> element */
+    var $form = $(this),
+      url = $form.attr('action');
+    /* Send the data using post */
+    req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize() //Encode form elements as a string for submission.
+        //If using serialize(), name attribute in form elements is required
+    })
+    req.done(function( data ) {
+      $("#feed_inner").html($("#feed_inner", data).html());
+    });
+  });
+  
+  });
+
+  //Delete Posts
+  $(document).ready(function(){
+  $(".post_delete").submit(function(event){
+   
+    event.preventDefault();
+   
+    var $form = $(this),
+      url = $form.attr('action');
+    
+    req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize(), 
+        success:function(){
+          location.reload();
+        }
+    })
+    
+  });
+  
+  });
+
+
+//Delete Comment
+  //Wait until Doc is ready
+  $(document).ready(function(){
+ 
+    $(document).on("submit", ".form_arrows", function(event) {
+    
+      event.preventDefault();
+    
+    var $form = $(this),
+      url = $form.attr('action');
+    
+      req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize() //Encode form elements as a string for submission.
+        //If using serialize(), name attribute in form elements is required
+    })
+    req.done(function( data ) {
+      $("#feed_inner").html($("#feed_inner", data).html());
+     });
+  });
+  
+  });
+
+
+
+
+
+
+  </script>
+
+<script>
+  //Reveal Reply Box on click
+  function reply_reveal(id) {
+      var reply = "reply_";
+      var reply_id = reply + id;
+      var R = document.getElementById(reply_id);
+      var displayValue = R.style.display;
+      
+      if (displayValue == 'none') {
+        new_value = '';
+        R.style.display = new_value;
+
+        var input = "_input";
+        var reply_id_input = reply_id + input;
+
+        document.getElementById(reply_id_input).focus();
+        document.getElementById(reply_id_input).select();
+
+      } else {
+        new_value = 'none';
+        R.style.display = new_value;
+      }
+
+    
+  }
+
+  /*
+  var loadFile = function(event) {
+    var output = document.getElementById('cropbox');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+
+</script>
+
+<script>
+//Reval Edit Form JQuery  
+//Reval Edit Form  
+$(document).ready(function () { 
+$('#edit_button').on('click', function() {
+  $('#modal').show();
+  $('#edit_profile').show();
+
+  $("body").addClass("modal-open");
+  
+});
+
+$('#close_edit_button').on('click', function() {
+  $('#modal').hide();
+  $('#edit_profile').hide();
+
+  $("body").removeClass("modal-open")
+});
+
+$('#fileInput').on('change', function() {
+  $('#modal2').show();
+  $('#edit_profile2').show();
+    
+});
+
+$('#close_edit_button2').on('click', function() {
+  $('#modal2').hide();
+  $('#edit_profile2').hide();
+  
+});
+
+
+});
+
+</script>
+
+<script>
+$(document).ready(function () {   
+
+$('#fileInput').on( 'change', function(){
+  var canvas  = $("#canvas"),
+    context = canvas.get(0).getContext("2d"),
+    $result = $('#result');
+
+
+    if (this.files && this.files[0]) {
+      if ( this.files[0].type.match(/^image\//) ) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+           var img = new Image();
+           img.onload = function() {
+             context.canvas.height = img.height;
+             context.canvas.width  = img.width;
+             context.drawImage(img, 0, 0);
+             var cropper = canvas.cropper({
+               aspectRatio: 1 / 1
+             });
+
+             $('#btnCrop').click(function() {
+                // Get a string base 64 data url
+                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
+                //$result.append( $('<img>').attr('src', croppedImageDataURL) );
+
+                $('#modal2').hide();
+                $('#edit_profile2').hide();
+
+                var css_url = "url(" + "'" + croppedImageDataURL + "'" + ")";
+                d = new Date();
+                $('#edit_profile_badge_inner').css('background-image', "");
+                $('#imageData64').val(croppedImageDataURL);
+                
+                setTimeout(function (){
+                  $('#edit_profile_badge_inner').css('background-image', css_url);
+                }, 1000);
+
+             });
+
+          
+           };
+           img.src = evt.target.result;
+				};
+        reader.readAsDataURL(this.files[0]);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
+    }
+    else {
+      alert('No file(s) selected.');
+    }
+
+    
+
+
+
+});
+
+});
+  </script>
+
+
+{% extends "layout.html" %}
+{% block body %}
+<div class = "header" id= "header">
+  <div class="header_content">
+    <div style = "flex: 1 9999 0%; min-width:40px;">
+    <a href="/" class = "header_title"><b>Postup</b></a> 
+    </div> 
+     <div class = "header_icons">
+      <div style = "margin-right: 22px">
+        <a href="/"  class = "header_groups_inactive"><i class="fas fa-home"></i></a> 
+      </div>
+      <div >
+        <a class = "header_groups_inactive"><i class="fas fa-mountain"></i></a> 
+      </div>
+    <div>
+    <a href="/logout" class = "header_logout">sign out</a> 
+    </div>
+    </div>
+  </div>
+</div>
+
+
+  <div id= "feed" >
+  
+    <div id = "feed_inner">
+    
+   
+    {% for index, post_info in post_info.iterrows() %}
+      <div class = "post_wrap">  
+    {% if post_info['post_score'] <= 0 %}
+      <div class="post_box border border-0">
+    {% elif post_info['post_score'] >= 5 %}
+      <div class="post_box border border_positive border-5">
+    {% else %}
+      <div class="post_box border border_positive border-{{post_info['post_score']}}">
+    {% endif %} 
+      
+      
+    {% if (post_info['media_id'] in photos.media_id.values) %}
+      {% for key, photo in photos.iterrows() %}
+          {% if photo['media_id'] == post_info['media_id'] %}
+            <div id = "img_container" style="padding-bottom: {{photo['bottom-padding']}}%;">
+              <img src="https://hideawayy.s3.amazonaws.com/media/{{photo['photo_url']}}" alt="An image uploaded by a user" >
+            </div>
+
+          {% else %}
+       
+          {% endif %}  
+      {% endfor %}
+    {% endif %}
+
+
+      {% if (post_info['media_id'] in photos.media_id.values) %}
+          <div class = "post_inner" style = "border-radius: 0px 0px 10px 10px;">
+        {% else %}  
+          <div class = "post_inner">
+      {% endif %}       
+      
+      
+        {% if post_info['user_id'] == current_user_id %}
+        <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{post_info['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
+          <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+          <button class = "delete_button" type="submit">
+            <i class="far fa-times-circle"></i>
+          </button>  
+        
+        </form>
+        {% else %}  
+        {% endif %}     
+      <div class = "post_info_box">
+          <a class= "profile_link" href = "/@{{post_info['handle']}}">
+            <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ post_info['profile_photo'] }} ');">
+              
+            </div>
+          </a>  
+          
+            <div style= 'height: 15px;'>
+              <a class= "profile_link" href = "/@{{post_info['handle']}}">
+              <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{post_info['handle']}}</span>
+              </a>  
+            </div>
+      </div>
+        
+          <div class = "post_text" style="post_score:{{post_info['post_score']}};">
+            
+              {% if post_info['post_score'] >= 0 %}
+                <span  style="white-space: pre-wrap; font-size:25px; Score:{{post_info['post_score']}}">{{post_info['post_text']}}</span> 
+              {% elif post_info['post_score'] <= -4 %}
+                <span  style="white-space: pre-wrap; font-size:1px; Score:{{post_info['post_score']}}">{{post_info['post_text']}}</span> 
+              {% else %}
+                <span  style="white-space: pre-wrap; font-size:{{25 + (post_info['post_score'] * 2)}}px;Score:{{post_info['post_score']}}">{{post_info['post_text']}}</span> 
+              {% endif %} 
+              
+                
+          </div>
+          <div class = "post_icons">
+
+        <div style= "width:30%">  
+          <button class = "reply_button" id = "reply_button_{{post_info['post_id']}}" value = '{{post_info['post_id']}}' onclick="reply_reveal(this.value)">
+            <span style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{post_info['reply_count']}}</span>
+          </button>  
+        </div>
+        
+        <div style= "width:30%">
+          <form id="form_vote" title="" action= "" method= "post" class= "form_arrows">
+            <input class= hidden id = "update_type" name= "update_type" value = "post_vote">  
+            <input class= hidden id = "post_vote" name= "post_vote" value = -1>
+            <input type="hidden" id = "post_id" name= "post_id" value={{post_info['post_id']}} >
+            {% if post_info['current_user_score'] <= -1 %}
+            <button id= "vote_submit"  type="submit" class="arrow_button" disabled>
+              <span style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{post_info['down_votes']}}</span>
+              {% else %}
+            <button id= "vote_submit" type="submit" class="arrow_button">
+              <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{post_info['down_votes']}}</span>
+              {% endif %} 
+            </button>
+          </form>
+        </div>
+
+        <div style= "width:30%">
+          <form id="form_vote" title="" action="" method="post" class = "form_arrows">
+            <input class= hidden name= "update_type" value = "post_vote">  
+            <input class= hidden name= "post_vote" value = 1>
+            <input type="hidden" name= "post_id" value={{post_info['post_id']}} >
+            <input class= hidden name= "post_vote" value = 1>
+            {% if post_info['current_user_score'] >= 1 %}
+            <button id= "vote_submit"  type="submit" class="arrow_button" disabled>
+              <span style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{post_info['up_votes']}}</span>
+              {% else %}
+            <button id= "vote_submit" type="submit" class="arrow_button">
+              <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{post_info['up_votes']}}</span>
+              {% endif %} 
+            </button>
+          </form>
+        </div>
+
+          </div>
+        </div>  
+    </div>
+    {% endfor %}
+
+    <hr style = "border-top: 1px solid #7a7a7a;">
+
+    <div class = "user_post_box">
+      <div class = "user_post_box_inner"> 
+        <div class = "post_inner">
+  
+          <form action="" method="POST" id = "post_form" enctype="multipart/form-data">  
+            <input type="hidden" name= "reply_to_id" value={{post_info['post_id'][0]}} >
+            <input class= hidden name= "update_type" value = "post_text">  
+            <input type="hidden" name= "type" value="1">
+          <div id = "post_text_icon_container">
+            <div class="grow-wrap" style = "max-width: 500px;" name= "post_text" >
+              <textarea class = "post_input" style = "max-width: 500px;"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Post something..."></textarea>
+            </div>
+              <div class="image-upload" style = "margin-top: 10px;">
+                <label for="file-input" style="margin-bottom:0px;">
+                  <i class="fas fa-camera-retro  image-icon image-not-loaded" id = "image_icon"></i>
+                </label>
+                <input id="file-input" type = "file" name = "user_file" accept="image/*"/>
+                
+                
+                
+                <button type="submit" class = "post_button glow-on-hover" style= "float:right;">
+                  <span style="font-size:16px;"> Post </span>
+                </button>
+              </div> 
+            </div>
+          </form>
+        </div> 
+      </div>   
+    </div>
+
+
+    <hr style = "border-top: 1px solid #7a7a7a;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% for index, posts in posts.iterrows() %}
+      <div class = "post_wrap">  
+    {% if posts['post_score'] <= 0 %}
+      <div class="post_box border border-0">
+    {% elif posts['post_score'] >= 5 %}
+      <div class="post_box border border_positive border-5">
+    {% else %}
+      <div class="post_box border border_positive border-{{posts['post_score']}}">
+    {% endif %} 
+      
+      
+    {% if (posts['media_id'] in photos.media_id.values) %}
+      {% for key, photo in photos.iterrows() %}
+          {% if photo['media_id'] == posts['media_id'] %}
+            <div id = "img_container" style="padding-bottom: {{photo['bottom-padding']}}%;">
+              <img src="https://hideawayy.s3.amazonaws.com/media/{{photo['photo_url']}}" alt="An image uploaded by a user" >
+            </div>
+
+          {% else %}
+       
+          {% endif %}  
+      {% endfor %}
+    {% endif %}
+
+
+      {% if (posts['media_id'] in photos.media_id.values) %}
+          <div class = "post_inner" style = "border-radius: 0px 0px 10px 10px;">
+        {% else %}  
+          <div class = "post_inner">
+      {% endif %}       
+      
+      
+        {% if posts['user_id'] == current_user_id %}
+        <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
+          <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+          <button class = "delete_button" type="submit">
+            <i class="far fa-times-circle"></i>
+          </button>  
+        
+        </form>
+        {% else %}  
+        {% endif %}     
+      <div class = "post_info_box">
+          <a class= "profile_link" href = "/@{{posts['handle']}}">
+            <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
+              
+            </div>
+          </a>  
+          
+            <div style= 'height: 15px;'>
+              <a class= "profile_link" href = "/@{{posts['handle']}}">
+              <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}}</span>
+              </a>  
+            </div>
+      </div>
+        
+          <div class = "post_text" style="post_score:{{posts['post_score']}};">
+            
+              {% if posts['post_score'] >= 0 %}
+                <span  style="white-space: pre-wrap; font-size:16px; Score:{{posts['post_score']}}">{{posts['post_text']}}</span> 
+              {% elif posts['post_score'] <= -4 %}
+                <span  style="white-space: pre-wrap; font-size:1px; Score:{{posts['post_score']}}">{{posts['post_text']}}</span> 
+              {% else %}
+                <span  style="white-space: pre-wrap; font-size:{{16 + (posts['post_score'] * 2)}}px;Score:{{posts['post_score']}}">{{posts['post_text']}}</span> 
+              {% endif %} 
+              
+                
+          </div>
+          <div class = "post_icons">
+
+        <div style= "width:30%">  
+          <a class="post_link" href = "/post/{{posts['post_id']}}">
+          <button class = "reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}'>
+            <span style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{posts['reply_count']}}</span>
+          </button>  
+          </a>
+        </div>
+        
+        <div style= "width:30%">
+          <form id="form_vote" title="" action= "" method= "post" class= "form_arrows">
+            <input class= hidden id = "update_type" name= "update_type" value = "post_vote">  
+            <input class= hidden id = "post_vote" name= "post_vote" value = -1>
+            <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >
+            {% if posts['current_user_score'] <= -1 %}
+            <button id= "vote_submit"  type="submit" class="arrow_button" disabled>
+              <span style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{posts['down_votes']}}</span>
+              {% else %}
+            <button id= "vote_submit" type="submit" class="arrow_button">
+              <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{posts['down_votes']}}</span>
+              {% endif %} 
+            </button>
+          </form>
+        </div>
+
+        <div style= "width:30%">
+          <form id="form_vote" title="" action="" method="post" class = "form_arrows">
+            <input class= hidden name= "update_type" value = "post_vote">  
+            <input class= hidden name= "post_vote" value = 1>
+            <input type="hidden" name= "post_id" value={{posts['post_id']}} >
+            <input class= hidden name= "post_vote" value = 1>
+            {% if posts['current_user_score'] >= 1 %}
+            <button id= "vote_submit"  type="submit" class="arrow_button" disabled>
+              <span style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{posts['up_votes']}}</span>
+              {% else %}
+            <button id= "vote_submit" type="submit" class="arrow_button">
+              <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{posts['up_votes']}}</span>
+              {% endif %} 
+            </button>
+          </form>
+        </div>
+
+          </div>
+        </div>  
+    </div>   
+ 
+    {% endfor %}
+  </div>
+
+{% endblock %}    
+</div>
+
+</body>
+</html>
