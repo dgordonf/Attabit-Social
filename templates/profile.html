@@ -578,7 +578,7 @@ flex-grow: 1;
   height: 155px; 
   opacity:0.95;
   position: relative;
-
+  margin: 10px;
   background:transparent;
 }
 
@@ -663,6 +663,7 @@ background: #313131;
   background-color: #fefefe;
   margin: 2% auto; /* 15% from the top and centered */
   border-radius: 15px;
+  padding: 10px;
 }
 
 #close_edit_button{
@@ -1105,10 +1106,6 @@ $('#fileInput').on( 'change', function(){
       alert('No file(s) selected.');
     }
 
-    
-
-
-
 });
 
 });
@@ -1163,13 +1160,66 @@ $('#fileInput').on( 'change', function(){
 </div>
 
 <div id = "modal">
+  <div id = "edit_profile">
+    <button id="close_edit_button" type="submit">
+      <i class="fas fa-times-circle"></i>
+    </button> 
+   
 
-  <div style = "width: 100%; padding-top:25px; padding-bottom: 25px;">
+    <form action="/@{{profile_handle}}/edit" method="post"></form>
+    
+    <div id = "edit_profile_badge" class= "profile_badge_edit" >
+      <div class="profile_badge_inner" style="background-image:url('https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}');"></div>
+    </div>
 
-  <div>
+    <label for="fileInput" class="non-glow" style= "margin:10px;">
+      <span>Change Profile Photo </span> <i class="fas fa-camera"></i>
+    </label>
+
+
+
+        <input type="file" id="fileInput" name="file" style="display:none" />
+        <input hidden name="imageData64" id="imageData64" value="">
+        
+        <div style="padding:10px;font-size:17px;">
+          <label for ="handle" >Handle:</label><br>
+          <input type = "text" name = "handle" id = "handle" value = "{{profile_info['handle'][0]}}" disabled>
+        </div>
+        <div style="padding:10px;font-size:17px;">
+          <label for ="name">Name:</label><br>
+          <input type = "text" name = "name" id = "name" value = "{{profile_info['first_name'][0]}}">
+        </div>
+        <div style="padding:10px;font-size:17px;">
+          <label for ="bio">Bio:</label><br>
+          <input type = "text" name = "bio" id = "bio" value = "{{profile_info['bio'][0]}}">
+        </div>
+      <button type="submit" class= "non-glow" style ="float:right;margin:15px;">
+        Submit
+      </button>
+    </form>
 
   </div>
+</div>
 
+
+<div id = "modal2">
+  <div id = "edit_profile2">
+    <button id="close_edit_button2" type="submit">
+      <i class="fas fa-times-circle"></i>
+    </button> 
+  <br>
+  <br>
+  <div style="margin:10px;">
+    <canvas id='canvas' style = "max-width:85%;"></canvas>
+  </div>
+
+    <button id="btnCrop" class = "non-glow" style="float:right;margin:10px">
+      Apply Crop
+    </button> 
+
+
+  </div>
+</div>
 
 <div class = "profile_info">
 <div class = "profile_flex">
@@ -1210,8 +1260,6 @@ $('#fileInput').on( 'change', function(){
 
 </div>  
 
-
-    
   </div>
 </div>
 </div>
