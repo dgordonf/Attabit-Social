@@ -1004,15 +1004,6 @@ body.modal-open {
     
   }
 
-  /*
-  var loadFile = function(event) {
-    var output = document.getElementById('cropbox');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
-    }
-  };
-
 </script>
 
 <script>
@@ -1166,10 +1157,10 @@ $('#fileInput').on( 'change', function(){
     </button> 
    
 
-    <form action="/@{{profile_handle}}/edit" method="post"></form>
+    <form action="/@{{profile_handle}}/edit" method="post">
     
     <div id = "edit_profile_badge" class= "profile_badge_edit" >
-      <div class="profile_badge_inner" style="background-image:url('https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}');"></div>
+      <div id = "edit_profile_badge_inner" class="profile_badge_inner" style="background-image:url('https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}');"></div>
     </div>
 
     <label for="fileInput" class="non-glow" style= "margin:10px;">
@@ -1179,7 +1170,7 @@ $('#fileInput').on( 'change', function(){
 
 
         <input type="file" id="fileInput" name="file" style="display:none" />
-        <input hidden name="imageData64" id="imageData64" value="">
+        <input id = "imageData64" hidden name="imageData64" id="imageData64" value="">
         
         <div style="padding:10px;font-size:17px;">
           <label for ="handle" >Handle:</label><br>
@@ -1193,9 +1184,8 @@ $('#fileInput').on( 'change', function(){
           <label for ="bio">Bio:</label><br>
           <input type = "text" name = "bio" id = "bio" value = "{{profile_info['bio'][0]}}">
         </div>
-      <button type="submit" class= "non-glow" style ="float:right;margin:15px;">
-        Submit
-      </button>
+        <input type="submit" class= "non-glow" style ="float:right;margin:15px;" value="Submit">  
+
     </form>
 
   </div>
