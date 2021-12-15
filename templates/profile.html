@@ -1106,9 +1106,11 @@ $('#fileInput').on( 'change', function(){
   //Delete Posts
   $(document).ready(function(){
   $(".post_delete").submit(function(event){
-   
     event.preventDefault();
-   
+
+    var r = confirm("Are you sure you want to delete this post? This cannot be undone");
+    if (r == true) {
+    
     var $form = $(this),
       url = $form.attr('action');
     
@@ -1121,8 +1123,9 @@ $('#fileInput').on( 'change', function(){
         }
     })
     
+    }  
   });
-  
+ 
   });
 
 
@@ -1139,6 +1142,9 @@ $('#fileInput').on( 'change', function(){
      <div class = "header_icons">
       <div style = "margin-right: 22px">
         <a href="/"  class = "header_groups_inactive"><i class="fas fa-home"></i></a> 
+      </div>
+      <div style = "margin-right: 22px">
+        <a href="/search" class = "header_groups_inactive"><i class="fas fa-search"></i></a> 
       </div>
       <div >
         <a class = "header_groups_inactive"><i class="fas fa-mountain"></i></a> 
@@ -1174,15 +1180,16 @@ $('#fileInput').on( 'change', function(){
         
         <div style="padding:10px;font-size:17px;">
           <label for ="handle" >Handle:</label><br>
-          <input type = "text" name = "handle" id = "handle" value = "{{profile_info['handle'][0]}}" disabled>
+          <input type = "text" name = "handle" id = "handle" style="border:2px solid #555555;" value = "{{profile_info['handle'][0]}}" disabled>
         </div>
         <div style="padding:10px;font-size:17px;">
           <label for ="name">Name:</label><br>
-          <input type = "text" name = "name" id = "name" value = "{{profile_info['first_name'][0]}}">
+          <input type = "text" name = "name" id = "name" style="border:2px solid #555555;" value = "{{profile_info['first_name'][0]}}">
         </div>
         <div style="padding:10px;font-size:17px;">
           <label for ="bio">Bio:</label><br>
-          <input type = "text" name = "bio" id = "bio" value = "{{profile_info['bio'][0]}}">
+          <textarea id = "bio" class = "post_input" style = "max-width: 500px;border: 2px solid #555555;" name = "bio" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" value = "{{profile_info['bio'][0]}}"></textarea>
+
         </div>
         <input type="submit" class= "non-glow" style ="float:right;margin:15px;" value="Submit">  
 

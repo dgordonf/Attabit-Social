@@ -812,9 +812,11 @@ $(document).ready(function(){
   //Delete Posts
   $(document).ready(function(){
   $(".post_delete").submit(function(event){
-   
     event.preventDefault();
-   
+
+    var r = confirm("Are you sure you want to delete this post? This cannot be undone");
+    if (r == true) {
+    
     var $form = $(this),
       url = $form.attr('action');
     
@@ -827,8 +829,9 @@ $(document).ready(function(){
         }
     })
     
+    }  
   });
-  
+ 
   });
 </script>
 
