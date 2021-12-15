@@ -1350,7 +1350,7 @@ $('#fileInput').on( 'change', function(){
             <input class= hidden id = "update_type" name= "update_type" value = "post_vote">  
             <input class= hidden id = "post_vote" name= "post_vote" value = -1>
             <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >
-            {% if posts['current_user_score'] <= -1 %}
+            {% if posts['current_user_vote'] <= -1 %}
             <button id= "vote_submit"  type="submit" class="arrow_button" disabled>
               <span style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{posts['down_votes']}}</span>
               {% else %}
@@ -1367,7 +1367,7 @@ $('#fileInput').on( 'change', function(){
             <input class= hidden name= "post_vote" value = 1>
             <input type="hidden" name= "post_id" value={{posts['post_id']}} >
             <input class= hidden name= "post_vote" value = 1>
-            {% if posts['current_user_score'] >= 1 %}
+            {% if posts['current_user_vote'] >= 1 %}
             <button id= "vote_submit"  type="submit" class="arrow_button" disabled>
               <span style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{posts['up_votes']}}</span>
               {% else %}
@@ -1458,7 +1458,7 @@ $('#fileInput').on( 'change', function(){
               <input class= hidden id = "update_type" name= "update_type" value = "post_vote">  
               <input class= hidden id = "post_vote" name= "post_vote" value = -1>
               <input type="hidden" id = "post_id" name= "post_id" value={{reply['post_id']}} >
-              {% if reply['current_user_score'] <= -1 %}
+              {% if reply['current_user_vote'] <= -1 %}
               <button id= "vote_submit" style = "color:#181818;" type="submit" class="arrow_button" disabled>
                 <span style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{reply['down_votes']}}</span>
                 {% else %}
@@ -1473,7 +1473,7 @@ $('#fileInput').on( 'change', function(){
               <input class= hidden name= "post_vote" value = 1>
               <input type="hidden" name= "post_id" value={{reply['post_id']}} >
               <input class= hidden name= "post_vote" value = 1>
-              {% if reply['current_user_score'] >= 1 %}
+              {% if reply['current_user_vote'] >= 1 %}
               <button id= "vote_submit" style = "color:#181818;" type="submit" class="arrow_button" disabled>
                 <span style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{reply['up_votes']}}</span>
                 {% else %}
