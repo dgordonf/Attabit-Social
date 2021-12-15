@@ -682,6 +682,23 @@ background: transparent;
   color: #222222;
 }
 
+.non-glow {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: 600;
+
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #414141;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
 </style>
 
 
@@ -712,8 +729,15 @@ background: transparent;
   <div id= "feed" >
   <div class = "search_box">
     <form action = "/search" method = "GET">
-      <input type = "text" name = "q" placeholder = "Search for people" class = "search_input">
-      <button type = "submit" class = "search_button"><i class="fas fa-search"></i></button>
+    <div style="width:100%;display:flex;">
+      {% if q == None %}
+      <input type = "text" name = "q" placeholder = "Search for people" style="border:2px solid #555555;border-radius:3px;width:100%;font-size:20px;">
+      {% else %}
+      <input type = "text" name = "q" placeholder = "Search for people" style="border:2px solid #555555;border-radius:3px;width:100%;font-size:20px;" value="{{q}}">
+      {% endif %}
+
+      <button type = "submit" class = "non-glow" style="font-size:20px;margin-left:10px;"><i class="fas fa-search"></i></button>
+    </div>
     </form>
   </div>
 
@@ -721,7 +745,7 @@ background: transparent;
     {% if q != None %}
 
       {% if df|length == 0 %}
-        <span>No results found</span>
+        <span style=font-size:20px;>No results found!</span>
 
       {% else %}
 
@@ -729,9 +753,10 @@ background: transparent;
       
         <div class = "post_wrap">
           <div class="post_box border border-0">
-              <div class = "post_inner">
+              <div class = "post_inner" style="padding-top:16px;">
         
                 <div class = "post_info_box">
+
                     <a class= "profile_link" href = "/@{{df['handle']}}">
                       <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ df['profile_photo'] }} ');">
                         

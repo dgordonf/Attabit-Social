@@ -1018,13 +1018,12 @@ def edit_user(username):
 def search():
     user_id = current_user.get_user_id()
     q = request.args.get('q')
-    
+
     if q == "" or q == None:
         df = None
         q = None
         return render_template('search.html', df = df, user_id = user_id, q = q)
     else:
-        q = "%" + q + "%"
         with engine.connect() as connection:
             ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, u.profile_photo, u.creation_time
                                                     FROM users u
@@ -1032,8 +1031,9 @@ def search():
                                                     ORDER BY u.creation_time ASC;''' % (q, q))
 
         df = DataFrame(ResultProxy.fetchall())
-        df.columns = ResultProxy.keys()
-        print(df)
+
+        if df is not None and (df.empty == False):
+            df.columns = ResultProxy.keys()    
         return render_template('search.html',
                                 user_id = user_id,
                                 df = df, 

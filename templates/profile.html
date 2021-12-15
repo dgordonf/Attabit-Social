@@ -1234,7 +1234,7 @@ $('#fileInput').on( 'change', function(){
         {% elif follow_status == 0 %}
         <form id="follow_form" class = "follow_form" title="" action= "/@{{profile_handle}}/follow" method= "post">
           <input class= hidden id = "follow_value" name= "follow_value" value = 1>
-          <button id= "follow_submit" type="submit" >
+          <button id= "follow_submit" type="submit" style="background:#fafafa;border: 2px solid #4d4d4d; color:#4d4d4d">
             <span > follow </span> 
           </button>
         </form>
