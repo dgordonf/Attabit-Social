@@ -212,13 +212,6 @@ flex-grow: 1;
   padding-left:3px;
 }
 
-.score {
-  color:rgb(194, 194, 194);
-  font-size:14px;
-  padding-right:5px;
-  padding-left:5px;
-  
-}
 
 .reply_badge {
   font-size: 11px;
@@ -682,6 +675,32 @@ background: transparent;
 
 }
 
+.handle_score_box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height:100%;
+}
+
+.score_bar {
+  width: 100%;
+  height: 10px;
+  margin:7px;
+  font-weight: 600;
+  opacity: 0.35;
+}
+
+.score {
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-weight: 600;
+    border: 2px solid #414141;
+    outline: none;
+    border-radius: 5px;
+}
+
 </style>
 
 <script>
@@ -947,11 +966,18 @@ $(document).ready(function(){
               </div>
             </a>  
             
+            <div class = "handle_score_box">
               <div style= 'height: 15px;'>
                 <a class= "profile_link" href = "/@{{posts['handle']}}">
                 <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}}</span>
                 </a>  
               </div>
+              <div style="margin-top:10px;">
+                <span class= "score_bar">{{posts['user_score_bars_print']}} {{posts['user_score']}}</span>
+              </div>
+
+
+            </div>
         </div>
           
             <div class = "post_text" style="post_score:{{posts['post_score']}};">

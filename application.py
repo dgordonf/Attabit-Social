@@ -442,6 +442,9 @@ def feed():
                 df['user_score_bars'] = df['user_score_bars'].round(0).astype(int)
                 df['user_score'] = df['user_score'].round(0).astype(int)
 
+                #Create Score Bar Print
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
        
                 ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]
@@ -449,8 +452,7 @@ def feed():
                 
                 replys = df[df["reply_to_id"].notnull()]
                 replys = replys.sort_values(by=['post_id'], ascending=True)  
-                
- 
+          
             else:
                 posts = df
                 replys = df
