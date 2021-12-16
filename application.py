@@ -706,64 +706,15 @@ def user_page(username):
                 df['post_score'] = df['post_score'].fillna(0).astype(int)
                 df['user_score'] = df['user_score'].fillna(0).astype(int)
                
-                #https://coolors.co/22577a-38a3a5-c7f9cc-f5b768-f69f64-f87c5f
-                #5adbf0,#775bec,#e65978, #f6594c,
+                             #Create User Score bar chart
+                df['user_score'] = df['user_score']/100
+                df['user_score_bars'] = (df['user_score'] % 1) * 10
+                df['user_score_bars'] = df['user_score_bars'].round(0).astype(int)
+                df['user_score'] = df['user_score'].round(0).astype(int)
 
-                teal = "#70C7EC"
-                blue = "#4863E6"
-                dark_purple = "#34189C"
-                purple = "#681FB0"
-                pink = "#E33F84"
-                
-                distance = 10
-
-                colors = list(Color(teal).range_to(Color(blue), distance)) + list(Color(blue).range_to(Color(dark_purple), distance * 10)) + list(Color(dark_purple).range_to(Color(purple), distance * 20)) + list(Color(purple).range_to(Color(pink), distance * 30)) 
-
-                datalist = []    
-                for values in df.user_score:
-                    score = int(round(values, 0))
-                    if score < 0:
-                        score = 0
-
-                    #Check if color is greater than score
-                    if score > len(colors):
-                        color = str(colors[len(colors)])
-                        color = color + ", " + color
-                    else:
-                        color = str(colors[score])
-                    
-                    color = color + ", " + color
-
-                    if score > distance * 20:
-                        color = purple + ", " + color + ", " + purple
-                    if score > distance * 10:
-                        color = dark_purple + ", " + color + ", " + dark_purple
-                    if score > distance:
-                        color = blue + ", " + color + ", " + blue
-                    
-                    color = teal + ", " + color + ", " + teal
-
-                    datalist.append(color)
-                            
-                df['user_color'] = datalist
-                
-                ##Create Current User Color
-                score = int(round(user_badge_score, 0))
-                if score < 0:
-                    score = 0
-                color = str(colors[score])
-                color = color + ", " + color
-
-                if score > distance * 20:
-                    color = purple + ", " + color + ", " + purple
-                if score > distance * 10:
-                    color = dark_purple + ", " + color + ", " + dark_purple
-                if score > distance:
-                    color = blue + ", " + color + ", " + blue
-                
-                    color = teal + ", " + color + ", " + teal
-
-                user_badge_color = color
+                #Create Score Bar Print
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
                                 
                 ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]
@@ -772,17 +723,9 @@ def user_page(username):
                 replys = df[df["reply_to_id"].notnull()]
                 replys = replys.sort_values(by=['post_id'], ascending=True)  
                 
-                #Get iteration id so AJAX knows when data is new
-                iteration_id = df['post_score'].sum()/df['post_score'].count()
-
-                #Get the color of the profile you are on
-                profile_badge_color = posts['user_color'][0]
             else:
                 posts = df
                 replys = df
-                iteration_id = 0
-                profile_badge_color = "#70C7EC, #70C7EC"
-                user_badge_color = "#70C7EC, #70C7EC"
 
             #Get Photos for all IDs
             if len(posts.index) > 0:
@@ -816,7 +759,7 @@ def user_page(username):
 
             
 
-            return render_template('profile.html', profile_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id,  iteration_id = iteration_id, posts=posts, photos=photos, replys=replys, camp_id=camp_id, user_badge_color=user_badge_color, profile_badge_color = profile_badge_color)
+            return render_template('profile.html', profile_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, posts=posts, photos=photos, replys=replys, camp_id=camp_id)
         except Exception as e:
             # e holds description of the error
             print(e)

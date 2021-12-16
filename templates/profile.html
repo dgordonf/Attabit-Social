@@ -299,7 +299,7 @@ flex-grow: 1;
   width: 56px;
   height: 56px; 
   position: relative;
-  /*background: conic-gradient(from 250deg, {{user_badge_color}});*/
+
   background:transparent;
 }
 
@@ -894,6 +894,32 @@ body.modal-open {
 
 }
 
+.handle_score_box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height:100%;
+}
+
+.score_bar {
+  width: 100%;
+  height: 10px;
+  margin:7px;
+  font-weight: 600;
+  opacity: 0.35;
+}
+
+.score {
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-weight: 600;
+    border: 2px solid #414141;
+    outline: none;
+    border-radius: 5px;
+}
+
 </style>
 
 
@@ -1309,18 +1335,25 @@ $('#fileInput').on( 'change', function(){
         </form>
         {% else %}  
         {% endif %}     
-      <div class = "post_info_box">
+        <div class = "post_info_box">
           <a class= "profile_link" href = "/@{{posts['handle']}}">
             <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
               
             </div>
           </a>  
           
+          <div class = "handle_score_box">
             <div style= 'height: 15px;'>
               <a class= "profile_link" href = "/@{{posts['handle']}}">
               <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}}</span>
               </a>  
             </div>
+            <div style="margin-top:10px;">
+              <span class= "score_bar">{{posts['user_score_bars_print']}} {{posts['user_score']}}</span>
+            </div>
+
+
+          </div>
       </div>
         
           <div class = "post_text" style="post_score:{{posts['post_score']}};">
@@ -1420,7 +1453,7 @@ $('#fileInput').on( 'change', function(){
             <div class = "reply_inner">
         {% endif %}       
           <a class= "profile_link" href = "/@{{posts['handle']}}">
-            <div class = "badge" style="background: conic-gradient(from 250deg,  {{ reply['user_color']}});">
+            <div class = "badge" style="background: conic-gradient(from 250deg);">
               <div class = "badge_inner" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ reply['profile_photo'] }} ');"> </div>
             </div>
             
