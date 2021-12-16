@@ -1162,6 +1162,16 @@ def post(post_id):
             post_info['creation_time'] = post_info['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
             post_info['creation_time'] = post_info['creation_time'].dt.strftime('%m-%d-%Y')
 
+            #Create User Score bar chart
+            post_info['user_score'] = post_info['user_score']/100
+            post_info['user_score_bars'] = (post_info['user_score'] % 1) * 10
+            post_info['user_score_bars'] = post_info['user_score_bars'].round(0).astype(int)
+            post_info['user_score'] = post_info['user_score'].round(0).astype(int)
+
+            #Create Score Bar Print
+            post_info['user_score_bars_print'] = post_info['user_score_bars'].apply(lambda x: '■' * x)
+            post_info['user_score_bars_print'] = post_info['user_score_bars_print'] + post_info['user_score_bars'].apply(lambda x: '□' * (10 - x))
+
             
             #Get all replies on page
             with engine.connect() as connection:
@@ -1246,6 +1256,16 @@ def post(post_id):
                 #Correct Update Post Score (All posts begin at a score of 0) and round
                 df['post_score'] = df['post_score'].fillna(0).astype(int)
                 df['user_score'] = df['user_score'].fillna(0).astype(int)
+
+                #Create User Score bar chart
+                df['user_score'] = df['user_score']/100
+                df['user_score_bars'] = (df['user_score'] % 1) * 10
+                df['user_score_bars'] = df['user_score_bars'].round(0).astype(int)
+                df['user_score'] = df['user_score'].round(0).astype(int)
+
+                #Create Score Bar Print
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
 
                 #Sort by post_score
                 df = df.sort_values(by=['post_score'], ascending=False)
