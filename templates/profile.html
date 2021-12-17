@@ -1277,6 +1277,15 @@ $('#fileInput').on( 'change', function(){
     <div>
       <div style="font-size: 35px;color:#4e4e4e;line-height: 35px;">{{profile_info['first_name'][0]}}</div>
       <div style = "font-size: 20px;line-height: 20px;color:#7c7c7c;">@{{profile_handle}}</div>
+
+      <div class = "handle_score_box">
+        <div style="font-size: 19px;">
+          <span class= "score_bar" style = "margin-left: 0px;opacity:0.65;">{{profile_info['user_score_bars_print'][0]}} {{profile_info['user_score'][0]}}</span>
+        </div>
+      </div>
+
+    </div>
+
       <div style = "margin-top:25px;white-space: pre-wrap;word-wrap: break-word; word-break: break-all;font-size: 17px;">{{profile_info['bio'][0]}}</div>
     </div>
   </div>  

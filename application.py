@@ -438,9 +438,8 @@ def feed():
                 
                 #Create User Score bar chart
                 df['user_score'] = df['user_score']/100
-                df['user_score_bars'] = (df['user_score'] % 1) * 10
-                df['user_score_bars'] = df['user_score_bars'].round(0).astype(int)
-                df['user_score'] = df['user_score'].round(0).astype(int)
+                df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
+                df['user_score'] = df['user_score'].astype(int)
 
                 #Create Score Bar Print
                 df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
@@ -507,16 +506,35 @@ def user_page(username):
         return redirect('/')
 
     #Get Profile Page's User ID
+
+
+
+
     try:
         with engine.connect() as connection:
-            ResultProxy = connection.execute('SELECT u.id, u.handle, u.first_name, u.profile_photo, COALESCE(u.bio,"") as bio FROM users u WHERE u.handle = %s;', (profile_username))
+            ResultProxy = connection.execute('''SELECT u.id, u.handle, u.first_name, u.profile_photo, COALESCE(u.bio,"") as bio, SUM(p1.value) AS user_score
+                                                    FROM users u
+                                                    LEFT JOIN posts p ON p.user_id = u.id
+                                                    LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                    WHERE u.handle = %s;''', (profile_username))
         
         profile_info = DataFrame(ResultProxy.fetchall())
         profile_info.columns = ResultProxy.keys()
-        
     except Exception as e:
         print(e)
-  
+
+    profile_info['user_score'] = profile_info['user_score'].fillna(0).astype(int)
+               
+    #Create User Score bar chart
+    profile_info['user_score'] = profile_info['user_score']/100
+    profile_info['user_score_bars'] = ((profile_info['user_score'] % 1) * 10).astype(int)
+    profile_info['user_score'] = profile_info['user_score'].astype(int)
+
+    #Create Score Bar Print
+    profile_info['user_score_bars_print'] = profile_info['user_score_bars'].apply(lambda x: '■' * x)
+    profile_info['user_score_bars_print'] = profile_info['user_score_bars_print'] + profile_info['user_score_bars'].apply(lambda x: '□' * (10 - x))
+
+
     if request.method == 'POST':
         type = request.form.get('update_type')
         post_text = request.form.get('post_text')
@@ -622,10 +640,7 @@ def user_page(username):
     if len(df.index) > 0: 
         try:
             df.columns = ResultProxy.keys()
-            if df['user_score'][0] is None:
-                user_badge_score = 0
-            else:
-                user_badge_score = int(round(df['user_score'][0], 0))
+
             with engine.connect() as connection:
                 ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.media_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, u.first_name, u.handle, u.profile_photo
                                                     FROM posts p 
@@ -706,11 +721,10 @@ def user_page(username):
                 df['post_score'] = df['post_score'].fillna(0).astype(int)
                 df['user_score'] = df['user_score'].fillna(0).astype(int)
                
-                             #Create User Score bar chart
+                #Create User Score bar chart
                 df['user_score'] = df['user_score']/100
-                df['user_score_bars'] = (df['user_score'] % 1) * 10
-                df['user_score_bars'] = df['user_score_bars'].round(0).astype(int)
-                df['user_score'] = df['user_score'].round(0).astype(int)
+                df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
+                df['user_score'] = df['user_score'].astype(int)
 
                 #Create Score Bar Print
                 df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
@@ -1107,9 +1121,8 @@ def post(post_id):
 
             #Create User Score bar chart
             post_info['user_score'] = post_info['user_score']/100
-            post_info['user_score_bars'] = (post_info['user_score'] % 1) * 10
-            post_info['user_score_bars'] = post_info['user_score_bars'].round(0).astype(int)
-            post_info['user_score'] = post_info['user_score'].round(0).astype(int)
+            post_info['user_score_bars'] = ((post_info['user_score'] % 1) * 10).astype(int)
+            post_info['user_score'] = post_info['user_score'].astype(int)
 
             #Create Score Bar Print
             post_info['user_score_bars_print'] = post_info['user_score_bars'].apply(lambda x: '■' * x)
@@ -1202,9 +1215,8 @@ def post(post_id):
 
                 #Create User Score bar chart
                 df['user_score'] = df['user_score']/100
-                df['user_score_bars'] = (df['user_score'] % 1) * 10
-                df['user_score_bars'] = df['user_score_bars'].round(0).astype(int)
-                df['user_score'] = df['user_score'].round(0).astype(int)
+                df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
+                df['user_score'] = df['user_score'].astype(int)
 
                 #Create Score Bar Print
                 df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
