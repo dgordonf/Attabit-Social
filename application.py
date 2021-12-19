@@ -434,8 +434,7 @@ def feed():
                 #Correct Update Post Score (All posts begin at a score of 0) and round
                 df['post_score'] = df['post_score'].fillna(0).astype(int)
                 df['user_score'] = df['user_score'].fillna(0).astype(int)
-                       
-                
+
                 #Create User Score bar chart
                 df['user_score'] = df['user_score']/100
                 df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
