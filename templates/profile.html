@@ -559,17 +559,36 @@ flex-grow: 1;
 
 }
 
-.profile_badge {
-  float: left;
+#profile_photo {
+  position: relative;
+  width: 100%;
+  max-width: 25%;
+  padding-bottom: 25%;
   border-radius: 50%;
-  min-width: 155px;
-  width: 155px;
-  height: 155px; 
 
+}
+
+#profile_photo img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  object-fit: cover;
+  border-radius: 50%;
+
+}
+
+
+.profile_badge {
+
+  border-radius: 50%;
+  width: 33%;
   position: relative;
 
   background:transparent;
 }
+
 
 .profile_badge_edit {
   border-radius: 50%;
@@ -584,15 +603,11 @@ flex-grow: 1;
 
 .profile_badge_inner {
   background-size: contain;
-  position: absolute;
   border-radius: 50%;
   width: 146px;
   height: 146px; 
   background-color:#ffffff;
-  top: 50%;
-  left: 50%;
-  margin: -73px 0px 0px -73px;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1173,7 +1188,7 @@ $('#fileInput').on( 'change', function(){
         <a href="/search" class = "header_groups_inactive"><i class="fas fa-search"></i></a> 
       </div>
       <div >
-        <a class = "header_groups_inactive"><i class="fas fa-mountain"></i></a> 
+        <a class = "header_groups_inactive"><i class="fas fa-broadcast-tower"></i></a> 
       </div>
     <div>
     <a href="/logout" class = "header_logout">sign out</a> 
@@ -1247,10 +1262,10 @@ $('#fileInput').on( 'change', function(){
 <div class = "profile_info">
 <div class = "profile_flex">
   
-    <div class = "profile_badge">
-      <div class = "profile_badge_inner" style="background-image:url('https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}') ;"> </div>
+    <div id = "profile_photo">
+      <img src="https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}" alt="Imagine a profile image here." >
     </div>
-
+    
   <div class = "profile_details">
     <div class = "follow">
         {% if current_user_id == profile_info['id'][0] %}
