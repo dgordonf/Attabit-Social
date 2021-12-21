@@ -565,7 +565,7 @@ flex-grow: 1;
   max-width: 25%;
   padding-bottom: 25%;
   border-radius: 50%;
-
+ 
 }
 
 #profile_photo img {
@@ -576,9 +576,22 @@ flex-grow: 1;
   position: absolute;
   object-fit: cover;
   border-radius: 50%;
-
+  border: 1px solid black;
+  background: white;
 }
 
+#empty_profile_photo {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid black;
+  background: white;
+  padding-bottom: 100%;
+}
 
 .profile_badge {
 
@@ -1178,7 +1191,7 @@ $('#fileInput').on( 'change', function(){
 <div class = "header" id= "header">
   <div class="header_content">
     <div style = "flex: 1 9999 0%; min-width:40px;">
-    <a href="/" class = "header_title"><b>Superpower</b></a> 
+    <a href="/" class = "header_title"><img style="width:50%;" src="/static/Superpower.png"></a> 
     </div> 
      <div class = "header_icons">
       <div style = "margin-right: 22px">
@@ -1263,7 +1276,11 @@ $('#fileInput').on( 'change', function(){
 <div class = "profile_flex">
   
     <div id = "profile_photo">
-      <img src="https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}" alt="Imagine a profile image here." >
+      {% if profile_info['profile_photo'][0] != None %}
+      <img src="https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}" alt="" >
+      {% else %}
+      <div id = "empty_profile_photo"></div>
+      {% endif %}
     </div>
     
   <div class = "profile_details">
