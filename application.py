@@ -1251,6 +1251,40 @@ def post(post_id):
             hed = '<h1>Something is broken.</h1>'
             return hed + error_text
            
+@application.route('/post_vote', methods = ['POST'])
+@login_required
+def post_delete(post_id):
+    camp_id = 0
+    user_id = current_user.get_user_id()
+    value = request.form.get('post_vote')
+    value = float(value)
+    if value >= 0:
+        value = 1
+    else:
+        value = -1
+    post_id = request.form.get('post_id')
+
+    #Check if this user has voted on this already
+    with engine.connect() as connection:
+        ResultProxy = connection.execute("""SELECT pv.vote_id 
+                                                FROM post_votes pv
+                                                WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
+                                                """, (camp_id, user_id, post_id))
+
+    df = DataFrame(ResultProxy.fetchall())
+    
+    if len(df.index) > 0:
+        with engine.connect() as connection:
+            ResultProxy = connection.execute("""UPDATE post_votes pv
+                                                SET value = %s
+                                                WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
+                                                """, (value, camp_id, user_id, post_id))
+    else:
+        with engine.connect() as connection:
+            connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
+
+    response = jsonify(success=True)
+    return response   
 
 @application.route('/post_delete/<post_id>', methods = ['POST'])
 @login_required
