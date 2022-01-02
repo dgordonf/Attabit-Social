@@ -1321,8 +1321,8 @@ def top(date):
         date_q2 = date_q1 + timedelta(days=1)
     
     #turn to string
-    date_q1 = str(date_q1) + "T00:05:00.000"
-    date_q2 = str(date_q2) + "T00:05:00.000"
+    date_q1 = str(date_q1) + "T05:00:00.000"
+    date_q2 = str(date_q2) + "T05:00:00.000"
 
     #Not sure we need this
     with engine.connect() as connection:
@@ -1375,8 +1375,6 @@ def top(date):
                                                     ORDER BY post_score DESC
                                                     LIMIT 100; """, (date_q1, date_q2))
             df = DataFrame(ResultProxy.fetchall())
-
-            print(df)
 
             if len(df.index) > 0:
                 df.columns = ResultProxy.keys()
