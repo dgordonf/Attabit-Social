@@ -864,13 +864,13 @@ $(document).ready(function(){
       </div> 
      <div class = "header_icons">
       <div style = "margin-right: 22px">
-        <a href="/"  class = "header_groups"><i class="fas fa-home"></i></a> 
+        <a href="/"  class = "header_groups_inactive"><i class="fas fa-home"></i></a> 
       </div>
       <div style = "margin-right: 22px">
         <a href="/search" class = "header_groups_inactive"><i class="fas fa-search"></i></a> 
       </div>
       <div >
-        <a class = "header_groups_inactive" href = "/today"><i class="fas fa-landmark"></i></a> 
+        <a class = "header_groups" href = "/today"><i class="fas fa-landmark"></i></a> 
       </div>
     <div>
     <a href="/logout" class = "header_logout">sign out</a> 
@@ -880,47 +880,8 @@ $(document).ready(function(){
 </div>
 
   <div id= "feed" >
-  <div class = "user_post_box">
-    <div class = "user_post_box_inner"> 
-      <div class = "post_inner">
-        
-        <div style="  display:flex; flex-direction: row; width: 100%;">
-          <a href = @{{current_user_handle}}>
-            <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');">
-            </div>
-          </a>
-        </div>
-
-        <form action="/" method="POST" id = "post_form" enctype="multipart/form-data">  
-          
-          <input class= hidden name= "update_type" value = "post_text">  
-          <input type="hidden" name= "type" value="1">
-        <div id = "post_text_icon_container">
-          <div class="grow-wrap" style = "max-width: 500px;" name= "post_text" >
-            <textarea class = "post_input" style = "max-width: 500px;"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Post something..."></textarea>
-          </div>
-            <div class="image-upload" style = "margin-top: 10px;">
-              <label for="file-input" style="margin-bottom:0px;">
-                <i class="fas fa-camera-retro  image-icon image-not-loaded" id = "image_icon"></i>
-              </label>
-              <input id="file-input" type = "file" name = "user_file" accept="image/*"/>
-
-              <button type="submit" class = "post_button glow-on-hover" style= "float:right;">
-                <span style="font-size:16px;"> Post </span>
-              </button>
-
-
-    
-            </div> 
-          </div>
-          
-    
-          
-        </form>
-   
-      </div> 
-    </div>   
-  </div>
+  
+    <div><b>Anthem of today</b></div>
 
     <div id = "feed_inner">
      {% for index, posts in posts.iterrows() %}
@@ -1037,125 +998,8 @@ $(document).ready(function(){
         </div>  
       </div>
   </div>
-
-   
-
-  {#  
-    {% for key, reply in replys.iterrows() %}
-    {% if posts['post_id'] == reply['reply_to_id'] %}
-      
-    <div class = "post_wrap">  
-      {% if reply['post_score'] <= 0 %}
-        <div class="reply_box border border-0">
-      {% elif reply['post_score'] >= 5 %}
-        <div class="reply_box border border_positive border-5">
-      {% else %}
-        <div class="reply_box border border_positive border-{{reply['post_score']}}">
-      {% endif %} 
-        
-  
-        {% if (reply['media_id'] in photos.media_id.values) %}
-            <div class = "reply_inner" style = "border-radius: 0px 0px 10px 10px;">
-          {% else %}  
-            <div class = "reply_inner">
-        {% endif %}       
-          
-          <a class= "profile_link" href = "/@{{reply['handle']}}">
-            <div class = "badge">
-              <div class = "badge_inner" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ reply['profile_photo'] }} ');"> </div>
-            </div>
-          </a>
-            
-            <div style= 'height: 15px;'>
-              <a class= "profile_link" href = "/@{{reply['handle']}}">
-              {% if reply['post_score'] < 0 %}
-              <span class= "post_person" opacity=".45">{{reply['first_name']}} </span>
-              {% else %}
-              <span class= "post_person">{{reply['first_name']}} </span>
-              {% endif %} 
-              </a>
-            </div>
-            <div id="result"></div>
-            <div>
-            <a class= "profile_link" href = "/@{{reply['handle']}}">
-              <span class= "handle"><span style="font-size:14px;margin-right:1px;">@</span>{{reply['handle']}}</span>
-            </a>
-            </div>
-          
-            <div class = "post_text" style="post_score:{{reply['post_score']}};">
-              
-                {% if reply['post_score'] >= 0 %}
-                  <span  style="white-space: pre-wrap; font-size:16px; Score:{{reply['post_score']}}">{{reply['post_text']}}</span>
-                {% elif reply['post_score'] <= -4 %}
-                  <span  style="white-space: pre-wrap; font-size:1px; Score:{{reply['post_score']}}">{{reply['post_text']}}</span>
-                {% else %}
-                  <span  style="white-space: pre-wrap; font-size:{{16 + (reply['post_score'] * 2)}}px;Score:{{reply['post_score']}}">{{reply['post_text']}}</span> 
-                {% endif %} 
-              
-            </div>
-            <div class = "post_icons">
-
-            <button class = "reply_button" id = "reply_button_{{reply['post_id']}}" value = '{{reply['post_id']}}' onclick="reply_reveal(this.value)">
-              <span style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{reply['reply_count']}}</span>
-            </button>  
-            
-            <form id="form_vote" title="" action= "/" method= "post" class= "form_arrows">
-              <input class= hidden id = "update_type" name= "update_type" value = "post_vote">  
-              <input class= hidden id = "post_vote" name= "post_vote" value = -1>
-              <input type="hidden" id = "post_id" name= "post_id" value={{reply['post_id']}} >
-              {% if reply['current_user_vote'] <= -1 %}
-              <button id= "vote_submit" style = "color:#181818;" type="submit" class="arrow_button" disabled>
-                <span style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{reply['down_votes']}}</span>
-                {% else %}
-              <button id= "vote_submit" type="submit" class="arrow_button">
-                <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{reply['down_votes']}}</span>
-                {% endif %} 
-              </button>
-            </form>
-
-            <form id="form_vote" title="" action="/" method="post" class = "form_arrows">
-              <input class= hidden name= "update_type" value = "post_vote">  
-              <input class= hidden name= "post_vote" value = 1>
-              <input type="hidden" name= "post_id" value={{reply['post_id']}} >
-              <input class= hidden name= "post_vote" value = 1>
-              {% if reply['current_user_vote'] >= 1 %}
-              <button id= "vote_submit" style = "color:#181818;" type="submit" class="arrow_button" disabled>
-                <span style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{reply['up_votes']}}</span>
-                {% else %}
-              <button id= "vote_submit" type="submit" class="arrow_button">
-                <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{reply['up_votes']}}</span>
-                {% endif %} 
-              </button>
-            </form> 
-
-            </div>
-          </div>  
-      </div>   
-      
-      <div id = reply_{{reply['post_id']}} style="display:none" class="reply_box reply_border border-0">
-        <div class = "reply_inner">
-          <div class = "user_badge">
-            <div class = "badge_inner" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ reply['profile_photo'] }} ');"> </div>
-          </div>
-            
-          <div style= "padding-top:5px;padding-bottom:5px;">
-            <form action="/" method="post" class = "reply_form" >
-              <input class= hidden name= "update_type" value = "post_text">  
-              <input id = reply_{{reply['post_id']}}_input class= reply_input type="textbox"  name= "post_text" placeholder="Reply..">
-              <input type="hidden" name= "reply_to_id" value={{reply['post_id']}} >
-              <input type="hidden" name= "type" value="2">
-              <input type="submit" style="visibility:hidden;position:absolute;">
-                
-            </form>
-          </div>
-        </div>
-      </div>
-          {% endif %}
-        {% endfor %}
-    #}  
-
  
-      {% endfor %}
+    {% endfor %}
   </div>
 
 {% endblock %}    

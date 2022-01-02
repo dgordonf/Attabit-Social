@@ -18,7 +18,7 @@
   <link  href="{{url_for('static', filename='cropper.css')}} " rel="stylesheet">
   <script src="{{url_for('static', filename='jquery-cropper.js')}}"></script>
   
-  <title>Superpower</title>
+  <title>OpenAnthem</title>
 </head>
 <body>
 <style>
@@ -685,13 +685,13 @@ background: #313131;
 
 #edit_profile {
   width: 85%;
-  height: 90%;
   max-width:500px;
   min-width: 325px;
   background-color: #fefefe;
   margin: 2% auto; /* 15% from the top and centered */
   border-radius: 15px;
   padding: 10px;
+  padding-bottom: 60px;
 }
 
 #close_edit_button{
@@ -716,15 +716,14 @@ background: #313131;
 
 #edit_profile2 {
   width: 85%;
-  height: 90%;
   z-index: 1001;
   max-width:500px;
   min-width: 325px;
   background-color: #fefefe;
   margin: 2% auto; /* 15% from the top and centered */
   border-radius: 15px;
+  padding-bottom: 100px;
 }
-
 
 #close_edit_button2 {
   font-size: 25px;
@@ -1191,7 +1190,7 @@ $('#fileInput').on( 'change', function(){
 <div class = "header" id= "header">
   <div class="header_content">
     <div style = "flex: 1 9999 0%; min-width:40px;">
-    <a href="/" class = "header_title"><img style="height:20px;" src="/static/Superpower2.png"></a> 
+    <a href="/" class = "header_title"><img style="height:30px;"  src="/static/OpenAnthem2.png"></a> 
     </div> 
      <div class = "header_icons">
       <div style = "margin-right: 22px">
@@ -1201,7 +1200,7 @@ $('#fileInput').on( 'change', function(){
         <a href="/search" class = "header_groups_inactive"><i class="fas fa-search"></i></a> 
       </div>
       <div >
-        <a class = "header_groups_inactive"><i class="fas fa-broadcast-tower"></i></a> 
+        <a class = "header_groups_inactive" href = "/today"><i class="fas fa-landmark"></i></a> 
       </div>
     <div>
     <a href="/logout" class = "header_logout">sign out</a> 
@@ -1242,7 +1241,7 @@ $('#fileInput').on( 'change', function(){
         </div>
         <div style="padding:10px;font-size:17px;">
           <label for ="bio">Bio:</label><br>
-          <textarea id = "bio" class = "post_input" style = "max-width: 500px;border: 2px solid #555555;" name = "bio" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" value = "{{profile_info['bio'][0]}}"></textarea>
+          <textarea id = "bio" class = "post_input" style = "max-width: 500px;border: 2px solid #555555;" name = "bio" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true">{{profile_info['bio'][0]}}</textarea>
 
         </div>
         <input type="submit" class= "non-glow" style ="float:right;margin:15px;" value="Submit">  

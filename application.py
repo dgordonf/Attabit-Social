@@ -18,7 +18,7 @@ import email_validator
 from passlib.hash import sha256_crypt
 from flask_login import login_user, logout_user, login_required, current_user
 import bcrypt
-from datetime import datetime
+from datetime import datetime, timedelta
 from dateutil import tz
 from colour import Color
 import re
@@ -462,7 +462,7 @@ def feed():
                 ids = "(" + ids + ")"
                 
                 with engine.connect() as connection:
-                    ResultProxy = connection.execute('SELECT * FROM photos ph WHERE ph.media_id IN %s;' % ids)
+                    ResultProxy = connection.execute('SELECT * FROM photos ph WHERE ph.media_id IN %s;' % (ids))
 
                 photos = DataFrame(ResultProxy.fetchall())
                 if len(photos.index) > 0:
@@ -505,10 +505,6 @@ def user_page(username):
         return redirect('/')
 
     #Get Profile Page's User ID
-
-
-
-
     try:
         with engine.connect() as connection:
             ResultProxy = connection.execute('''SELECT u.id, u.handle, u.first_name, u.profile_photo, COALESCE(u.bio,"") as bio, SUM(p1.value) AS user_score
@@ -532,7 +528,6 @@ def user_page(username):
     #Create Score Bar Print
     profile_info['user_score_bars_print'] = profile_info['user_score_bars'].apply(lambda x: '■' * x)
     profile_info['user_score_bars_print'] = profile_info['user_score_bars_print'] + profile_info['user_score_bars'].apply(lambda x: '□' * (10 - x))
-
 
     if request.method == 'POST':
         type = request.form.get('update_type')
@@ -762,7 +757,7 @@ def user_page(username):
                 ResultProxy = connection.execute("""SELECT u.handle, COALESCE(f.follow_value, 0 ) as follow_status
                                                         FROM users u
                                                         LEFT JOIN follows f ON f.following = u.id
-                                                        WHERE u.handle = '%s' AND f.user_id = %s AND f.last_update_time IS NULL; """ % (username, user_id))
+                                                        WHERE u.handle = %s AND f.user_id = %s AND f.last_update_time IS NULL; """, (username, user_id))
             try:
                 follow = DataFrame(ResultProxy.fetchall())
                 follow.columns = ResultProxy.keys()
@@ -798,7 +793,7 @@ def follow(username):
 
     #Get user_id of follow account
     with engine.connect() as connection:
-        ResultProxy = connection.execute('''SELECT u.id FROM users u WHERE u.handle = '%s';''' % profile_username)
+        ResultProxy = connection.execute('''SELECT u.id FROM users u WHERE u.handle = '%s';''', profile_username)
 
     df = DataFrame(ResultProxy.fetchall())
     df.columns = ResultProxy.keys()
@@ -847,7 +842,7 @@ def decode_base64_file(data):
         with engine.connect() as connection:
                 ResultProxy = connection.execute('''SELECT u.profile_photo 
                                                     FROM users u
-                                                    WHERE u.id = '%s';''' % (current_user.get_user_id()))
+                                                    WHERE u.id = '%s';''', (current_user.get_user_id()))
         df = DataFrame(ResultProxy.fetchall())
         df.columns = ResultProxy.keys()
 
@@ -862,7 +857,7 @@ def decode_base64_file(data):
                 with engine.connect() as connection:
                     ResultProxy = connection.execute('''SELECT id 
                                                         FROM users u
-                                                        WHERE u.profile_photo = '%s';''' % (file_name))
+                                                        WHERE u.profile_photo = '%s';''', (file_name))
                 
                 df = DataFrame(ResultProxy.fetchall())
                 if len(df.index) == 0:
@@ -903,16 +898,16 @@ def edit_user(username):
         ##Add check if username is taken before letting them update username
         with engine.connect() as connection:
             connection.execute('''UPDATE users u
-                                    SET u.first_name = '%s',
-                                        u.bio = '%s',
-                                        u.profile_photo = '%s'
-                                    WHERE u.id = %s;''' % (name, bio, file_name, user_id))
+                                    SET u.first_name = %s,
+                                        u.bio = %s,
+                                        u.profile_photo = %s
+                                    WHERE u.id = %s;''', (name, bio, file_name, user_id))
     else:
         with engine.connect() as connection:
             connection.execute('''UPDATE users u
-                                    SET u.first_name = '%s',
-                                        u.bio = '%s'
-                                    WHERE u.id = %s;''' % (name, bio, user_id))
+                                    SET u.first_name = %s,
+                                        u.bio = %s
+                                    WHERE u.id = %s;''', (name, bio, user_id))
         
     return redirect("/@" + username)
 
@@ -930,8 +925,8 @@ def search():
         with engine.connect() as connection:
             ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, u.profile_photo, u.creation_time
                                                     FROM users u
-                                                    WHERE u.handle LIKE '%s' OR u.first_name LIKE '%s'
-                                                    ORDER BY u.creation_time ASC;''' % (q, q))
+                                                    WHERE u.handle LIKE %s OR u.first_name LIKE %s
+                                                    ORDER BY u.creation_time ASC;''', (q, q))
 
         df = DataFrame(ResultProxy.fetchall())
 
@@ -959,7 +954,7 @@ def post(post_id):
         with engine.connect() as connection:
             ResultProxy = connection.execute('''SELECT u.profile_photo 
                                                 FROM users u
-                                                WHERE u.id = '%s';''' % (user_id))
+                                                WHERE u.id = %s;''', (user_id))
         df = DataFrame(ResultProxy.fetchall())
         df.columns = ResultProxy.keys()
         current_user_profile_photo = df['profile_photo'][0]
@@ -1089,7 +1084,7 @@ def post(post_id):
                                                     WHERE p2.user_id = %s
                                                     GROUP BY p2.post_id
                                                 ) c on c.post_id = p.post_id 
-                                        WHERE p.post_id = %s AND p.is_deleted = 0; """ % (post_id, post_id, post_id, user_id, post_id))
+                                        WHERE p.post_id = %s AND p.is_deleted = 0; """, (post_id, post_id, post_id, user_id, post_id))
         post_info = DataFrame(ResultProxy.fetchall())
     
     #If yes, load page
@@ -1230,7 +1225,7 @@ def post(post_id):
                 ids = "(" + ids + ")"
                 
                 with engine.connect() as connection:
-                    ResultProxy = connection.execute('SELECT * FROM photos ph WHERE ph.media_id IN %s;' % ids)
+                    ResultProxy = connection.execute('SELECT * FROM photos ph WHERE ph.media_id IN %s;' % (ids))
 
                 photos = DataFrame(ResultProxy.fetchall())
                 if len(photos.index) > 0:
@@ -1253,7 +1248,7 @@ def post(post_id):
            
 @application.route('/post_vote', methods = ['POST'])
 @login_required
-def post_delete(post_id):
+def post_vote(post_id):
     camp_id = 0
     user_id = current_user.get_user_id()
     value = request.form.get('post_vote')
@@ -1303,6 +1298,191 @@ def post_delete(post_id):
          
     response = jsonify(success=True)
     return response
+
+@application.route('/<date>', methods = ['GET'])
+@login_required
+def top(date):
+    camp_id = 0
+    
+    try:
+        user_id = current_user.get_user_id()
+    except Exception as e:
+        return redirect('/login')
+    
+    ## Format date
+    if date == 'today':
+        date_q1 = datetime.today().strftime('%Y-%m-%d')
+
+        #get tomorrow's date
+        date_q2 = (datetime.today() + timedelta(days=1)).strftime('%Y-%m-%d')
+    else:
+        #remove anything that isn't a number or "-"
+        date_q1 = re.sub('[^0-9-]', '', date).strftime('%Y-%m-%d')
+        date_q2 = date_q1 + timedelta(days=1)
+    
+    #turn to string
+    date_q1 = str(date_q1) + "T00:05:00.000"
+    date_q2 = str(date_q2) + "T00:05:00.000"
+
+    #Not sure we need this
+    with engine.connect() as connection:
+        ResultProxy = connection.execute("""SELECT  u.id, u.profile_photo, SUM(p1.value) AS user_score
+                                                    FROM users u
+                                                    LEFT JOIN posts p ON p.user_id = u.id
+                                                    LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                    WHERE u.id = %s
+                                                    GROUP BY u.id
+                                                """, (user_id))
+    df = DataFrame(ResultProxy.fetchall())
+
+    #If yes, load page
+    if len(df.index) > 0: 
+        try:
+            df.columns = ResultProxy.keys()
+            if df['user_score'][0] is None:
+                user_badge_score = 0
+            else:
+                user_badge_score = int(round(df['user_score'][0], 0))
+
+            #Get Profile Photo
+            user_profile_photo = df['profile_photo'][0]
+
+
+            with engine.connect() as connection:
+                ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.media_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, u.first_name, u.handle, u.profile_photo
+                                                    FROM posts p
+				                                    LEFT JOIN users u ON p.user_id = u.id 
+                                                    LEFT JOIN post_votes pv ON p.camp_id = pv.camp_id AND p.post_id = pv.post_id 
+                                                    LEFT JOIN
+                                                            (
+                                                                SELECT u.id, SUM(p1.value) AS user_score
+																	FROM users u
+																	LEFT JOIN posts p ON p.user_id = u.id
+																	LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+																	GROUP BY u.id
+                                                            ) b ON b.id = u.id
+                                                    LEFT JOIN
+                                                    		(
+                                                    		SELECT p2.post_id, SUM(p2.value) AS current_user_vote
+																FROM post_votes p2
+																WHERE p2.camp_id = 0 AND p2.user_id = 8
+																GROUP BY p2.post_id
+                                                    		) c on c.post_id = p.post_id 
+                                                    WHERE (p.reply_to_id IS NULL) AND p.is_deleted = 0 
+                                                    AND p.creation_time >= %s  
+      												AND p.creation_time <= %s
+                                                      GROUP BY p.post_id
+                                                    ORDER BY post_score DESC
+                                                    LIMIT 100; """, (date_q1, date_q2))
+            df = DataFrame(ResultProxy.fetchall())
+
+            print(df)
+
+            if len(df.index) > 0:
+                df.columns = ResultProxy.keys()
+
+                #Get comments and scores for each post_id
+                ids = ', '.join(f'{w}' for w in df.post_id)
+                ids = "(" + ids + ")"
+
+                with engine.connect() as connection:
+                    ResultProxy = connection.execute("""SELECT p.post_id, p2.reply_count, pv.down_votes, pv2.up_votes
+                                                                FROM posts p
+                                                                LEFT JOIN
+                                                                    (
+                                                                        SELECT p.reply_to_id, COUNT(p.post_id) AS reply_count
+                                                                            FROM posts p
+                                                                            WHERE p.reply_to_id IN %s AND p.is_deleted = 0
+                                                                            GROUP BY p.reply_to_id
+                                                                    ) p2 ON p2.reply_to_id = p.post_id
+                                                                LEFT JOIN
+                                                                    (
+                                                                        SELECT pv.post_id, COUNT(pv.value) AS down_votes
+                                                                            FROM post_votes pv
+                                                                            WHERE pv.post_id IN %s AND pv.value < 0
+                                                                            GROUP BY pv.post_id
+                                                                    ) pv ON pv.post_id = p.post_id
+                                                                LEFT JOIN
+                                                                    (
+                                                                        SELECT pv.post_id, COUNT(pv.value) AS up_votes
+                                                                            FROM post_votes pv
+                                                                            WHERE pv.post_id IN %s AND pv.value > 0
+                                                                            GROUP BY pv.post_id
+                                                                    ) pv2 ON pv2.post_id = p.post_id	
+                                                                WHERE p.post_id IN %s AND p.camp_id = %s; """ % (ids, ids, ids, ids, camp_id))
+                    
+                    df2 = DataFrame(ResultProxy.fetchall())
+                    df2.columns = ResultProxy.keys()
+                    df2['reply_count'] = round(df2['reply_count'].fillna(0).astype(int), 0)
+                    df2['down_votes'] = round(df2['down_votes'].fillna(0).astype(int), 0)
+                    df2['up_votes'] = round(df2['up_votes'].fillna(0).astype(int), 0)
+
+                    df2['reply_count'] = df2['reply_count'].replace(0, " ")
+                    df2['down_votes'] = df2['down_votes'].replace(0, " ")
+                    df2['up_votes'] = df2['up_votes'].replace(0, " ")
+
+              
+                df = pd.merge(df, df2, on=['post_id'], how='left')
+                #Correct Timezone
+                to_zone = tz.tzlocal()
+
+                df['creation_time'] = pd.to_datetime(df['creation_time'])
+                df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
+                df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
+
+                #Correct Update Post Score (All posts begin at a score of 0) and round
+                df['post_score'] = df['post_score'].fillna(0).astype(int)
+                df['user_score'] = df['user_score'].fillna(0).astype(int)
+
+                #Create User Score bar chart
+                df['user_score'] = df['user_score']/100
+                df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
+                df['user_score'] = df['user_score'].astype(int)
+
+                #Create Score Bar Print
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
+       
+                ##Split into posts and replys
+                posts = df[df["reply_to_id"].isnull()]
+                posts = posts.sort_values(by=['post_id'], ascending=False)  
+                
+            else:
+                posts = df
+ 
+                
+
+            #Get Photos for all IDs
+            if len(posts.index) > 0:
+                ids = ', '.join(f'"{w}"' for w in posts.media_id)
+                ids = "(" + ids + ")"
+                
+                with engine.connect() as connection:
+                    ResultProxy = connection.execute('SELECT * FROM photos ph WHERE ph.media_id IN %s;' % (ids))
+
+                photos = DataFrame(ResultProxy.fetchall())
+                if len(photos.index) > 0:
+                    photos.columns = ResultProxy.keys()
+                    photos['bottom-padding'] = ((photos['height']/photos['width'])*100) - 5
+                else:
+                    photos = pd.DataFrame({"media_id": [0]})
+            else:
+                photos = pd.DataFrame({"media_id": [0]})
+
+            handle = current_user.get_user_handle()
+
+            return render_template('top.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, camp_id=camp_id)
+        except Exception as e:
+            # e holds description of the error
+            error_text = "<p>The error:<br>" + str(e) + "</p>"
+            hed = '<h1>Something is broken.</h1>'
+            return hed + error_text
+           
+    else:
+        flash('You are not a member of that camp')
+        return redirect('/')
+
+
 
 if __name__ == '__main__':
     #Need to make this port 443 in prod

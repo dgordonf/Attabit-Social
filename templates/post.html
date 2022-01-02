@@ -18,7 +18,7 @@
   <link  href="{{url_for('static', filename='cropper.css')}} " rel="stylesheet">
   <script src="{{url_for('static', filename='jquery-cropper.js')}}"></script>
   
-  <title>Superpower</title>
+  <title>OpenAnthem</title>
 </head>
 <body>
 <style>
@@ -967,32 +967,6 @@ body.modal-open {
   
   });
 
-  //Delete Posts
-  $(document).ready(function(){
-  $(".post_delete").submit(function(event){
-    event.preventDefault();
-
-    var r = confirm("Are you sure you want to delete this post? This cannot be undone");
-    if (r == true) {
-    
-    var $form = $(this),
-      url = $form.attr('action');
-    
-    req = $.ajax({
-        method: "POST",
-        url: url,
-        data: $(this).serialize(), 
-        success:function(){
-          location.reload();
-        }
-    })
-    
-    }  
-  });
- 
-  });
-
-
   //Wait until Doc is ready
   $(document).ready(function(){
  
@@ -1017,10 +991,31 @@ body.modal-open {
   });
 
 
+  
+  //Delete Posts
+  $(document).ready(function(){
+  $(".post_delete").submit(function(event){
+    event.preventDefault();
 
-
-
-
+    var r = confirm("Are you sure you want to delete this post? This cannot be undone");
+    if (r == true) {
+    
+    var $form = $(this),
+      url = $form.attr('action');
+    
+    req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize(), 
+        success:function(){
+          location.reload();
+        }
+    })
+    
+    }  
+  });
+ 
+  });
   </script>
 
 <script>
@@ -1166,7 +1161,7 @@ $('#fileInput').on( 'change', function(){
 <div class = "header" id= "header">
   <div class="header_content">
     <div style = "flex: 1 9999 0%; min-width:40px;">
-      <a href="/" class = "header_title"><img style="height:20px;" src="/static/Superpower2.png"></a> 
+      <a href="/" class = "header_title"><img style="height:30px;"  src="/static/OpenAnthem2.png"></a> 
       </div> 
      <div class = "header_icons">
       <div style = "margin-right: 22px">
@@ -1176,7 +1171,7 @@ $('#fileInput').on( 'change', function(){
         <a href="/search" class = "header_groups_inactive"><i class="fas fa-search"></i></a> 
       </div>
       <div >
-        <a class = "header_groups_inactive"><i class="fas fa-broadcast-tower"></i></a> 
+        <a class = "header_groups_inactive" href = "/today"><i class="fas fa-landmark"></i></a> 
       </div>
     <div>
     <a href="/logout" class = "header_logout">sign out</a> 
