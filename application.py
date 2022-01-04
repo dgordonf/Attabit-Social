@@ -1309,17 +1309,28 @@ def top(date):
     except Exception as e:
         return redirect('/login')
     
+    
+    
     ## Format date
     if date == 'today':
         date_q1 = datetime.today().strftime('%Y-%m-%d')
 
         #get tomorrow's date
         date_q2 = (datetime.today() + timedelta(days=1)).strftime('%Y-%m-%d')
+
     else:
         #remove anything that isn't a number or "-"
-        date_q1 = re.sub('[^0-9-]', '', date).strftime('%Y-%m-%d')
+        date = re.sub('[^0-9-]', '', date)
+        date_q1 = datetime.strptime(date, '%Y-%m-%d')
         date_q2 = date_q1 + timedelta(days=1)
-    
+
+        date_q1 = date_q1.strftime('%Y-%m-%d')
+        date_q2 = date_q2.strftime('%Y-%m-%d')
+
+    #Get display dates
+    today = str(datetime.today().strftime('%Y-%m-%d'))
+    date_selected = str(date_q1)
+
     #turn to string
     date_q1 = str(date_q1) + "T05:00:00.000"
     date_q2 = str(date_q2) + "T05:00:00.000"
@@ -1347,7 +1358,8 @@ def top(date):
             #Get Profile Photo
             user_profile_photo = df['profile_photo'][0]
 
-
+            print(date_q1)
+            print(date_q2)
             with engine.connect() as connection:
                 ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.media_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, u.first_name, u.handle, u.profile_photo
                                                     FROM posts p
@@ -1469,7 +1481,7 @@ def top(date):
 
             handle = current_user.get_user_handle()
 
-            return render_template('top.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, camp_id=camp_id)
+            return render_template('top.html', today = today, date_selected = date_selected, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, camp_id=camp_id)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"

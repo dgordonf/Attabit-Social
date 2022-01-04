@@ -701,6 +701,13 @@ background: transparent;
     border-radius: 5px;
 }
 
+#date_select {
+    border: 2px solid #1b1b1b;
+    outline: none;
+    background: transparent;
+    font-weight: 600;
+    border-radius: 10px;
+}
 </style>
 
 <script>
@@ -768,36 +775,17 @@ $(document).ready(function(){
 });
 });
 
-//Use this function to create timestamp and check if their is any new updated data: https://stackoverflow.com/questions/42786309/ajax-refresh-div-only-if-variable-changed
+//Update Date on change
+$(document).ready(function(){  
 
-//Refresh Page Function
+$('#date_select').on('input', function() {
+    event.preventDefault();
+    var date = $(this).val();
+    //redicrect to new page
+    window.location.href = "/" + date;
 
-
-// $(document).ready(function(){  
-// function refreshPage() {
-//  req = $.ajax({
-//        method: "GET",
-//        url: "/",
-//        dataType: "html"
-//    })
-    
-//  req.done(function( data ) {
-//   var new_id = $(data).find('#change_flag').text();
-//   var now_id = $(document).find('#change_flag').text();
- 
-//  if (new_id != now_id){
-//      $("#feed_inner").html($(data).find('#feed_inner').html());
-//      window.setTimeout(refreshPage, 30000);
-//    }  else {
-//     window.setTimeout(refreshPage, 30000);
-   
-//      }
-   
-
-//  });    
-// }
-// window.setTimeout(refreshPage, 30000);
-// });
+});
+});
 
   </script>
 
@@ -853,8 +841,6 @@ $(document).ready(function(){
   });
 </script>
 
-
-
 {% extends "layout.html" %}
 {% block body %}
 <div class = "header" id= "header">
@@ -881,7 +867,14 @@ $(document).ready(function(){
 
   <div id= "feed" >
   
-    <div><b>Anthem of today</b></div>
+    <div style="font-size: 28px;">
+        <b>Anthem of
+                <input type="date" id="date_select"
+                value= "{{date_selected}}"
+                min="2020-01-01" max="{{today}}">
+       
+        </b>
+    </div>
 
     <div id = "feed_inner">
      {% for index, posts in posts.iterrows() %}

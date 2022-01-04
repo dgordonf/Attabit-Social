@@ -18,8 +18,8 @@ SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.media_id, p.creation_ti
 																GROUP BY p2.post_id
                                                     		) c on c.post_id = p.post_id 
                                                     WHERE (p.reply_to_id IS NULL) AND p.is_deleted = 0 
-                                                    AND p.creation_time >= '2021-10-20T00:00:00.000'  
-      												AND p.creation_time <= '2021-10-21T00:00:00.000'
+                                                    AND p.creation_time >= '2022-01-01T05:00:00.000'  
+      												AND p.creation_time <= '2022-01-02T05:00:00.000'
                                                     GROUP BY p.post_id
                                                     ORDER BY post_score DESC
                                                     LIMIT 100;       
