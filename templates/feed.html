@@ -983,11 +983,11 @@ $(document).ready(function(){
             <div class = "post_text" style="post_score:{{posts['post_score']}};">
               
                 {% if posts['post_score'] >= 0 %}
-                  <span  style="white-space: pre-wrap; font-size:16px; Score:{{posts['post_score']}}">{{posts['post_text']}}</span> 
+                  <span  style="white-space: pre-wrap; font-size:16px; Score:{{posts['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span> 
                 {% elif posts['post_score'] <= -4 %}
-                  <span  style="white-space: pre-wrap; font-size:1px; Score:{{posts['post_score']}}">{{posts['post_text']}}</span> 
+                  <span  style="white-space: pre-wrap; font-size:1px; Score:{{posts['post_score']}}">{{ posts['post_text']|urlize(40, true) }} </span> 
                 {% else %}
-                  <span  style="white-space: pre-wrap; font-size:{{16 + (posts['post_score'] * 2)}}px;Score:{{posts['post_score']}}">{{posts['post_text']}}</span> 
+                  <span  style="white-space: pre-wrap; font-size:{{16 + (posts['post_score'] * 2)}}px;Score:{{posts['post_score']}}">{{ posts['post_text']|urlize(40, true) }} </span> 
                 {% endif %} 
                 
                   

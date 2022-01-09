@@ -1241,7 +1241,7 @@ $('#fileInput').on( 'change', function(){
         </div>
         <div style="padding:10px;font-size:17px;">
           <label for ="bio">Bio:</label><br>
-          <textarea id = "bio" class = "post_input" style = "max-width: 500px;border: 2px solid #555555;" name = "bio" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true">{{profile_info['bio'][0]}}</textarea>
+          <textarea id = "bio" class = "post_input" style = "max-width: 500px;border: 2px solid #555555;" name = "bio" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true">{{profile_info['bio'][0] }}</textarea>
 
         </div>
         <input type="submit" class= "non-glow" style ="float:right;margin:15px;" value="Submit">  
@@ -1317,7 +1317,7 @@ $('#fileInput').on( 'change', function(){
 
     </div>
 
-      <div style = "margin-top:25px;white-space: pre-wrap;word-wrap: break-word; word-break: break-all;font-size: 17px;">{{profile_info['bio'][0]}}</div>
+      <div style = "margin-top:25px;white-space: pre-wrap;word-wrap: break-word; word-break: break-all;font-size: 17px;">{{ profile_info['bio'][0]|urlize(40, true) }}</div>
     </div>
   </div>  
 
@@ -1399,11 +1399,11 @@ $('#fileInput').on( 'change', function(){
           <div class = "post_text" style="post_score:{{posts['post_score']}};">
             
               {% if posts['post_score'] >= 0 %}
-                <span  style="white-space: pre-wrap; font-size:16px; Score:{{posts['post_score']}}">{{posts['post_text']}}</span> 
+                <span  style="white-space: pre-wrap; font-size:16px; Score:{{posts['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span> 
               {% elif posts['post_score'] <= -4 %}
-                <span  style="white-space: pre-wrap; font-size:1px; Score:{{posts['post_score']}}">{{posts['post_text']}}</span> 
+                <span  style="white-space: pre-wrap; font-size:1px; Score:{{posts['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span> 
               {% else %}
-                <span  style="white-space: pre-wrap; font-size:{{16 + (posts['post_score'] * 2)}}px;Score:{{posts['post_score']}}">{{posts['post_text']}}</span> 
+                <span  style="white-space: pre-wrap; font-size:{{16 + (posts['post_score'] * 2)}}px;Score:{{posts['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span> 
               {% endif %} 
               
                 
@@ -1513,11 +1513,11 @@ $('#fileInput').on( 'change', function(){
             <div class = "post_text" style="post_score:{{reply['post_score']}};">
               
                 {% if reply['post_score'] >= 0 %}
-                  <span  style="font-size:18px; Score:{{reply['post_score']}}">{{posts['post_text']}}</span>
+                  <span  style="font-size:18px; Score:{{reply['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span>
                 {% elif reply['post_score'] <= -4 %}
-                  <span  style="font-size:1px; Score:{{reply['post_score']}}">{{posts['post_text']}}</span>
+                  <span  style="font-size:1px; Score:{{reply['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span>
                 {% else %}
-                  <span  style="font-size:{{18 + (reply['post_score'] * 2)}}px;Score:{{reply['post_score']}}">{{posts['post_text']}}</span>
+                  <span  style="font-size:{{18 + (reply['post_score'] * 2)}}px;Score:{{reply['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span>
                 {% endif %} 
                   
             </div>
