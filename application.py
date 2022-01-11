@@ -1481,6 +1481,8 @@ def top(date):
 
             handle = current_user.get_user_handle()
 
+            print(df)
+
             return render_template('top.html', today = today, date_selected = date_selected, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, camp_id=camp_id)
         except Exception as e:
             # e holds description of the error

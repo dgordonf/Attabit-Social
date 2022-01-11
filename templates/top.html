@@ -387,6 +387,12 @@ flex-grow: 1;
   padding-bottom: 16px;
 }
 
+.date_box {
+  padding: 23px;
+  background-color: #ffffff;
+  border-radius:7px;
+}
+
 .reply_inner {
   padding: 17px;
   padding-bottom: 15px;
@@ -878,9 +884,26 @@ $('#date_select').on('input', function() {
     </div>
 
     <div id = "feed_inner">
-     {% for index, posts in posts.iterrows() %}
+
+      {% if posts['user_id']|length == 0 %}
+
+
+      <div class="post_box border border-0">
+        <div class = "date_box" style = "font-weight:600;font-size:20px;">
+        {% if date_selected == today %}
+          Nothing posted yet today! 
+        {% else %}
+          Nothing was posted on {{date_selected}}
+        {% endif %}
+          
+        </div>
+      </div>
+
+      {% endif %}
+
+    {% for index, posts in posts.iterrows() %}
     
-      <div class = "post_wrap">
+    <div class = "post_wrap">
       
       <div class="post_box border border-0">
       {% if (posts['media_id'] in photos.media_id.values) %}
