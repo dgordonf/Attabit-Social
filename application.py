@@ -917,10 +917,19 @@ def search():
     user_id = current_user.get_user_id()
     q = request.args.get('q')
 
+    #Get current user profile photo
+    with engine.connect() as connection:
+        ResultProxy = connection.execute('''SELECT u.profile_photo 
+                                            FROM users u
+                                            WHERE u.id = %s;''', (user_id))
+    df = DataFrame(ResultProxy.fetchall())
+    df.columns = ResultProxy.keys()
+    current_user_profile_photo = df['profile_photo'][0]
+
     if q == "" or q == None:
         df = None
         q = None
-        return render_template('search.html', df = df, user_id = user_id, q = q)
+        return render_template('search.html', df = df, user_id = user_id, q = q, current_user_profile_photo = current_user_profile_photo)
     else:
         with engine.connect() as connection:
             ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, u.profile_photo, u.creation_time
@@ -935,7 +944,8 @@ def search():
         return render_template('search.html',
                                 user_id = user_id,
                                 df = df, 
-                                q = q)
+                                q = q,
+                                current_user_profile_photo = current_user_profile_photo)
     
 @application.route('/post/<post_id>', methods = ['GET', 'POST'])
 @login_required
