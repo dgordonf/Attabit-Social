@@ -436,7 +436,7 @@ def feed():
                 df['user_score'] = df['user_score'].fillna(0).astype(int)
 
                 #Create User Score bar chart
-                df['user_score'] = df['user_score']/100
+                df['user_score'] = df['user_score']/10
                 df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
                 df['user_score'] = df['user_score'].astype(int)
 
@@ -487,9 +487,9 @@ def feed():
         return redirect('/')
 
 
-@application.route('/favicon.ico') 
+@application.route('/favicon.png') 
 def favicon(): 
-    return send_from_directory(os.path.join(application.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(application.root_path, 'static'), 'favicon.png', mimetype='image/vnd.microsoft.icon')
 
 @application.route('/@<username>', methods = ['POST','GET'])
 @login_required
@@ -716,7 +716,7 @@ def user_page(username):
                 df['user_score'] = df['user_score'].fillna(0).astype(int)
                
                 #Create User Score bar chart
-                df['user_score'] = df['user_score']/100
+                df['user_score'] = df['user_score']/10
                 df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
                 df['user_score'] = df['user_score'].astype(int)
 
@@ -1218,7 +1218,7 @@ def post(post_id):
                 df['user_score'] = df['user_score'].fillna(0).astype(int)
 
                 #Create User Score bar chart
-                df['user_score'] = df['user_score']/100
+                df['user_score'] = df['user_score']/10
                 df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
                 df['user_score'] = df['user_score'].astype(int)
 
@@ -1305,7 +1305,7 @@ def post_delete(post_id):
             ResultProxy = connection.execute('''UPDATE posts p
                                                     SET p.is_deleted = 1
                                                     WHERE p.post_id = %s AND p.user_id = %s;''', (post_id, user_id))
-         
+
     response = jsonify(success=True)
     return response
 
@@ -1455,7 +1455,7 @@ def top(date):
                 df['user_score'] = df['user_score'].fillna(0).astype(int)
 
                 #Create User Score bar chart
-                df['user_score'] = df['user_score']/100
+                df['user_score'] = df['user_score']/10
                 df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
                 df['user_score'] = df['user_score'].astype(int)
 
@@ -1508,4 +1508,4 @@ def top(date):
 
 if __name__ == '__main__':
     #Need to make this port 443 in prod
-    application.run(port=8080, debug=True, use_reloader = True)
+    application.run(port=8080, debug=True, use_reloader = True, ssl_context='adhoc')
