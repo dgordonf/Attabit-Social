@@ -6,3 +6,5 @@
 .sql
 venv
 config.py
+auth.log
+syslog
