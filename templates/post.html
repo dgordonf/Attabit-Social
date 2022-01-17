@@ -17,7 +17,8 @@
   <script src="{{url_for('static', filename='cropper.js')}}"></script>
   <link  href="{{url_for('static', filename='cropper.css')}} " rel="stylesheet">
   <script src="{{url_for('static', filename='jquery-cropper.js')}}"></script>
-  
+  <link rel='shortcut icon' href='favicon.png' type='image/x-icon'/ >
+  <link rel="apple-touch-icon" href="favicon.png">
   <title>OpenAnthem</title>
 </head>
 <body>
@@ -395,9 +396,9 @@ flex-grow: 1;
 
 .user_post_box {
   padding: 2px;
-  background: #efefef;
+  background: #4c4c4c;
   border-radius:7px;
- 
+  margin-bottom: 30px;
 
 }
 
@@ -408,7 +409,7 @@ flex-grow: 1;
 }
 
 .post_box {
-  margin-top: 20px;
+  margin-top: 17px;
   padding:2px;
   
   background-color: white;
@@ -431,8 +432,7 @@ flex-grow: 1;
 }
 
 .border-0 {
-  background-color: #efefef;
-  
+  background-color: #4c4c4c;
 }
 
 .border-1 {
@@ -1048,7 +1048,8 @@ body.modal-open {
         url: url,
         data: $(this).serialize(), 
         success:function(){
-          location.reload();
+          var loc = window.location;
+          window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search;
         }
     })
     
