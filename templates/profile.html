@@ -434,7 +434,7 @@ flex-grow: 1;
 }
 
 .border-0 {
-  background-color: #4c4c4c;
+  background-color: #e1e1e18f;
 }
 
 .border-1 {
@@ -949,7 +949,7 @@ body.modal-open {
   height: 10px;
   margin:7px;
   font-weight: 600;
-  opacity: 0.35;
+  opacity: 0.55;
 }
 
 .score {
@@ -1407,14 +1407,8 @@ $('#fileInput').on( 'change', function(){
     
    {% for index, posts in posts.iterrows() %}
       <div class = "post_wrap">  
-    {% if posts['post_score'] <= 0 %}
-      <div class="post_box border border-0">
-    {% elif posts['post_score'] >= 5 %}
-      <div class="post_box border border_positive border-5">
-    {% else %}
-      <div class="post_box border border_positive border-{{posts['post_score']}}">
-    {% endif %} 
-      
+        <div class="post_box border border-0">
+
       
     {% if (posts['media_id'] in photos.media_id.values) %}
       {% for key, photo in photos.iterrows() %}

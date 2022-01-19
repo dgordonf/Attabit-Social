@@ -521,7 +521,7 @@ def user_page(username):
     profile_info['user_score'] = profile_info['user_score'].fillna(0).astype(int)
                
     #Create User Score bar chart
-    profile_info['user_score'] = profile_info['user_score']/100
+    profile_info['user_score'] = profile_info['user_score']/10
     profile_info['user_score_bars'] = ((profile_info['user_score'] % 1) * 10).astype(int)
     profile_info['user_score'] = profile_info['user_score'].astype(int)
 
@@ -1508,4 +1508,4 @@ def top(date):
 
 if __name__ == '__main__':
     #Need to make this port 443 in prod
-    application.run(port=8080, debug=True, use_reloader = True, ssl_context='adhoc')
+    application.run(port=8080, debug=True, use_reloader = True)
