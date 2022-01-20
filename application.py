@@ -830,9 +830,12 @@ def decode_base64_file(data):
         if 'data:' in data and ';base64,' in data:
             # Break out the header from the base64 content
             header, data = data.split(';base64,')
-
+            
         # Try to decode the file. Return validation error if it fails.
         try:
+            missing_padding = len(data) % 4
+            if missing_padding:
+                data += b'='* (4 - missing_padding)
             decoded_file = base64.b64decode(data)
         except TypeError:
             TypeError('invalid_image')
@@ -873,43 +876,56 @@ def decode_base64_file(data):
 @application.route('/@<username>/edit', methods = ['POST'])
 @login_required
 def edit_user(username):
-    user_id = current_user.get_user_id()
+    try:
+        user_id = current_user.get_user_id()
 
-    #Add check if username is taken before uncommenting, should also be a paid feature
-    #handle = request.form.get('handle')
-    name = request.form.get('name')
-    bio = request.form.get('bio')
-    imageData64 = request.form.get('imageData64')
-
-    if imageData64 != "":
-        file, file_name = decode_base64_file(imageData64)
-        #Come back to this
-        #file.thumbnail((200, 200), Image.ANTIALIAS)
+        #Add check if username is taken before uncommenting, should also be a paid feature
+        #handle = request.form.get('handle')
     
-        #Save image to S3
-        s3.upload_fileobj(
-                file,
-                S3_BUCKET,
-                "media/" + file_name,
-                ExtraArgs={
-                    "ACL": "public-read"
-                    })
+        name = request.form.get('name')
+        bio = request.form.get('bio')
+        imageData64 = request.form.get('imageData64')
 
-        ##Add check if username is taken before letting them update username
-        with engine.connect() as connection:
-            connection.execute('''UPDATE users u
-                                    SET u.first_name = %s,
-                                        u.bio = %s,
-                                        u.profile_photo = %s
-                                    WHERE u.id = %s;''', (name, bio, file_name, user_id))
-    else:
-        with engine.connect() as connection:
-            connection.execute('''UPDATE users u
-                                    SET u.first_name = %s,
-                                        u.bio = %s
-                                    WHERE u.id = %s;''', (name, bio, user_id))
+        print(name)
+        print(bio)
+
+        if imageData64 != "" and imageData64 != None:
+            print("I went into the imageData64 if statement")
+            file, file_name = decode_base64_file(imageData64)
+            #Come back to this
+            #file.thumbnail((200, 200), Image.ANTIALIAS)
         
-    return redirect("/@" + username)
+            #Save image to S3
+            s3.upload_fileobj(
+                    file,
+                    S3_BUCKET,
+                    "media/" + file_name,
+                    ExtraArgs={
+                        "ACL": "public-read"
+                        })
+            ##Add check if username is taken before letting them update username
+            with engine.connect() as connection:
+                connection.execute('''UPDATE users u
+                                        SET u.first_name = %s,
+                                            u.bio = %s,
+                                            u.profile_photo = %s
+                                        WHERE u.id = %s;''', (name, bio, file_name, user_id))
+        else:
+            print("I went into the else statement")
+            with engine.connect() as connection:
+                connection.execute('''UPDATE users u
+                                        SET u.first_name = %s,
+                                            u.bio = %s
+                                        WHERE u.id = %s;''', (name, bio, user_id))
+            
+        response = jsonify(success=True)
+        return response  
+    except Exception as e:
+        # e holds description of the error
+        error_text = "<p>The error:<br>" + str(e) + "</p>"
+        hed = '<h1>Something is broken.</h1>'
+        return hed + error_text + imageData64
+
 
 @application.route('/search', methods = ['GET'])
 @login_required

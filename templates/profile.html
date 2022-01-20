@@ -1071,6 +1071,33 @@ body.modal-open {
   
   });
 
+/*
+  //Submit Edit
+  $(document).ready(function(){
+  
+  $(document).on("submit", ".edit_form", function(event) {
+    event.preventDefault();
+    
+    $('#edit_submit').attr('disabled','disabled');
+  
+    var $form = $(this),
+      url = $form.attr('action');
+    
+    req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize(), 
+        success:function(){
+          //This should force browser to update to new profile image
+          var loc = window.location;
+          window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search;
+        }
+    });
+    
+  });
+  
+  });
+*/
   </script>
 
 <script>
@@ -1170,8 +1197,12 @@ $('#fileInput').on( 'change', function(){
                 var css_url = "url(" + "'" + croppedImageDataURL + "'" + ")";
                 d = new Date();
                 $('#edit_profile_badge_inner').css('background-image', "");
+                $('#imageData64').prop("disabled", false);
                 $('#imageData64').val(croppedImageDataURL);
                 
+                $('#fileInput').val('');
+                $('#fileInput').prop("disabled", true);
+
                 setTimeout(function (){
                   $('#edit_profile_badge_inner').css('background-image', css_url);
                 }, 1000);
@@ -1272,7 +1303,7 @@ $('#fileInput').on( 'change', function(){
     <div>
     
       <div class = "menu_badge" onclick="myFunction()" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}} ');"></div>
-      <div id="myDropdown" class="dropdown-content">
+      <div id="myDropdown" class="dropdown-content" style="margin-left:-50px;">
         <a href="/logout" >Log Out</a> 
       </div>
     
@@ -1288,7 +1319,7 @@ $('#fileInput').on( 'change', function(){
     </button> 
    
 
-    <form action="/@{{profile_handle}}/edit" method="post">
+    
     
     <div id = "edit_profile_badge" class= "profile_badge_edit" >
       <div id = "edit_profile_badge_inner" class="profile_badge_inner" style="background-image:url('https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}');"></div>
@@ -1300,9 +1331,11 @@ $('#fileInput').on( 'change', function(){
 
 
 
-        <input type="file" id="fileInput" name="file" style="display:none" />
-        <input id = "imageData64" hidden name="imageData64" id="imageData64" value="">
-        
+      <input type="file" id="fileInput" name="file" style="display:none">
+
+      <form class="edit_form" action="/@{{profile_handle}}/edit" method="post">  
+        <input id = "imageData64" hidden name="imageData64" id="imageData64" value="" disabled>
+        <span id="print_here"></span>
         <div style="padding:10px;font-size:17px;">
           <label for ="handle" >Handle:</label><br>
           <input type = "text" name = "handle" id = "handle" style="border:2px solid #555555;" value = "{{profile_info['handle'][0]}}" disabled>
@@ -1316,8 +1349,12 @@ $('#fileInput').on( 'change', function(){
           <textarea id = "bio" class = "post_input" style = "max-width: 500px;border: 2px solid #555555;" name = "bio" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true">{{profile_info['bio'][0] }}</textarea>
 
         </div>
-        <input type="submit" class= "non-glow" style ="float:right;margin:15px;" value="Submit">  
+        
 
+        <button id="edit_submit" type="submit" class= "non-glow" style ="float:right;margin:15px;">
+          Submit
+        </button> 
+   
     </form>
 
   </div>
@@ -1348,7 +1385,7 @@ $('#fileInput').on( 'change', function(){
   
     <div id = "profile_photo">
       {% if profile_info['profile_photo'][0] != None %}
-      <img src="https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}" alt="" >
+      <img id="profile_image" src="https://hideawayy.s3.amazonaws.com/media/{{profile_info['profile_photo'][0]}}" alt="" >
       {% else %}
       <div id = "empty_profile_photo"></div>
       {% endif %}
