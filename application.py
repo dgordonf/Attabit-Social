@@ -269,7 +269,6 @@ def feed():
                                 "ContentType": media_file.content_type
                                 })
                             
-                    print("we here 239")
                     try:
                         with engine.connect() as connection:
                             connection.execute('INSERT INTO photos (media_id, photo_url, width, height) VALUES (%s, %s, %s, %s);', (media_id, filename, width, height))

@@ -1071,7 +1071,7 @@ body.modal-open {
   
   });
 
-/*
+
   //Submit Edit
   $(document).ready(function(){
   
@@ -1088,6 +1088,10 @@ body.modal-open {
         url: url,
         data: $(this).serialize(), 
         success:function(){
+          var img_src = $('#profile_image').attr('src');
+          var img_src = img_src + "?" + new Date().getTime();
+          $('#profile_image').attr('src', img_src);
+          
           //This should force browser to update to new profile image
           var loc = window.location;
           window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search;
@@ -1097,8 +1101,8 @@ body.modal-open {
   });
   
   });
-*/
-  </script>
+
+</script>
 
 <script>
   //Reveal Reply Box on click
@@ -1188,14 +1192,14 @@ $('#fileInput').on( 'change', function(){
 
              $('#btnCrop').click(function() {
                 // Get a string base 64 data url
-                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
+                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/jpeg", 0.1); 
                 //$result.append( $('<img>').attr('src', croppedImageDataURL) );
 
                 $('#modal2').hide();
                 $('#edit_profile2').hide();
 
                 var css_url = "url(" + "'" + croppedImageDataURL + "'" + ")";
-                d = new Date();
+                
                 $('#edit_profile_badge_inner').css('background-image', "");
                 $('#imageData64').prop("disabled", false);
                 $('#imageData64').val(croppedImageDataURL);
