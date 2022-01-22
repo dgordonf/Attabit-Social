@@ -792,7 +792,9 @@ def follow(username):
 
     #Get user_id of follow account
     with engine.connect() as connection:
-        ResultProxy = connection.execute('''SELECT u.id FROM users u WHERE u.handle = '%s';''', profile_username)
+        ResultProxy = connection.execute('''SELECT u.id 
+                                            FROM users u 
+                                            WHERE u.handle = %s; ''', (profile_username))
 
     df = DataFrame(ResultProxy.fetchall())
     df.columns = ResultProxy.keys()
@@ -841,30 +843,52 @@ def decode_base64_file(data):
 
         # Generate file name:
         #Check if they have uploaded a file, if they have, use that name, if not, use a random name
-        with engine.connect() as connection:
-                ResultProxy = connection.execute('''SELECT u.profile_photo 
-                                                    FROM users u
-                                                    WHERE u.id = '%s';''', (current_user.get_user_id()))
-        df = DataFrame(ResultProxy.fetchall())
-        df.columns = ResultProxy.keys()
-
-        if len(df.index) > 0:
-            file_name = df['profile_photo'][0]
-            file_name = file_name.split('.')[0]
-        else:
-            #Create new file_name
-            #Check that this isn't already in the database
-            while True:
-                file_name = str(uuid.uuid4())[:12]
-                with engine.connect() as connection:
-                    ResultProxy = connection.execute('''SELECT id 
-                                                        FROM users u
-                                                        WHERE u.profile_photo = '%s';''', (file_name))
-                
-                df = DataFrame(ResultProxy.fetchall())
-                if len(df.index) == 0:
-                    break
+        # with engine.connect() as connection:
+        #         ResultProxy = connection.execute('''SELECT u.profile_photo 
+        #                                             FROM users u
+        #                                             WHERE u.profile_photo IS NOT NULL AND u.id = %s;''', (current_user.get_user_id()))
+        # df = DataFrame(ResultProxy.fetchall())
+        # if len(df.index) > 0:
+        #     df.columns = ResultProxy.keys()
+        #     file_name = df['profile_photo'][0]
+        #     file_name = file_name.split('.')[0]
+        # else:
+        #     file_name = None
         
+        # if file_name != None:
+        #     df.columns = ResultProxy.keys()
+        #     file_name = df['profile_photo'][0]
+        #     file_name = file_name.split('.')[0]
+        # else:
+        #     #Create new file_name
+        #     #Check that this isn't already in the database
+        #     while True:
+        #         file_name = str(uuid.uuid4())[:12]
+        #         file_name_search = file_name + ".jpg"
+        #         file_name_search2 = file_name + ".png"
+        #         with engine.connect() as connection:
+        #             ResultProxy = connection.execute('''SELECT u.id 
+        #                                                 FROM users u
+        #                                                 WHERE u.profile_photo = %s OR u.profile_photo = %s;''', (file_name_search, file_name_search2))
+                
+        #         df = DataFrame(ResultProxy.fetchall())
+        #         if len(df.index) == 0:
+        #             break
+
+        #Come up with new filename
+        while True:
+            file_name = str(uuid.uuid4())[:12]
+            file_name_search = file_name + ".jpg"
+            file_name_search2 = file_name + ".png"
+            with engine.connect() as connection:
+                ResultProxy = connection.execute('''SELECT u.id 
+                                                    FROM users u
+                                                    WHERE u.profile_photo = %s OR u.profile_photo = %s;''', (file_name_search, file_name_search2))
+            
+            df = DataFrame(ResultProxy.fetchall())
+            if len(df.index) == 0:
+                break
+
         # Get the file name extension:
         file_extension = get_file_extension(file_name, decoded_file)
 
@@ -880,20 +904,21 @@ def edit_user(username):
 
         #Add check if username is taken before uncommenting, should also be a paid feature
         #handle = request.form.get('handle')
-    
         name = request.form.get('name')
         bio = request.form.get('bio')
         imageData64 = request.form.get('imageData64')
 
-        print(name)
-        print(bio)
-
         if imageData64 != "" and imageData64 != None:
-            print("I went into the imageData64 if statement")
-            file, file_name = decode_base64_file(imageData64)
-            #Come back to this
-            #file.thumbnail((200, 200), Image.ANTIALIAS)
-        
+            
+            try:
+                file, file_name = decode_base64_file(imageData64)
+            except Exception as e:
+                # e holds description of the error
+                print(e)
+                error_text = "<p>The error:<br>" + str(e) + "</p>"
+                hed = '<h1>Something is broken.</h1>'
+                return hed + error_text + imageData64
+            
             #Save image to S3
             s3.upload_fileobj(
                     file,
@@ -902,6 +927,7 @@ def edit_user(username):
                     ExtraArgs={
                         "ACL": "public-read"
                         })
+            print("Uploaded to S3")
             ##Add check if username is taken before letting them update username
             with engine.connect() as connection:
                 connection.execute('''UPDATE users u
@@ -921,6 +947,7 @@ def edit_user(username):
         return response  
     except Exception as e:
         # e holds description of the error
+        print(e)
         error_text = "<p>The error:<br>" + str(e) + "</p>"
         hed = '<h1>Something is broken.</h1>'
         return hed + error_text + imageData64
