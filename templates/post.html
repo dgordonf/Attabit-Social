@@ -396,7 +396,7 @@ flex-grow: 1;
 
 .user_post_box {
   padding: 2px;
-  background: #4c4c4c;
+  background: #ececec;
   border-radius:7px;
   margin-bottom: 30px;
 
@@ -1389,7 +1389,7 @@ $('#fileInput').on( 'change', function(){
             <input type="hidden" name= "type" value="1">
           <div id = "post_text_icon_container">
             <div class="grow-wrap" style = "max-width: 500px;" name= "post_text" >
-              <textarea class = "post_input" style = "max-width: 500px;"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Reply to {{post_info['handle'][0]}}..."></textarea>
+              <textarea class = "post_input" style = "max-width: 500px;"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Reply to @{{post_info['handle'][0]}}..."></textarea>
             </div>
               <div class="image-upload" style = "margin-top: 10px;">
                 <label for="file-input" style="margin-bottom:0px;">

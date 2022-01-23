@@ -1088,10 +1088,15 @@ body.modal-open {
         url: url,
         data: $(this).serialize(), 
         success:function(){
-          var img_src = $('#profile_image').attr('src');
-          var img_src = img_src + "?" + new Date().getTime();
-          $('#profile_image').attr('src', img_src);
           
+          try {
+            var img_src = $('#profile_image').attr('src');
+            var img_src = img_src + "?" + new Date().getTime();
+            $('#profile_image').attr('src', img_src);
+          } finally {
+
+          }  
+
           //This should force browser to update to new profile image
           var loc = window.location;
           window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search;
