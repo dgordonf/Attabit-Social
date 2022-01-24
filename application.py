@@ -33,7 +33,6 @@ import uuid
 import imghdr
 import io
 
-
 #You build this with this tutorial: https://medium.com/techfront/step-by-step-visual-guide-on-deploying-a-flask-application-on-aws-ec2-8e3e8b82c4f7
 #https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-20-04
 
@@ -1361,7 +1360,7 @@ def top(date):
     except Exception as e:
         return redirect('/login')
     
-    
+    to_zone = tz.tzlocal()
     
     ## Format date
     if date == 'today':
@@ -1410,8 +1409,6 @@ def top(date):
             #Get Profile Photo
             user_profile_photo = df['profile_photo'][0]
 
-            print(date_q1)
-            print(date_q2)
             with engine.connect() as connection:
                 ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.media_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, u.first_name, u.handle, u.profile_photo
                                                     FROM posts p
