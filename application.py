@@ -32,6 +32,7 @@ import six
 import uuid
 import imghdr
 import io
+import pytz
 
 #You build this with this tutorial: https://medium.com/techfront/step-by-step-visual-guide-on-deploying-a-flask-application-on-aws-ec2-8e3e8b82c4f7
 #https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-20-04
@@ -1360,14 +1361,12 @@ def top(date):
     except Exception as e:
         return redirect('/login')
     
-    to_zone = tz.tzlocal()
-    
     ## Format date
     if date == 'today':
-        date_q1 = datetime.today().strftime('%Y-%m-%d')
+        date_q1 = datetime.now(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d')
 
         #get tomorrow's date
-        date_q2 = (datetime.today() + timedelta(days=1)).strftime('%Y-%m-%d')
+        date_q2 = (datetime.now(pytz.timezone('US/Eastern')) + timedelta(days=1)).strftime('%Y-%m-%d')
 
     else:
         #remove anything that isn't a number or "-"
@@ -1379,7 +1378,7 @@ def top(date):
         date_q2 = date_q2.strftime('%Y-%m-%d')
 
     #Get display dates
-    today = str(datetime.today().strftime('%Y-%m-%d'))
+    today = str(datetime.now(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d'))
     date_selected = str(date_q1)
 
     #turn to string
