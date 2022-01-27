@@ -971,13 +971,44 @@ def search():
     if q == "" or q == None:
         df = None
         q = None
+
+        #Get all users
+        with engine.connect() as connection:
+            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, b.user_score, u.profile_photo, u.creation_time
+                                                    FROM users u
+                                                    LEFT JOIN
+                                                        (
+                                                            SELECT u.id, SUM(p1.value) AS user_score
+                                                                FROM users u
+                                                                LEFT JOIN posts p ON p.user_id = u.id
+                                                                LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                                GROUP BY u.id
+                                                        ) b ON b.id = u.id
+                                                    WHERE u.id != %s
+                                                    ORDER BY b.user_score DESC
+                                                    LIMIT 100;''', (user_id))
+
+            df = DataFrame(ResultProxy.fetchall())
+            df.columns = ResultProxy.keys()    
+        
+
         return render_template('search.html', df = df, user_id = user_id, q = q, current_user_profile_photo = current_user_profile_photo)
     else:
         with engine.connect() as connection:
-            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, u.profile_photo, u.creation_time
+            search = "%" + q + "%"
+            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, b.user_score, u.profile_photo, u.creation_time
                                                     FROM users u
+                                                    LEFT JOIN
+                                                        (
+                                                            SELECT u.id, SUM(p1.value) AS user_score
+                                                                FROM users u
+                                                                LEFT JOIN posts p ON p.user_id = u.id
+                                                                LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                                GROUP BY u.id
+                                                        ) b ON b.id = u.id
                                                     WHERE u.handle LIKE %s OR u.first_name LIKE %s
-                                                    ORDER BY u.creation_time ASC;''', (q, q))
+                                                    ORDER BY b.user_score DESC
+                                                    LIMIT 50;''', (search, search))
 
         df = DataFrame(ResultProxy.fetchall())
 

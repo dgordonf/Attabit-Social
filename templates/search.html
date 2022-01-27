@@ -812,14 +812,23 @@ background: transparent;
   </div>
 
     <div id = "feed_inner">
-    {% if q != None %}
+    
+      {% if q == None %}
+      <div style="font-size:20px;font-weight:600;margin-top:50px;">
+        Top 100 LeaderBoard:
+      </div>
+      {% else %}
+      {% endif %} 
+
 
       {% if df|length == 0 %}
-        <span style=font-size:20px;>No results found!</span>
-
+      <div style="font-size:20px;font-weight:600;margin-top:50px;">
+        No results found!
+      </div>  
       {% else %}
 
       {% for index, df in df.iterrows() %}
+      
       
         <div class = "post_wrap">
           <div class="post_box border border-0">
@@ -847,7 +856,7 @@ background: transparent;
       
         {% endfor %}
       {% endif %}  
-    {% endif %}
+
     </div>
   
 {% endblock %}    
