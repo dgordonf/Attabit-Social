@@ -969,12 +969,10 @@ def search():
     current_user_profile_photo = df['profile_photo'][0]
 
     if q == "" or q == None:
-        df = None
-        q = None
 
         #Get all users
         with engine.connect() as connection:
-            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, b.user_score, u.profile_photo, u.creation_time
+            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, COALESCE(b.user_score, 0 ) as user_score, u.profile_photo, u.creation_time
                                                     FROM users u
                                                     LEFT JOIN
                                                         (
@@ -989,14 +987,30 @@ def search():
                                                     LIMIT 100;''', (user_id))
 
             df = DataFrame(ResultProxy.fetchall())
-            df.columns = ResultProxy.keys()    
-        
+            
+            if df is not None and (df.empty == False):
+                df.columns = ResultProxy.keys()    
+                
+                
+                #Create User Score bar chart
+                df['user_score'] = df['user_score'].astype(int)
+                df['user_score'] = df['user_score']/10
+                df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
+                
+                #Create Score Bar Print
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
+                df['user_score'] = df['user_score'].astype(int)
 
-        return render_template('search.html', df = df, user_id = user_id, q = q, current_user_profile_photo = current_user_profile_photo)
+        return render_template('search.html', 
+                                    df = df, 
+                                    user_id = user_id, 
+                                    q = q, 
+                                    current_user_profile_photo = current_user_profile_photo)
     else:
         with engine.connect() as connection:
             search = "%" + q + "%"
-            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, b.user_score, u.profile_photo, u.creation_time
+            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, COALESCE(b.user_score, 0 ) as user_score, u.profile_photo, u.creation_time
                                                     FROM users u
                                                     LEFT JOIN
                                                         (
@@ -1013,7 +1027,18 @@ def search():
         df = DataFrame(ResultProxy.fetchall())
 
         if df is not None and (df.empty == False):
-            df.columns = ResultProxy.keys()    
+            df.columns = ResultProxy.keys()   
+
+            #Create User Score bar chart
+            df['user_score'] = df['user_score'].fillna(0).astype(int)
+            df['user_score'] = df['user_score']/10
+            df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
+            
+            #Create Score Bar Print
+            df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
+            df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x)) 
+            df['user_score'] = df['user_score'].astype(int)
+            
         return render_template('search.html',
                                 user_id = user_id,
                                 df = df, 
@@ -1197,7 +1222,7 @@ def post(post_id):
             post_info['creation_time'] = post_info['creation_time'].dt.strftime('%m-%d-%Y')
 
             #Create User Score bar chart
-            post_info['user_score'] = post_info['user_score']/100
+            post_info['user_score'] = post_info['user_score']/10
             post_info['user_score_bars'] = ((post_info['user_score'] % 1) * 10).astype(int)
             post_info['user_score'] = post_info['user_score'].astype(int)
 
