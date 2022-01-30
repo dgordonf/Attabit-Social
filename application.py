@@ -503,6 +503,15 @@ def user_page(username):
         print(e)
         return redirect('/')
 
+    #Get current user profile photo
+    with engine.connect() as connection:
+        ResultProxy = connection.execute('''SELECT u.profile_photo 
+                                            FROM users u
+                                            WHERE u.id = %s;''', (user_id))
+    df = DataFrame(ResultProxy.fetchall())
+    df.columns = ResultProxy.keys()
+    current_user_profile_photo = df['profile_photo'][0]
+
     #Get Profile Page's User ID
     try:
         with engine.connect() as connection:
@@ -764,9 +773,7 @@ def user_page(username):
             except:
                 follow_status = 0
 
-            
-
-            return render_template('profile.html', profile_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, posts=posts, photos=photos, replys=replys, camp_id=camp_id)
+            return render_template('profile.html', profile_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id)
         except Exception as e:
             # e holds description of the error
             print(e)
@@ -813,6 +820,46 @@ def follow(username):
                                                     SET follow_value = 0
                                                     WHERE f.user_id = %s AND f.following = %s;''', (user_id, following))
     return redirect("/@" + username)
+
+@application.route('/@<username>/quickfollow', methods = ['POST'])
+@login_required
+def quickfollow(username):
+    profile_username = username
+    user_id = current_user.get_user_id()
+    
+    follow_value = int(request.form.get('follow_value'))
+    if follow_value > 0:
+        follow_value = 1
+        new_follow_value = 0
+    else:
+        follow_value = 0
+        new_follow_value = 1
+
+    #Get user_id of follow account
+    with engine.connect() as connection:
+        ResultProxy = connection.execute('''SELECT u.id 
+                                            FROM users u 
+                                            WHERE u.handle = %s; ''', (profile_username))
+
+    df = DataFrame(ResultProxy.fetchall())
+    df.columns = ResultProxy.keys()
+    
+    following = df['id'][0]
+
+    ##Stop someone here from following themself
+    if user_id != following:
+        #If follow request, then insert. If unfollow, update
+        if follow_value == 1:
+            with engine.connect() as connection:
+                ResultProxy = connection.execute('INSERT INTO follows (user_id, following, follow_value) VALUES (%s, %s, %s);', (user_id, following, follow_value))
+        else:
+            with engine.connect() as connection:
+                ResultProxy = connection.execute('''UPDATE follows f
+                                                    SET follow_value = 0
+                                                    WHERE f.user_id = %s AND f.following = %s;''', (user_id, following))
+    response = jsonify(success=True, new_follow_value=new_follow_value)
+    return response  
+
 
 def get_file_extension(file_name, decoded_file):
     extension = imghdr.what(file_name, decoded_file)
@@ -972,7 +1019,7 @@ def search():
 
         #Get all users
         with engine.connect() as connection:
-            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, COALESCE(b.user_score, 0 ) as user_score, u.profile_photo, u.creation_time
+            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, COALESCE(b.user_score, 0) as user_score, u.profile_photo, u.creation_time, COALESCE(f.follow_value, 0) as follow_value
                                                     FROM users u
                                                     LEFT JOIN
                                                         (
@@ -982,7 +1029,11 @@ def search():
                                                                 LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
                                                                 GROUP BY u.id
                                                         ) b ON b.id = u.id
-                                                    WHERE u.id != %s
+                                                    LEFT JOIN (
+                                                        SELECT f.following, f.follow_value
+                                                        FROM follows f
+                                                        WHERE f.user_id = %s AND f.last_update_time IS NULL
+                                                        ) f ON f.following = u.id
                                                     ORDER BY b.user_score DESC
                                                     LIMIT 100;''', (user_id))
 
@@ -990,7 +1041,6 @@ def search():
             
             if df is not None and (df.empty == False):
                 df.columns = ResultProxy.keys()    
-                
                 
                 #Create User Score bar chart
                 df['user_score'] = df['user_score'].astype(int)
@@ -1006,11 +1056,12 @@ def search():
                                     df = df, 
                                     user_id = user_id, 
                                     q = q, 
+                                    current_user_id = user_id,
                                     current_user_profile_photo = current_user_profile_photo)
     else:
         with engine.connect() as connection:
             search = "%" + q + "%"
-            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, COALESCE(b.user_score, 0 ) as user_score, u.profile_photo, u.creation_time
+            ResultProxy = connection.execute('''SELECT u.id, u.first_name, u.handle, COALESCE(b.user_score, 0) as user_score, u.profile_photo, u.creation_time, COALESCE(f.follow_value, 0) as follow_value
                                                     FROM users u
                                                     LEFT JOIN
                                                         (
@@ -1020,8 +1071,13 @@ def search():
                                                                 LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
                                                                 GROUP BY u.id
                                                         ) b ON b.id = u.id
+                                                    LEFT JOIN (
+                                                            SELECT f.following, f.follow_value
+                                                            FROM follows f
+                                                            WHERE f.user_id = 8 AND f.last_update_time IS NULL
+                                                            ) f ON f.following = u.id
                                                     WHERE u.handle LIKE %s OR u.first_name LIKE %s
-                                                    ORDER BY b.user_score DESC
+                                                    ORDER BY u.creation_time ASC
                                                     LIMIT 50;''', (search, search))
 
         df = DataFrame(ResultProxy.fetchall())
@@ -1043,6 +1099,7 @@ def search():
                                 user_id = user_id,
                                 df = df, 
                                 q = q,
+                                current_user_id = user_id,
                                 current_user_profile_photo = current_user_profile_photo)
     
 @application.route('/post/<post_id>', methods = ['GET', 'POST'])

@@ -397,7 +397,7 @@ flex-grow: 1;
 }
 
 .post_box {
-  margin-top: 17px;
+  margin-top: 10px;
   padding:2px;
   
   background-color: white;
@@ -759,6 +759,38 @@ background: transparent;
     border-radius: 5px;
 }
 
+#follow_form {
+  float: right;
+}
+
+#follow_form button {
+  float: right; 
+  background: #313131;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 13px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 0px solid #c9c9c9;
+}
+
+#follow_form span {
+  float: right; 
+  background: #313131;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 13px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 0px solid #c9c9c9;
+}
+
 </style>
 
 <script>
@@ -853,25 +885,50 @@ background: transparent;
           <div class="post_box border border-0">
               <div class = "post_inner" style="padding-top:16px;">
         
+                
+                  {% if current_user_id == df['id'] %}
+                  <div id="follow_form">
+                    <button id= "follow_form" style="background:#fafafa;border: 2px solid #4d4d4d; color:#4d4d4d;cursor: default;">
+                      This you
+                    </button>
+                  </div>  
+                  {% elif df['follow_value'] == 0 %}
+                    <form id="follow_form" class = "follow_form" title="" action= "/@{{df['handle']}}/quickfollow" method= "post">
+                      <input id = "follow_value" class= hidden  name= "follow_value" value = 1>
+                      <button id= "follow_submit" type="submit" style="background:#fafafa;border: 2px solid #4d4d4d; color:#4d4d4d">
+                        follow
+                      </button>
+                    </form>
+                  {% else %}
+                    <form id="follow_form" class = "follow_form" title="" action= "/@{{df['handle']}}/quickfollow" method= "post">
+                      <input id = "follow_value" class= hidden  name= "follow_value" value = 0>
+                      <button id= "follow_submit" type="submit">
+                        following
+                      </button>
+                    </form>
+                  {% endif %} 
+                
                 <div class = "post_info_box">
+                  <a class= "profile_link" href = "/@{{df['handle']}}">
+                    <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ df['profile_photo'] }} ');">
+                      
+                    </div>
+                  </a>  
+                  
+                  <div>
+                    <div style= 'height: 15px;'>
+                      <a class= "profile_link" href = "/@{{df['handle']}}">
+                      <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{df['handle']}}</span>
+                      </a>  
+                    </div>
 
-                    <a class= "profile_link" href = "/@{{df['handle']}}">
-                      <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ df['profile_photo'] }} ');">
-                        
-                      </div>
-                    </a>  
+                    <div style="margin-top:10px;">
+                      <span class= "score_bar">{{df['user_score_bars_print']}} {{df['user_score']}}</span>
+                    </div>
+                  </div>  
                     
-                    <div>
-                      <div style= 'height: 15px;'>
-                        <a class= "profile_link" href = "/@{{df['handle']}}">
-                        <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{df['handle']}}</span>
-                        </a>  
-                      </div>
 
-                      <div style="margin-top:10px;">
-                        <span class= "score_bar">{{df['user_score_bars_print']}} {{df['user_score']}}</span>
-                      </div>
-                    </div>  
+
               </div>
                 
             
