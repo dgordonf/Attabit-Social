@@ -990,6 +990,19 @@ window.onclick = function(event) {
   </div>
 
     <div id = "feed_inner">
+    {% if posts|length == 0 %}
+    <div style="font-size:20px;font-weight:600;margin-top:20px;" class = "post_box border border-0">
+      <div class = "post_inner">
+      Anyone out there? Posts from people you follow will appear here. 
+      <br>
+      <br>
+      See the <a href = "/search" style = "text-decoration: underline;" >leaderboard</a> or look at <a href = "/today" style = "text-decoration: underline;">today's top posts</a> to find people to follow.
+      </div>
+    </div>
+
+    {% else %}
+    {% endif %}
+
      {% for index, posts in posts.iterrows() %}
     
       <div class = "post_wrap">
