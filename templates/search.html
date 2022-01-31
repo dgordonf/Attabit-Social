@@ -763,9 +763,9 @@ background: transparent;
   float: right;
 }
 
-#follow_form button {
+.followed {
   float: right; 
-  background: #313131;
+  background: #313131bb;
   color: white;
   font-weight: 600;
   font-size: 17px;
@@ -775,12 +775,15 @@ background: transparent;
   padding-top: 5px;
   padding-bottom: 5px;
   border: 0px solid #c9c9c9;
+  margin-top: 7px;  
 }
 
-#follow_form span {
+.notfollowed {
   float: right; 
-  background: #313131;
-  color: white;
+  background:#fafafa;
+  border: 2px solid #4d4d4d; 
+  color:#4d4d4d;
+
   font-weight: 600;
   font-size: 17px;
   border-radius: 13px;
@@ -788,7 +791,7 @@ background: transparent;
   padding-right: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
-  border: 0px solid #c9c9c9;
+  margin-top: 7px; 
 }
 
 </style>
@@ -817,6 +820,63 @@ background: transparent;
   }
   
   </script>
+
+<script>
+  //Quick Follow
+  $(document).ready(function(){
+  $(".follow_form").on("click", function(event){
+    event.preventDefault();
+
+    //Get the id of the post
+    var id = $(this).attr("id");
+    
+    //disable the button
+    $("#follow_submit_" + id).prop("disabled", true);
+
+    //get current follow value
+    var follow_value = $("#follow_value_" + id).val();
+    
+    if(follow_value == 1){
+      var new_follow_value = 0;
+      var new_follow_text = "following";
+      var new_follow_class = "followed";
+    } else {
+    
+      var new_follow_value = 1;
+      var new_follow_text = "follow";
+      var new_follow_class = "notfollowed";
+    }
+
+    console.log(follow_value);
+
+    var $form = $(this),
+    url = $form.attr('action');
+    
+    req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize(), 
+        success:function(){
+
+          //update the follow value
+          $("#follow_value_" + id).val(new_follow_value);
+
+          //update the follow text
+          $("#follow_submit_" + id).text(new_follow_text);
+
+          //update the follow class
+          $("#follow_submit_" + id).removeClass("notfollowed");
+          $("#follow_submit_" + id).addClass(new_follow_class);
+
+          $("#follow_submit_" + id).prop("disabled", false);
+        
+        }
+    });
+    
+    });  
+  });
+ 
+</script>
 
 {% extends "layout.html" %}
 {% block body %}
@@ -865,7 +925,7 @@ background: transparent;
     <div id = "feed_inner">
     
       {% if q == None %}
-      <div style="font-size:20px;font-weight:600;margin-top:50px;">
+      <div style="font-size:20px;font-weight:600;margin-top:40px;">
         Top 100 LeaderBoard:
       </div>
       {% else %}
@@ -873,7 +933,7 @@ background: transparent;
 
 
       {% if df|length == 0 %}
-      <div style="font-size:20px;font-weight:600;margin-top:50px;">
+      <div style="font-size:20px;font-weight:600;margin-top:40px;">
         No results found!
       </div>  
       {% else %}
@@ -888,21 +948,21 @@ background: transparent;
                 
                   {% if current_user_id == df['id'] %}
                   <div id="follow_form">
-                    <button id= "follow_form" style="background:#fafafa;border: 2px solid #4d4d4d; color:#4d4d4d;cursor: default;">
-                      This you
+                    <button id= "follow_submit" class = "notfollowed">
+                      You
                     </button>
                   </div>  
                   {% elif df['follow_value'] == 0 %}
-                    <form id="follow_form" class = "follow_form" title="" action= "/@{{df['handle']}}/quickfollow" method= "post">
-                      <input id = "follow_value" class= hidden  name= "follow_value" value = 1>
-                      <button id= "follow_submit" type="submit" style="background:#fafafa;border: 2px solid #4d4d4d; color:#4d4d4d">
+                    <form id= "{{index}}" class = "follow_form" title="" action= "/@{{df['handle']}}/quickfollow" method= "post">
+                      <input id = "follow_value_{{index}}" class= hidden  name= "follow_value" value = 1>
+                      <button id= "follow_submit_{{index}}" class = "notfollowed" type="submit">
                         follow
                       </button>
                     </form>
                   {% else %}
-                    <form id="follow_form" class = "follow_form" title="" action= "/@{{df['handle']}}/quickfollow" method= "post">
-                      <input id = "follow_value" class= hidden  name= "follow_value" value = 0>
-                      <button id= "follow_submit" type="submit">
+                    <form id= "{{index}}" class = "follow_form" title="" action= "/@{{df['handle']}}/quickfollow" method= "post">
+                      <input id = "follow_value_{{index}}" class= hidden  name= "follow_value" value = 0>
+                      <button id= "follow_submit_{{index}}" class = "followed" type="submit">
                         following
                       </button>
                     </form>
