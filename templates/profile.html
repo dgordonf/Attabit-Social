@@ -651,25 +651,36 @@ flex-grow: 1;
   
 }
 
-.follow {
-  float: right;
-  position: relative;
-  
-  
-}
-.follow button {
- float: right; 
-background: #313131;
- color: white;
- font-weight: 600;
- font-size: 17px;
- border-radius: 13px;
- padding-left: 15px;
- padding-right: 15px;
- padding-top: 5px;
- padding-bottom: 5px;
- border: 0px solid #c9c9c9;
 
+.followed {
+  float: right; 
+  background: #313131;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 13px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 2px solid #313131;
+  margin-top: 7px;  
+}
+
+.notfollowed {
+  float: right; 
+  background:#fafafa;
+  border: 2px solid #4d4d4d; 
+  color:#4d4d4d;
+
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 13px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 7px; 
 }
 
 .profile_link:hover, profile_link:visited, profile_link:link, profile_link:active{
@@ -1043,34 +1054,6 @@ body.modal-open {
   
   });
 
-  //Follow Button
-  $(document).ready(function(){
-  /* attach a submit handler to the form */
-  $(document).on("submit", ".follow_form", function(event) {
-    /* stop form from submitting normally */
-    event.preventDefault();
-    /* get the action attribute from the <form action=""> element */
-    $('#follow_submit').attr('disabled','disabled');
-
-    var $form = $(this),
-      url = $form.attr('action');
-    
-    /* Send the data using post */
-    req = $.ajax({
-        method: "POST",
-        url: url,
-        data: $(this).serialize() //Encode form elements as a string for submission.
-        //If using serialize(), name attribute in form elements is required
-    })
-    
-    req.done(function( data ) {
-      $("#follow_form").html($("#follow_form", data).html());
-    });
-    
-  });
-  
-  });
-
 
   //Submit Edit
   $(document).ready(function(){
@@ -1106,34 +1089,6 @@ body.modal-open {
   });
   
   });
-
-</script>
-
-<script>
-  //Reveal Reply Box on click
-  function reply_reveal(id) {
-      var reply = "reply_";
-      var reply_id = reply + id;
-      var R = document.getElementById(reply_id);
-      var displayValue = R.style.display;
-      
-      if (displayValue == 'none') {
-        new_value = '';
-        R.style.display = new_value;
-
-        var input = "_input";
-        var reply_id_input = reply_id + input;
-
-        document.getElementById(reply_id_input).focus();
-        document.getElementById(reply_id_input).select();
-
-      } else {
-        new_value = 'none';
-        R.style.display = new_value;
-      }
-
-    
-  }
 
 </script>
 
@@ -1292,6 +1247,60 @@ $('#fileInput').on( 'change', function(){
   
   </script>
 
+<script>
+  //Quick Follow
+  $(document).ready(function(){
+  $(".follow_form").on("click", function(event){
+    event.preventDefault();
+
+    //disable the button
+    $("#follow_submit").prop("disabled", true);
+
+    //get current follow value
+    var follow_value = $("#follow_value").val();
+    
+    if(follow_value == 1){
+      var new_follow_value = 0;
+      var new_follow_text = "following";
+      var new_follow_class = "followed";
+    } else {
+    
+      var new_follow_value = 1;
+      var new_follow_text = "follow";
+      var new_follow_class = "notfollowed";
+    }
+
+    console.log(follow_value);
+
+    var $form = $(this),
+    url = $form.attr('action');
+    
+    req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize(), 
+        success:function(){
+
+          //update the follow value
+          $("#follow_value").val(new_follow_value);
+
+          //update the follow text
+          $("#follow_submit").text(new_follow_text);
+
+          //update the follow class
+          $("#follow_submit").removeClass("notfollowed");
+          $("#follow_submit").addClass(new_follow_class);
+
+          $("#follow_submit").prop("disabled", false);
+        
+        }
+    });
+    
+    });  
+  });
+ 
+</script>
+
 {% extends "layout.html" %}
 {% block body %}
 <div class = "header" id= "header">
@@ -1403,21 +1412,21 @@ $('#fileInput').on( 'change', function(){
   <div class = "profile_details">
     <div class = "follow">
         {% if current_user_id == profile_info['id'][0] %}
-          <button id= "edit_button">
+          <button id= "edit_button" class = "followed">
             <span> edit </span> 
           </button>
         {% elif follow_status == 0 %}
-        <form id="follow_form" class = "follow_form" title="" action= "/@{{profile_handle}}/follow" method= "post">
+        <form id="follow_form" class = "follow_form" title="" action= "/@{{profile_handle}}/quickfollow" method= "post">
           <input id = "follow_value" class= hidden  name= "follow_value" value = 1>
-          <button id= "follow_submit" type="submit" style="background:#fafafa;border: 2px solid #4d4d4d; color:#4d4d4d">
-            <span > follow </span> 
+          <button id= "follow_submit" class = "notfollowed" type="submit">
+            follow
           </button>
         </form>
         {% else %}
-        <form id="follow_form" class = "follow_form" title="" action= "/@{{profile_handle}}/follow" method= "post">
+        <form id="follow_form" class = "follow_form" title="" action= "/@{{profile_handle}}/quickfollow" method= "post">
           <input id = "follow_value" class= hidden  name= "follow_value" value = 0>
-          <button id= "follow_submit" type="submit">
-            <span> following </span> 
+          <button id= "follow_submit" class = "followed" type="submit">
+            following
           </button>
         </form>
         {% endif %} 
