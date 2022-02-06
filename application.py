@@ -1411,17 +1411,22 @@ def post(post_id):
             hed = '<h1>Something is broken.</h1>'
             return hed + error_text
            
-@application.route('/post_vote', methods = ['POST'])
+@application.route('/quickvote', methods = ['POST'])
 @login_required
-def post_vote(post_id):
+def quickvote():
     camp_id = 0
     user_id = current_user.get_user_id()
     value = request.form.get('post_vote')
     value = float(value)
-    if value >= 0:
+    
+    #Value can be 0, 1, or -1
+    if value == 0:
+        value = 0
+    elif value == 1:
         value = 1
     else:
         value = -1
+    
     post_id = request.form.get('post_id')
 
     #Check if this user has voted on this already
@@ -1443,7 +1448,87 @@ def post_vote(post_id):
         with engine.connect() as connection:
             connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
 
-    response = jsonify(success=True)
+    #Get this post now
+    with engine.connect() as connection:
+        ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, u.first_name, u.handle, u.profile_photo, p.creation_time, p.post_text, p.media_id, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, p2.reply_count, pv.down_votes, pv2.up_votes
+                                        FROM posts p
+                                        LEFT JOIN users u ON p.user_id = u.id 
+                                        LEFT JOIN
+                                            (
+                                                SELECT p.reply_to_id, COUNT(p.post_id) AS reply_count
+                                                    FROM posts p
+                                                    WHERE p.reply_to_id = %s AND p.is_deleted = 0
+                                                    GROUP BY p.reply_to_id
+                                            ) p2 ON p2.reply_to_id = p.post_id
+                                        LEFT JOIN
+                                            (
+                                                SELECT pv.post_id, COUNT(pv.value) AS down_votes
+                                                    FROM post_votes pv
+                                                    WHERE pv.post_id = %s AND pv.value < 0
+                                                    GROUP BY pv.post_id
+                                            ) pv ON pv.post_id = p.post_id
+                                        LEFT JOIN
+                                            (
+                                                SELECT pv.post_id, COUNT(pv.value) AS up_votes
+                                                    FROM post_votes pv
+                                                    WHERE pv.post_id = %s AND pv.value > 0
+                                                    GROUP BY pv.post_id
+                                            ) pv2 ON pv2.post_id = p.post_id
+                                        LEFT JOIN
+                                                (
+                                                    SELECT u.id, SUM(p1.value) AS user_score
+                                                        FROM users u
+                                                        LEFT JOIN posts p ON p.user_id = u.id
+                                                        LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                        GROUP BY u.id
+                                                ) b ON b.id = u.id
+                                        LEFT JOIN
+                                                (
+                                                SELECT p2.post_id, SUM(p2.value) AS current_user_vote
+                                                    FROM post_votes p2
+                                                    WHERE p2.user_id = %s
+                                                    GROUP BY p2.post_id
+                                                ) c on c.post_id = p.post_id 
+                                        WHERE p.post_id = %s AND p.is_deleted = 0; """, (post_id, post_id, post_id, user_id, post_id))
+        post_info = DataFrame(ResultProxy.fetchall())
+
+    if len(post_info.index) > 0:
+        post_info.columns = ResultProxy.keys()
+         #Correct Score for post_info
+        post_info['user_score'] = post_info['user_score'].fillna(0).astype(int)
+        
+        post_info['reply_count'] = round(post_info['reply_count'].fillna(0).astype(int), 0)
+        post_info['down_votes'] = round(post_info['down_votes'].fillna(0).astype(int), 0)
+        post_info['up_votes'] = round(post_info['up_votes'].fillna(0).astype(int), 0)
+
+        post_info['post_score'] = post_info['up_votes'] - post_info['down_votes']
+
+        
+        post_info['reply_count'] = post_info['reply_count'].replace(0, " ")
+        post_info['down_votes'] = post_info['down_votes'].replace(0, " ")
+        post_info['up_votes'] = post_info['up_votes'].replace(0, " ")
+
+        #Correct Timezone
+        to_zone = tz.tzlocal()
+                                        
+        post_info['creation_time'] = pd.to_datetime(post_info['creation_time'])
+        post_info['creation_time'] = post_info['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
+        post_info['creation_time'] = post_info['creation_time'].dt.strftime('%m-%d-%Y')
+
+        #Create User Score bar chart
+        post_info['user_score'] = post_info['user_score']/10
+        post_info['user_score_bars'] = ((post_info['user_score'] % 1) * 10).astype(int)
+        post_info['user_score'] = post_info['user_score'].astype(int)
+
+        #Create Score Bar Print
+        post_info['user_score_bars_print'] = post_info['user_score_bars'].apply(lambda x: '■' * x)
+        post_info['user_score_bars_print'] = post_info['user_score_bars_print'] + post_info['user_score_bars'].apply(lambda x: '□' * (10 - x))
+        
+        print(post_info)
+
+        response = jsonify(post_info=post_info.to_json())
+    else: 
+        response = jsonify(success=False)
     return response   
 
 @application.route('/post_delete/<post_id>', methods = ['POST'])
@@ -1654,6 +1739,7 @@ def top(date):
     else:
         flash('You are not a member of that camp')
         return redirect('/')
+
 
 
 
