@@ -1523,8 +1523,6 @@ def quickvote():
         #Create Score Bar Print
         post_info['user_score_bars_print'] = post_info['user_score_bars'].apply(lambda x: '■' * x)
         post_info['user_score_bars_print'] = post_info['user_score_bars_print'] + post_info['user_score_bars'].apply(lambda x: '□' * (10 - x))
-        
-        print(post_info)
 
         response = jsonify(post_info=post_info.to_json())
     else: 
@@ -1726,8 +1724,6 @@ def top(date):
                 photos = pd.DataFrame({"media_id": [0]})
 
             handle = current_user.get_user_handle()
-
-            print(df)
 
             return render_template('top.html', today = today, date_selected = date_selected, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, camp_id=camp_id)
         except Exception as e:
