@@ -490,6 +490,10 @@ def feed():
 def favicon(): 
     return send_from_directory(os.path.join(application.root_path, 'static'), 'favicon.png', mimetype='image/vnd.microsoft.icon')
 
+@application.route('/post/favicon.png') 
+def favicon2(): 
+    return send_from_directory(os.path.join(application.root_path, 'static'), 'favicon.png', mimetype='image/vnd.microsoft.icon')
+
 @application.route('/@<username>', methods = ['POST','GET'])
 @login_required
 def user_page(username):
@@ -1106,6 +1110,7 @@ def search():
 @login_required
 def post(post_id):
     camp_id = 0
+    
     post_id = int(post_id)
     
     try:
@@ -1420,12 +1425,12 @@ def quickvote():
     value = float(value)
     
     #Value can be 0, 1, or -1
-    if value == 0:
-        value = 0
-    elif value == 1:
+    if value == 1:
         value = 1
-    else:
+    elif value == -1:
         value = -1
+    else:
+        value = 0
     
     post_id = request.form.get('post_id')
 
@@ -1438,15 +1443,15 @@ def quickvote():
 
     df = DataFrame(ResultProxy.fetchall())
     
-    if len(df.index) > 0:
+    if len(df.index) == 0:
+        with engine.connect() as connection:
+            connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
+    else:
         with engine.connect() as connection:
             ResultProxy = connection.execute("""UPDATE post_votes pv
                                                 SET value = %s
                                                 WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
                                                 """, (value, camp_id, user_id, post_id))
-    else:
-        with engine.connect() as connection:
-            connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
 
     #Get this post now
     with engine.connect() as connection:

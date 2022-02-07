@@ -1005,31 +1005,6 @@ body.modal-open {
 
 
 <script>
-
-  //Up vote
-  //Wait until Doc is ready
-  $(document).ready(function(){
-  /* attach a submit handler to the form */
-  $(document).on("submit", ".form_arrows", function(event) {
-    /* stop form from submitting normally */
-    event.preventDefault();
-    /* get the action attribute from the <form action=""> element */
-    var $form = $(this),
-      url = $form.attr('action');
-    /* Send the data using post */
-    req = $.ajax({
-        method: "POST",
-        url: url,
-        data: $(this).serialize() //Encode form elements as a string for submission.
-        //If using serialize(), name attribute in form elements is required
-    })
-    req.done(function( data ) {
-      $("#feed_inner").html($("#feed_inner", data).html());
-     });
-  });
-  
-  });
-
   //Add Comment
   //Wait until Doc is ready
   $(document).ready(function(){
@@ -1301,6 +1276,107 @@ $('#fileInput').on( 'change', function(){
  
 </script>
 
+<script>
+
+  //Wait until Doc is ready
+  $(document).ready(function(){
+
+  $(document).on("submit", ".form_arrows", function(event) {
+    event.preventDefault();
+   
+    //Get the id of the post
+    var id = $(this).attr("id");
+    
+    //Get the vote value
+    var post_vote = $(this).find("input[name=post_vote]").val();
+
+    //disable the buttons
+    $("#up_submit_" + id).prop("disabled", true);
+    $("#down_submit_" + id).prop("disabled", true);
+   
+   
+    var $form = $(this),
+    url = $form.attr('action');
+    
+    req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize(), 
+        success:function(){
+          
+          //Parse the response
+          var response = JSON.parse(req.responseText);
+          var post_info = JSON.parse(response.post_info);
+          
+          //Update Score Bars
+          $("#" + id + "_score_bar").html(post_info.user_score_bars_print[0]);
+          $("#" + id + "_score_value").html(post_info.user_score[0]);
+          
+          var current_user_vote = post_info.current_user_vote[0].toFixed(0);
+
+          var up_votes = post_info.up_votes[0];
+          var down_votes = post_info.down_votes[0];
+
+          console.log(current_user_vote);
+
+          //Update Vote Buttons
+          if(current_user_vote == 0){
+            //Remove Class
+            $("#up_vote_wrapper_" + id).removeClass("voted_button");
+            $("#down_vote_wrapper_" + id).removeClass("voted_button");
+
+            //Reset form values
+            $("#up_vote_value_" + id).val(1);
+            $("#down_vote_value_" + id).val(-1);
+
+            //Update Text
+            $("#up_vote_text_" + id).html(up_votes);
+            $("#down_vote_text_" + id).html(down_votes);
+          }
+
+          if(current_user_vote == 1){
+            //Remove Class
+            $("#up_vote_wrapper_" + id).addClass("voted_button");
+            $("#down_vote_wrapper_" + id).removeClass("voted_button");
+
+            //Reset form values
+            $("#up_vote_value_" + id).val(0);
+            $("#down_vote_value_" + id).val(-1);
+
+            //Update Text
+            $("#up_vote_text_" + id).html(up_votes);
+            $("#down_vote_text_" + id).html(down_votes);
+          }
+
+          if(current_user_vote == -1){
+            //Remove Class
+            $("#up_vote_wrapper_" + id).removeClass("voted_button");
+            $("#down_vote_wrapper_" + id).addClass("voted_button");
+
+            //Reset form values
+            $("#up_vote_value_" + id).val(1);
+            $("#down_vote_value_" + id).val(0);
+
+            //Update Text
+            $("#up_vote_text_" + id).html(up_votes);
+            $("#down_vote_text_" + id).html(down_votes);
+          }
+
+         
+        }
+  });
+  
+    $("#up_submit_" + id).prop("disabled", false);
+    $("#down_submit_" + id).prop("disabled", false);
+
+
+  });
+    
+  });
+
+</script>
+
+
 {% extends "layout.html" %}
 {% block body %}
 <div class = "header" id= "header">
@@ -1509,27 +1585,18 @@ $('#fileInput').on( 'change', function(){
               <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}}</span>
               </a>  
             </div>
-            <div style="margin-top:10px;">
-              <span class= "score_bar">{{posts['user_score_bars_print']}} {{posts['user_score']}}</span>
-            </div>
+              <div style="margin-top:10px;" class= "score_bar">
+                <span id ="{{index}}_score_bar">{{posts['user_score_bars_print']}}</span><span id= "{{index}}_score_value">{{posts['user_score']}}</span>
+              </div>
 
 
           </div>
       </div>
         
           <div class = "post_text" style="post_score:{{posts['post_score']}};">
-            
-              {% if posts['post_score'] >= 0 %}
-                <span  style="white-space: pre-wrap; font-size:16px; Score:{{posts['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span> 
-              {% elif posts['post_score'] <= -4 %}
-                <span  style="white-space: pre-wrap; font-size:1px; Score:{{posts['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span> 
-              {% else %}
-                <span  style="white-space: pre-wrap; font-size:{{16 + (posts['post_score'] * 2)}}px;Score:{{posts['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span> 
-              {% endif %} 
-              
-                
+              <span  style="white-space: pre-wrap; font-size:16px;" > {{ posts['post_text']|urlize(40, true) }} </span> 
           </div>
-          <div class = "post_icons">
+      <div class = "post_icons">
 
         <div style= "width:30%">  
           <a class="post_link" href = "/post/{{posts['post_id']}}">
@@ -1539,172 +1606,54 @@ $('#fileInput').on( 'change', function(){
           </a>
         </div>
         
-        <div style= "width:30%">
-          <form id="form_vote" title="" action= "" method= "post" class= "form_arrows">
-            <input class= hidden id = "update_type" name= "update_type" value = "post_vote">  
-            <input class= hidden id = "post_vote" name= "post_vote" value = -1>
-            <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >
-            {% if posts['current_user_vote'] <= -1 %}
-            <button id= "vote_submit"  type="submit" class="arrow_button" disabled>
-              <span style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{posts['down_votes']}}</span>
-              {% else %}
-            <button id= "vote_submit" type="submit" class="arrow_button">
-              <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{posts['down_votes']}}</span>
-              {% endif %} 
-            </button>
-          </form>
-        </div>
+              <div style= "width:30%">
+                <form id="{{index}}" title="" action= "/quickvote" method= "post" class= "form_arrows">
+                  
+                  <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >
+                  {% if posts['current_user_vote'] <= -1 %}
+                  
+                  <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
+                  <button id= "down_submit_{{index}}"  type="submit" class="arrow_button">
+                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                  </button>  
+                    {% else %}
+                  
+                  <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = -1>  
+                  <button id= "down_submit_{{index}}" type="submit" class="arrow_button">
+                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                  </button>  
+                    {% endif %} 
+                  
+                </form>
+              </div>
 
-        <div style= "width:30%">
-          <form id="form_vote" title="" action="" method="post" class = "form_arrows">
-            <input class= hidden name= "update_type" value = "post_vote">  
-            <input class= hidden name= "post_vote" value = 1>
-            <input type="hidden" name= "post_id" value={{posts['post_id']}} >
-            <input class= hidden name= "post_vote" value = 1>
-            {% if posts['current_user_vote'] >= 1 %}
-            <button id= "vote_submit"  type="submit" class="arrow_button" disabled>
-              <span style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{posts['up_votes']}}</span>
-              {% else %}
-            <button id= "vote_submit" type="submit" class="arrow_button">
-              <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{posts['up_votes']}}</span>
-              {% endif %} 
-            </button>
-          </form>
-        </div>
+              <div style= "width:30%">
+                <form id="{{index}}" title="" action="/quickvote" method="post" class = "form_arrows">
+                  
+                  <input type="hidden" name= "post_id" value={{posts['post_id']}} >
+                  {% if posts['current_user_vote'] >= 1 %}
+                  
+                  <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
+                  <button id= "up_submit_{{index}}"  type="submit" class="arrow_button">
+                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                  </button>  
+                    {% else %}
+
+                  <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 1>  
+                  <button id= "up_submit_{{index}}" type="submit" class="arrow_button">
+                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px;margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                  </button>  
+                    {% endif %} 
+                  </button>
+                </form>
+              </div>
 
           </div>
         </div>  
     </div>   
-    
-    <div id = reply_{{posts['post_id']}} style="display:none" class="reply_box reply_border border-0">
-      <div class = "reply_inner">
-        <div class = "user_badge">
-          <div class = "badge_inner"> </div>
-        </div>
-          
-        <div style= "padding-top:5px;padding-bottom:5px;">
-          <form action="" method="post" class = "reply_form" >
-            <input class= hidden name= "update_type" value = "post_text">  
-            <input id = reply_{{posts['post_id']}}_input class= reply_input type="textbox"  name= "post_text" placeholder="Reply..">
-            <input type="hidden" name= "reply_to_id" value={{posts['post_id']}} >
-            <input type="hidden" name= "type" value="2">
-            <input type="submit" style="visibility:hidden;position:absolute;">
-              
-          </form>
-        </div>
-      </div>
-    </div>
 
-    {% for key, reply in replys.iterrows() %}
-    {% if reply['reply_to_id'] == posts['post_id']%}
-      
-    <div class = "post_wrap">  
-      {% if reply['post_score'] <= 0 %}
-        <div class="reply_box border border-0">
-      {% elif reply['post_score'] >= 5 %}
-        <div class="reply_box border border_positive border-5">
-      {% else %}
-        <div class="reply_box border border_positive border-{{reply['post_score']}}">
-      {% endif %} 
-        
-  
-        {% if (reply['media_id'] in photos.media_id.values) %}
-            <div class = "reply_inner" style = "border-radius: 0px 0px 10px 10px;">
-          {% else %}  
-            <div class = "reply_inner">
-        {% endif %}       
-          <a class= "profile_link" href = "/@{{posts['handle']}}">
-            <div class = "badge" style="background: conic-gradient(from 250deg);">
-              <div class = "badge_inner" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ reply['profile_photo'] }} ');"> </div>
-            </div>
-            
-            <div style= 'height: 15px;'>
-              {% if reply['post_score'] < 0 %}
-              <span class= "post_person" opacity=".45">{{reply['first_name']}} </span>
-              {% else %}
-              <span class= "post_person">{{reply['first_name']}} </span>
-              {% endif %} 
-            
-            </div>
-            <div id="result"></div>
-            <div>
-              <span class= "handle"><span style="font-size:14px;margin-right:1px;">@</span>{{reply['handle']}}</span>
-            </div>
-          </a>  
-            <div class = "post_text" style="post_score:{{reply['post_score']}};">
-              
-                {% if reply['post_score'] >= 0 %}
-                  <span  style="font-size:18px; Score:{{reply['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span>
-                {% elif reply['post_score'] <= -4 %}
-                  <span  style="font-size:1px; Score:{{reply['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span>
-                {% else %}
-                  <span  style="font-size:{{18 + (reply['post_score'] * 2)}}px;Score:{{reply['post_score']}}">{{ posts['post_text']|urlize(40, true) }}</span>
-                {% endif %} 
-                  
-            </div>
-            <div class = "post_icons">
-
-            <button class = "reply_button" id = "reply_button_{{reply['post_id']}}" value = '{{reply['post_id']}}' onclick="reply_reveal(this.value)">
-              <span style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{reply['reply_count']}}</span>
-            </button>  
-            
-            <form id="form_vote" title="" action= "" method= "post" class= "form_arrows">
-              <input class= hidden id = "update_type" name= "update_type" value = "post_vote">  
-              <input class= hidden id = "post_vote" name= "post_vote" value = -1>
-              <input type="hidden" id = "post_id" name= "post_id" value={{reply['post_id']}} >
-              {% if reply['current_user_vote'] <= -1 %}
-              <button id= "vote_submit" style = "color:#181818;" type="submit" class="arrow_button" disabled>
-                <span style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{reply['down_votes']}}</span>
-                {% else %}
-              <button id= "vote_submit" type="submit" class="arrow_button">
-                <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> {{reply['down_votes']}}</span>
-                {% endif %} 
-              </button>
-            </form>
-
-            <form id="form_vote" title="" action="" method="post" class = "form_arrows">
-              <input class= hidden name= "update_type" value = "post_vote">  
-              <input class= hidden name= "post_vote" value = 1>
-              <input type="hidden" name= "post_id" value={{reply['post_id']}} >
-              <input class= hidden name= "post_vote" value = 1>
-              {% if reply['current_user_vote'] >= 1 %}
-              <button id= "vote_submit" style = "color:#181818;" type="submit" class="arrow_button" disabled>
-                <span style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{reply['up_votes']}}</span>
-                {% else %}
-              <button id= "vote_submit" type="submit" class="arrow_button">
-                <span style="font-size:17px; opacity:.69; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> {{reply['up_votes']}}</span>
-                {% endif %} 
-              </button>
-            </form> 
-
-            </div>
-          </div>  
-      </div>   
-      
-      <div id = reply_{{reply['post_id']}} style="display:none" class="reply_box reply_border border-0">
-        <div class = "reply_inner">
-          <div class = "user_badge">
-            <div class = "badge_inner"> </div>
-          </div>
-            
-          <div style= "padding-top:5px;padding-bottom:5px;">
-            <form action="" method="post" class = "reply_form" >
-              <input class= hidden name= "update_type" value = "post_text">  
-              <input id = reply_{{reply['post_id']}}_input class= reply_input type="textbox"  name= "post_text" placeholder="Reply..">
-              <input type="hidden" name= "reply_to_id" value={{reply['post_id']}} >
-              <input type="hidden" name= "type" value="2">
-              <input type="submit" style="visibility:hidden;position:absolute;">
-                
-            </form>
-          </div>
-        </div>
-      </div>
-          {% endif %}
-        {% endfor %}
-      
-
- 
-      {% endfor %}
+   
+    {% endfor %}
   </div>
 
 {% endblock %}    
