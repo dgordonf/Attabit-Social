@@ -1230,6 +1230,7 @@ $('#fileInput').on( 'change', function(){
 
           //Update Vote Buttons
           if(current_user_vote == 0){
+            
             //Remove Class
             $("#up_vote_wrapper_" + id).removeClass("voted_button");
             $("#down_vote_wrapper_" + id).removeClass("voted_button");
@@ -1243,7 +1244,7 @@ $('#fileInput').on( 'change', function(){
             $("#down_vote_text_" + id).html(down_votes);
           }
 
-          if(current_user_vote <= 1){
+          if(current_user_vote == 1){
             //Remove Class
             $("#up_vote_wrapper_" + id).addClass("voted_button");
             $("#down_vote_wrapper_" + id).removeClass("voted_button");
@@ -1257,7 +1258,7 @@ $('#fileInput').on( 'change', function(){
             $("#down_vote_text_" + id).html(down_votes);
           }
 
-          if(current_user_vote <= -1){
+          if(current_user_vote == -1){
             //Remove Class
             $("#up_vote_wrapper_" + id).removeClass("voted_button");
             $("#down_vote_wrapper_" + id).addClass("voted_button");
