@@ -6,13 +6,21 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="apple-touch-icon" href="favicon.png">
-  <title>moonramp</title>
+  <title>Moonramp</title>
 </head>
 
 <style>
 
+html { 
+  background: url(static/lookingdown.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
-  background-color: #fafafa; 
+  background-color: transparent;
   z-index: 0;
   font-size:14px;
   font-family: 'Inter';
@@ -79,6 +87,15 @@ body {
  
 }
 
+.landing_heading {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: white;
+}
+
 </style>
 
 {% extends "layout.html" %}
@@ -98,6 +115,12 @@ var check = function() {
 
   <body>
     <div id = "feed">
+
+    <div class="landing_heading">
+    Send posts to the moon 🚀
+    </div>
+
+
       <div class="container">
         <div class="logo">
           <img src="/static/moonramp.png">
