@@ -171,9 +171,11 @@ def login():
                 #db.engine.dispose()
                 return redirect("/")
             else: 
-                print("Nope") 
+                flash('Your password was incorrect. Please check your email and password.')
+                return redirect('/login')
         else:
-            print("Not a user")        
+            flash('Your password was incorrect or we could not find an account assocated with that email. Please check your email and password.')
+            return redirect('/login')
     else:
         render_template('login.html', form=form)
     return render_template('login.html', form=form)

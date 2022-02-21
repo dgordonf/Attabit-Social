@@ -933,6 +933,7 @@ window.onclick = function(event) {
           }
 
           if(current_user_vote == -1){
+
             //Remove Class
             $("#up_vote_wrapper_" + id).removeClass("voted_button");
             $("#down_vote_wrapper_" + id).addClass("voted_button");
@@ -944,6 +945,23 @@ window.onclick = function(event) {
             //Update Text
             $("#up_vote_text_" + id).html(up_votes);
             $("#down_vote_text_" + id).html(down_votes);
+
+            
+            
+            // //Make it fade in and out make it look like it hurt
+
+            // //fade out
+            // $("#post_" + id).animate({
+            //   opacity: .7
+            // }, 200);
+
+            // //fade in
+            // $("#post_" + id).animate({
+            //   opacity: 1
+            // }, 500);
+
+
+
           }
 
          
@@ -1053,7 +1071,7 @@ window.onclick = function(event) {
     
       <div class = "post_wrap">
       
-      <div class="post_box border border-0">
+      <div id = post_{{index}} class="post_box border border-0">
       {% if (posts['media_id'] in photos.media_id.values) %}
         {% for key, photo in photos.iterrows() %}
             {% if photo['media_id'] == posts['media_id'] %}
@@ -1069,9 +1087,9 @@ window.onclick = function(event) {
 
 
         {% if (posts['media_id'] in photos.media_id.values) %}
-            <div class = "post_inner" style = "border-radius: 0px 0px 10px 10px;">
+            <div id= "post_inner_{{index}}" class = "post_inner" style = "border-radius: 0px 0px 10px 10px;">
           {% else %}  
-            <div class = "post_inner">
+            <div id= "post_inner_{{index}}" class = "post_inner">
         {% endif %}       
         
         
@@ -1099,7 +1117,7 @@ window.onclick = function(event) {
                 </a>  
               </div>
               <div style="margin-top:10px;" class= "score_bar">
-                <span id ="{{index}}_score_bar">{{posts['user_score_bars_print']}}</span><span id= "{{index}}_score_value">{{posts['user_score']}}</span>
+                <span id ="{{index}}_score_bar">{{posts['user_score_bars_print']}}</span><span id= "{{index}}_score_value"> {{posts['user_score']}}</span>
               </div>
             </div>
         </div>

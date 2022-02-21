@@ -1,11 +1,33 @@
+
+<style>
+  
+.alert {
+  padding: 12px;
+  border-radius: 3px;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  border-width: 2px;
+  border-style: solid;
+
+  border-color: rgb(138, 21, 21);
+  background-color: rgb(255, 160, 160);
+  color: rgb(102, 17, 17);
+}
+
+.alert-error {
+  border-color: rgb(138, 21, 21);
+  background-color: rgb(255, 160, 160);
+  color: rgb(138, 21, 21);
+}
+
+</style>
+
 <!doctype html>
 {% with messages = get_flashed_messages() %}
   {% if messages %}
-    <ul class=flashes>
     {% for message in messages %}
-      <li>{{ message }}</li>
+      <div class = "alert"><b>Error:</b> {{ message }}</div>
     {% endfor %}
-    </ul>
   {% endif %}
 {% endwith %}
 {% block body %}{% endblock %}
