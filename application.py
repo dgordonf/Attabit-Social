@@ -189,8 +189,19 @@ def logout():
 @application.route('/signup', methods = ['POST', 'GET'])
 def signup(): 
     form = RegistrationForm(request.form)
-    if request.method == 'POST' and form.validate() and User.query.filter_by(email=form.email.data).first() is None:
-        
+    if request.method == 'POST' and form.validate(): 
+
+        #check if email is already in use
+        if User.query.filter_by(email=form.email.data).first():
+            flash('That email is already in use.')
+            return redirect('/signup')
+
+        #check if handle is already in use
+        if User.query.filter_by(handle=form.username.data).first():
+            flash('That username is already in use.')
+            return redirect('/signup')  
+
+        #Else, create the user
         email = form.email.data
         name = form.name.data
         handle = form.username.data
@@ -206,12 +217,6 @@ def signup():
         db.session.commit()
         user = User.query.get(email)
 
-        try:
-            user
-        except:
-            print("User variable not defined")
-            return redirect('/login')
-        
         if user:
             user.authenticated = True
             login_user(user, remember=True)
@@ -224,11 +229,7 @@ def signup():
                 db.session.add(user)
             
             db.session.commit()
-            #db.session.close()
-            #db.session.remove()
-            #db.engine.dispose()
-        return redirect("/")
-          
+            return redirect('/')
     else:
         return render_template('signup.html', form=form)
 

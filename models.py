@@ -9,12 +9,13 @@ from config import Config, S3_KEY, S3_SECRET, S3_BUCKET
 
 
 class RegistrationForm(Form):
-    email = StringField('Email Address', [validators.DataRequired(message='Email field is required'), validators.Email(message='Please enter a valid email address')])
-    name = StringField('Full Name', [validators.DataRequired(message='Please enter an appearance name for your account'), validators.Length(min=2, max=25, message='Name must be between 2 and 25 characters')])
-    username = StringField('Username', [validators.DataRequired(message='Please enter a username for your account'), validators.Length(min=2, max=25, message='Username must be between 2 and 25 characters')])
+    email = StringField('Email', [validators.DataRequired(message='Email field is required'), validators.Email(message='Please enter a valid email address')])
+    name = StringField('Your Name', [validators.DataRequired(message='Please enter an appearance name for your account'), validators.Length(min=1, max=25, message='Name must be between 1 and 25 characters')])
+    username = StringField('Username', [validators.DataRequired(message='Please enter a username for your account'), validators.Length(min=1, max=25, message='Username must be between 1 and 25 characters')])
     password = PasswordField('Password', [
         validators.DataRequired(message='This field cannot be blank'),
-        validators.EqualTo('confirm', message='Passwords must match')
+        validators.EqualTo('confirm', message='Passwords must match'),
+        validators.Length(min=8, max=50, message='Password must be between 8 and 50 characters')
     ])
     confirm = PasswordField('Confirm Password')
 
