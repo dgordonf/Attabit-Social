@@ -889,7 +889,7 @@ background: transparent;
       <div style = "margin-right: 22px">
         <a href="/"  class = "header_groups_inactive"><i class="fas fa-home"></i></a> 
       </div>
-      <div style = "margin-right: 22px">
+      <div style = "margin-right: 22px;">
         <a href="/search" class = "header_groups"><i class="fas fa-search"></i></a> 
       </div>
       <div >
@@ -910,7 +910,7 @@ background: transparent;
   <div id= "feed" >
   <div class = "search_box">
     <form action = "/search" method = "GET">
-    <div style="width:100%;display:flex;">
+    <div style="width:100%;display:flex;padding-left:13px;padding-right:13px;">
       {% if q == None %}
       <input type = "text" name = "q" placeholder = "Search for people" style="border:2px solid #555555;border-radius:3px;width:100%;font-size:20px;">
       {% else %}
@@ -925,8 +925,8 @@ background: transparent;
     <div id = "feed_inner">
     
       {% if q == None %}
-      <div style="font-size:20px;font-weight:600;margin-top:40px;">
-        Top 100 LeaderBoard:
+      <div style="font-size:20px;font-weight:600;margin-top:40px;padding-left:13px;padding-right:13px;">
+        Top 100 Leaderboard:
       </div>
       {% else %}
       {% endif %} 
@@ -942,7 +942,7 @@ background: transparent;
       
       
         <div class = "post_wrap">
-          <div class="post_box border border-0">
+          <div class="post_box border border-0" style="margin-top:10px;">
               <div class = "post_inner" style="padding-top:16px;">
         
                 
