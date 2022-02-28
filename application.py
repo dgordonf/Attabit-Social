@@ -1,3 +1,4 @@
+from gzip import READ
 from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, send_from_directory
 import requests
 from string import Template
@@ -9,9 +10,9 @@ from pandas import DataFrame
 from pandas.util import hash_pandas_object
 import re
 from flask_gtts import gtts
-from config import Config, S3_KEY, S3_SECRET, S3_BUCKET
+from config import Config, S3_KEY, S3_SECRET, S3_BUCKET, SES_REGION_NAME, SES_EMAIL_SOURCE
 from flask_login import LoginManager
-from models import LoginForm, RegistrationForm, upload_file_to_s3
+from models import LoginForm, RegistrationForm, PasswordResetForm, PasswordChangeForm, upload_file_to_s3
 from wtforms import validators
 from wtforms.fields.html5 import EmailField
 import email_validator
@@ -33,6 +34,7 @@ import uuid
 import imghdr
 import io
 import pytz
+from flask_mail import Mail, Message
 
 #You build this with this tutorial: https://medium.com/techfront/step-by-step-visual-guide-on-deploying-a-flask-application-on-aws-ec2-8e3e8b82c4f7
 #https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-20-04
@@ -95,23 +97,27 @@ class User(db.Model):
         """Return True if the user is authenticate#d."""
         return self.authenticated
 
-# @application.route('/')
-# def homepage():
-#     try:
-#         try:
-#             user_id =  current_user.get_user_id()
-#         except:
-#             db.session.rollback()
-#         if user_id is None:
-#             form = LoginForm(request.form)
-#             form2 = RegistrationForm(request.form)
-#             return render_template('login.html', form=form, form2=form2)
-#         else:
-#             return redirect("/")
-#     except:
-#         form = LoginForm(request.form)
-#         form2 = RegistrationForm(request.form)
-#         return render_template('login.html', form=form, form2=form2)
+def send_email(app, recipients, sender=None, subject='', text='', html=''):
+    ses = boto3.client(
+        'ses',
+        region_name = SES_REGION_NAME,
+        aws_access_key_id = S3_KEY,
+        aws_secret_access_key = S3_SECRET
+    )
+    if not sender:
+        sender = SES_EMAIL_SOURCE
+
+    ses.send_email(
+        Source=sender,
+        Destination={'ToAddresses': recipients},
+        Message={
+            'Subject': {'Data': subject},
+            'Body': {
+                'Text': {'Data': text},
+                'Html': {'Data': html}
+            }
+        }
+    )
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -814,7 +820,7 @@ def follow(username):
     df.columns = ResultProxy.keys()
     
     following = df['id'][0]
-
+    
     ##Stop someone here from following themself
     if user_id != following:
         #If follow request, then insert. If unfollow, update
@@ -1744,9 +1750,76 @@ def top(date):
         flash('You are not a member of that camp')
         return redirect('/')
 
+### Rest User Password Section ###
+@application.route('/account/password/reset', methods = ['GET', 'POST'])
+def reset_password_request():
+    form = PasswordResetForm(request.form)
+    if request.method == 'POST' and form.validate(): 
+        ##See if they are a user
+        user = User.query.filter_by(email=form.email.data).first()
+
+        if user:
+            #create token
+            token = get_random_string(50)
+
+            #store token in database
+            with engine.connect() as connection:
+                connection.execute("INSERT INTO tokens (user_id, token) VALUES (%s, %s);", (user.get_user_id(), token))
+                
+                recipients = [user.email]
+                subject = 'Reset Password'
+                
+                html = render_template('reset_pw_email.html', token = token)
+
+                send_email(application, 
+                            recipients= recipients, 
+                            subject = subject, 
+                            html = html
+                            )
+                flash('If a user with that email exists, an email will be sent to you with instructions to reset your password')
+                return redirect(url_for('login'))
+        else:
+            flash('If a user with that email exists, an email will be sent to you with instructions to reset your password')
+            return redirect(url_for('reset_password_request'))
+    return render_template('reset_password_request.html', form = form)
+
+@application.route('/account/password/reset/confirm', methods = ['GET'])
+def reset_password_with_token(token):
+    form = PasswordChangeForm(request.form)
+
+    #Check if token is legit
+    with engine.connect() as connection:
+        ResultProxy = connection.execute("SELECT * FROM tokens WHERE token = %s;", (token))
+        token_df = ResultProxy.fetchone()
+
+    if token_df:
+        token_df.columns = ResultProxy.keys()
+        
+        #check if token is expired
+        if token_df['creation_time'] < datetime.now() - timedelta(hours=24):
+            flash('Error: The password reset link has expired')
+            return redirect(url_for('login'))
+
+        #check if token has been used already
+        if token_df['used'] >= 0:    
+            flash('Error: The password reset has expired')
+            return redirect(url_for('login'))
+
+        #if Post request update password
+        if request.method == 'POST' & form.validate():
+            #update password
+            ##### This is where you left off ####
 
 
-
+            flash('Success. Your password has been changed. Please login with your new password')
+            return redirect(url_for('login'))
+        else:    
+            #load page and allow user to change password
+            return render_template('reset_password_with_token.html', token = token, form = form)
+        
+    flash('Error: Something went wrong')
+    return redirect(url_for('login'))
+    
 if __name__ == '__main__':
     #Need to make this port 443 in prod
     application.run(port=8080, debug=True, use_reloader = True)

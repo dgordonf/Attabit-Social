@@ -89,75 +89,35 @@ body {
  
 }
 
-.landing_heading {
+.locked_out_heading {
   font-size: 30px;
   font-weight: 600;
   text-align: center;
   margin-top: 25px;
   margin-bottom: 25px;
-  color: white;
+  color: rgb(19, 19, 19);
 }
 
-.forgot_password {
-  font-size: 14px;
-  margin-top: 5px;
-  color: rgb(59, 59, 59);
-}
 
 </style>
 
-{% extends "layout.html" %}
+
 {% block body %}
 
-</style> 
+</style>
 
-
-<script>
-var check = function() {
-  if (document.getElementById('password').value ==
-    document.getElementById('confirm_password').value) {
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'matching';
-  } else {
-    document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'not matching';
-  }
-
-}
-</script>
 
 <body>
-  <div id = "feed">
 
-  <div class="landing_heading">
-    Send posts to the moon 🚀
-  </div>
+<div>
+  Click the link below to reset your password:
+</div>
 
-    <div class="container">
-      <div class="logo">
-        <img src="/static/moonramp.png">
-      </div> 
-        <div class = "inner_container">
-        
-        <span style="padding:10px;">Please login below</span>
-        <br>
-        {% from "_formhelpers.html" import render_field %}
-      <form class = "form" action = "/login" method=post>
-        <dl class = "inputs">
-          {{ render_field(form.email) }}
-          {{ render_field(form.password) }}
-        </dl>
-        <button id= "form_submit" type="submit" class="non-glow">
-          <span > Login </span>
-        </button>
-          <div style="margin-top:5px;">
-            <a href = "/account/password/reset" class="forgot_password">Forgot password?</a>
-          </div>
-          <div style="margin-top:5px;">Don't have an account? <a href = "/signup" style="font-weight: 600;">Sign up</a></div>
-        </form>
-      </div>
-    </div>  
-  </div>
+<div>
+  <a href="{{ url_for('reset_password_with_token', token=token, _external=True) }}">
+    {{ url_for('reset_password_with_token', token=token, _external=True) }}
+  </a>
+</div>
 {% endblock %}   
 </body>
 </html>

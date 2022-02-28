@@ -23,6 +23,16 @@ class LoginForm(Form):
     email = StringField('Email Address', [validators.DataRequired(message='Email field is required'), validators.Email(message='Please enter a valid email address')])
     password = PasswordField('Password', [validators.DataRequired(message='Please enter your password')])    
 
+class PasswordResetForm(Form):
+    email = StringField('Email Address', [validators.DataRequired(message='Email field is required'), validators.Email(message='Please enter the email address you created your account with')])
+
+class PasswordChangeForm(Form):
+    password = PasswordField('Password', [
+        validators.DataRequired(message='This field cannot be blank'),
+        validators.EqualTo('confirm', message='Passwords must match')
+    ])
+    confirm = PasswordField('Confirm Password')
+
 application = Flask(__name__)
 application.secret_key = application.config['SECRET_KEY']
 
