@@ -1776,46 +1776,79 @@ def reset_password_request():
                             subject = subject, 
                             html = html
                             )
-                flash('If a user with that email exists, an email will be sent to you with instructions to reset your password')
+                flash('If an account with that email exists, instructions to reset your password will be sent to that email.')
                 return redirect(url_for('login'))
         else:
-            flash('If a user with that email exists, an email will be sent to you with instructions to reset your password')
+            flash('If an account with that email exists, instructions to reset your password will be sent to that email.')
             return redirect(url_for('reset_password_request'))
     return render_template('reset_password_request.html', form = form)
 
-@application.route('/account/password/reset/confirm', methods = ['GET'])
-def reset_password_with_token(token):
+@application.route('/account/password/reset/confirm', methods = ['GET', 'POST'])
+def reset_password_with_token():
     form = PasswordChangeForm(request.form)
+    token = request.args.get('token')
 
     #Check if token is legit
     with engine.connect() as connection:
         ResultProxy = connection.execute("SELECT * FROM tokens WHERE token = %s;", (token))
-        token_df = ResultProxy.fetchone()
-
-    if token_df:
+        token_df = DataFrame(ResultProxy.fetchall())
+    
+    
+    if len(token_df.index) > 0:
         token_df.columns = ResultProxy.keys()
-        
+
         #check if token is expired
-        if token_df['creation_time'] < datetime.now() - timedelta(hours=24):
+        if pd.to_datetime(token_df['creation_time'][0]) + timedelta(hours=24) < datetime.now() :
             flash('Error: The password reset link has expired')
             return redirect(url_for('login'))
 
         #check if token has been used already
-        if token_df['used'] >= 0:    
-            flash('Error: The password reset has expired')
+        if token_df['used'][0] > 0:    
+            flash('Error: The password reset link has expired')
             return redirect(url_for('login'))
 
         #if Post request update password
-        if request.method == 'POST' & form.validate():
+        if request.method == 'POST' and form.validate():
+            user_id = token_df['user_id'][0]
+            user = User.query.filter_by(id=user_id).first()
+
             #update password
-            ##### This is where you left off ####
+            password = form.password.data.encode('utf-8')
 
+            salt = bcrypt.gensalt()
+            password_hash = bcrypt.hashpw(password, salt)
+            password_hash = password_hash.decode('utf8')
 
-            flash('Success. Your password has been changed. Please login with your new password')
+            with engine.connect() as connection:
+                connection.execute('''UPDATE users
+                                        SET password = %s
+                                        WHERE id = %s;''', (password_hash, user_id))
+         
+            #Destroy token
+            with engine.connect() as connection:
+                connection.execute("UPDATE tokens SET used = 1 WHERE token = %s;", (token))
+
+            #Now login user
+            flash('Your password has been reset')
+            if user:
+                user.authenticated = True
+                login_user(user, remember=True)
+                current_user.is_authenticated = True
+
+                try:
+                    current_db_sessions = db.session.object_session(user)
+                    current_db_sessions.add(user)
+                except:
+                    db.session.add(user)
+                
+                db.session.commit()
+                return redirect('/')
+            
+            flash('Error: Something went wrong')
             return redirect(url_for('login'))
         else:    
             #load page and allow user to change password
-            return render_template('reset_password_with_token.html', token = token, form = form)
+            return render_template('reset_password_with_token.html', form = form)
         
     flash('Error: Something went wrong')
     return redirect(url_for('login'))
