@@ -10,7 +10,7 @@ from pandas import DataFrame
 from pandas.util import hash_pandas_object
 import re
 from flask_gtts import gtts
-from config import Config, S3_KEY, S3_SECRET, S3_BUCKET, SES_REGION_NAME, SES_EMAIL_SOURCE
+from config import GMAIL_PASSWORD, GMAIL_USERNAME, Config, S3_KEY, S3_SECRET, S3_BUCKET, SES_REGION_NAME, SES_EMAIL_SOURCE, GMAIL_USERNAME, GMAIL_PASSWORD
 from flask_login import LoginManager
 from models import LoginForm, RegistrationForm, PasswordResetForm, PasswordChangeForm, upload_file_to_s3
 from wtforms import validators
@@ -118,6 +118,16 @@ def send_email(app, recipients, sender=None, subject='', text='', html=''):
             }
         }
     )
+
+#Set up mail
+application.config['MAIL_SERVER']='smtp.gmail.com'
+application.config['MAIL_PORT'] = 465
+application.config['MAIL_USERNAME'] = GMAIL_USERNAME
+application.config['MAIL_PASSWORD'] = GMAIL_PASSWORD
+application.config['MAIL_USE_TLS'] = False
+application.config['MAIL_USE_SSL'] = True
+
+mail = Mail(application)    
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -901,41 +911,7 @@ def decode_base64_file(data):
         except TypeError:
             TypeError('invalid_image')
 
-        # Generate file name:
-        #Check if they have uploaded a file, if they have, use that name, if not, use a random name
-        # with engine.connect() as connection:
-        #         ResultProxy = connection.execute('''SELECT u.profile_photo 
-        #                                             FROM users u
-        #                                             WHERE u.profile_photo IS NOT NULL AND u.id = %s;''', (current_user.get_user_id()))
-        # df = DataFrame(ResultProxy.fetchall())
-        # if len(df.index) > 0:
-        #     df.columns = ResultProxy.keys()
-        #     file_name = df['profile_photo'][0]
-        #     file_name = file_name.split('.')[0]
-        # else:
-        #     file_name = None
-        
-        # if file_name != None:
-        #     df.columns = ResultProxy.keys()
-        #     file_name = df['profile_photo'][0]
-        #     file_name = file_name.split('.')[0]
-        # else:
-        #     #Create new file_name
-        #     #Check that this isn't already in the database
-        #     while True:
-        #         file_name = str(uuid.uuid4())[:12]
-        #         file_name_search = file_name + ".jpg"
-        #         file_name_search2 = file_name + ".png"
-        #         with engine.connect() as connection:
-        #             ResultProxy = connection.execute('''SELECT u.id 
-        #                                                 FROM users u
-        #                                                 WHERE u.profile_photo = %s OR u.profile_photo = %s;''', (file_name_search, file_name_search2))
-                
-        #         df = DataFrame(ResultProxy.fetchall())
-        #         if len(df.index) == 0:
-        #             break
-
-        #Come up with new filename
+   
         while True:
             file_name = str(uuid.uuid4())[:12]
             file_name_search = file_name + ".jpg"
@@ -1767,17 +1743,23 @@ def reset_password_request():
                 connection.execute("INSERT INTO tokens (user_id, token) VALUES (%s, %s);", (user.get_user_id(), token))
                 
                 recipients = [user.email]
-                subject = 'Reset Password'
+                subject = 'Moonramp - Password Reset'
                 
-                html = render_template('reset_pw_email.html', token = token)
+            html = render_template('reset_pw_email.html', token = token)
 
-                send_email(application, 
-                            recipients= recipients, 
-                            subject = subject, 
-                            html = html
-                            )
-                flash('If an account with that email exists, instructions to reset your password will be sent to that email.')
-                return redirect(url_for('login'))
+            # send_email(application, 
+            #             recipients= recipients, 
+            #             subject = subject, 
+            #             html = html
+            #             )
+            
+            msg = Message(subject, sender = (GMAIL_USERNAME), recipients = recipients)
+            msg.html = html
+            mail.send(msg)
+                
+                
+            flash('If an account with that email exists, instructions to reset your password will be sent to that email.')
+            return redirect(url_for('login'))
         else:
             flash('If an account with that email exists, instructions to reset your password will be sent to that email.')
             return redirect(url_for('reset_password_request'))
