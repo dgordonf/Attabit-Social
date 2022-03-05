@@ -1,5 +1,5 @@
 from gzip import READ
-from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, send_from_directory
+from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, send_from_directory, current_app
 import requests
 from string import Template
 from flask_sqlalchemy import SQLAlchemy
@@ -10,7 +10,7 @@ from pandas import DataFrame
 from pandas.util import hash_pandas_object
 import re
 from flask_gtts import gtts
-from config import GMAIL_PASSWORD, GMAIL_USERNAME, Config, S3_KEY, S3_SECRET, S3_BUCKET, SES_REGION_NAME, SES_EMAIL_SOURCE, GMAIL_USERNAME, GMAIL_PASSWORD
+from config import GMAIL_PASSWORD, GMAIL_USERNAME, Config, S3_KEY, S3_SECRET, S3_BUCKET, SES_REGION_NAME, SES_EMAIL_SOURCE, GMAIL_USERNAME, GMAIL_PASSWORD, SERVER_NAME, SECRET_KEY
 from flask_login import LoginManager
 from models import LoginForm, RegistrationForm, PasswordResetForm, PasswordChangeForm, upload_file_to_s3
 from wtforms import validators
@@ -48,6 +48,7 @@ application = Flask(__name__)
 application.secret_key = application.config['SECRET_KEY']
 
 application.config.from_object(Config)
+
 
 #This is for users table
 db = SQLAlchemy(application, engine_options={"pool_recycle": 1800})
@@ -1837,4 +1838,4 @@ def reset_password_with_token():
     
 if __name__ == '__main__':
     #Need to make this port 443 in prod
-    application.run(port=8080, debug=True, use_reloader = True)
+    application.run(debug=True, use_reloader = True)
