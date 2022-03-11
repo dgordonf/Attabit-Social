@@ -1523,8 +1523,8 @@ $('#fileInput').on( 'change', function(){
     
   <div class = "profile_details">
     <div>
-      <div style="font-size: 25px;color:#4e4e4e82;line-height: 20px;">{{profile_info['first_name'][0]}}</div>
-      <div class="main_handle">@{{profile_handle}}</div>
+      
+      <div class="main_handle">{{profile_handle}}</div>
 
       <div class = "handle_score_box">
         <div style="font-size: 19px;">
@@ -1533,7 +1533,7 @@ $('#fileInput').on( 'change', function(){
       </div>
 
     </div>
-
+      <div style="margin-top:5px;font-size: 17px;color:#4e4e4e82;line-height: 17px;">{{profile_info['first_name'][0]}}</div>
       <div style = "margin-top:5px;white-space: pre-wrap;word-wrap: break-word; word-break: break-all;font-size: 17px;">{{ profile_info['bio'][0]|urlize(40, true) }}</div>
     </div>
 </div> 

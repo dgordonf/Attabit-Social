@@ -35,8 +35,7 @@ html {
 }
 
 body {
-  background-color: #232020;
-   background-color: #fafafa; 
+  background-color: #ffffff; 
    z-index: 0;
    font-size:14px;
    font-family: 'Inter';
@@ -127,12 +126,13 @@ color: #222222;
 }
 
 
+
 #feed {
   width: 100%;
   max-width:550px;
   min-width: 325px;
   margin: 0 auto;
-  margin-top:25px;
+  margin-top:10px;
   margin-bottom: 75px;
  
  }
@@ -141,7 +141,7 @@ color: #222222;
 .post_icons {
   display:flex;
   flex-direction: row;
-  margin-left: 5%;
+  margin-left: 8%;
 }
 
 
@@ -165,8 +165,8 @@ flex-grow: 1;
 
 .post_text {
   padding: 7px;
-  margin-left: 7px;
-  min-height: 20px;
+  min-height: 100px;
+  font-size: 16px;
 
 }
 
@@ -192,6 +192,7 @@ flex-grow: 1;
   color: #161616;
   margin-left: 7px;
   font-size: 17px;
+  font-family: "Monda";
 }
 
 .controls {
@@ -258,12 +259,10 @@ flex-grow: 1;
  .badge {
   float: left;
   background-size: cover;
-  background-color:#ffffff;
-  border: 1px solid black;
-
+  background-color:#e4e4e4;
   border-radius: 50%;
-  width: 56px;
-  height: 56px; 
+  width: 60px;
+  height: 60px; 
   position: relative;
   color:rgba(29, 29, 29);
 
@@ -376,10 +375,10 @@ flex-grow: 1;
 }
 
 .user_post_box {
-  padding: 2px;
-  background: #4c4c4c;
+  background: #e1e1e18f;
   border-radius:7px;
   margin-bottom: 30px;
+  border-bottom: #b6b6b673 1px solid;
 
 }
 
@@ -391,17 +390,19 @@ flex-grow: 1;
 
 .post_box {
   margin-top: 20px;
-  padding:2px;
-  
+  padding:0px;
+  border-bottom: #b6b6b673 1px solid;
   background-color: white;
-  border-radius:7px;
+  border-radius:0px;
+  
   }
 
  .post_inner {
   padding: 23px;
   background-color: #ffffff;
-  border-radius:7px;
+  border-radius:0px;
   padding-bottom: 16px;
+  min-height: 200px;
 }
 
 .date_box {
@@ -700,6 +701,7 @@ background: transparent;
 
 .handle_score_box {
   display: flex;
+  margin-left: 5px;
   flex-direction: column;
   width: 100%;
   height:100%;
@@ -757,6 +759,10 @@ background: transparent;
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+._8bit_button {
+  font-family: "Monda"
+}
 </style>
 
 <script>
@@ -1094,28 +1100,24 @@ $('#date_select').on('input', function() {
             </a>  
             
             <div class = "handle_score_box">
-              <div style= 'height: 15px;'>
+              <div style= 'height: 18px;'>
                 <a class= "profile_link" href = "/@{{posts['handle']}}">
                 <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}}</span>
                 </a>  
               </div>
-              <div style="margin-top:10px;" class= "score_bar">
-                <span id ="{{index}}_score_bar">{{posts['user_score_bars_print']}}</span><span id= "{{index}}_score_value"> {{posts['user_score']}}</span>
+            
+              <div class = "post_text">
+                    <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(40, true) }}</span> 
               </div>
-
-
             </div>
-        </div>
-          
-          <div class = "post_text" style="post_score:{{posts['post_score']}};">
-              <span  style="white-space: pre-wrap; font-size:16px;" > {{ posts['post_text']|urlize(40, true) }} </span> 
           </div>
+          
           <div class = "post_icons">
             
               <div style= "width:30%">  
                 <a class="post_link" href = "/post/{{posts['post_id']}}">    
                 <button class = "reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}'>
-                  <span style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{posts['reply_count']}}</span>
+                  <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{posts['reply_count']}}</span>
                 </button>  
                 </a>  
               </div>
@@ -1128,13 +1130,13 @@ $('#date_select').on('input', function() {
                   
                   <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
                   <button id= "down_submit_{{index}}"  type="submit" class="arrow_button">
-                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% else %}
                   
                   <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = -1>  
                   <button id= "down_submit_{{index}}" type="submit" class="arrow_button">
-                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   
@@ -1149,13 +1151,13 @@ $('#date_select').on('input', function() {
                   
                   <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
                   <button id= "up_submit_{{index}}"  type="submit" class="arrow_button">
-                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% else %}
 
                   <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 1>  
                   <button id= "up_submit_{{index}}" type="submit" class="arrow_button">
-                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px;margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px;margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   </button>
