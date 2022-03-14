@@ -460,8 +460,8 @@ def feed():
                 df['user_score'] = df['user_score'].astype(int)
 
                 #Create Score Bar Print
-                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
-                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '▓' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '░' * (10 - x))
        
                 ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]
@@ -558,8 +558,8 @@ def user_page(username):
     profile_info['user_score'] = profile_info['user_score'].astype(int)
 
     #Create Score Bar Print
-    profile_info['user_score_bars_print'] = profile_info['user_score_bars'].apply(lambda x: '■' * x)
-    profile_info['user_score_bars_print'] = profile_info['user_score_bars_print'] + profile_info['user_score_bars'].apply(lambda x: '□' * (10 - x))
+    profile_info['user_score_bars_print'] = profile_info['user_score_bars'].apply(lambda x: '▓' * x)
+    profile_info['user_score_bars_print'] = profile_info['user_score_bars_print'] + profile_info['user_score_bars'].apply(lambda x: '░' * (10 - x))
 
     if request.method == 'POST':
         type = request.form.get('update_type')
@@ -753,8 +753,8 @@ def user_page(username):
                 df['user_score'] = df['user_score'].astype(int)
 
                 #Create Score Bar Print
-                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
-                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '▓' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '░' * (10 - x))
                                 
                 ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]
@@ -1038,8 +1038,8 @@ def search():
                 df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
                 
                 #Create Score Bar Print
-                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
-                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '▓' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '░' * (10 - x))
                 df['user_score'] = df['user_score'].astype(int)
 
         return render_template('search.html', 
@@ -1081,8 +1081,8 @@ def search():
             df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
             
             #Create Score Bar Print
-            df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
-            df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x)) 
+            df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '▓' * x)
+            df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '░' * (10 - x)) 
             df['user_score'] = df['user_score'].astype(int)
             
         return render_template('search.html',
@@ -1275,8 +1275,8 @@ def post(post_id):
             post_info['user_score'] = post_info['user_score'].astype(int)
 
             #Create Score Bar Print
-            post_info['user_score_bars_print'] = post_info['user_score_bars'].apply(lambda x: '■' * x)
-            post_info['user_score_bars_print'] = post_info['user_score_bars_print'] + post_info['user_score_bars'].apply(lambda x: '□' * (10 - x))
+            post_info['user_score_bars_print'] = post_info['user_score_bars'].apply(lambda x: '▓' * x)
+            post_info['user_score_bars_print'] = post_info['user_score_bars_print'] + post_info['user_score_bars'].apply(lambda x: '░' * (10 - x))
 
             
             #Get all replies on page
@@ -1369,8 +1369,8 @@ def post(post_id):
                 df['user_score'] = df['user_score'].astype(int)
 
                 #Create Score Bar Print
-                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
-                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '▓' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '░' * (10 - x))
 
                 #Sort by post_score
                 df = df.sort_values(by=['post_score'], ascending=False)
@@ -1512,8 +1512,8 @@ def quickvote():
         post_info['user_score'] = post_info['user_score'].astype(int)
 
         #Create Score Bar Print
-        post_info['user_score_bars_print'] = post_info['user_score_bars'].apply(lambda x: '■' * x)
-        post_info['user_score_bars_print'] = post_info['user_score_bars_print'] + post_info['user_score_bars'].apply(lambda x: '□' * (10 - x))
+        post_info['user_score_bars_print'] = post_info['user_score_bars'].apply(lambda x: '▓' * x)
+        post_info['user_score_bars_print'] = post_info['user_score_bars_print'] + post_info['user_score_bars'].apply(lambda x: '░' * (10 - x))
 
         response = jsonify(post_info=post_info.to_json())
     else: 
@@ -1685,8 +1685,8 @@ def top(date):
                 df['user_score'] = df['user_score'].astype(int)
 
                 #Create Score Bar Print
-                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '■' * x)
-                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '□' * (10 - x))
+                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '▓' * x)
+                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '░' * (10 - x))
        
                 ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]

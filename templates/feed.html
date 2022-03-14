@@ -315,12 +315,6 @@ flex-grow: 1;
 
 
 
-.arrow_button {
-  background: none;
-  padding: 0px;
-  border: none;
-
-}
 
 .form_arrows {
 
@@ -657,20 +651,28 @@ background: transparent;
 
 }
 
-.voted_button {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    font-weight: 600;
+.arrow_button {
+  background: none;
+  padding: 0px;
+  border: none;
+}
 
-    border: none;
-    outline: none;
-    color: #fff;
-    background: #414141;
-    position: relative;
-    z-index: 0;
-    border-radius: 10px;
+.pre_vote {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+.voted_button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 600;
+  color: #414141;
+  border: 2px solid #414141;
 }
 
 .post_link{
@@ -1138,13 +1140,13 @@ window.onclick = function(event) {
                   
                   <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
                   <button id= "down_submit_{{index}}"  type="submit" class="arrow_button">
-                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% else %}
                   
                   <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = -1>  
                   <button id= "down_submit_{{index}}" type="submit" class="arrow_button">
-                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   
@@ -1159,13 +1161,13 @@ window.onclick = function(event) {
                   
                   <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
                   <button id= "up_submit_{{index}}"  type="submit" class="arrow_button">
-                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% else %}
 
                   <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 1>  
                   <button id= "up_submit_{{index}}" type="submit" class="arrow_button">
-                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px;margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px;margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   </button>
