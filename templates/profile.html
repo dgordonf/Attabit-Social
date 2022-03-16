@@ -970,7 +970,8 @@ body.modal-open {
   height: 10px;
   margin:7px;
   font-weight: 600;
-  opacity: 0.55;
+  opacity: 0.85;
+  word-wrap: unset;
 }
 
 .score {
@@ -1528,7 +1529,7 @@ $('#fileInput').on( 'change', function(){
 
       <div class = "handle_score_box">
         <div style="font-size: 19px;">
-          <span class= "score_bar" style = "margin-left: 0px;opacity:0.65;">{{profile_info['user_score_bars_print'][0]}} {{profile_info['user_score'][0]}}</span>
+          <span class= "score_bar" style = "margin-left: 0px;opacity:0.65;">{{profile_info['user_score_bars_print'][0]}}<span style="padding-left: 7px;">{{profile_info['user_score'][0]}}</span></span>
         </div>
       </div>
 
