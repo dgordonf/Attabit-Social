@@ -137,7 +137,7 @@ color: #222222;
   min-width: 325px;
   margin: 0 auto;
   margin-top:55px;
-  margin-bottom: 75px;
+  margin-bottom: 200px;
  
  }
 
@@ -394,18 +394,38 @@ flex-grow: 1;
 
 }
 
-.user_post_box {
-  background: #e1e1e18f;
-  border-radius:7px;
-  margin-bottom: 30px;
-  border-bottom: #b6b6b673 1px solid;
+.footer_user_post_box {
+  background: #ffffff;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+
+  max-width:550px;
+  min-width: 325px;
+  width: 100%;
+  border-radius: 7px;
+  
+  
 
 }
 
-.user_post_box_inner {
-  background-color: white;
+.footer_user_post_box_inner {
+  background-color: #fcfcfc;
   border-radius:7px;
   
+  margin: 5px;
+  margin-bottom: 2px;
+  border: 2px dotted #4c4c4c;
+}
+
+.footer_post_inner {
+  padding: 17px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #ffffff;
+  border-radius:0px;
+  
+  min-height: 100px;
 }
 
 .post_box {
@@ -547,6 +567,7 @@ flex-grow: 1;
 
 #post_form {
   width: 100%;
+  height: 1%;
 }
 
 .reply_form {
@@ -1332,6 +1353,10 @@ $('#fileInput').on( 'change', function(){
 </div>
 
 
+
+
+
+
   <div id= "feed" >
   
     <div id = "feed_inner">
@@ -1453,15 +1478,17 @@ $('#fileInput').on( 'change', function(){
     </div>
     {% endfor %}
 
-    <div class = "user_post_box">
-      <div class = "user_post_box_inner"> 
-        <div class = "post_inner" style = "min-height:150px;">
+    <div class = "footer_user_post_box">
+      <div class = "footer_user_post_box_inner"> 
+        <div class = "footer_post_inner">
           
           <div style="  display:flex; flex-direction: row; width: 100%;">
+            <!--
             <a href = @{{current_user_handle}}>
               <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');">
               </div>
             </a>
+            -->
   
           <form action="" method="POST" id = "post_form" enctype="multipart/form-data">  
             <input type="hidden" name= "reply_to_id" value={{post_info['post_id'][0]}} >
@@ -1469,7 +1496,7 @@ $('#fileInput').on( 'change', function(){
             <input type="hidden" name= "type" value="1">
           <div id = "post_text_icon_container">
             <div class="grow-wrap" style = "max-width: 500px;width:425px" name= "post_text" >
-              <textarea class = "post_input" style = "max-width: 500px;width:425px"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Reply to @{{post_info['handle'][0]}}..."></textarea>
+              <textarea class = "post_input" style = "max-width: 500px;width:425px"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Add a comment"></textarea>
             </div>
               <div class="image-upload" style = "margin-top: 10px;">
                 <label for="file-input" style="margin-bottom:0px;">
@@ -1479,12 +1506,14 @@ $('#fileInput').on( 'change', function(){
               </div> 
             </div>
           </form>
+          <div style="min-height: 35px;margin: 10px;margin-right: 3px;">
+            <button type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;">
+              <span style="font-size:16px;"> Post </span>
+            </button>
+            </div>
+
           </div>
-          <div style="min-height: 35px;margin: 10px;">
-          <button type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;bottom: 25px;">
-            <span style="font-size:16px;"> Post </span>
-          </button>
-          </div>
+
         </div> 
       </div> 
     </div>   
