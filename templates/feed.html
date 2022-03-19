@@ -662,17 +662,12 @@ background: transparent;
   padding-bottom: 5px;
   padding-right: 10px;
   padding-left: 10px;
-  font-weight: 600;
-
-  box-shadow: 
-    2.5px 0 #41414122, 
-    -2.5px 0 #41414122,
-    0 2.5px #41414122, 
-    0 -2.5px #41414122;
-
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .voted_button {
+  font-size: 16px;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-right: 10px;
@@ -682,15 +677,9 @@ background: transparent;
   outline: none;
   color: #fff;
   background: #414141;
-
   position: relative;
   z-index: 0;
-
-  box-shadow: 
-    2.5px 0 #414141, 
-    -2.5px 0 #414141,
-    0 2.5px #414141, 
-    0 -2.5px #414141;
+  border-radius: 10px;
 }
 
 .post_link{
@@ -761,109 +750,6 @@ background: transparent;
 ._8bit_button {
   font-family: "Monda"
 }
-
-/*
-@mixin step1( $width, $color ) {
-  box-shadow: 
-    $width 0 $color, 
-    -$width 0 $color,
-    0 (-$width) $color, 
-    0 $width $color;
-  margin: $width auto;
-}
-
-@mixin step2v2( $width, $color, $bgcolor ) {
-  box-shadow:
-    $width 0 $bgcolor,
-    -$width 0 $bgcolor,
-    0 (-$width) $bgcolor,
-    0 $width $bgcolor,
-    2*$width 0 $color,
-    -2*$width 0 $color,
-    0 (-2*$width) $color,
-    0 2*$width $color, 
-    0 0 0 $width $color;
-  margin: 2*$width auto;
-}
-
-@mixin step3v2( $width, $color, $bgcolor ) {
-  box-shadow:
-    $width 0 $bgcolor,
-    -$width 0 $bgcolor,
-    0 (-$width) $bgcolor,
-    0 $width $bgcolor,
-    2*$width 0 $bgcolor,
-    -2*$width 0 $bgcolor,
-    0 (-2*$width) $bgcolor,
-    0 2*$width $bgcolor, 
-    0 0 0 $width $bgcolor,
-    3*$width 0 $color,
-    -3*$width 0 $color, 
-    0 3*$width $color,
-    0 (-3*$width) $color,
-    0 (-$width) 0 $width $color,
-    0 $width 0 $width $color,
-    $width 0 0 $width $color,
-    -$width 0 0 $width $color;
-  margin: 3*$width auto;
-}
-@mixin step4( $width, $color, $bgcolor ) {
-  box-shadow:
-    $width 0 $bgcolor,
-    -$width 0 $bgcolor,
-    0 (-$width) $bgcolor,
-    0 $width $bgcolor,
-    2*$width 0 $bgcolor,
-    -2*$width 0 $bgcolor,
-    0 (-2*$width) $bgcolor,
-    0 2*$width $bgcolor, 
-    0 0 0 $width $bgcolor,
-    3*$width 0 $bgcolor,
-    -3*$width 0 $bgcolor, 
-    0 3*$width $bgcolor,
-    0 (-3*$width) $bgcolor,
-    0 (-$width) 0 $width $bgcolor,
-    0 $width 0 $width $bgcolor,
-    $width 0 0 $width $bgcolor,
-    -$width 0 0 $width $bgcolor,
-    4*$width 0 $color, 
-    -4*$width 0 $color,
-    0 (-4*$width) $color, 
-    0 4*$width $color,
-    2*$width 0 0 $width $color,
-    -2*$width 0 0 $width $color,
-    0 2*$width 0 $width $color,
-    0 (-2*$width) 0 $width $color,
-    0 0 0 2*$width $color;
-    margin: 4*$width auto;
-}
-@mixin other( $width, $color, $bgcolor ) {
-  box-shadow:
-    4*$width 0 $bgcolor, 
-    -4*$width 0 $bgcolor, 
-    0 (-4*$width) $bgcolor, 
-    0 4*$width $bgcolor,
-    $width 0 0 2*$width $bgcolor,
-    -$width 0 0 2*$width $bgcolor,
-    0 (-$width) 0 2*$width $bgcolor,
-    0 $width 0 2*$width $bgcolor,
-    5*$width 0 $color, 
-    -5*$width 0 $color,
-    0 (-5*$width) $color, 
-    0 5*$width $color,
-    0 0 0 3*$width $color,
-    0 2*$width 0 2*$width $color,
-    0 (-2*$width) 0 2*$width $color,
-    2*$width 0 0 2*$width $color,
-    (-2*$width) 0 0 2*$width $color;
-    margin: 5*$width auto;
-}
-.lvl1 {
-  @include other( 4px, orange, orange );
-}
-
-<div class="lvl1" style="background-color:orange;font-size:20px;padding:5px;">^ 2</div>
-*/
 
 </style>
 
@@ -1263,13 +1149,13 @@ window.onclick = function(event) {
                   
                   <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
                   <button id= "down_submit_{{index}}"  type="submit" class="arrow_button">
-                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                    <span id = "down_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% else %}
                   
                   <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = -1>  
                   <button id= "down_submit_{{index}}" type="submit" class="arrow_button">
-                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                    <span id = "down_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   
@@ -1284,13 +1170,13 @@ window.onclick = function(event) {
                   
                   <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
                   <button id= "up_submit_{{index}}"  type="submit" class="arrow_button">
-                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                    <span id = "up_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% else %}
 
                   <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 1>  
                   <button id= "up_submit_{{index}}" type="submit" class="arrow_button">
-                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px;margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                    <span id = "up_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   </button>
