@@ -1482,7 +1482,7 @@ $('#fileInput').on( 'change', function(){
       <div class = "footer_user_post_box_inner"> 
         <div class = "footer_post_inner">
           
-          <div style="  display:flex; flex-direction: row; width: 100%;">
+        <div style="  display:flex; flex-direction: row; width: 100%;">
             <!--
             <a href = @{{current_user_handle}}>
               <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');">
@@ -1495,8 +1495,8 @@ $('#fileInput').on( 'change', function(){
             <input class= hidden name= "update_type" value = "post_text">  
             <input type="hidden" name= "type" value="1">
           <div id = "post_text_icon_container">
-            <div class="grow-wrap" style = "max-width: 500px;width:425px" name= "post_text" >
-              <textarea class = "post_input" style = "max-width: 500px;width:425px"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Add a comment"></textarea>
+            <div class="grow-wrap" style = "max-width: 100%;" name= "post_text" >
+              <textarea class = "post_input" style = "max-width: 100%;"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Add a comment"></textarea>
             </div>
               <div class="image-upload" style = "margin-top: 10px;">
                 <label for="file-input" style="margin-bottom:0px;">
@@ -1506,13 +1506,14 @@ $('#fileInput').on( 'change', function(){
               </div> 
             </div>
           </form>
+ 
           <div style="min-height: 35px;margin: 10px;margin-right: 3px;">
             <button type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;">
               <span style="font-size:16px;"> Post </span>
             </button>
-            </div>
-
           </div>
+
+        </div>
 
         </div> 
       </div> 
