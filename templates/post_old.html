@@ -160,6 +160,23 @@ background: transparent;
 padding: 7px;
 }
 
+.reply_input {
+position:relative; 
+word-wrap: break-word;
+word-break: break-all;
+width: 85%;
+border: 0;
+outline: 0;
+background: transparent;
+padding: 3px;
+padding-left: 10px;
+flex-grow: 1; 
+}
+
+.reply_bar::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #bebebeee;
+}
+
 .post_text {
   padding: 7px;
   min-height: 100px;
@@ -218,17 +235,47 @@ padding: 7px;
   
 }
 
-.reply_badge_1 {
+.reply_badge {
+  font-size: 11px;
+  margin-top: 6px;
   float: left;
-  background-size: cover;
-  background-color:#e4e4e4;
   border-radius: 50%;
-  width: 48px;
-  height: 48px; 
-  position: relative;
+  width: 33px;
+  height: 33px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color:rgba(29, 29, 29);
 }
 
+.reply_person {
+  color: #818181;
+  font-size: small;
+  line-height: 13px;
+  padding-left: 2px;
+  padding-right: 4px;
+}
+
+.reply_text {
+  margin-left: 40px;
+  max-width: 500px;
+  overflow-wrap: break-word;
+}
+
+.reply_details {
+  padding-left: 5px;
+
+}
+
+.user_reply_box {
+  padding: 3px;
+  padding-left: 9px;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+ }
+
+ 
  .badge {
   float: left;
   background-size: cover;
@@ -298,6 +345,9 @@ padding: 7px;
 
 }
 
+.form_arrows {
+
+}
 
 .reply_button{
   border: 0px solid #c9c9c9;
@@ -354,6 +404,9 @@ padding: 7px;
   min-width: 325px;
   width: 100%;
   border-radius: 7px;
+  
+  
+
 }
 
 .footer_user_post_box_inner {
@@ -362,7 +415,7 @@ padding: 7px;
   
   margin: 2px;
   margin-bottom: 2px;
-  border: 3px dotted #4c4c4c;
+  border: 2px dotted #4c4c4c;
 }
 
 .footer_post_inner {
@@ -392,6 +445,13 @@ padding: 7px;
   min-height: 200px;
 }
 
+.reply_inner {
+  padding: 17px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  background-color: #ffffff;
+  border-radius:7px;
+}
 
 .border-0 {
   background-color: #e1e1e18f;
@@ -929,21 +989,6 @@ body.modal-open {
   font-family: "Monda"
 }
 
-.reply_inner {
-  padding: 15px;
-  background-color: #ffffff;
-  border-radius:0px;
-}
-
-.reply_info_box {
-  display:flex;
-}
-
-.reply_text {
-  padding: 7px;
-  font-size: 16px;
-}
-
 </style>
 
 
@@ -1476,9 +1521,36 @@ $('#fileInput').on( 'change', function(){
 
 
     {% for index, posts in posts.iterrows() %}
-    <div class = "reply_wrap">  
+      <div class = "post_wrap">  
+    {% if posts['post_score'] <= 0 %}
+      <div class="post_box border border-0">
+    {% elif posts['post_score'] >= 5 %}
+      <div class="post_box border border_positive border-5">
+    {% else %}
+      <div class="post_box border border_positive border-{{posts['post_score']}}">
+    {% endif %} 
+      
+      
+    {% if (posts['media_id'] in photos.media_id.values) %}
+      {% for key, photo in photos.iterrows() %}
+          {% if photo['media_id'] == posts['media_id'] %}
+            <div id = "img_container" style="padding-bottom: {{photo['bottom-padding']}}%;">
+              <img src="https://hideawayy.s3.amazonaws.com/media/{{photo['photo_url']}}" alt="An image uploaded by a user" >
+            </div>
 
-      <div class = "reply_inner">
+          {% else %}
+       
+          {% endif %}  
+      {% endfor %}
+    {% endif %}
+
+
+      {% if (posts['media_id'] in photos.media_id.values) %}
+          <div class = "post_inner" style = "border-radius: 0px 0px 10px 10px;">
+        {% else %}  
+          <div class = "post_inner">
+      {% endif %}       
+      
       
         {% if posts['user_id'] == current_user_id %}
         <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
@@ -1490,9 +1562,9 @@ $('#fileInput').on( 'change', function(){
         </form>
         {% else %}  
         {% endif %}     
-        <div class = "reply_info_box">
+        <div class = "post_info_box">
           <a class= "profile_link" href = "/@{{posts['handle']}}">
-            <div class = "reply_badge_1" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
+            <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
               
             </div>
           </a>  
@@ -1504,12 +1576,64 @@ $('#fileInput').on( 'change', function(){
               </a>  
             </div>
 
-              <div class = "reply_text">
+              <div class = "post_text">
                 <span style="white-space: pre-wrap;">{{posts['post_text']|urlize(40, true)}}</span> 
               </div>
           </div>
       </div>
 
+      <div class = "post_icons">
+            
+        <div style= "width:30%">  
+          <a class="post_link" href = "/post/{{posts['post_id']}}">    
+          <button class = "reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}'>
+            <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{posts['reply_count']}}</span>
+          </button>  
+          </a>  
+        </div>
+      
+        <div style= "width:30%">
+          <form id="{{index}}" title="" action= "/quickvote" method= "post" class= "form_arrows">
+            
+            <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >
+            {% if posts['current_user_vote'] <= -1 %}
+            
+            <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
+            <button id= "down_submit_{{index}}"  type="submit" class="arrow_button">
+              <span id = "down_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+            </button>  
+              {% else %}
+            
+            <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = -1>  
+            <button id= "down_submit_{{index}}" type="submit" class="arrow_button">
+              <span id = "down_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+            </button>  
+              {% endif %} 
+            
+          </form>
+        </div>
+
+        <div style= "width:30%">
+          <form id="{{index}}" title="" action="/quickvote" method="post" class = "form_arrows">
+            
+            <input type="hidden" name= "post_id" value={{posts['post_id']}} >
+            {% if posts['current_user_vote'] >= 1 %}
+            
+            <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
+            <button id= "up_submit_{{index}}"  type="submit" class="arrow_button">
+              <span id = "up_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+            </button>  
+              {% else %}
+
+            <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 1>  
+            <button id= "up_submit_{{index}}" type="submit" class="arrow_button">
+              <span id = "up_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+            </button>  
+              {% endif %} 
+            </button>
+          </form>
+        </div>
+    </div>
   </div>  
 </div>
 </div>  
