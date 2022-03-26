@@ -148,6 +148,12 @@ color: #222222;
   margin-left: 8%;
 }
 
+.reply_icons {
+  display:flex;
+  flex-direction: row;
+  margin-left: 7px;
+}
+
 .post_input {
 position:relative; 
 top:5px;
@@ -298,10 +304,17 @@ padding: 7px;
 
 }
 
-
 .reply_button{
   border: 0px solid #c9c9c9;
   background-color: transparent;
+}
+
+.reply_reply_button{
+  border: 0px solid #c9c9c9;
+  background-color: transparent;
+  padding:0px;
+  opacity: .45;
+  font-weight: 500;
 }
 
 .border {
@@ -862,6 +875,34 @@ body.modal-open {
   border-radius: 10px;
 }
 
+.reply_pre_vote {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 5px;
+  padding-left: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  margin-right: 3px;
+}
+
+.reply_voted_button {
+  font-size: 16px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-right: 5px;
+  padding-left: 5px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #414141;
+  position: relative;
+  z-index: 0;
+  border-radius: 4px;
+  margin-right: 3px;
+}
+
+
 .post_link{
   display: block;
   text-decoration: none;
@@ -940,7 +981,10 @@ body.modal-open {
 }
 
 .reply_text {
-  padding: 7px;
+  padding-top: 7px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 3px;
   font-size: 16px;
 }
 
@@ -1209,8 +1253,8 @@ $('#fileInput').on( 'change', function(){
           var post_info = JSON.parse(response.post_info);
           
           //Update Score Bars
-          $("#" + id + "_score_bar").html(post_info.user_score_bars_print[0]);
-          $("#" + id + "_score_value").html(post_info.user_score[0]);
+          //$("#" + id + "_score_bar").html(post_info.user_score_bars_print[0]);
+          //$("#" + id + "_score_value").html(post_info.user_score[0]);
           
           var current_user_vote = post_info.current_user_vote[0].toFixed(0);
 
@@ -1275,8 +1319,105 @@ $('#fileInput').on( 'change', function(){
     
   });
 
-</script>
 
+  //Wait until Doc is ready
+  $(document).ready(function(){
+
+  $(document).on("submit", ".reply_form_arrows", function(event) {
+    event.preventDefault();
+   
+    //Get the id of the post
+    var id = $(this).attr("id");
+    
+    //Get the vote value
+    var post_vote = $(this).find("input[name=post_vote]").val();
+
+    //disable the buttons
+    $("#up_submit_" + id).prop("disabled", true);
+    $("#down_submit_" + id).prop("disabled", true);
+   
+   
+    var $form = $(this),
+    url = $form.attr('action');
+    
+    req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize(), 
+        success:function(){
+          
+          //Parse the response
+          var response = JSON.parse(req.responseText);
+          var post_info = JSON.parse(response.post_info);
+          
+          //Update Score Bars
+          //$("#" + id + "_score_bar").html(post_info.user_score_bars_print[0]);
+          //$("#" + id + "_score_value").html(post_info.user_score[0]);
+          
+          var current_user_vote = post_info.current_user_vote[0].toFixed(0);
+
+          var up_votes = post_info.up_votes[0];
+          var down_votes = post_info.down_votes[0];
+
+          console.log(current_user_vote);
+
+          //Update Vote Buttons
+          if(current_user_vote == 0){
+            
+            //Remove Class
+            $("#up_vote_wrapper_" + id).removeClass("reply_voted_button");
+            $("#down_vote_wrapper_" + id).removeClass("reply_voted_button");
+
+            //Reset form values
+            $("#up_vote_value_" + id).val(1);
+            $("#down_vote_value_" + id).val(-1);
+
+            //Update Text
+            $("#up_vote_text_" + id).html(up_votes);
+            $("#down_vote_text_" + id).html(down_votes);
+          }
+
+          if(current_user_vote >= 1){
+            //Remove Class
+            $("#up_vote_wrapper_" + id).addClass("reply_voted_button");
+            $("#down_vote_wrapper_" + id).removeClass("reply_voted_button");
+
+            //Reset form values
+            $("#up_vote_value_" + id).val(0);
+            $("#down_vote_value_" + id).val(-1);
+
+            //Update Text
+            $("#up_vote_text_" + id).html(up_votes);
+            $("#down_vote_text_" + id).html(down_votes);
+          }
+
+          if(current_user_vote <= -1){
+            //Remove Class
+            $("#up_vote_wrapper_" + id).removeClass("reply_voted_button");
+            $("#down_vote_wrapper_" + id).addClass("reply_voted_button");
+
+            //Reset form values
+            $("#up_vote_value_" + id).val(1);
+            $("#down_vote_value_" + id).val(0);
+
+            //Update Text
+            $("#up_vote_text_" + id).html(up_votes);
+            $("#down_vote_text_" + id).html(down_votes);
+          }
+
+         
+        }
+  });
+  
+    $("#up_submit_" + id).prop("disabled", false);
+    $("#down_submit_" + id).prop("disabled", false);
+
+
+  });
+    
+  });
+
+</script>
 
 {% extends "layout.html" %}
 {% block body %}
@@ -1479,17 +1620,7 @@ $('#fileInput').on( 'change', function(){
     <div class = "reply_wrap">  
 
       <div class = "reply_inner">
-      
-        {% if posts['user_id'] == current_user_id %}
-        <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
-          <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
-          <button class = "delete_button" type="submit">
-            <i class="far fa-times-circle"></i>
-          </button>  
-        
-        </form>
-        {% else %}  
-        {% endif %}     
+  
         <div class = "reply_info_box">
           <a class= "profile_link" href = "/@{{posts['handle']}}">
             <div class = "reply_badge_1" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
@@ -1502,17 +1633,84 @@ $('#fileInput').on( 'change', function(){
               <a class= "profile_link" href = "/@{{posts['handle']}}">
               <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}}</span>
               </a>  
+
+              {% if posts['user_id'] == current_user_id %}
+              <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
+                <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+                <button class = "delete_button" type="submit">
+                  <i class="far fa-times-circle"></i>
+                </button>  
+              
+              </form>
+              {% else %}  
+              {% endif %}   
+
+
             </div>
 
               <div class = "reply_text">
                 <span style="white-space: pre-wrap;">{{posts['post_text']|urlize(40, true)}}</span> 
               </div>
-          </div>
+          
+
+        <div class = "reply_icons">
+            
+            <div style= "width:20%">  
+              <button class = "reply_reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}'>
+                <span style="font-size:15px;">Reply</span>
+              </button>  
+            </div>
+          
+            <div style= "width:20%">
+              <form id="{{index}}" title="" action= "/quickvote" method= "post" class= "reply_form_arrows">
+                
+                <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >
+                {% if posts['current_user_vote'] <= -1 %}
+                
+                <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
+                <button id= "down_submit_{{index}}"  type="submit" class="arrow_button">
+                  <span id = "down_vote_wrapper_{{index}}" class = "reply_pre_vote reply_voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i></span><span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span>
+                </button>  
+                  {% else %}
+                
+                <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = -1>  
+                <button id= "down_submit_{{index}}" type="submit" class="arrow_button">
+                  <span id = "down_vote_wrapper_{{index}}" class = "reply_pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i></span><span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span>
+                </button>  
+                  {% endif %} 
+                
+              </form>
+            </div>
+
+            <div style= "width:20%">
+              <form id="{{index}}" title="" action="/quickvote" method="post" class = "reply_form_arrows">
+                
+                <input type="hidden" name= "post_id" value={{posts['post_id']}} >
+                {% if posts['current_user_vote'] >= 1 %}
+                
+                <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
+                <button id= "up_submit_{{index}}"  type="submit" class="arrow_button">
+                  <span id = "up_vote_wrapper_{{index}}" class = "reply_pre_vote reply_voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i></span><span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span>
+                </button>  
+                  {% else %}
+
+                <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 1>  
+                <button id= "up_submit_{{index}}" type="submit" class="arrow_button">
+                  <span id = "up_vote_wrapper_{{index}}" class = "reply_pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i></span><span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span>
+                </button>  
+                  {% endif %} 
+                </button>
+              </form>
+            </div>
+        </div>
+        
       </div>
 
+
+
+      </div>
   </div>  
 </div>
-</div>  
  
     {% endfor %}
   </div>

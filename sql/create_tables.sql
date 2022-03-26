@@ -72,10 +72,9 @@ CREATE TABLE meadow.follows (
 CREATE TABLE meadow.tokens (
     token_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    token VARCHAR(100),
     type INT,
+    token VARCHAR(200) NULL,
     used INT,
     creation_time     DATETIME DEFAULT   CURRENT_TIMESTAMP,
     last_update_time  DATETIME ON UPDATE CURRENT_TIMESTAMP
-  
 );
