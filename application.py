@@ -1744,7 +1744,7 @@ def reset_password_request():
                 connection.execute("INSERT INTO tokens (user_id, token) VALUES (%s, %s);", (user.get_user_id(), token))
                 
                 recipients = [user.email]
-                subject = 'Moonramp - Password Reset'
+                subject = 'Attabit - Password Reset'
                 
             html = render_template('reset_pw_email.html', token = token)
 
