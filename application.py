@@ -1279,7 +1279,7 @@ def post(post_id):
             post_info['user_score_bars_print'] = post_info['user_score_bars_print'] + post_info['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
 
             
-            #Get all replies on page
+            #Get all first replies on page
             with engine.connect() as connection:
                 ResultProxy = connection.execute(
                         """SELECT p.post_id, p.user_id, p.reply_to_id, p.media_id, p.creation_time, p.post_text, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, u.first_name, u.handle, u.profile_photo
@@ -1375,27 +1375,106 @@ def post(post_id):
                 #Sort by post_score
                 df = df.sort_values(by=['post_score'], ascending=False)
 
-            #Get Photos for all IDs
-            if len(post_info.index) > 0:
-                ids = ', '.join(f'"{w}"' for w in post_info.media_id)
+                ids = ', '.join(f'{w}' for w in df.post_id)
                 ids = "(" + ids + ")"
-                
+
+                #Get all second replies
                 with engine.connect() as connection:
-                    ResultProxy = connection.execute('SELECT * FROM photos ph WHERE ph.media_id IN %s;' % (ids))
+                    ResultProxy = connection.execute(
+                            """SELECT p.post_id, p.user_id, p.reply_to_id, p.media_id, p.creation_time, p.post_text, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, u.first_name, u.handle, u.profile_photo
+                                        FROM posts p
+                                        LEFT JOIN users u ON p.user_id = u.id 
+                                        LEFT JOIN
+                                                (
+                                                    SELECT u.id, SUM(p1.value) AS user_score
+                                                        FROM users u
+                                                        LEFT JOIN posts p ON p.user_id = u.id
+                                                        LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                        GROUP BY u.id
+                                                ) b ON b.id = u.id
+                                        LEFT JOIN
+                                                (
+                                                SELECT p2.post_id, SUM(p2.value) AS current_user_vote
+                                                    FROM post_votes p2
+                                                    WHERE p2.user_id = %s
+                                                    GROUP BY p2.post_id
+                                                ) c on c.post_id = p.post_id 
+                                        WHERE  p.reply_to_id IN %s AND p.is_deleted = 0 """ % (user_id, ids))
+                replys = DataFrame(ResultProxy.fetchall())
 
-                photos = DataFrame(ResultProxy.fetchall())
-                if len(photos.index) > 0:
-                    photos.columns = ResultProxy.keys()
-                    photos['bottom-padding'] = ((photos['height']/photos['width'])*100) - 5
-                else:
-                    photos = pd.DataFrame({"media_id": [0]})
-            else:
-                photos = pd.DataFrame({"media_id": [0]})
+                if len(replys.index) > 0:
+                    replys.columns = ResultProxy.keys()
 
-            #This is so it works when you click on your face
-            handle = current_user.get_user_handle()
+                    #Get comments and scores for each post_id
+                    ids = ', '.join(f'{w}' for w in replys.post_id)
+                    ids = "(" + ids + ")"
 
-            return render_template('post.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = current_user_profile_photo, post_info=post_info, posts=df, photos = photos)
+                    with engine.connect() as connection:
+                        ResultProxy = connection.execute("""SELECT p.post_id, p2.reply_count, pv.down_votes, pv2.up_votes
+                                                                    FROM posts p
+                                                                    LEFT JOIN
+                                                                        (
+                                                                            SELECT p.reply_to_id, COUNT(p.post_id) AS reply_count
+                                                                                FROM posts p
+                                                                                WHERE p.reply_to_id IN %s AND p.is_deleted = 0
+                                                                                GROUP BY p.reply_to_id
+                                                                        ) p2 ON p2.reply_to_id = p.post_id
+                                                                    LEFT JOIN
+                                                                        (
+                                                                            SELECT pv.post_id, COUNT(pv.value) AS down_votes
+                                                                                FROM post_votes pv
+                                                                                WHERE pv.post_id IN %s AND pv.value < 0
+                                                                                GROUP BY pv.post_id
+                                                                        ) pv ON pv.post_id = p.post_id
+                                                                    LEFT JOIN
+                                                                        (
+                                                                            SELECT pv.post_id, COUNT(pv.value) AS up_votes
+                                                                                FROM post_votes pv
+                                                                                WHERE pv.post_id IN %s AND pv.value > 0
+                                                                                GROUP BY pv.post_id
+                                                                        ) pv2 ON pv2.post_id = p.post_id	
+                                                                    WHERE p.post_id IN %s AND p.camp_id = %s; """ % (ids, ids, ids, ids, camp_id))
+                        
+                        replys2 = DataFrame(ResultProxy.fetchall())
+                        replys2.columns = ResultProxy.keys()
+                        replys2['reply_count'] = round(replys2['reply_count'].fillna(0).astype(int), 0)
+                        replys2['down_votes'] = round(replys2['down_votes'].fillna(0).astype(int), 0)
+                        replys2['up_votes'] = round(replys2['up_votes'].fillna(0).astype(int), 0)
+
+                        replys2['post_score'] = replys2['up_votes'] - replys2['down_votes']
+
+                        replys2['reply_count'] = replys2['reply_count'].replace(0, " ")
+                        replys2['down_votes'] = replys2['down_votes'].replace(0, " ")
+                        replys2['up_votes'] = replys2['up_votes'].replace(0, " ")
+
+              
+                        replys = pd.merge(replys, replys2, on=['post_id'], how='left')
+                        
+                        #Correct Timezone
+                        to_zone = tz.tzlocal()
+                                                        
+                        replys['creation_time'] = pd.to_datetime(replys['creation_time'])
+                        replys['creation_time'] = replys['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
+                        replys['creation_time'] = replys['creation_time'].dt.strftime('%m-%d-%Y')
+
+                        #Correct Update Post Score (All posts begin at a score of 0) and round
+                        replys['post_score'] = replys['post_score'].fillna(0).astype(int)
+                        replys['user_score'] = replys['user_score'].fillna(0).astype(int)
+
+                        #Create User Score bar chart
+                        replys['user_score'] = replys['user_score']/10
+                        replys['user_score_bars'] = ((replys['user_score'] % 1) * 10).astype(int)
+                        replys['user_score'] = replys['user_score'].astype(int)
+
+                        #Create Score Bar Print
+                        replys['user_score_bars_print'] = replys['user_score_bars'].apply(lambda x: '⬛' * x)
+                        replys['user_score_bars_print'] = replys['user_score_bars_print'] + replys['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
+
+                        #Sort by post_score
+                        replys = replys.sort_values(by=['post_score'], ascending=False)    
+                        print(replys)
+
+            return render_template('post.html', current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, post_info=post_info, posts=df, replys = replys)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"

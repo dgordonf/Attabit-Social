@@ -154,6 +154,12 @@ color: #222222;
   margin-left: 7px;
 }
 
+.reply_two_icons {
+  display:flex;
+  flex-direction: row;
+  margin-left: 7px;
+}
+
 .post_input {
 position:relative; 
 top:5px;
@@ -231,6 +237,17 @@ padding: 7px;
   border-radius: 50%;
   width: 48px;
   height: 48px; 
+  position: relative;
+  color:rgba(29, 29, 29);
+}
+
+.reply_badge_2 {
+  float: left;
+  background-size: cover;
+  background-color:#e4e4e4;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px; 
   position: relative;
   color:rgba(29, 29, 29);
 }
@@ -625,7 +642,7 @@ background: #313131;
 .delete_button {
   background: transparent;
   border: none;
-  color: #585858;
+  color: lightgrey;
 }
 
 #modal {
@@ -883,6 +900,7 @@ body.modal-open {
   font-weight: 500;
   font-size: 16px;
   margin-right: 3px;
+  color:lightgrey;
 }
 
 .reply_voted_button {
@@ -917,6 +935,14 @@ body.modal-open {
 .handle_score_box {
   display: flex;
   margin-left: 5px;
+  flex-direction: column;
+  width: 100%;
+  height:100%;
+}
+
+.reply_2_handle_score_box {
+  display: flex;
+  margin-left: 2px;
   flex-direction: column;
   width: 100%;
   height:100%;
@@ -987,6 +1013,26 @@ body.modal-open {
   padding-bottom: 3px;
   font-size: 16px;
 }
+
+.reply_two_inner {
+  padding: 5px;
+  margin-left:70px;
+  background-color: #ffffff;
+  border-radius:0px;
+}
+
+.reply_two_info_box {
+  display:flex;
+}
+
+.reply_two_text {
+  padding-top: 7px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 3px;
+  font-size: 16px;
+}
+
 
 </style>
 
@@ -1418,6 +1464,77 @@ $('#fileInput').on( 'change', function(){
   });
 
 </script>
+<script>
+  //Jquery code that allows users to reply to anyone on the page
+  $(document).ready(function () { 
+
+    $(document).on("click", ".reply_reply_button", function(event) {
+      event.preventDefault();
+      
+      //get value of post_id
+      var new_post_id = $(this).attr("value");
+
+      //get username
+      var handle = $(this).attr("name");
+    
+      //Change footer_post_id to new_post_id
+      $("#reply_to_id").val(new_post_id);
+      
+      //Change footer_handle to new_handle
+      $("#reply_to_handle").val(handle);
+
+      //Add text to reply_input
+      var reply_indication = "Reply to @" + handle + ": ";
+      $("#reply_input").val('');
+      $("#reply_input").val(reply_indication);
+    
+      //focus on reply_input
+      $("#reply_input").focus();
+
+  //change reply_to_id back if reply_input is empty
+  $(document).on("keyup change", "#reply_input", function(event) {
+    
+      //check if reply_to_id still equals original_reply_to_id
+      var original_reply_to_id = $("#original_reply_to_id").val();
+      var reply_to_id = $("#reply_to_id").val();
+
+      if(reply_to_id != original_reply_to_id){
+        
+        //get reply_indication
+        var handle = $("#reply_to_handle").val();
+        var reply_indication = "Reply to @" + handle + ": ";
+
+        if($(this).val().toString().indexOf(reply_indication) == -1){
+          $(this).val('');
+        }
+
+        if($(this).val() == ""){
+          //get original_reply_to_id
+          var original_reply_to_id = $("#original_reply_to_id").val();
+
+          //Change footer_post_id to original_reply_to_id
+          $("#reply_to_id").val(original_reply_to_id);
+
+        }
+      }
+    });
+  });
+});
+
+//remove reply_indication before submit of form
+$(document).ready(function () {
+  $(document).on("submit", "#post_form", function(event) {
+    var reply_indication = "Reply to @" + $("#reply_to_handle").val() + ": ";
+    var reply_input = $("#reply_input").val();
+    var new_reply_input = reply_input.replace(reply_indication, "");
+
+    $("#reply_input").val(new_reply_input);
+    
+    return true;
+  });
+});
+  
+</script>
 
 {% extends "layout.html" %}
 {% block body %}
@@ -1446,11 +1563,6 @@ $('#fileInput').on( 'change', function(){
   </div>
 </div>
 
-
-
-
-
-
   <div id= "feed" >
   
     <div id = "feed_inner">
@@ -1467,25 +1579,7 @@ $('#fileInput').on( 'change', function(){
     {% endif %} 
       
       
-    {% if (post_info['media_id'] in photos.media_id.values) %}
-      {% for key, photo in photos.iterrows() %}
-          {% if photo['media_id'] == post_info['media_id'] %}
-            <div id = "img_container" style="padding-bottom: {{photo['bottom-padding']}}%;">
-              <img src="https://hideawayy.s3.amazonaws.com/media/{{photo['photo_url']}}" alt="An image uploaded by a user" >
-            </div>
-
-          {% else %}
-       
-          {% endif %}  
-      {% endfor %}
-    {% endif %}
-
-
-      {% if (post_info['media_id'] in photos.media_id.values) %}
-          <div class = "post_inner" style = "border-radius: 0px 0px 10px 10px;">
-        {% else %}  
-          <div class = "post_inner">
-      {% endif %}       
+      <div class = "post_inner">
       
       
         {% if post_info['user_id'] == current_user_id %}
@@ -1577,20 +1671,16 @@ $('#fileInput').on( 'change', function(){
         <div class = "footer_post_inner">
           
         <div style="  display:flex; flex-direction: row; width: 100%;">
-            <!--
-            <a href = @{{current_user_handle}}>
-              <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');">
-              </div>
-            </a>
-            -->
   
           <form action="" method="POST" id = "post_form" enctype="multipart/form-data">  
-            <input type="hidden" name= "reply_to_id" value={{post_info['post_id'][0]}} >
+            <input id="reply_to_id" type="hidden" name= "reply_to_id" value={{post_info['post_id'][0]}} >
+            <input id="original_reply_to_id" type="hidden" name= "original_reply_to_id" value={{post_info['post_id'][0]}} >
+            <input id="reply_to_handle" name= "reply_to_handle" type="hidden" value=''>
             <input class= hidden name= "update_type" value = "post_text">  
             <input type="hidden" name= "type" value="1">
           <div id = "post_text_icon_container">
-            <div class="grow-wrap" style = "max-width: 100%;" name= "post_text" >
-              <textarea class = "post_input" style = "max-width: 100%;"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Add a comment"></textarea>
+            <div id="reply_input_parent" class="grow-wrap" style = "max-width: 100%;" name= "post_text" >
+              <textarea id = "reply_input" class = "post_input" style = "max-width: 100%;"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Add a comment"></textarea>
             </div>
               <div class="image-upload" style = "margin-top: 10px;">
                 <label for="file-input" style="margin-bottom:0px;">
@@ -1654,7 +1744,7 @@ $('#fileInput').on( 'change', function(){
         <div class = "reply_icons">
             
             <div style= "width:20%">  
-              <button class = "reply_reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}' disabled>
+              <button class = "reply_reply_button" id = "reply_button_{{posts['post_id']}}" name = "{{posts['handle']}}" value = '{{posts['post_id']}}'>
                 <span style="font-size:15px;">Reply</span>
               </button>  
             </div>
@@ -1708,6 +1798,104 @@ $('#fileInput').on( 'change', function(){
 
       </div>
   </div>  
+
+  {% for index, replys in replys.iterrows() %}
+  {% if replys['reply_to_id'] == posts['post_id'] %}
+  <div class = "reply_two_inner">
+  
+    <div class = "reply_two_info_box">
+      <a class= "profile_link" href = "/@{{replys['handle']}}">
+        <div class = "reply_badge_2" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ replys['profile_photo'] }} ');">
+          
+        </div>
+      </a>  
+      
+      <div class = "reply_2_handle_score_box">
+        <div style= 'height: 18px;'>
+          <a class= "profile_link" href = "/@{{replys['handle']}}">
+          <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{replys['handle']}}</span>
+          </a>  
+
+          {% if replys['user_id'] == current_user_id %}
+          <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{replys['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
+            <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+            <button class = "delete_button" type="submit" style="padding-right:15px;">
+              <i class="far fa-times-circle"></i>
+            </button>  
+          
+          </form>
+          {% else %}  
+          {% endif %}   
+
+
+        </div>
+
+          <div class = "reply_two_text">
+            <span style="white-space: pre-wrap;">{{replys['post_text']|urlize(40, true)}}</span> 
+          </div>
+      
+
+    <div class = "reply_two_icons">
+        
+        <div style= "width:13%">  
+          <button class = "reply_reply_button" id = "reply_button_{{replys['post_id']}}" name = "{{replys['handle']}}" value = '{{replys['post_id']}}' disabled>
+            <span style="font-size:15px;"></span>
+          </button>  
+        </div>
+      
+        <div style= "width:20%">
+          <form id="B{{index}}" title="" action= "/quickvote" method= "post" class= "reply_form_arrows">
+            
+            <input type="hidden" id = "post_id" name= "post_id" value={{replys['post_id']}} >
+            {% if replys['current_user_vote'] <= -1 %}
+            
+            <input id = "down_vote_value_B{{index}}" class= hidden name= "post_vote" value = 0>
+            <button id= "down_submit_B{{index}}"  type="submit" class="arrow_button">
+              <span id = "down_vote_wrapper_B{{index}}" class = "reply_pre_vote reply_voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i></span><span class = "_8bit_button" id="down_vote_text_B{{index}}">{{replys['down_votes']}}</span>
+            </button>  
+              {% else %}
+            
+            <input id = "down_vote_value_B{{index}}" class= hidden name= "post_vote" value = -1>  
+            <button id= "down_submit_B{{index}}" type="submit" class="arrow_button">
+              <span id = "down_vote_wrapper_B{{index}}" class = "reply_pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i></span><span class = "_8bit_button" id="down_vote_text_B{{index}}">{{replys['down_votes']}}</span>
+            </button>  
+              {% endif %} 
+            
+          </form>
+        </div>
+
+        <div style= "width:20%">
+          <form id="B{{index}}" title="" action="/quickvote" method="post" class = "reply_form_arrows">
+            
+            <input type="hidden" name= "post_id" value={{replys['post_id']}} >
+            {% if replys['current_user_vote'] >= 1 %}
+            
+            <input id = "up_vote_value_B{{index}}" class= hidden name= "post_vote" value = 0>
+            <button id= "up_submit_B{{index}}"  type="submit" class="arrow_button">
+              <span id = "up_vote_wrapper_B{{index}}" class = "reply_pre_vote reply_voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i></span><span class = "_8bit_button" id="up_vote_text_B{{index}}">{{replys['up_votes']}}</span>
+            </button>  
+              {% else %}
+
+            <input id = "up_vote_value_B{{index}}" class= hidden name= "post_vote" value = 1>  
+            <button id= "up_submit_B{{index}}" type="submit" class="arrow_button">
+              <span id = "up_vote_wrapper_B{{index}}" class = "reply_pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i></span><span class = "_8bit_button" id="up_vote_text_B{{index}}">{{replys['up_votes']}}</span>
+            </button>  
+              {% endif %} 
+            </button>
+          </form>
+        </div>
+    </div>
+    
+  </div>
+  </div>
+</div>  
+
+
+
+  {% else %}
+  {% endif %}
+
+  {% endfor %}
 </div>
  
     {% endfor %}
