@@ -1472,7 +1472,6 @@ def post(post_id):
 
                         #Sort by post_score
                         replys = replys.sort_values(by=['post_score'], ascending=False)    
-                        print(replys)
 
             return render_template('post.html', current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, post_info=post_info, posts=df, replys = replys)
         except Exception as e:

@@ -1485,11 +1485,8 @@ $('#fileInput').on( 'change', function(){
 
       //Add text to reply_input
       var reply_indication = "Reply to @" + handle + ": ";
-      $("#reply_input").val('');
-      $("#reply_input").val(reply_indication);
-    
-      //focus on reply_input
-      $("#reply_input").focus();
+      $("#reply_input").val('').focus().val(reply_indication);
+
 
   //change reply_to_id back if reply_input is empty
   $(document).on("keyup change", "#reply_input", function(event) {
