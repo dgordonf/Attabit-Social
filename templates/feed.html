@@ -19,6 +19,7 @@
   <link rel="apple-touch-icon" href="favicon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="manifest" href="manifest.json" />
   <title>Attabit</title>
 </head>
 <body>
@@ -994,8 +995,12 @@ window.onclick = function(event) {
   });
 
 </script>
-
-
+<script>
+  $("a").click(function (event) {
+    event.preventDefault();
+    window.location = $(this).attr("href");
+});
+</script>
 
 {% extends "layout.html" %}
 {% block body %}
