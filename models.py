@@ -68,3 +68,45 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         # This is a catch all exception, edit this part to fit your needs.
         print("Something Happened: ", e)
         return e
+
+def time_ago(time=False):
+    """
+    Get a datetime object or a int() Epoch timestamp and return a
+    pretty string like 'an hour ago', 'Yesterday', '3 months ago',
+    'just now', etc
+    """
+    from datetime import datetime
+    from dateutil import tz
+    to_zone = tz.tzlocal()
+    now = datetime.now(to_zone)
+    if type(time) is int:
+        diff = now - datetime.fromtimestamp(time)
+    elif isinstance(time, datetime):
+        diff = now - time
+    elif not time:
+        diff = 0
+    second_diff = diff.seconds
+    day_diff = diff.days
+
+    if day_diff <= 0:
+        if second_diff < 10:
+            return "just now"
+        if second_diff < 60:
+            return str(second_diff) + "sec"
+        if second_diff < 120:
+            return "min"
+        if second_diff < 3600:
+            return str(second_diff // 60) + " min"
+        if second_diff < 7200:
+            return "h"
+        if second_diff < 86400:
+            return str(second_diff // 3600) + "hr"
+    if day_diff == 1:
+        return "1d"
+    if day_diff < 7:
+        return str(day_diff) + "d"
+    if day_diff < 31:
+        return str(day_diff // 7) + "w"
+    if day_diff < 365:
+        return str(day_diff // 30) + "mo"
+    return str(day_diff // 365) + "y"

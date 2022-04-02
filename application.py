@@ -12,7 +12,7 @@ import re
 from flask_gtts import gtts
 from config import GMAIL_PASSWORD, GMAIL_USERNAME, Config, S3_KEY, S3_SECRET, S3_BUCKET, SES_REGION_NAME, SES_EMAIL_SOURCE, GMAIL_USERNAME, GMAIL_PASSWORD, SERVER_NAME, SECRET_KEY
 from flask_login import LoginManager
-from models import LoginForm, RegistrationForm, PasswordResetForm, PasswordChangeForm, upload_file_to_s3
+from models import LoginForm, RegistrationForm, PasswordResetForm, PasswordChangeForm, upload_file_to_s3, time_ago
 from wtforms import validators
 from wtforms.fields.html5 import EmailField
 import email_validator
@@ -447,6 +447,12 @@ def feed():
                 to_zone = tz.tzlocal()
 
                 df['creation_time'] = pd.to_datetime(df['creation_time'])
+                
+                #Cover to time ago for each post
+                df['time_ago'] = ""
+                for i in range(len(df.index)):
+                    df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+                
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                 df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
 
@@ -493,7 +499,7 @@ def feed():
                 photos = pd.DataFrame({"media_id": [0]})
 
             handle = current_user.get_user_handle()
-
+            
             return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id)
         except Exception as e:
             # e holds description of the error
@@ -740,6 +746,11 @@ def user_page(username):
                 to_zone = tz.tzlocal()
                                                 
                 df['creation_time'] = pd.to_datetime(df['creation_time'])
+                #Cover to time ago for each post
+                df['time_ago'] = ""
+                for i in range(len(df.index)):
+                    df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                 df['creation_time'] = df['creation_time'].dt.strftime('%m•%d•%Y')
 
@@ -1266,6 +1277,11 @@ def post(post_id):
             to_zone = tz.tzlocal()
                                             
             post_info['creation_time'] = pd.to_datetime(post_info['creation_time'])
+            #Cover to time ago for each post
+            post_info['time_ago'] = ""
+            for i in range(len(df.index)):
+                post_info['time_ago'][i] = time_ago(post_info['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+
             post_info['creation_time'] = post_info['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
             post_info['creation_time'] = post_info['creation_time'].dt.strftime('%m-%d-%Y')
 
@@ -1356,6 +1372,11 @@ def post(post_id):
                 to_zone = tz.tzlocal()
                                                 
                 df['creation_time'] = pd.to_datetime(df['creation_time'])
+                #Cover to time ago for each post
+                df['time_ago'] = ""
+                for i in range(len(df.index)):
+                    df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                 df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
 
@@ -1454,6 +1475,10 @@ def post(post_id):
                         to_zone = tz.tzlocal()
                                                         
                         replys['creation_time'] = pd.to_datetime(replys['creation_time'])
+                        replys['time_ago'] = ""
+                        for i in range(len(df.index)):
+                            replys['time_ago'][i] = time_ago(replys['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+
                         replys['creation_time'] = replys['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                         replys['creation_time'] = replys['creation_time'].dt.strftime('%m-%d-%Y')
 
@@ -1583,6 +1608,10 @@ def quickvote():
         to_zone = tz.tzlocal()
                                         
         post_info['creation_time'] = pd.to_datetime(post_info['creation_time'])
+        post_info['time_ago'] = ""
+        for i in range(len(df.index)):
+            post_info['time_ago'][i] = time_ago(post_info['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+        
         post_info['creation_time'] = post_info['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
         post_info['creation_time'] = post_info['creation_time'].dt.strftime('%m-%d-%Y')
 
@@ -1752,6 +1781,10 @@ def top(date):
                 to_zone = tz.tzlocal()
 
                 df['creation_time'] = pd.to_datetime(df['creation_time'])
+                df['time_ago'] = ""
+                for i in range(len(df.index)):
+                    df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+                
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                 df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
 
