@@ -205,6 +205,30 @@ padding: 7px;
   font-family: "Monda";
 }
 
+
+.level_details {
+  padding: 4px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-radius: 7px;
+    color: white;
+    background-color: #41414145;
+    font-weight: 500;
+    margin-left: 7px;
+    font-size: 12px;
+    font-family: "Monda";
+    background-image: linear-gradient(46deg, #f89b29, #ff1cad);
+    opacity: .80;
+}
+
+.time_details {
+  font-weight: 500;
+  color: #b7b7b7;
+  margin-left: 7px;
+  font-size: 12px;
+  font-family: "Monda";
+}
+
 .controls {
   float: right;
   display: flex;
@@ -1604,6 +1628,7 @@ $(document).ready(function () {
               <a class= "profile_link" href = "/@{{post_info['handle']}}">
               <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{post_info['handle']}}</span>
               </a>  
+              <span class="level_details">lvl {{post_info['user_score']}}</span><span class="time_details">{{post_info['time_ago']}}</span>
             </div>
             <div class = "post_text" style="post_score:{{posts['post_score']}};">
               <span  style="white-space: pre-wrap; font-size:16px;">{{ post_info['post_text']|urlize(40, true) }} </span> 
@@ -1721,6 +1746,7 @@ $(document).ready(function () {
               <a class= "profile_link" href = "/@{{posts['handle']}}">
               <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}}</span>
               </a>  
+              <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
 
               {% if posts['user_id'] == current_user_id %}
               <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
@@ -1815,6 +1841,7 @@ $(document).ready(function () {
           <a class= "profile_link" href = "/@{{replys['handle']}}">
           <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{replys['handle']}}</span>
           </a>  
+          <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
 
           {% if replys['user_id'] == current_user_id %}
           <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{replys['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">

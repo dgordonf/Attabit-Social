@@ -752,7 +752,7 @@ def user_page(username):
                     df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
 
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
-                df['creation_time'] = df['creation_time'].dt.strftime('%m•%d•%Y')
+                df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
 
                 #Correct Update Post Score (All posts begin at a score of 0) and round
                 df['post_score'] = df['post_score'].fillna(0).astype(int)
@@ -1279,7 +1279,7 @@ def post(post_id):
             post_info['creation_time'] = pd.to_datetime(post_info['creation_time'])
             #Cover to time ago for each post
             post_info['time_ago'] = ""
-            for i in range(len(df.index)):
+            for i in range(len(post_info.index)):
                 post_info['time_ago'][i] = time_ago(post_info['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
 
             post_info['creation_time'] = post_info['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
@@ -1475,8 +1475,9 @@ def post(post_id):
                         to_zone = tz.tzlocal()
                                                         
                         replys['creation_time'] = pd.to_datetime(replys['creation_time'])
+                        print(replys)
                         replys['time_ago'] = ""
-                        for i in range(len(df.index)):
+                        for i in range(len(replys.index)):
                             replys['time_ago'][i] = time_ago(replys['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
 
                         replys['creation_time'] = replys['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
@@ -1609,7 +1610,7 @@ def quickvote():
                                         
         post_info['creation_time'] = pd.to_datetime(post_info['creation_time'])
         post_info['time_ago'] = ""
-        for i in range(len(df.index)):
+        for i in range(len(post_info.index)):
             post_info['time_ago'][i] = time_ago(post_info['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
         
         post_info['creation_time'] = post_info['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
@@ -1694,7 +1695,7 @@ def top(date):
 
     #If yes, load page
     if len(df.index) > 0: 
-        try:
+        try: 
             df.columns = ResultProxy.keys()
             if df['user_score'][0] is None:
                 user_badge_score = 0
