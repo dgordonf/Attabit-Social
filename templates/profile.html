@@ -15,6 +15,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.rawgit.com/rogeriopvl/8bit/master/8bit.js"></script>
+  <script src="{{url_for('static', filename='pixelit.js')}}"></script>
   <script src="{{url_for('static', filename='cropper.js')}}"></script>
   <link  href="{{url_for('static', filename='cropper.css')}} " rel="stylesheet">
   <script src="{{url_for('static', filename='jquery-cropper.js')}}"></script>
@@ -1168,12 +1170,29 @@ $('#fileInput').on( 'change', function(){
         reader.onload = function(evt) {
            var img = new Image();
            img.onload = function() {
-             context.canvas.height = img.height;
-             context.canvas.width  = img.width;
-             context.drawImage(img, 0, 0);
-             var cropper = canvas.cropper({
-               aspectRatio: 1 / 1
-             });
+
+            context.canvas.height = img.height;
+            context.canvas.width  = img.width;
+            context.drawImage(img, 0, 0);
+            //context.drawImage(img, 0, 0);
+            
+            w = img.width;
+            h = img.height;
+
+            var pixelArr = context.getImageData(0, 0, w, h).data;
+            sample_size = 40;
+
+            for (let y = 0; y < h; y += sample_size) {
+              for (let x = 0; x < w; x += sample_size) {
+                let p = (x + (y*w)) * 4;
+                context.fillStyle = "rgba(" + pixelArr[p] + "," + pixelArr[p + 1] + "," + pixelArr[p + 2] + "," + pixelArr[p + 3] + ")";
+                context.fillRect(x, y, sample_size, sample_size);
+              }
+            }
+
+            var cropper = canvas.cropper({
+              aspectRatio: 1 / 1
+            });
 
              $('#btnCrop').click(function() {
                 // Get a string base 64 data url

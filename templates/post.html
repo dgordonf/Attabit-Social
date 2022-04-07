@@ -1229,6 +1229,7 @@ $('#fileInput').on( 'change', function(){
              });
 
              $('#btnCrop').click(function() {
+
                 // Get a string base 64 data url
                 var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png"); 
                 //$result.append( $('<img>').attr('src', croppedImageDataURL) );
