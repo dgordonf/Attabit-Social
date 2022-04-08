@@ -1262,10 +1262,6 @@ $('#fileInput').on( 'change', function(){
       alert('No file(s) selected.');
     }
 
-    
-
-
-
 });
 
 });
@@ -1549,16 +1545,23 @@ $('#fileInput').on( 'change', function(){
 //remove reply_indication before submit of form
 $(document).ready(function () {
   $(document).on("submit", "#post_form", function(event) {
+    event.preventDefault();
+    //disable button
+    $("#submit_button").prop("disabled", true);
+
     var reply_indication = "Reply to @" + $("#reply_to_handle").val() + ": ";
     var reply_input = $("#reply_input").val();
     var new_reply_input = reply_input.replace(reply_indication, "");
 
     $("#reply_input").val(new_reply_input);
     
-    return true;
+    $(this).submit();
   });
 });
-  
+
+
+
+
 </script>
 
 {% extends "layout.html" %}
@@ -1718,7 +1721,7 @@ $(document).ready(function () {
           </form>
  
           <div style="min-height: 35px;margin: 10px;margin-right: 3px;">
-            <button type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;">
+            <button id= "post_submit" type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;">
               <span style="font-size:16px;"> Post </span>
             </button>
           </div>

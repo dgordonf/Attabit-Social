@@ -1021,12 +1021,12 @@ $(document).ready(function(){
 
 $(document).on("submit", "#post_form", function(event) {
   event.preventDefault();
- 
+  
   //disable the post button to stop people from clicking it twice
-  $("#up_submit_" + id).prop("disabled", true);
-  $("#down_submit_" + id).prop("disabled", true);
-
-
+  $("#post_submit").prop("disabled", true);
+  
+  $(this).submit();
+  
 });
 
 });
@@ -1100,7 +1100,7 @@ $(document).on("submit", "#post_form", function(event) {
           </form>
         </div>
         <div style="min-height: 35px;margin: 10px;">
-          <button type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;">
+          <button id= "post_submit" type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;">
             <span style="font-size:16px;"> Post </span>
           </button>
         </div>
