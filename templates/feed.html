@@ -809,19 +809,19 @@ background: transparent;
   });
 
 //Update Image icon when file selected
-$(document).ready(function(){  
+// $(document).ready(function(){  
 
-  $('#file-input').on('input', function() {
-  var showCheck = $(this).val().trim().length !== 0;
-  var $group = $(this).closest('#post_form');
+//   $('#file-input').on('input', function() {
+//   var showCheck = $(this).val().trim().length !== 0;
+//   var $group = $(this).closest('#post_form');
   
-  $group.find('#image_icon').toggleClass('fa-camera-retro fa-images');
-  $group.find('#image_icon').toggleClass('image-not-loaded image-loaded');
-  $group.find(".post_input").focus();
-  $group.find(".post_input").select();
+//   $group.find('#image_icon').toggleClass('fa-camera-retro fa-images');
+//   $group.find('#image_icon').toggleClass('image-not-loaded image-loaded');
+//   $group.find(".post_input").focus();
+//   $group.find(".post_input").select();
 
-});
-});
+// });
+// });
 
 </script>
 
@@ -1016,6 +1016,23 @@ window.onclick = function(event) {
   });
     
   });
+
+$(document).ready(function(){
+
+$(document).on("submit", "#post_form", function(event) {
+  event.preventDefault();
+ 
+  //disable the post button to stop people from clicking it twice
+  $("#up_submit_" + id).prop("disabled", true);
+  $("#down_submit_" + id).prop("disabled", true);
+
+
+});
+
+});
+
+
+
 
 </script>
 <script>

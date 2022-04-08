@@ -97,8 +97,6 @@ def time_ago(time=False):
             return "min"
         if second_diff < 3600:
             return str(second_diff // 60) + " min"
-        if second_diff < 7200:
-            return "h"
         if second_diff < 86400:
             return str(second_diff // 3600) + "hr"
     if day_diff == 1:
