@@ -630,7 +630,7 @@ background: transparent;
     transition: opacity .1s ease-in-out;
     border-radius: 10px;
 }
-
+/* 
 .glow-on-hover:hover:before {
     opacity: .85;
 }
@@ -659,7 +659,7 @@ background: transparent;
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
-}
+} */
 
 #post_delete {
   float: right;
@@ -851,9 +851,11 @@ background: transparent;
     
   }
 
+ 
   //Delete Posts
   $(document).ready(function(){
-  $(".post_delete").submit(function(event){
+  $(document).on("submit", ".post_delete", function(event) {  
+ 
     event.preventDefault();
 
     var r = confirm("Are you sure you want to delete this post? This cannot be undone");
@@ -862,13 +864,21 @@ background: transparent;
     var $form = $(this),
       url = $form.attr('action');
     
+    var current_url = window.location.href;
+
     req = $.ajax({
         method: "POST",
         url: url,
         data: $(this).serialize(), 
         success:function(){
-          var loc = window.location;
-          window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search;
+          //reload window with ajax
+          req2 = $.ajax({
+            method: "GET",
+            url: current_url,
+            success:function(data){
+              $("#feed_inner").html($("#feed_inner", data).html());
+            }
+          });
         }
     })
     
@@ -1024,13 +1034,35 @@ $(document).on("submit", "#post_form", function(event) {
   
   //disable the post button to stop people from clicking it twice
   $("#post_submit").prop("disabled", true);
-  
-  $(this).submit();
-  
-});
+
+  //get form data and post through ajax
+  var $form = $(this),
+  url = $form.attr('action');
+
+  //post through ajax
+  req = $.ajax({
+        method: "POST",
+        url: url,
+        data: $(this).serialize() //Encode form elements as a string for submission.
+        //If using serialize(), name attribute in form elements is required
+    })
+
+  req.done(function( data ) {
+    $("#feed_inner").html($("#feed_inner", data).html());
+  });
+
+//re-enable the post button
+$("#post_submit").prop("disabled", false);
+
+//clear the form
+$("#post_form")[0].reset();
+
 
 });
 
+});
+
+  
 
 
 
@@ -1040,6 +1072,12 @@ $(document).on("submit", "#post_form", function(event) {
     event.preventDefault();
     window.location = $(this).attr("href");
 });
+</script>
+<script>
+  //this stops forms from being resubmitted on refresh
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
 </script>
 
 {% extends "layout.html" %}
@@ -1149,7 +1187,7 @@ $(document).on("submit", "#post_form", function(event) {
         
         
           {% if posts['user_id'] == current_user_id %}
-          <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
+          <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
             <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
             <button class = "delete_button" type="submit">
               <i class="far fa-times-circle"></i>

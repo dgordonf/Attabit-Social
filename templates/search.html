@@ -914,6 +914,12 @@ background: transparent;
   });
  
 </script>
+<script>
+  //this stops forms from being resubmitted on refresh
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 
 {% extends "layout.html" %}
 {% block body %}

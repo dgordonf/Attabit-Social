@@ -999,6 +999,12 @@ $('#date_select').on('input', function() {
   });
 
 </script>
+<script>
+  //this stops forms from being resubmitted on refresh
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 
 
 {% extends "layout.html" %}
@@ -1087,7 +1093,7 @@ $('#date_select').on('input', function() {
         
         
           {% if posts['user_id'] == current_user_id %}
-          <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
+          <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
             <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
             <button class = "delete_button" type="submit">
               <i class="far fa-times-circle"></i>

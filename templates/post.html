@@ -818,7 +818,7 @@ background: #313131;
     transition: opacity .3s ease-in-out;
     border-radius: 10px;
 }
-
+/* 
 .glow-on-hover:hover:before {
     opacity: 1;
 }
@@ -847,7 +847,7 @@ background: #313131;
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
-}
+} */
 
 
 .crop_container{
@@ -1066,58 +1066,11 @@ body.modal-open {
 
 
 <script>
-  //Add Comment
-  //Wait until Doc is ready
-  $(document).ready(function(){
-  /* attach a submit handler to the form */
-  $(document).on("submit", ".reply_form", function(event) {
-    /* stop form from submitting normally */
-    event.preventDefault();
-    /* get the action attribute from the <form action=""> element */
-    var $form = $(this),
-      url = $form.attr('action');
-    /* Send the data using post */
-    req = $.ajax({
-        method: "POST",
-        url: url,
-        data: $(this).serialize() //Encode form elements as a string for submission.
-        //If using serialize(), name attribute in form elements is required
-    })
-    req.done(function( data ) {
-      $("#feed_inner").html($("#feed_inner", data).html());
-    });
-  });
-  
-  });
-
-  //Wait until Doc is ready
-  $(document).ready(function(){
- 
-    $(document).on("submit", ".form_arrows", function(event) {
-    
-      event.preventDefault();
-    
-    var $form = $(this),
-      url = $form.attr('action');
-    
-      req = $.ajax({
-        method: "POST",
-        url: url,
-        data: $(this).serialize() //Encode form elements as a string for submission.
-        //If using serialize(), name attribute in form elements is required
-    })
-    req.done(function( data ) {
-      $("#feed_inner").html($("#feed_inner", data).html());
-     });
-  });
-  
-  });
-
-
   
   //Delete Posts
   $(document).ready(function(){
-  $(".post_delete").submit(function(event){
+  $(document).on("submit", ".post_delete", function(event) {  
+ 
     event.preventDefault();
 
     var r = confirm("Are you sure you want to delete this post? This cannot be undone");
@@ -1126,13 +1079,21 @@ body.modal-open {
     var $form = $(this),
       url = $form.attr('action');
     
+    var current_url = window.location.href;
+
     req = $.ajax({
         method: "POST",
         url: url,
         data: $(this).serialize(), 
         success:function(){
-          var loc = window.location;
-          window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search;
+          //reload window with ajax
+          req2 = $.ajax({
+            method: "GET",
+            url: current_url,
+            success:function(data){
+              $("#feed_inner").html($("#feed_inner", data).html());
+            }
+          });
         }
     })
     
@@ -1142,33 +1103,6 @@ body.modal-open {
   });
   </script>
 
-<script>
-  //Reveal Reply Box on click
-  function reply_reveal(id) {
-      var reply = "reply_";
-      var reply_id = reply + id;
-      var R = document.getElementById(reply_id);
-      var displayValue = R.style.display;
-      
-      if (displayValue == 'none') {
-        new_value = '';
-        R.style.display = new_value;
-
-        var input = "_input";
-        var reply_id_input = reply_id + input;
-
-        document.getElementById(reply_id_input).focus();
-        document.getElementById(reply_id_input).select();
-
-      } else {
-        new_value = 'none';
-        R.style.display = new_value;
-      }
-
-    
-  }
-
-</script>
 
 <script>
 //Reval Edit Form JQuery  
@@ -1554,14 +1488,41 @@ $(document).ready(function () {
     var new_reply_input = reply_input.replace(reply_indication, "");
 
     $("#reply_input").val(new_reply_input);
-    
-    $(this).submit();
+
+    //get form data and post through ajax
+    var $form = $(this),
+    url = $form.attr('action');
+
+    //post through ajax
+    req = $.ajax({
+          method: "POST",
+          url: url,
+          data: $(this).serialize() //Encode form elements as a string for submission.
+          //If using serialize(), name attribute in form elements is required
+      })
+
+    req.done(function( data ) {
+      $("#feed_inner").html($("#feed_inner", data).html());
+    });
+
+    //re-enable the post button
+    $("#submit_button").prop("disabled", false);
+
+    //clear the form
+    $("#post_form")[0].reset();
+
   });
 });
 
 
 
 
+</script>
+<script>
+  //this stops forms from being resubmitted on refresh
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
 </script>
 
 {% extends "layout.html" %}
@@ -1611,7 +1572,7 @@ $(document).ready(function () {
       
       
         {% if post_info['user_id'] == current_user_id %}
-        <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{post_info['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
+        <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{post_info['post_id']}}" method= "post" >
           <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
           <button class = "delete_button" type="submit">
             <i class="far fa-times-circle"></i>
@@ -1753,7 +1714,7 @@ $(document).ready(function () {
               <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
 
               {% if posts['user_id'] == current_user_id %}
-              <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
+              <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
                 <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
                 <button class = "delete_button" type="submit">
                   <i class="far fa-times-circle"></i>
@@ -1848,7 +1809,7 @@ $(document).ready(function () {
           <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
 
           {% if replys['user_id'] == current_user_id %}
-          <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{replys['post_id']}}" method= "post" onSubmit="return confirm('Are you sure you want to delete this post? This cannot be undone');">
+          <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{replys['post_id']}}" method= "post" >
             <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
             <button class = "delete_button" type="submit" style="padding-right:15px;">
               <i class="far fa-times-circle"></i>
