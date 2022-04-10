@@ -1175,8 +1175,6 @@ $('#close_edit_button2').on('click', function() {
     [51, 60, 87],
   ]
 
-
-
   function colorSim(rgbColor, compareColor) {
     let i;
     let max;
@@ -1202,9 +1200,6 @@ $('#close_edit_button2').on('click', function() {
     return selectedColor;
   }
 
-
-
-
 $(document).ready(function () {   
 
 $('#fileInput').on( 'change', function(){
@@ -1229,7 +1224,7 @@ $('#fileInput').on( 'change', function(){
             h = img.height;
 
             var pixelArr = context.getImageData(0, 0, w, h).data;
-            sample_size = 40;
+            sample_size = 30;
 
             for (let y = 0; y < h; y += sample_size) {
               for (let x = 0; x < w; x += sample_size) {
