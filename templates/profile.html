@@ -1052,6 +1052,39 @@ body.modal-open {
   font-family: "Monda"
 }
 
+.slider {
+  -webkit-appearance: none;
+  width: 50%;
+  height: 15px;
+  background: rgb(255, 255, 255);
+  outline: none;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+
+/* for chrome/safari */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 60px;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+/* for firefox */
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 60px;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
 </style>
 
 
@@ -1207,7 +1240,6 @@ $('#fileInput').on( 'change', function(){
     context = canvas.get(0).getContext("2d"),
     $result = $('#result');
 
-
     if (this.files && this.files[0]) {
       if ( this.files[0].type.match(/^image\//) ) {
         var reader = new FileReader();
@@ -1292,29 +1324,78 @@ $('#fileInput').on( 'change', function(){
 });
 
 
+//watch for changes to the slider
+$(document).ready(function () {   
 
-  //Delete Posts
-  $(document).ready(function(){
-  $(".post_delete").submit(function(event){
-    event.preventDefault();
+$('#pix_size').on( 'change', function(){
+  var pix_select = $('#pix_size').val();
+  var pix_size = pix_select * 10
+  
+  
 
-    var r = confirm("Are you sure you want to delete this post? This cannot be undone");
-    if (r == true) {
-    
-    var $form = $(this),
-      url = $form.attr('action');
-    
-    req = $.ajax({
-        method: "POST",
-        url: url,
-        data: $(this).serialize(), 
-        success:function(){
-          var loc = window.location;
-          window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search;
-        }
-    })
-    
-    }  
+  var canvas  = $("#canvas"),
+    context = canvas.get(0).getContext("2d"),
+    $result = $('#result');
+  
+  canvas.cropper('destroy');
+
+    var file = $('#fileInput').prop('files')[0];
+
+    if (file) {
+      if ( file.type.match(/^image\//) ) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+           var img = new Image();
+           img.onload = function() {
+
+            context.canvas.height = img.height;
+            context.canvas.width  = img.width;
+            context.drawImage(img, 0, 0);
+            //context.drawImage(img, 0, 0);
+            
+            w = img.width;
+            h = img.height;
+
+            var pixelArr = context.getImageData(0, 0, w, h).data;
+            sample_size = pix_size;
+
+            for (let y = 0; y < h; y += sample_size) {
+              for (let x = 0; x < w; x += sample_size) {
+                let p = (x + (y*w)) * 4;
+                //var i = y * 4 * imgPixels.width + x * 4;
+                const finalcolor = similarColor([
+                    pixelArr[p],
+                    pixelArr[p + 1],
+                    pixelArr[p + 2],
+                  ]);
+
+                  pixelArr[p] = finalcolor[0];
+                  pixelArr[p + 1] = finalcolor[1];
+                  pixelArr[p + 2] = finalcolor[2];
+                
+
+                context.fillStyle = "rgba(" + pixelArr[p] + "," + pixelArr[p + 1] + "," + pixelArr[p + 2] + "," + pixelArr[p + 3] + ")";
+                context.fillRect(x, y, sample_size, sample_size);
+              }
+            }
+
+            var cropper = canvas.cropper({
+              aspectRatio: 1 / 1
+            });
+          
+           };
+           img.src = evt.target.result;
+				};
+        reader.readAsDataURL(file);
+      }
+      else {
+        alert("Invalid file type! Please select an image file.");
+      }
+    }
+    else {
+      alert('No file(s) selected.');
+    }
+
   });
  
   });
@@ -1592,6 +1673,10 @@ $('#fileInput').on( 'change', function(){
   <br>
   <div style="margin:10px;">
     <canvas id='canvas' style = "max-width:85%;"></canvas>
+  </div>
+  <div style="padding: 20px;padding-top: 30px;">
+    <label for ="handle" >Pixelation:</label>
+    <input type="range" min="1" max="6" value="3" class="slider" id="pix_size">
   </div>
 
     <button id="btnCrop" class = "non-glow" style="float:right;margin:10px">
