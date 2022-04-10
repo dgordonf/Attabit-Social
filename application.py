@@ -1427,8 +1427,8 @@ def post(post_id):
                     replys.columns = ResultProxy.keys()
 
                     #Get comments and scores for each post_id
-                    ids = ', '.join(f'{w}' for w in replys.post_id)
-                    ids = "(" + ids + ")"
+                    ids2 = ', '.join(f'{w}' for w in replys.post_id)
+                    ids2 = "(" + ids2 + ")"
 
                     with engine.connect() as connection:
                         ResultProxy = connection.execute("""SELECT p.post_id, p2.reply_count, pv.down_votes, pv2.up_votes
@@ -1454,7 +1454,7 @@ def post(post_id):
                                                                                 WHERE pv.post_id IN %s AND pv.value > 0
                                                                                 GROUP BY pv.post_id
                                                                         ) pv2 ON pv2.post_id = p.post_id	
-                                                                    WHERE p.post_id IN %s AND p.camp_id = %s; """ % (ids, ids, ids, ids, camp_id))
+                                                                    WHERE p.post_id IN %s AND p.camp_id = %s; """ % (ids2, ids2, ids2, ids2, camp_id))
                         
                         replys2 = DataFrame(ResultProxy.fetchall())
                         replys2.columns = ResultProxy.keys()
@@ -1475,7 +1475,7 @@ def post(post_id):
                         to_zone = tz.tzlocal()
                                                         
                         replys['creation_time'] = pd.to_datetime(replys['creation_time'])
-                        print(replys)
+                        
                         replys['time_ago'] = ""
                         for i in range(len(replys.index)):
                             replys['time_ago'][i] = time_ago(replys['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))

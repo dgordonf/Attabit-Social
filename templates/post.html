@@ -1806,7 +1806,7 @@ $(document).ready(function () {
           <a class= "profile_link" href = "/@{{replys['handle']}}">
           <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{replys['handle']}}</span>
           </a>  
-          <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
+          <span class="level_details">lvl {{replys['user_score']}}</span><span class="time_details">{{replys['time_ago']}}</span>
 
           {% if replys['user_id'] == current_user_id %}
           <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{replys['post_id']}}" method= "post" >
