@@ -499,8 +499,40 @@ def feed():
                 photos = pd.DataFrame({"media_id": [0]})
 
             handle = current_user.get_user_handle()
+
+            ##Get notifications for this user
+            with engine.connect() as connection:
+                    ResultProxy = connection.execute('''SELECT n.notification_id, n.creation_time, u.profile_photo, u.handle, n.event_type_id, n.reference_post_id, n.seen
+                                                        FROM notifications n
+                                                        LEFT JOIN users u ON u.id = n.triggered_by_user_id
+                                                        WHERE u.id = %s
+                                                        ORDER BY n.creation_time DESC
+                                                        LIMIT 25;
+                                                        ''', (current_user.get_user_id()))
+                    notifications = DataFrame(ResultProxy.fetchall())
+
+      
+            ## format the notifications
+            if len(notifications.index) > 0:
+                notifications.columns = ResultProxy.keys()
+                notifications['event_type_id'] = notifications['event_type_id'].astype(int)
+                notifications['profile_photo'] = notifications['profile_photo'].fillna("")
+                
+                notifications['text'] = ''
+                notifications['redirect'] = ''
+
+                #Create text for each notification
+                for i in range(len(notifications.index)):
+                    if (notifications['event_type_id'][i] == 1):
+                        notifications['text'][i] = "now follows you"    
+                        notifications['redirect'][i] = "/@" + str(notifications['handle'][i])       
+
+                    if (notifications['event_type_id'][i] == 2):
+                        notifications['text'][i] = "replied to your post"
+                        notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])
             
-            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id)
+            
+            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications = notifications)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"
@@ -887,6 +919,11 @@ def quickfollow(username):
         if follow_value == 1:
             with engine.connect() as connection:
                 ResultProxy = connection.execute('INSERT INTO follows (user_id, following, follow_value) VALUES (%s, %s, %s);', (user_id, following, follow_value))
+
+                #Notify user that someone has followed them
+                event_type_id = 1
+                with engine.connect() as connection:
+                    connection.execute('INSERT INTO notifications (user_id, triggered_by_user_id, event_type_id) VALUES (%s, %s, %s, %s);', (following, user_id, event_type_id))    
         else:
             with engine.connect() as connection:
                 ResultProxy = connection.execute('''UPDATE follows f
@@ -1134,46 +1171,29 @@ def post(post_id):
         post_text = request.form.get('post_text')
         reply_to_id = request.form.get('reply_to_id')
         
-                
         if type == 'post_text':
-            try:
-                media_file = request.files["user_file"]
-                #First check if there is a photo to upload
             
-                if media_file.filename != "":
-                    filename = secure_filename(media_file.filename)
-                    media_id = get_random_string(12)
-                    
-                    #Get image Size
-                    with Image.open(media_file, mode='r') as img:
-                        width, height = img.size
-                    
-                    media_file.seek(0)
-                    s3.upload_fileobj(
-                            media_file,
-                            S3_BUCKET,
-                            "media/" + filename,
-                            ExtraArgs={
-                                "ACL": "public-read",
-                                "ContentType": media_file.content_type
-                                })
-                            
-                    try:
-                        with engine.connect() as connection:
-                            connection.execute('INSERT INTO photos (media_id, photo_url, width, height) VALUES (%s, %s, %s, %s);', (media_id, filename, width, height))
-                    except Exception as e:
-                        # e holds description of the error
-                        error_text = "<p>The error:<br>" + str(e) + "</p>"
-                        hed = '<h1>Something is broken.</h1>'
-                        return hed + error_text 
-                else:
-                    media_id = ""
-
-            except:
-                media_id = ""
-
+            #Create new post
             with engine.connect() as connection:
-                connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, media_id, post_text) VALUES (%s, %s, %s, %s, %s);', (camp_id, user_id, reply_to_id, media_id, post_text))
+                connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, post_text) VALUES (%s, %s, %s, %s);', (camp_id, user_id, reply_to_id, post_text))
+            
+            #get user_id of post creator
+            with engine.connect() as connection:
+                ResultProxy = connection.execute('''SELECT p.user_id 
+                                                    FROM posts p
+                                                    WHERE p.post_id = %s;''', (reply_to_id))
+            a = DataFrame(ResultProxy.fetchall())
+            a.columns = ResultProxy.keys()
+            post_creator_user_id = a['user_id'][0]
+
+
+            #Notify user of reply_to_id
+            # 1 for follow, 2 for post
+            if post_creator_user_id != user_id:
+                event_type_id = 2
+                with engine.connect() as connection:
+                    connection.execute('INSERT INTO notifications (user_id, triggered_by_user_id, event_type_id, reference_post_id) VALUES (%s, %s, %s, %s);', (post_creator_user_id, user_id, event_type_id, reply_to_id))
+                    
             
         if type == 'post_vote':
             try:
