@@ -515,11 +515,23 @@ def feed():
             ## format the notifications
             if len(notifications.index) > 0:
                 notifications.columns = ResultProxy.keys()
+
+                #fill reference_post_id with 0s if NA
+                notifications['reference_post_id'] = notifications['reference_post_id'].fillna(0)
+                notifications['reference_post_id'] = notifications['reference_post_id'].astype(int)
+                notifications['reference_post_id'] = notifications['reference_post_id'].astype(int)
+
                 notifications['event_type_id'] = notifications['event_type_id'].astype(int)
                 notifications['profile_photo'] = notifications['profile_photo'].fillna("")
                 
                 notifications['text'] = ''
                 notifications['redirect'] = ''
+
+                #Sum count of unseen notifications
+                unseen_count = 0
+                for i in range(len(notifications.index)):
+                    if notifications['seen'][i] == 0:
+                        unseen_count += 1
 
                 #Create text for each notification
                 for i in range(len(notifications.index)):
@@ -529,10 +541,10 @@ def feed():
 
                     if (notifications['event_type_id'][i] == 2):
                         notifications['text'][i] = "replied to your post"
+                        notifications['reference_post_id'][i] = str(round(notifications['reference_post_id'][i], 0))
                         notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])
             
-            
-            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications = notifications)
+            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"
@@ -1666,6 +1678,25 @@ def post_delete(post_id):
                                                     WHERE p.post_id = %s AND p.user_id = %s;''', (post_id, user_id))
 
     response = jsonify(success=True)
+    return response
+
+@application.route('/notification_seen', methods = ['POST'])
+@login_required
+def notification_seen():
+    #Get current user
+    user_id = current_user.get_user_id()
+    
+    if request.method == 'POST':
+        #get current time
+        with engine.connect() as connection:
+            ResultProxy = connection.execute('''UPDATE notifications n
+                                                    SET n.seen = 1, n.seen_time = CURRENT_TIMESTAMP
+                                                    WHERE n.user_id = %s AND n.seen = 0;''', (user_id))
+
+        response = jsonify(success=True)
+    else:
+        response = jsonify(success=False)
+
     return response
 
 @application.route('/<date>', methods = ['GET'])

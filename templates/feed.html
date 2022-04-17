@@ -301,6 +301,26 @@ flex-grow: 1;
   height: 27px; 
   position: relative;
   color:rgba(29, 29, 29);
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.notification_profile_badge {
+  float: left;
+  background-size: cover;
+  background-color:#ffffff;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px; 
+  margin: 3px;
+}
+
+.notification_bell {
+  font-size: 20px;
+  width: 27px;
+  height: 27px; 
+  position: relative;
+  color:rgba(29, 29, 29);
   margin-left:22px;
   cursor: pointer;
 }
@@ -310,15 +330,12 @@ flex-grow: 1;
   background-size: cover;
   background-color:#ffffff;
   border: 1px solid black;
-  
   border-radius: 50%;
   width: 56px;
   height: 56px; 
   position: relative;
   background:transparent;
 }
-
-
 
 .badge_inner {
   background-size: cover;
@@ -769,6 +786,31 @@ background: transparent;
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: rgb(250, 250, 250)}
 
+
+/* Dropdown Content (Hidden by Default) */
+.ndropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #bfbfbf;
+  min-width: 225px;
+  box-shadow: 0px 0px 3px 0px rgb(0 0 0 / 20%);
+  z-index: 1;
+  max-height: 300px;
+  overflow: auto;
+}
+
+/* Links inside the dropdown */
+.ndropdown-content a {
+  color: black;
+  padding: 6px 3px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.ndropdown-content div:hover {background-color: rgb(250, 250, 250)}
+
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
@@ -778,6 +820,19 @@ background: transparent;
 
 .pre_vote_grey {
   color: lightgrey;
+}
+
+/* Make the badge float in the top right corner of the button */
+#notifications_count {
+  background-image: linear-gradient(46deg, #f89b29, #ff1cad);
+  font-weight:600;
+  border-radius: 2px;
+  color: white;
+  padding: 1px 3px;
+  font-size: 10px;
+  position: absolute;
+  top: -27px;
+  right: 1px;
 }
 
 </style>
@@ -910,6 +965,60 @@ window.onclick = function(event) {
     }
   }
 }
+
+
+// function myFunction2() {
+//   document.getElementById("notifcations_dropdown").classList.toggle("show");
+// }
+
+// //Close the dropdown menu if the user clicks outside of it
+// window.onclick = function(event) {
+//   if (!event.target.matches('.notifications-content')) {
+//     var dropdowns = document.getElementsByClassName("notifications-content");
+//     var i;
+//     for (i = 0; i < dropdowns.length; i++) {
+//       var openDropdown = dropdowns[i];
+//       if (openDropdown.classList.contains('show')) {
+//         openDropdown.classList.remove('show');
+//       }
+//     }
+//   }
+// }
+
+//jquery code to remove notification count and mark them as seen
+$(document).ready(function(){
+  //if click on notification_bell, then hide the notification count
+  $(document).on("click", ".notification_bell", function(event) {
+    
+    $("#notifcations_dropdown").toggle(0);
+
+    //check value of notifications_count
+    var notifications_count = $("#notifications_count").html();
+    if (notifications_count > 0) {
+      //if notifications_count > 0, post to notifications-seen
+      var url = "/notification_seen";
+      req = $.ajax({
+        method: "POST",
+        url: url,
+        data: {
+          
+        },
+        success:function(){
+
+          //remove notification count
+          $("#notifications_count").html(0);
+          
+          //hide notification count
+          $("#notifications_count").hide();
+
+      }
+        
+      });
+    }
+
+  });
+});
+
 
 </script>
 
@@ -1094,6 +1203,38 @@ $("#post_form")[0].reset();
       <div>
         <a href="/search" class = "header_groups_inactive"><i class="fas fa-search"></i></a> 
       </div>
+      <div>
+        <div id="notifications_bell" class = "notification_bell" onclick="myFunction2()"><i class="far fa-bell"></i></div>
+        
+        {% if notification_count > 0 %}
+        <div style="position:relative;">
+        <span id="notifications_count" class = "notification_count">{{ notification_count }}</span>
+        </div>
+        {% endif %}
+
+        <div style="position:relative;">
+          <div id="notifcations_dropdown" class="ndropdown-content" class="notifications-content" style="margin-left:-125px;">
+         
+              {% for index, ping in notifications.iterrows() %}
+              <div style="display: flex;flex-direction: row;">
+                <div>
+                  <a href="{{ping['redirect']}}"><div class="notification_profile_badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ ping['profile_photo'] }} ');"></div></a>
+                </div>
+
+                {% if ping['seen'] == 1 %}
+                <div  style= "display: flex; justify-content: center; align-content: center; flex-direction: column;opacity: .5;;">
+                {% else %}
+                <div  style= "display: flex; justify-content: center; align-content: center; flex-direction: column;">
+                {% endif %}  
+                  <a href="{{ping['redirect']}}"><div><span style="font-weight:600;">{{ping['handle']}}</span> {{ping['text']}}</div></a> 
+                </div>
+              </div>  
+              {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
 
     <div>
       
