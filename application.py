@@ -525,24 +525,7 @@ def feed():
             else:
                 posts = df
                 replys = df
-                
-
-            #Get Photos for all IDs
-            if len(posts.index) > 0:
-                ids = ', '.join(f'"{w}"' for w in posts.media_id)
-                ids = "(" + ids + ")"
-                
-                with engine.connect() as connection:
-                    ResultProxy = connection.execute('SELECT * FROM photos ph WHERE ph.media_id IN %s;' % (ids))
-
-                photos = DataFrame(ResultProxy.fetchall())
-                if len(photos.index) > 0:
-                    photos.columns = ResultProxy.keys()
-                    photos['bottom-padding'] = ((photos['height']/photos['width'])*100) - 5
-                else:
-                    photos = pd.DataFrame({"media_id": [0]})
-            else:
-                photos = pd.DataFrame({"media_id": [0]})
+            
 
             handle = current_user.get_user_handle()
 
@@ -550,7 +533,7 @@ def feed():
             notifications = data[0] 
             unseen_count = data[1]
             
-            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
+            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, replys=replys, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"
