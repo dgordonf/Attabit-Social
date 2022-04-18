@@ -130,6 +130,52 @@ application.config['MAIL_USE_SSL'] = True
 
 mail = Mail(application)    
 
+##Get notifications for this user
+def get_notifications(user_id):
+    with engine.connect() as connection:
+            ResultProxy = connection.execute('''SELECT n.notification_id, n.creation_time, u.profile_photo, u.handle, n.event_type_id, n.reference_post_id, n.seen
+                                                FROM notifications n
+                                                LEFT JOIN users u ON u.id = n.triggered_by_user_id
+                                                WHERE u.id = %s
+                                                ORDER BY n.creation_time DESC
+                                                LIMIT 25;
+                                                ''', (user_id ))
+            notifications = DataFrame(ResultProxy.fetchall())
+
+
+    ## format the notifications
+    if len(notifications.index) > 0:
+        notifications.columns = ResultProxy.keys()
+
+        #fill reference_post_id with 0s if NA
+        notifications['reference_post_id'] = notifications['reference_post_id'].fillna(0)
+        notifications['reference_post_id'] = notifications['reference_post_id'].astype(int)
+        notifications['reference_post_id'] = notifications['reference_post_id'].astype(int)
+
+        notifications['event_type_id'] = notifications['event_type_id'].astype(int)
+        notifications['profile_photo'] = notifications['profile_photo'].fillna("")
+        
+        notifications['text'] = ''
+        notifications['redirect'] = ''
+
+        #Sum count of unseen notifications
+        unseen_count = 0
+        for i in range(len(notifications.index)):
+            if notifications['seen'][i] == 0:
+                unseen_count += 1
+
+        #Create text for each notification
+        for i in range(len(notifications.index)):
+            if (notifications['event_type_id'][i] == 1):
+                notifications['text'][i] = "now follows you"    
+                notifications['redirect'][i] = "/@" + str(notifications['handle'][i])       
+
+            if (notifications['event_type_id'][i] == 2):
+                notifications['text'][i] = "replied to your post"
+                notifications['reference_post_id'][i] = str(round(notifications['reference_post_id'][i], 0))
+                notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])
+    return notifications, unseen_count
+
 @login_manager.user_loader
 def load_user(user_id):
     """Check if user is logged-in on every page load."""
@@ -500,49 +546,9 @@ def feed():
 
             handle = current_user.get_user_handle()
 
-            ##Get notifications for this user
-            with engine.connect() as connection:
-                    ResultProxy = connection.execute('''SELECT n.notification_id, n.creation_time, u.profile_photo, u.handle, n.event_type_id, n.reference_post_id, n.seen
-                                                        FROM notifications n
-                                                        LEFT JOIN users u ON u.id = n.triggered_by_user_id
-                                                        WHERE u.id = %s
-                                                        ORDER BY n.creation_time DESC
-                                                        LIMIT 25;
-                                                        ''', (current_user.get_user_id()))
-                    notifications = DataFrame(ResultProxy.fetchall())
-
-      
-            ## format the notifications
-            if len(notifications.index) > 0:
-                notifications.columns = ResultProxy.keys()
-
-                #fill reference_post_id with 0s if NA
-                notifications['reference_post_id'] = notifications['reference_post_id'].fillna(0)
-                notifications['reference_post_id'] = notifications['reference_post_id'].astype(int)
-                notifications['reference_post_id'] = notifications['reference_post_id'].astype(int)
-
-                notifications['event_type_id'] = notifications['event_type_id'].astype(int)
-                notifications['profile_photo'] = notifications['profile_photo'].fillna("")
-                
-                notifications['text'] = ''
-                notifications['redirect'] = ''
-
-                #Sum count of unseen notifications
-                unseen_count = 0
-                for i in range(len(notifications.index)):
-                    if notifications['seen'][i] == 0:
-                        unseen_count += 1
-
-                #Create text for each notification
-                for i in range(len(notifications.index)):
-                    if (notifications['event_type_id'][i] == 1):
-                        notifications['text'][i] = "now follows you"    
-                        notifications['redirect'][i] = "/@" + str(notifications['handle'][i])       
-
-                    if (notifications['event_type_id'][i] == 2):
-                        notifications['text'][i] = "replied to your post"
-                        notifications['reference_post_id'][i] = str(round(notifications['reference_post_id'][i], 0))
-                        notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])
+            data = get_notifications(user_id)
+            notifications = data[0] 
+            unseen_count = data[1]
             
             return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
         except Exception as e:
@@ -566,7 +572,7 @@ def favicon2():
 
 @application.route('/@<username>', methods = ['POST','GET'])
 @login_required
-def user_page(username):
+def profile(username):
     
     camp_id = 0
     profile_username = username
@@ -851,8 +857,12 @@ def user_page(username):
                 follow_status = follow['follow_status'][0]
             except:
                 follow_status = 0
+            
+            data = get_notifications(user_id)
+            notifications = data[0] 
+            unseen_count = data[1]
 
-            return render_template('profile.html', profile_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id)
+            return render_template('profile.html', profile_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications=notifications, notification_count=unseen_count)
         except Exception as e:
             # e holds description of the error
             print(e)
@@ -1101,13 +1111,19 @@ def search():
                 df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '⬛' * x)
                 df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
                 df['user_score'] = df['user_score'].astype(int)
+        
+        data = get_notifications(user_id)
+        notifications = data[0] 
+        unseen_count = data[1]
 
         return render_template('search.html', 
                                     df = df, 
                                     user_id = user_id, 
                                     q = q, 
                                     current_user_id = user_id,
-                                    current_user_profile_photo = current_user_profile_photo)
+                                    current_user_profile_photo = current_user_profile_photo,
+                                    notifications = notifications,
+                                    notification_count = unseen_count)
     else:
         with engine.connect() as connection:
             search = "%" + q + "%"
@@ -1144,13 +1160,19 @@ def search():
             df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '⬛' * x)
             df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x)) 
             df['user_score'] = df['user_score'].astype(int)
+
+        data = get_notifications(user_id)
+        notifications = data[0] 
+        unseen_count = data[1]
             
         return render_template('search.html',
                                 user_id = user_id,
                                 df = df, 
                                 q = q,
                                 current_user_id = user_id,
-                                current_user_profile_photo = current_user_profile_photo)
+                                current_user_profile_photo = current_user_profile_photo,
+                                notifications = notifications,
+                                notification_count = unseen_count)
     
 @application.route('/post/<post_id>', methods = ['GET', 'POST'])
 @login_required
@@ -1532,8 +1554,12 @@ def post(post_id):
                         replys = replys.sort_values(by=['post_score'], ascending=False)    
             else:
                 replys = pd.DataFrame()
+            
+            data = get_notifications(user_id)
+            notifications = data[0] 
+            unseen_count = data[1]
 
-            return render_template('post.html', current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, post_info=post_info, posts=df, replys = replys)
+            return render_template('post.html', current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, post_info=post_info, posts=df, replys = replys, notifications = notifications, notification_count = unseen_count)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"
