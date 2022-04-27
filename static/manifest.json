@@ -1,7 +1,7 @@
 {
     "name": "Attabit",
     "short_name": "Attabit",
-    "description": "Like twitter but better",
+    "description": "Level up your social media",
     "start_url": "/",
     "scope": "/",
     "background_color": "#000000",

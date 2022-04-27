@@ -136,7 +136,7 @@ def get_notifications(user_id):
             ResultProxy = connection.execute('''SELECT n.notification_id, n.creation_time, u.profile_photo, u.handle, n.event_type_id, n.reference_post_id, n.seen
                                                 FROM notifications n
                                                 LEFT JOIN users u ON u.id = n.triggered_by_user_id
-                                                WHERE u.id = %s
+                                                WHERE n.user_id = %s
                                                 ORDER BY n.creation_time DESC
                                                 LIMIT 25;
                                                 ''', (user_id ))
@@ -158,12 +158,6 @@ def get_notifications(user_id):
         notifications['text'] = ''
         notifications['redirect'] = ''
 
-        #Sum count of unseen notifications
-        unseen_count = 0
-        for i in range(len(notifications.index)):
-            if notifications['seen'][i] == 0:
-                unseen_count += 1
-
         #Create text for each notification
         for i in range(len(notifications.index)):
             if (notifications['event_type_id'][i] == 1):
@@ -174,6 +168,13 @@ def get_notifications(user_id):
                 notifications['text'][i] = "replied to your post"
                 notifications['reference_post_id'][i] = str(round(notifications['reference_post_id'][i], 0))
                 notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])
+    
+    #Sum count of unseen notifications
+    unseen_count = 0
+    for i in range(len(notifications.index)):
+        if notifications['seen'][i] == 0:
+            unseen_count += 1
+    
     return notifications, unseen_count
 
 @login_manager.user_loader
@@ -193,6 +194,10 @@ def load_user(user_id):
 def unauthorized():
     flash('You must be logged in to view that page.')
     return redirect('/login')
+
+@application.route('/landing', methods = ['GET'])
+def landing():
+    return render_template('landing.html')
 
 @application.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -925,10 +930,10 @@ def quickfollow(username):
             with engine.connect() as connection:
                 ResultProxy = connection.execute('INSERT INTO follows (user_id, following, follow_value) VALUES (%s, %s, %s);', (user_id, following, follow_value))
 
-                #Notify user that someone has followed them
-                event_type_id = 1
-                with engine.connect() as connection:
-                    connection.execute('INSERT INTO notifications (user_id, triggered_by_user_id, event_type_id) VALUES (%s, %s, %s, %s);', (following, user_id, event_type_id))    
+            #Notify user that someone has followed them
+            event_type_id = 1
+            with engine.connect() as connection:
+                connection.execute('INSERT INTO notifications (user_id, triggered_by_user_id, event_type_id) VALUES (%s, %s, %s);', (following, user_id, event_type_id))    
         else:
             with engine.connect() as connection:
                 ResultProxy = connection.execute('''UPDATE follows f
