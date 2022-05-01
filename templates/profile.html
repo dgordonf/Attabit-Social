@@ -1314,7 +1314,15 @@ $('#fileInput').on( 'change', function(){
             h = img.height;
 
             var pixelArr = context.getImageData(0, 0, w, h).data;
-            sample_size = 30;
+            
+            total_pixels = w * h;
+
+            var sample_size = Math.round((total_pixels * .00000333));
+            //Always same sample size on inital upload
+            //sample_size = sample_size * 1;
+            if (sample_size < 8) {
+              sample_size = 8;
+            }
 
             for (let y = 0; y < h; y += sample_size) {
               for (let x = 0; x < w; x += sample_size) {
@@ -1387,10 +1395,7 @@ $(document).ready(function () {
 
 $('#pix_size').on( 'change', function(){
   var pix_select = $('#pix_size').val();
-  var pix_size = pix_select * 10
-  
-  
-
+   
   var canvas  = $("#canvas"),
     context = canvas.get(0).getContext("2d"),
     $result = $('#result');
@@ -1414,8 +1419,16 @@ $('#pix_size').on( 'change', function(){
             w = img.width;
             h = img.height;
 
+            total_pixels = w * h;
+
+            var sample_size = Math.round((total_pixels * .00000333));
+            sample_size = sample_size * pix_select;
+            if (sample_size < 8) {
+              sample_size = 8;
+            }
+
             var pixelArr = context.getImageData(0, 0, w, h).data;
-            sample_size = pix_size;
+            
 
             for (let y = 0; y < h; y += sample_size) {
               for (let x = 0; x < w; x += sample_size) {
@@ -1799,7 +1812,7 @@ $(document).ready(function(){
   </div>
   <div style="padding: 20px;padding-top: 30px;">
     <label for ="handle" >Pixelation:</label>
-    <input type="range" min="1" max="6" value="3" class="slider" id="pix_size">
+    <input type="range" min="1" max="6" value="1" class="slider" id="pix_size">
   </div>
 
     <button id="btnCrop" class = "non-glow" style="float:right;margin:10px">

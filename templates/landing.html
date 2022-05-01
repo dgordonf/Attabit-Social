@@ -851,6 +851,48 @@ background: transparent;
     
 }
 
+.signup_button {
+  font-size: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+    color: white;
+    background: transparent;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  border: 3px solid white;
+}
+
+.signup_button:hover {
+    background-position: 100% 0;
+    moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.signup_button:hover {
+  font-size: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 600;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  border: 3px solid white;
+  color: rgb(18, 18, 18);
+  background: white;
+  mix-blend-mode: color-dodge;
+
+}
+
 </style>
 
 
@@ -870,10 +912,22 @@ background: transparent;
             <div style="width:75%;padding-left:25px;">
             <h1 style="font-size: 75px;color:white;font-weight:700;font-family:Inter;">Level up your social media</h1>   
             <span style="color:white;opacity:.95;font-weight:700;font-size:20px;">Attabit is a game. Post any text you want. Level up by getting up votes. Attack others with down votes. Reach the highest level and become #1.</span>
+            <br>
+            <form action="/signup">
+                <button style="margin-top:25px;" class="signup_button" href="/signup">
+                    Sign up
+                </button>
+            </form>
             </div>  
             <div>
                 
+
+
             </div>
+         
+            
+
+
         </div>
 
 
