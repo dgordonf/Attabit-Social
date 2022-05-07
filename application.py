@@ -35,6 +35,7 @@ import imghdr
 import io
 import pytz
 from flask_mail import Mail, Message
+import emoji
 
 #You build this with this tutorial: https://medium.com/techfront/step-by-step-visual-guide-on-deploying-a-flask-application-on-aws-ec2-8e3e8b82c4f7
 #https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-20-04
@@ -176,6 +177,10 @@ def get_notifications(user_id):
             unseen_count += 1
     
     return notifications, unseen_count
+
+@application.template_filter('emojify')
+def emoji_filter(s):
+    return emoji.emojize(s)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -515,11 +520,25 @@ def feed():
                 df['user_score'] = df['user_score']/10
                 df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
                 df['user_score'] = df['user_score'].astype(int)
+                
+                #Check if post is greater than 400 characters
+                df['post_length'] = 0
+                df['post_length_flag'] = 0
+                for i in range(len(df.index)):
+                    df['post_length'][i] = len(df['post_text'][i])
+                    if len(df['post_text'][i]) > 400:
+                        df['post_length_flag'][i] = 1
 
-                #Create Score Bar Print
-                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '⬛' * x)
-                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
-       
+                #Cut down any text where post_length_flag is 1
+                for i in range(len(df.index)):
+                    if df['post_length_flag'][i] == 1:
+                        char_count = 400
+                        while char_count < 450 and df['post_length'][i] > char_count:
+                            if df['post_text'][i][char_count] == ' ':
+                                break
+                            char_count += 1
+                        df['post_text'][i] = df['post_text'][i][:char_count] + "..."
+
                 ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]
                 posts = posts.sort_values(by=['post_id'], ascending=False)  
@@ -530,7 +549,6 @@ def feed():
             else:
                 posts = df
                 replys = df
-            
 
             handle = current_user.get_user_handle()
 

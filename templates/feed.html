@@ -1337,11 +1337,16 @@ $("#post_form")[0].reset();
               </div>
 
                 <div class = "post_text">
-                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(40, true) }}</span> 
+                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(40, true)|emojify|safe }}</span> 
                 </div>
             </div>
         </div>
-          
+    
+        {% if posts['post_length_flag'] == 1 %}
+        <div style="padding-bottom:5px;margin-bottom: 10px; font-weight:600; opacity: .40; text-align:center;">
+          ------------- more -------------
+        </div>
+        {% endif %}
 
           <div class = "post_icons">
             
