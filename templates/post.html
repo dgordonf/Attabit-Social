@@ -970,6 +970,7 @@ body.modal-open {
   display: block;
   text-decoration: none;
   color: #000000;
+  opacity: .45;
 }
 
 .post_link:hover {
@@ -1864,7 +1865,7 @@ $(document).ready(function () {
 
         <div class = "reply_icons">
             
-            <div style= "width:20%">  
+            <div style= "width:32%">  
               <button class = "reply_reply_button" id = "reply_button_{{posts['post_id']}}" name = "{{posts['handle']}}" value = '{{posts['post_id']}}'>
                 <span style="font-size:15px;">Reply</span>
               </button>  
@@ -1958,14 +1959,16 @@ $(document).ready(function () {
       
 
     <div class = "reply_two_icons">
-        
-        <div style= "width:13%">  
-          <button class = "reply_reply_button" id = "reply_button_{{replys['post_id']}}" name = "{{replys['handle']}}" value = '{{replys['post_id']}}' disabled>
-            <span style="font-size:15px;"></span>
+
+        <div style= "width:26%">  
+          <a class="post_link" href = "/post/{{replys['post_id']}}">  
+          <button class = "reply_button" id = "reply_button_{{replys['post_id']}}" value = '{{replys['post_id']}}'>
+            <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{replys['reply_count']}}</span>
           </button>  
+          </a>
         </div>
-      
-        <div style= "width:20%">
+
+        <div style= "width:21%">
           <form id="B{{index}}" title="" action= "/quickvote" method= "post" class= "reply_form_arrows">
             
             <input type="hidden" id = "post_id" name= "post_id" value={{replys['post_id']}} >
