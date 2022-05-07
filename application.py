@@ -823,6 +823,24 @@ def profile(username):
                 df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '⬛' * x)
                 df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
                                 
+                #Check if post is greater than 400 characters
+                df['post_length'] = 0
+                df['post_length_flag'] = 0
+                for i in range(len(df.index)):
+                    df['post_length'][i] = len(df['post_text'][i])
+                    if len(df['post_text'][i]) > 400:
+                        df['post_length_flag'][i] = 1
+
+                #Cut down any text where post_length_flag is 1
+                for i in range(len(df.index)):
+                    if df['post_length_flag'][i] == 1:
+                        char_count = 400
+                        while char_count < 450 and df['post_length'][i] > char_count:
+                            if df['post_text'][i][char_count] == ' ':
+                                break
+                            char_count += 1
+                        df['post_text'][i] = df['post_text'][i][:char_count] + "..."
+
                 ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]
                 posts = posts.sort_values(by=['post_id'], ascending=False)  
