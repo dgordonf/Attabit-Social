@@ -27,8 +27,34 @@
 
 html {
   scroll-behavior: smooth;
+  background: linear-gradient(46deg, #f89b29, #ff1cad);
+	animation: gradient 5s ease infinite;
+  background-size: 300% 50%;
+  overflow: auto;
+  overscroll-behavior: none;
 }
 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+body {
+   background-color: #ffffff; 
+   z-index: 0;
+   font-size:14px;
+   font-family: 'Inter';
+   height: 100%;
+   overflow: auto;
+   overscroll-behavior: none;
+}
 
 ::selection {
   color: #fafafa;
@@ -39,12 +65,7 @@ html {
   background: #181818; /* Gecko Browsers */
 }
 
-body {
-   background-color: #ffffff; 
-   z-index: 0;
-   font-size:14px;
-   font-family: 'Inter';
-}
+
 
 h1 {
    font-size: 50px; 
@@ -170,6 +191,7 @@ flex-grow: 1;
   padding: 7px;
   min-height: 100px;
   font-size: 16px;
+  max-width: 90%;
 }
 
 
@@ -1189,6 +1211,7 @@ $("#post_form")[0].reset();
     }
 </script>
 
+
 {% extends "layout.html" %}
 {% block body %}
 <div class = "header" id= "header">
@@ -1337,7 +1360,7 @@ $("#post_form")[0].reset();
               </div>
 
                 <div class = "post_text">
-                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(40, true)|emojify|safe }}</span> 
+                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(30, true)|emojify|safe }}</span> 
                 </div>
             </div>
         </div>

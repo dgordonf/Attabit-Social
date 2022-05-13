@@ -2,6 +2,7 @@
     "name": "Attabit",
     "short_name": "Attabit",
     "description": "Level up your social media",
+    "display": "standalone",
     "start_url": "/",
     "scope": "/",
     "background_color": "#000000",

@@ -93,8 +93,6 @@ def time_ago(time=False):
             return "just now"
         if second_diff < 60:
             return str(second_diff) + " sec"
-        if second_diff < 120:
-            return " min"
         if second_diff < 3600:
             return str(second_diff // 60) + " min"
         if second_diff < 86400:

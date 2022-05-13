@@ -32,7 +32,31 @@
 
 html {
   scroll-behavior: smooth;
-  
+  background: linear-gradient(46deg, #f89b29, #ff1cad);
+	animation: gradient 5s ease infinite;
+  background-size: 300% 50%;
+  overflow: auto;
+  overscroll-behavior: none;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+body {
+   background-color: #ffffff; 
+   z-index: 0;
+   font-size:14px;
+   font-family: 'Inter';
+   height: 100%;
 }
 
 ::selection {
@@ -44,12 +68,6 @@ html {
   background: #181818; /* Gecko Browsers */
 }
 
-body {
-  background-color: #ffffff; 
-   z-index: 0;
-   font-size:14px;
-   font-family: 'Inter';
-}
 
 h1 {
    font-size: 50px; 
@@ -174,7 +192,7 @@ outline: 0;
 background: transparent;
 padding: 3px;
 padding-left: 10px;
-flex-grow: 1; 
+flex-grow: 1; f
 }
 
 .reply_bar::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -185,6 +203,7 @@ flex-grow: 1;
   padding: 7px;
   min-height: 100px;
   font-size: 16px;
+  max-width: 90%;
 }
  
 .post_person {
@@ -704,7 +723,6 @@ flex-grow: 1;
   display: flex;
   flex-direction: column;
   margin-top: 3%;
-  width: 70%;
   font-family: "Monda"
   
 }
@@ -1869,7 +1887,7 @@ $(document).ready(function(){
 
     </div>
       <div style="margin-top:5px;font-size: 17px;color:#4e4e4e82;line-height: 17px;">{{profile_info['first_name'][0]}}</div>
-      <div style = "margin-top:5px;white-space: pre-wrap;word-wrap: break-word; word-break: break-all;font-size: 17px;">{{ profile_info['bio'][0]|urlize(40, true) }}</div>
+      <div style = "margin-top:5px;white-space: pre-wrap;word-wrap: break-word; word-break: break-all;font-size: 17px;">{{ profile_info['bio'][0]|urlize(30, true) }}</div>
     </div>
 </div> 
 </div>  
@@ -1937,7 +1955,7 @@ $(document).ready(function(){
             </div>
 
               <div class = "post_text">
-                <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(40, true) }}</span> 
+                <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(30, true) }}</span> 
               </div>
           </div>
       </div>

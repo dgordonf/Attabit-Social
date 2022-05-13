@@ -23,6 +23,7 @@
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+    line-height: 1.4;
 
 }
 
@@ -47,6 +48,63 @@ html, body {
 }
 
 </style>
+
+<script>
+var mouseY = 0;
+var startMouseY = 0;
+
+$('body').on('touchstart', function (ev) {
+    mouseY = ev.pageY;
+    startMouseY = mouseY;
+    $(document).on('touchmove', function (e) {
+        if (e.pageY > mouseY) {
+            var d = e.pageY - startMouseY;
+            console.log(d);
+            if (d >= 200) {
+                $(document).unbind("touchstart");
+                //reload page
+                location.reload();
+            }
+            
+            $('body').css('margin-top', d/4 + 'px');
+        }
+        else
+            $(document).unbind("touchstart");
+
+
+    });
+});
+
+$('body').on('mousedown', function (ev) {
+    mouseY = ev.pageY;
+    startMouseY = mouseY;
+    $(document).on('mousemove', function (e) {
+        if (e.pageY > mouseY) {
+            var d = e.pageY - startMouseY;
+            console.log(d);
+            if (d >= 400) {
+                $(document).unbind("mousemove");
+                //send user to current location
+                window.location.href = window.location.href;
+            }
+            
+            $('body').css('margin-top', d/4 + 'px');
+        }
+        else
+            $(document).unbind("mousemove");
+
+
+    });
+});
+$('body').on('mouseup', function () {
+    $('body').css('margin-top', '0px');
+    $(document).unbind("mousemove");
+});
+$('body').on('mouseleave', function () {
+    $('body').css('margin-top', '0px');
+    $(document).unbind("mousemove");
+});
+</script>
 
 <!doctype html>
 {% with messages = get_flashed_messages() %}
