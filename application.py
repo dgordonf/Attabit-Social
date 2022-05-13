@@ -56,7 +56,7 @@ db = SQLAlchemy(application, engine_options={"pool_recycle": 1800})
 db.init_app(application)
 
 ##Create SQL Engine Look at this: https://docs.sqlalchemy.org/en/14/core/pooling.html#pool-disconnects
-engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'], pool_recycle=3600)
+engine = sqlalchemy.create_engine(application.config['SQLALCHEMY_DATABASE_URI'], pool_recycle=3600,)
 
 ### AUTH SECTION ###
 login_manager = LoginManager()
