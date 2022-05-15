@@ -63,20 +63,7 @@ $('body').on('touchstart', function (ev) {
             if (d >= 200) {
                 $(document).unbind("touchstart");
                 //get url of current page
-                url = window.location.href;
-
-                //reload page
-                req = $.ajax({
-                    method: "GET",
-                    url: url,
-                    data: $(this).serialize() //Encode form elements as a string for submission.
-                    //If using serialize(), name attribute in form elements is required
-                })
-                req.done(function( data ) {
-                  $("#feed_inner").html($("#feed_inner", data).html());
-                  $("#notifications_count").html($("#notifications_count", data).html());
-                  $("#notifcations_dropdown").html($("#notifcations_dropdown", data).html());
-                });
+                window.location.href = window.location.href;
             }
             
             $('body').css('margin-top', d/4 + 'px');
@@ -96,24 +83,10 @@ $('body').on('mousedown', function (ev) {
             var d = e.pageY - startMouseY;
             console.log(d);
             if (d >= 400) {
-              $(document).unbind("mousemove");
-                //get url of current page
-                url = window.location.href;
-
-                //reload page
-                req = $.ajax({
-                    method: "GET",
-                    url: url,
-                    data: $(this).serialize() //Encode form elements as a string for submission.
-                    //If using serialize(), name attribute in form elements is required
-                })
-                req.done(function( data ) {
-                  $("#feed_inner").html($("#feed_inner", data).html());
-                  $("#notifications_count").html($("#notifications_count", data).html());
-                  $("#notifcations_dropdown").html($("#notifcations_dropdown", data).html());
-                });
+                $(document).unbind("mousemove");
+                //send user to current location
+                window.location.href = window.location.href;
             }
-            
             
             $('body').css('margin-top', d/4 + 'px');
         }

@@ -197,8 +197,8 @@ def load_user(user_id):
    
 @login_manager.unauthorized_handler
 def unauthorized():
-    flash('You must be logged in to view that page.')
-    return redirect('/login')
+    #flash('You must be logged in to view that page.')
+    return redirect('/landing')
 
 @application.route('/landing', methods = ['GET'])
 def landing():
@@ -315,7 +315,7 @@ def feed():
         user_id = current_user.get_user_id()
     except Exception as e:
         print(e)
-        return redirect('/')
+        return redirect('/landing')
     
     if request.method == 'POST':
         type = request.form.get('update_type')
@@ -564,8 +564,8 @@ def feed():
             return hed + error_text
            
     else:
-        flash('You are not a member of that camp')
-        return redirect('/')
+        #flash('You are not a member of that camp')
+        return redirect('/landing')
 
 
 @application.route('/favicon.png') 
@@ -587,7 +587,7 @@ def profile(username):
         user_id = current_user.get_user_id()
     except Exception as e:
         print(e)
-        return redirect('/')
+        return redirect('/landing')
 
     #Get current user profile photo
     with engine.connect() as connection:
@@ -1209,7 +1209,7 @@ def post(post_id):
         user_id = current_user.get_user_id()
     except Exception as e:
         print(e)
-        return redirect('/')
+        return redirect('/landing')
 
     #Get current user profile photo
     try:
@@ -1222,7 +1222,7 @@ def post(post_id):
         current_user_profile_photo = df['profile_photo'][0]
     except Exception as e:
         print(e)
-        return redirect('/')
+        return redirect('/landing')
     
     if request.method == 'POST':
         type = request.form.get('update_type')
@@ -1757,7 +1757,7 @@ def top(date):
     try:
         user_id = current_user.get_user_id()
     except Exception as e:
-        return redirect('/login')
+        return redirect('/landing')
     
     ## Format date
     if date == 'today':

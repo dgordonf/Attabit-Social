@@ -833,14 +833,28 @@ background: transparent;
 }
 
 .page_box1{
-    height: 100vh;
-    background-image: linear-gradient(46deg, #f89b29, #ff1cad);
+  height: 90vh;
+  background-image: linear-gradient(46deg, #f89b29f0, #ff1cadf0);
+}
+
+.page_box2{
+  background: white;
+  color: black;
+}
+
+.page_box3 {
+  background: white;
+  color: black;
+}
+
+.wrapper1 {
+  padding-top:10%;
+  padding-bottom:75px;
 }
 
 .wrapper {
-
-    padding-top:150px;
-    padding-bottom:75px;
+  padding-top:150px;
+  padding-bottom:75px;
 }
 
 .feed_like {
@@ -850,9 +864,8 @@ background: transparent;
   margin: 0 auto; 
     
 }
-
-.signup_button {
-  font-size: 50px;
+.login_button {
+  font-size: 35px;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-right: 10px;
@@ -868,7 +881,7 @@ background: transparent;
   border: 3px solid white;
 }
 
-.signup_button:hover {
+.login_button:hover {
     background-position: 100% 0;
     moz-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
@@ -876,8 +889,8 @@ background: transparent;
     transition: all .2s ease-in-out;
 }
 
-.signup_button:hover {
-  font-size: 50px;
+.login_button:hover {
+  font-size: 35px;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-right: 10px;
@@ -893,6 +906,404 @@ background: transparent;
 
 }
 
+/* .signup_button:hover {
+  font-size: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  color: white;
+  background: linear-gradient(46deg, #f89b29, #ff1cad);
+  background-size: 200%;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  border: 3px solid white;
+} */
+
+.signup_button:hover {
+    background-position: 100% 0;
+    moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.signup_button {
+  font-size: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 600;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  border: 3px solid white;
+  color: rgb(18, 18, 18);
+  background: white;
+  mix-blend-mode: color-dodge;
+
+}
+
+.flex_box {
+  padding: 3%;
+  margin: 10px;
+  border: 2px solid #cdcdcd;
+  font-size: 20px;
+  font-weight: 600;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 250px;
+  min-width:100px;
+  border-radius: 10px;
+}
+
+.flex_box2 {
+  background:white;
+  padding: 3%;
+  margin: 10px;
+  border: 4px solid black;
+  font-size: 20px;
+  font-weight: 600;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 85%;
+  min-width:100px;
+  border-radius: 10px;
+}
+
+#canvas {
+min-width: 405px;
+}
+
+
+.mock_feed {
+  width: 100%;
+  max-width:550px;
+  min-width: 325px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+ 
+ }
+
+
+.post_icons {
+  display:flex;
+  flex-direction: row;
+  margin-left: 8%;
+}
+
+
+
+.reply_input {
+position:relative; 
+word-wrap: break-word;
+word-break: break-all;
+width: 85%;
+border: 0;
+outline: 0;
+background: transparent;
+padding: 3px;
+padding-left: 10px;
+flex-grow: 1; 
+}
+
+.reply_bar::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #bebebeee;
+} 
+
+.post_text {
+  padding: 7px;
+  min-height: 100px;
+  font-size: 16px;
+  max-width: 90%;
+}
+
+
+.post_person {
+  font-weight: 550;
+  color: #161616;
+  font-size: 17px;
+  margin-left: 7px;
+  height:16px;
+ 
+}
+
+.post_time {
+  color: #4d4d4d;
+  margin-left: 7px;
+  height: 15px;
+  font-size: 11px;;
+}
+
+.handle {
+  font-weight: 600;
+  color: #161616;
+  margin-left: 7px;
+  font-size: 17px;
+  font-family: "Monda";
+}
+
+.level_details {
+  padding: 4px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-radius: 7px;
+    color: white;
+    background-color: #41414145;
+    font-weight: 600;
+    margin-left: 7px;
+    font-size: 12px;
+    font-family: "Monda";
+    background-image: linear-gradient(46deg, #f89b29, #ff1cad);
+    opacity: .80;
+}
+
+.time_details {
+  font-weight: 500;
+  color: #b7b7b7;
+  margin-left: 7px;
+  font-size: 12px;
+  font-family: "Monda";
+}
+
+.controls {
+  float: right;
+  display: flex;
+ 
+}
+
+.controls2 {
+  margin-right: 10px;
+  float: right;
+  display: flex;
+ 
+}
+
+.arrows {
+  color:rgb(204, 204, 204);
+  font-size:18px;
+  padding-right:3px;
+  padding-left:3px;
+}
+
+
+.reply_badge {
+  font-size: 11px;
+  margin-top: 6px;
+  float: left;
+  border-radius: 50%;
+  width: 33px;
+  height: 33px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:rgba(29, 29, 29);
+}
+
+.reply_person {
+  color: #818181;
+  font-size: small;
+  line-height: 13px;
+  padding-left: 2px;
+  padding-right: 4px;
+}
+
+.reply_text {
+  margin-left: 40px;
+  max-width: 500px;
+  overflow-wrap: break-word;
+}
+
+.reply_details {
+  padding-left: 5px;
+
+}
+
+.user_reply_box {
+  padding: 3px;
+  padding-left: 9px;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+ }
+
+ .badge {
+  float: left;
+  background-size: cover;
+  background-color:#e4e4e4;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px; 
+  position: relative;
+  color:rgba(29, 29, 29);
+}
+
+.menu_badge {
+  background-size: cover;
+  background-color:#ffffff;
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 27px;
+  height: 27px; 
+  position: relative;
+  color:rgba(29, 29, 29);
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.notification_profile_badge {
+  float: left;
+  background-size: cover;
+  background-color:#ffffff;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px; 
+  margin: 3px;
+}
+
+.notification_bell {
+  font-size: 20px;
+  width: 27px;
+  height: 27px; 
+  position: relative;
+  color:rgba(29, 29, 29);
+  margin-left:22px;
+  cursor: pointer;
+}
+
+.user_badge {
+  float: left;
+  background-size: cover;
+  background-color:#ffffff;
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px; 
+  position: relative;
+  background:transparent;
+}
+
+.badge_inner {
+  background-size: cover;
+  
+  position: absolute;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px; 
+  background-color:#ffffff;
+  top: 50%;
+  left: 50%;
+  margin: -24px 0px 0px -24px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+
+
+
+.form_arrows {
+
+}
+
+.reply_button{
+  border: 0px solid #c9c9c9;
+  background-color: transparent;
+}
+
+.border {
+  border-radius:7px;
+}
+
+
+.reply_box {
+  margin-left: 7px;
+  padding:2px;
+  padding-top: 1px;
+  background-color: white;
+ }
+
+
+ .post_submit {
+  position:absolute;
+  overflow:hidden;
+  margin-right: 25px;
+  padding:3px;
+ 
+  background-color: transparent;
+  color:rgb(148, 148, 148);
+  
+  border-color: transparent;
+}
+ .reply_submit {
+  bottom:27px;
+  margin-right: 25px;
+  padding:3px;
+  float:right;
+  background-color: transparent;
+  color:rgb(148, 148, 148);
+  position:relative; 
+  border-color: transparent;
+}
+.reply_border {
+
+  border-radius:7px;
+
+}
+
+.user_post_box {
+  background: #e1e1e18f;
+  border-radius:7px;
+  border-bottom: #b6b6b673 1px solid;
+
+}
+
+.user_post_box_inner {
+  background-color: white;
+  border-radius:7px;
+  
+}
+
+.post_box {
+  margin-top: 10px;
+  padding:0px;
+  border-bottom: #b6b6b673 1px solid;
+  background-color: white;
+  border-radius:0px;
+  
+  }
+
+ .post_inner {
+  padding: 23px;
+  background-color: #ffffff;
+  border-radius:0px;
+  padding-bottom: 16px;
+  min-height: 200px;
+}
+
+.reply_inner {
+  padding: 17px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  background-color: #ffffff;
+  border-radius:7px;
+}
+
+.border-0 {
+  background-color: #e1e1e18f;
+}
+
 </style>
 
 
@@ -906,34 +1317,155 @@ background: transparent;
   </div>
 </div>
 
+<div id = "canvas">
 <div class="page_box1">
-    <div class="wrapper">
+    <div class="wrapper1">
         <div  class = "feed_like" style="max-width:600px;display:flex;">
             <div style="width:75%;padding-left:25px;">
-            <h1 style="font-size: 75px;color:white;font-weight:700;font-family:Inter;">Level up your social media</h1>   
-            <span style="color:white;opacity:.95;font-weight:700;font-size:20px;">Attabit is a game. Post any text you want. Level up by getting up votes. Attack others with down votes. Reach the highest level and become #1.</span>
+            <h1 style="font-size: 75px;color:white;font-weight:700;font-family:Inter;">A new kind of social</h1>   
+            <span style="color:white;opacity:.99;font-weight:700;font-size:20px;">Attabit is social media as a game. Increase your level by getting up votes. Knock down others with down votes. Climb the leaderboard and become #1.</span>
             <br>
-            <form action="/signup">
-                <button style="margin-top:25px;" class="signup_button" href="/signup">
-                    Sign up
-                </button>
-            </form>
-            </div>  
-            <div>
-                
-
-
+            <div style="display:flex;flex-direction: row; flex-wrap: wrap;">
+              <div>
+                <form action="/signup">
+                    <button style="margin-top:25px;" class="signup_button" href="/signup">
+                        Sign up
+                    </button>
+                </form>
+              </div>
+              <div>
+                <br>
+                <br>
+                <span style="color:white;font-size: 20px;font-weight: 600;padding: 20px;"></span>
+              </div>
+              <div>
+                <form action="/login">
+                    <button style="margin-top:25px;" class=" login_button" href="/signup">
+                        Login
+                    </button>
+                </form>
+              </div>
             </div>
-         
-            
-
-
+            </div>  
         </div>
 
 
 
     </div>
 </div>
+<div class="page_box2" style ="border-top: 2px solid black;">
+
+      <div  class = "feed_like" >
+          <div style="display:flex; flex-direction:row;flex-wrap:wrap; padding-top:25px;padding-bottom:25px;justify-content: center;">
+              <div class="flex_box">
+                  <h2 style="margin-top: 0px;font-weight:700;">Up & Down votes</h2>
+                  <p>The real world has both likes and dislikes. Your social media should too.</p>
+              </div>
+              <div class="flex_box">
+                <h2 style="margin-top: 0px;font-weight:700;">No Ads</h2>
+                <p>We won't sell your data. We make money by offering a subscription for premium features.</p>
+              </div>
+              <div class="flex_box">
+                <h2 style="margin-top: 0px;font-weight:700;">Level Up</h2>
+                <p>Know celebs from trolls by their Attabit Level. The higher the level, the more value others find from your posts.</p>
+              </div>
+
+
+          </div>
+
+  </div>
+</div>
+
+<div class="page_box3" >
+<div class="mock_feed">
+  <div  class = "feed_like" >
+      <div style="display:flex; flex-direction:row;flex-wrap:wrap; width:100%;padding:25px;justify-content: center;">
+        <h2 style="margin-top: 0px;font-weight:700;">Why does this matter?</h2>
+        <div class = "post_wrap">
+      
+          <div id = post_1 class="post_box border border-0" style="border-top: #b6b6b673 1px solid;"">
+    
+            <div id= "post_inner_1" class = "post_inner">
+       
+            <div class = "post_info_box">
+                <a class= "profile_link" href = "/signup">
+                  <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/e61b1134-85e.jpg');">
+                    
+                  </div>
+                </a>  
+                
+                <div class = "handle_score_box">
+                  <div style= 'height: 18px;'>
+                    <a class= "profile_link" href = "/signup">
+                    <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>dave</span>
+                    </a>  
+                    <span class="level_details">lvl 9</span><span class="time_details">10 hr</span>
+    
+                  </div>
+    
+                    <div class = "post_text">
+                      <span  style="white-space: pre-wrap;" >We haven't always had the polarization we have today. We think incentives are the problem.
+    
+In the real world, you give off signals when you're not into what others are saying. But online -- you only have a like button.
+    
+We want online discourse to match the real world and for tech to have better incentives. We also think Attabit is just more fun.
+                      </span> 
+                    </div>
+                </div>
+            </div>
+        
+   
+              <div class = "post_icons">
+                
+                  <div style= "width:30%">  
+                    <a class="post_link" href = "/signup">    
+                    <button class = "reply_button" id = "reply_button_1" value = '1'>
+                      <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> 4</span>
+                    </button>  
+                    </a>  
+                  </div>
+                
+                  <div style= "width:30%">
+                    <form id="1" title="" action= "/signup" method= "post" class= "form_arrows">
+                      
+                      <input type="hidden" id = "post_id" name= "post_id" value=1 >
+                      
+                      <input id = "down_vote_value_1" class= hidden name= "post_vote" value = -1>  
+                      <button id= "down_submit_1" type="submit" class="arrow_button">
+                        <span id = "down_vote_wrapper_1" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_1"></span></span>
+                      </button>  
+                       
+                    </form>
+                  </div>
+    
+                  <div style= "width:30%">
+                    <form id="1" title="" action="/signup" method="post" class = "form_arrows">
+                      
+                      <input type="hidden" name= "post_id" value=11 >
+                      
+                      <input id = "up_vote_value_1" class= hidden name= "post_vote" value = 0>
+                      <button id= "up_submit_1"  type="submit" class="arrow_button">
+                        <span id = "up_vote_wrapper_1" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_1">11</span></span>
+                      </button>  
+
+                    </form>
+                  </div>
+              </div>
+            </div>  
+          </div>
+      </div>
+
+      </div>
+    </div>
+</div>
+</div>
+
+
+
+</div>
+
+
+
 {% endblock %}    
 </div>
 
