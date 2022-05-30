@@ -6,13 +6,14 @@ from flask_sqlalchemy import SQLAlchemy
 from numpy import isnan
 import sqlalchemy
 import pandas as pd
+pd.options.mode.chained_assignment = None
 from pandas import DataFrame
 from pandas.util import hash_pandas_object
 import re
 from flask_gtts import gtts
 from config import GMAIL_PASSWORD, GMAIL_USERNAME, Config, S3_KEY, S3_SECRET, S3_BUCKET, SES_REGION_NAME, SES_EMAIL_SOURCE, GMAIL_USERNAME, GMAIL_PASSWORD, SERVER_NAME, SECRET_KEY
 from flask_login import LoginManager
-from models import LoginForm, RegistrationForm, PasswordResetForm, PasswordChangeForm, upload_file_to_s3, time_ago
+import models
 from wtforms import validators
 from wtforms.fields.html5 import EmailField
 import email_validator
@@ -131,53 +132,6 @@ application.config['MAIL_USE_SSL'] = True
 
 mail = Mail(application)    
 
-##Get notifications for this user
-def get_notifications(user_id):
-    with engine.connect() as connection:
-            ResultProxy = connection.execute('''SELECT n.notification_id, n.creation_time, u.profile_photo, u.handle, n.event_type_id, n.reference_post_id, n.seen
-                                                FROM notifications n
-                                                LEFT JOIN users u ON u.id = n.triggered_by_user_id
-                                                WHERE n.user_id = %s
-                                                ORDER BY n.creation_time DESC
-                                                LIMIT 25;
-                                                ''', (user_id ))
-            notifications = DataFrame(ResultProxy.fetchall())
-
-
-    ## format the notifications
-    if len(notifications.index) > 0:
-        notifications.columns = ResultProxy.keys()
-
-        #fill reference_post_id with 0s if NA
-        notifications['reference_post_id'] = notifications['reference_post_id'].fillna(0)
-        notifications['reference_post_id'] = notifications['reference_post_id'].astype(int)
-        notifications['reference_post_id'] = notifications['reference_post_id'].astype(int)
-
-        notifications['event_type_id'] = notifications['event_type_id'].astype(int)
-        notifications['profile_photo'] = notifications['profile_photo'].fillna("")
-        
-        notifications['text'] = ''
-        notifications['redirect'] = ''
-
-        #Create text for each notification
-        for i in range(len(notifications.index)):
-            if (notifications['event_type_id'][i] == 1):
-                notifications['text'][i] = "now follows you"    
-                notifications['redirect'][i] = "/@" + str(notifications['handle'][i])       
-
-            if (notifications['event_type_id'][i] == 2):
-                notifications['text'][i] = "replied to your post"
-                notifications['reference_post_id'][i] = str(round(notifications['reference_post_id'][i], 0))
-                notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])
-    
-    #Sum count of unseen notifications
-    unseen_count = 0
-    for i in range(len(notifications.index)):
-        if notifications['seen'][i] == 0:
-            unseen_count += 1
-    
-    return notifications, unseen_count
-
 @application.template_filter('emojify')
 def emoji_filter(s):
     return emoji.emojize(s)
@@ -206,7 +160,7 @@ def landing():
 
 @application.route('/login', methods = ['POST', 'GET'])
 def login():
-    form = LoginForm(request.form)
+    form = models.LoginForm(request.form)
     if request.method == 'POST' and form.validate():
         try:
             user = User.query.get(form.email.data)
@@ -261,7 +215,7 @@ def logout():
 
 @application.route('/signup', methods = ['POST', 'GET'])
 def signup(): 
-    form = RegistrationForm(request.form)
+    form = models.RegistrationForm(request.form)
     if request.method == 'POST' and form.validate(): 
 
         #check if email is already in use
@@ -419,144 +373,20 @@ def feed():
     #If yes, load page
     if len(df.index) > 0: 
         try:
-            df.columns = ResultProxy.keys()
-            if df['user_score'][0] is None:
-                user_badge_score = 0
-            else:
-                user_badge_score = int(round(df['user_score'][0], 0))
-
             #Get Profile Photo
             user_profile_photo = df['profile_photo'][0]
 
-
-            with engine.connect() as connection:
-                ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.media_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, u.first_name, u.handle, u.profile_photo
-                                                    FROM follows f
-				                                    LEFT JOIN posts p ON p.user_id = f.following
-                                                    LEFT JOIN users u ON p.user_id = u.id 
-                                                    LEFT JOIN post_votes pv ON p.camp_id = pv.camp_id AND p.post_id = pv.post_id 
-                                                    LEFT JOIN
-                                                            (
-                                                                SELECT u.id, SUM(p1.value) AS user_score
-																	FROM users u
-																	LEFT JOIN posts p ON p.user_id = u.id
-																	LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
-																	GROUP BY u.id
-                                                            ) b ON b.id = u.id
-                                                    LEFT JOIN
-                                                    		(
-                                                    		SELECT p2.post_id, SUM(p2.value) AS current_user_vote
-																FROM post_votes p2
-																WHERE p2.camp_id = %s AND p2.user_id = %s
-																GROUP BY p2.post_id
-                                                    		) c on c.post_id = p.post_id 
-                                                    WHERE (f.user_id = %s AND f.follow_value = 1 AND (p.reply_to_id IS NULL) AND p.is_deleted = 0) OR p.user_id = %s AND p.camp_id = %s AND p.is_deleted = 0            
-                                                    GROUP BY p.post_id; """, (camp_id, user_id, user_id, user_id, camp_id))
-            df = DataFrame(ResultProxy.fetchall())
-    
-            if len(df.index) > 0:
-                df.columns = ResultProxy.keys()
-
-                #Get comments and scores for each post_id
-                ids = ', '.join(f'{w}' for w in df.post_id)
-                ids = "(" + ids + ")"
-
-                with engine.connect() as connection:
-                    ResultProxy = connection.execute("""SELECT p.post_id, p2.reply_count, pv.down_votes, pv2.up_votes
-                                                                FROM posts p
-                                                                LEFT JOIN
-                                                                    (
-                                                                        SELECT p.reply_to_id, COUNT(p.post_id) AS reply_count
-                                                                            FROM posts p
-                                                                            WHERE p.reply_to_id IN %s AND p.is_deleted = 0
-                                                                            GROUP BY p.reply_to_id
-                                                                    ) p2 ON p2.reply_to_id = p.post_id
-                                                                LEFT JOIN
-                                                                    (
-                                                                        SELECT pv.post_id, COUNT(pv.value) AS down_votes
-                                                                            FROM post_votes pv
-                                                                            WHERE pv.post_id IN %s AND pv.value < 0
-                                                                            GROUP BY pv.post_id
-                                                                    ) pv ON pv.post_id = p.post_id
-                                                                LEFT JOIN
-                                                                    (
-                                                                        SELECT pv.post_id, COUNT(pv.value) AS up_votes
-                                                                            FROM post_votes pv
-                                                                            WHERE pv.post_id IN %s AND pv.value > 0
-                                                                            GROUP BY pv.post_id
-                                                                    ) pv2 ON pv2.post_id = p.post_id	
-                                                                WHERE p.post_id IN %s AND p.camp_id = %s; """ % (ids, ids, ids, ids, camp_id))
-                    
-                    df2 = DataFrame(ResultProxy.fetchall())
-                    df2.columns = ResultProxy.keys()
-                    df2['reply_count'] = round(df2['reply_count'].fillna(0).astype(int), 0)
-                    df2['down_votes'] = round(df2['down_votes'].fillna(0).astype(int), 0)
-                    df2['up_votes'] = round(df2['up_votes'].fillna(0).astype(int), 0)
-
-                    df2['reply_count'] = df2['reply_count'].replace(0, " ")
-                    df2['down_votes'] = df2['down_votes'].replace(0, " ")
-                    df2['up_votes'] = df2['up_votes'].replace(0, " ")
-
-              
-                df = pd.merge(df, df2, on=['post_id'], how='left')
-                #Correct Timezone
-                to_zone = tz.tzlocal()
-
-                df['creation_time'] = pd.to_datetime(df['creation_time'])
-                
-                #Cover to time ago for each post
-                df['time_ago'] = ""
-                for i in range(len(df.index)):
-                    df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
-                
-                df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
-                df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
-
-                #Correct Update Post Score (All posts begin at a score of 0) and round
-                df['post_score'] = df['post_score'].fillna(0).astype(int)
-                df['user_score'] = df['user_score'].fillna(0).astype(int)
-
-                #Create User Score bar chart
-                df['user_score'] = df['user_score']/10
-                df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
-                df['user_score'] = df['user_score'].astype(int)
-                
-                #Check if post is greater than 400 characters
-                df['post_length'] = 0
-                df['post_length_flag'] = 0
-                for i in range(len(df.index)):
-                    df['post_length'][i] = len(df['post_text'][i])
-                    if len(df['post_text'][i]) > 400:
-                        df['post_length_flag'][i] = 1
-
-                #Cut down any text where post_length_flag is 1
-                for i in range(len(df.index)):
-                    if df['post_length_flag'][i] == 1:
-                        char_count = 400
-                        while char_count < 450 and df['post_length'][i] > char_count:
-                            if df['post_text'][i][char_count] == ' ':
-                                break
-                            char_count += 1
-                        df['post_text'][i] = df['post_text'][i][:char_count] + "..."
-
-                ##Split into posts and replys
-                posts = df[df["reply_to_id"].isnull()]
-                posts = posts.sort_values(by=['post_id'], ascending=False)  
-                
-                replys = df[df["reply_to_id"].notnull()]
-                replys = replys.sort_values(by=['post_id'], ascending=True)  
-          
-            else:
-                posts = df
-                replys = df
+            #Get Posts
+            df = models.get_feed(user_id, None)
+            df = models.format_feed(df)
 
             handle = current_user.get_user_handle()
 
-            data = get_notifications(user_id)
+            data = models.get_notifications(user_id)
             notifications = data[0] 
             unseen_count = data[1]
             
-            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, replys=replys, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
+            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=df, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"
@@ -805,7 +635,7 @@ def profile(username):
                 #Cover to time ago for each post
                 df['time_ago'] = ""
                 for i in range(len(df.index)):
-                    df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+                    df['time_ago'][i] = models.time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
 
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                 df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
@@ -882,7 +712,7 @@ def profile(username):
             except:
                 follow_status = 0
             
-            data = get_notifications(user_id)
+            data = models.get_notifications(user_id)
             notifications = data[0] 
             unseen_count = data[1]
 
@@ -1136,7 +966,7 @@ def search():
                 df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
                 df['user_score'] = df['user_score'].astype(int)
         
-        data = get_notifications(user_id)
+        data = models.get_notifications(user_id)
         notifications = data[0] 
         unseen_count = data[1]
 
@@ -1185,7 +1015,7 @@ def search():
             df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x)) 
             df['user_score'] = df['user_score'].astype(int)
 
-        data = get_notifications(user_id)
+        data = models.get_notifications(user_id)
         notifications = data[0] 
         unseen_count = data[1]
             
@@ -1358,7 +1188,7 @@ def post(post_id):
             #Cover to time ago for each post
             post_info['time_ago'] = ""
             for i in range(len(post_info.index)):
-                post_info['time_ago'][i] = time_ago(post_info['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+                post_info['time_ago'][i] = models.time_ago(post_info['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
 
             post_info['creation_time'] = post_info['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
             post_info['creation_time'] = post_info['creation_time'].dt.strftime('%m-%d-%Y')
@@ -1453,7 +1283,7 @@ def post(post_id):
                 #Cover to time ago for each post
                 df['time_ago'] = ""
                 for i in range(len(df.index)):
-                    df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+                    df['time_ago'][i] = models.time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
 
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                 df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
@@ -1556,7 +1386,7 @@ def post(post_id):
                         
                         replys['time_ago'] = ""
                         for i in range(len(replys.index)):
-                            replys['time_ago'][i] = time_ago(replys['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+                            replys['time_ago'][i] = models.time_ago(replys['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
 
                         replys['creation_time'] = replys['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                         replys['creation_time'] = replys['creation_time'].dt.strftime('%m-%d-%Y')
@@ -1579,7 +1409,7 @@ def post(post_id):
             else:
                 replys = pd.DataFrame()
             
-            data = get_notifications(user_id)
+            data = models.get_notifications(user_id)
             notifications = data[0] 
             unseen_count = data[1]
 
@@ -1693,7 +1523,7 @@ def quickvote():
         post_info['creation_time'] = pd.to_datetime(post_info['creation_time'])
         post_info['time_ago'] = ""
         for i in range(len(post_info.index)):
-            post_info['time_ago'][i] = time_ago(post_info['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+            post_info['time_ago'][i] = models.time_ago(post_info['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
         
         post_info['creation_time'] = post_info['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
         post_info['creation_time'] = post_info['creation_time'].dt.strftime('%m-%d-%Y')
@@ -1885,7 +1715,7 @@ def top(date):
                 df['creation_time'] = pd.to_datetime(df['creation_time'])
                 df['time_ago'] = ""
                 for i in range(len(df.index)):
-                    df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
+                    df['time_ago'][i] = models.time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
                 
                 df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
                 df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
@@ -1945,7 +1775,7 @@ def top(date):
 ### Rest User Password Section ###
 @application.route('/account/password/reset', methods = ['GET', 'POST'])
 def reset_password_request():
-    form = PasswordResetForm(request.form)
+    form = models.PasswordResetForm(request.form)
     if request.method == 'POST' and form.validate(): 
         ##See if they are a user
         user = User.query.filter_by(email=form.email.data).first()
@@ -1983,7 +1813,7 @@ def reset_password_request():
 
 @application.route('/account/password/reset/confirm', methods = ['GET', 'POST'])
 def reset_password_with_token():
-    form = PasswordChangeForm(request.form)
+    form = models.PasswordChangeForm(request.form)
     token = request.args.get('token')
 
     #Check if token is legit
@@ -2050,7 +1880,25 @@ def reset_password_with_token():
         
     flash('Error: Something went wrong')
     return redirect(url_for('login'))
-    
+   
+@application.route('/quickfeed', methods = ['GET'])
+@login_required
+def quickfeed():
+
+    try:
+        user_id = current_user.get_user_id()
+    except Exception as e:
+        print(e)
+        return redirect('/landing')
+  
+    df = models.get_feed(user_id)
+    df = models.format_feed(df)
+
+    return render_template('quickfeed.html', posts=df)
+
+
+
+
 if __name__ == '__main__':
     #Need to make this port 443 in prod
     application.run(debug=True, use_reloader = True)

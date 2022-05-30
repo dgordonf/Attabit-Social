@@ -1327,12 +1327,22 @@ $("#post_form")[0].reset();
      {% for index, posts in posts.iterrows() %}
     
       <div class = "post_wrap">
-      
       <div id = post_{{index}} class="post_box border border-0">
 
         <div id= "post_inner_{{index}}" class = "post_inner">
+
+        {% if posts['user_id'] == current_user_id %}
+        <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
+          <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+          <button class = "delete_button" type="submit">
+            <i class="far fa-times-circle"></i>
+          </button>  
+        
+        </form>
+        {% else %}  
+        {% endif %}  
    
-        <div class = "post_info_box">
+        <div class = "post_info_box" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
             <a class= "profile_link" href = "/@{{posts['handle']}}">
               <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
                 
@@ -1346,16 +1356,7 @@ $("#post_form")[0].reset();
                 </a>  
                 <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
 
-                {% if posts['user_id'] == current_user_id %}
-                <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
-                  <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
-                  <button class = "delete_button" type="submit">
-                    <i class="far fa-times-circle"></i>
-                  </button>  
-                
-                </form>
-                {% else %}  
-                {% endif %}  
+
 
               </div>
 

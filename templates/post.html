@@ -1709,15 +1709,8 @@ $(document).ready(function () {
    
     {% for index, post_info in post_info.iterrows() %}
       <div class = "post_wrap">  
-    {% if post_info['post_score'] <= 0 %}
       <div class="post_box border border-0">
-    {% elif post_info['post_score'] >= 5 %}
-    <div class="post_box border border-0">
-    {% else %}
-    <div class="post_box border border-0">
-    {% endif %} 
-      
-      
+     
       <div class = "post_inner">
       
       
@@ -1877,7 +1870,7 @@ $(document).ready(function () {
 
             </div>
 
-              <div class = "reply_text">
+              <div class = "reply_text" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
                 <span style="white-space: pre-wrap;">{{posts['post_text']|urlize(30, true)}}</span> 
               </div>
           
@@ -1944,7 +1937,7 @@ $(document).ready(function () {
   {% if replys['reply_to_id'] == posts['post_id'] %}
   <div class = "reply_two_inner">
   
-    <div class = "reply_two_info_box">
+    <div class = "reply_two_info_box" >
       <a class= "profile_link" href = "/@{{replys['handle']}}">
         <div class = "reply_badge_2" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ replys['profile_photo'] }} ');">
           
@@ -1972,7 +1965,7 @@ $(document).ready(function () {
 
         </div>
 
-          <div class = "reply_two_text">
+          <div class = "reply_two_text" onclick="window.location='/post/{{replys['post_id']}}'" style="cursor: pointer;" tabindex="1">
             <span style="white-space: pre-wrap;">{{replys['post_text']|urlize(30, true)}}</span> 
           </div>
       
