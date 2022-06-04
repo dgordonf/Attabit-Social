@@ -6,7 +6,9 @@ import sqlalchemy
 import os
 import boto3, botocore
 from config import Config, S3_KEY, S3_SECRET, S3_BUCKET
+import pandas as pd
 from pandas import DataFrame
+from dateutil import tz
 
 ##Create SQL Engine Look at this: https://docs.sqlalchemy.org/en/14/core/pooling.html#pool-disconnects
 engine = sqlalchemy.create_engine(Config.SQLALCHEMY_DATABASE_URI, pool_recycle=3600,)
@@ -116,7 +118,7 @@ def get_feed(user_id, last_post_id):
     if last_post_id is None:
         with engine.connect() as connection:
             result = connection.execute("SELECT MAX(post_id) FROM posts")
-            last_post_id = result.fetchone()[0]
+            last_post_id = result.fetchone()[0] + 1
 
     with engine.connect() as connection:
         ResultProxy = connection.execute("""SELECT p.post_id, p.user_id, u.first_name, u.handle, u.profile_photo, p.reply_to_id, p.creation_time, pv.post_score, p.post_text, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote 
@@ -152,7 +154,7 @@ def get_feed(user_id, last_post_id):
                                                 WHERE p.post_id < %s
                                                 AND ((f.follow_value = 1 AND f.user_id = %s) OR p.user_id = %s) AND p.reply_to_id IS NULL AND p.is_deleted = 0
                                                 ORDER BY p.post_id DESC
-                                                LIMIT 33; """, (user_id, user_id, last_post_id, user_id, user_id))
+                                                LIMIT 10;""", (user_id, user_id, last_post_id, user_id, user_id))
     df = DataFrame(ResultProxy.fetchall())
 
     if len(df.index) > 0:

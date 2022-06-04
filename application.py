@@ -373,6 +373,7 @@ def feed():
     #If yes, load page
     if len(df.index) > 0: 
         try:
+            df.columns = ResultProxy.keys()
             #Get Profile Photo
             user_profile_photo = df['profile_photo'][0]
 
@@ -380,13 +381,16 @@ def feed():
             df = models.get_feed(user_id, None)
             df = models.format_feed(df)
 
+            #get smalled post_id from df
+            min_post_id = df['post_id'].min()
+
             handle = current_user.get_user_handle()
 
             data = models.get_notifications(user_id)
             notifications = data[0] 
             unseen_count = data[1]
             
-            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=df, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
+            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=df, min_post_id = min_post_id, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"
@@ -1885,16 +1889,29 @@ def reset_password_with_token():
 @login_required
 def quickfeed():
 
+    #get last_post_id from get request
+    min_post_id = request.args.get('min_post_id')
+
+    #if min_post_id is not int, set to None
+    if min_post_id is not None:
+        try:
+            min_post_id = int(min_post_id)
+        except:
+            min_post_id = None
+
     try:
         user_id = current_user.get_user_id()
     except Exception as e:
         print(e)
         return redirect('/landing')
   
-    df = models.get_feed(user_id)
+    df = models.get_feed(user_id, min_post_id)
     df = models.format_feed(df)
 
-    return render_template('quickfeed.html', posts=df)
+    #get smalled post_id from df
+    min_post_id = df['post_id'].min()
+
+    return render_template('quickfeed.html', posts=df, min_post_id = min_post_id)
 
 
 
