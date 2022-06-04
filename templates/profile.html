@@ -1929,16 +1929,7 @@ $(document).ready(function(){
       {% endif %}       
       
       
-        {% if posts['user_id'] == current_user_id %}
-        <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
-          <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
-          <button class = "delete_button" type="submit">
-            <i class="far fa-times-circle"></i>
-          </button>  
-        
-        </form>
-        {% else %}  
-        {% endif %}     
+   
         <div class = "post_info_box" >
           <a class= "profile_link" href = "/@{{posts['handle']}}">
             <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
@@ -1953,6 +1944,18 @@ $(document).ready(function(){
               <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}} </span>
               </a>  
               <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
+
+            {% if posts['user_id'] == current_user_id %}
+            <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
+              <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+              <button class = "delete_button" type="submit">
+                <i class="far fa-times-circle"></i>
+              </button>  
+            
+            </form>
+            {% else %}  
+            {% endif %}  
+
             </div>
 
               <div class = "post_text" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
