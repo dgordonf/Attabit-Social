@@ -314,7 +314,6 @@ padding: 7px;
 .menu_badge {
   background-size: cover;
   background-color:#ffffff;
-  border: 1px solid black;
   border-radius: 50%;
   width: 27px;
   height: 27px; 
@@ -1692,10 +1691,7 @@ $(document).ready(function () {
 
     <div>
     
-      <div class = "menu_badge" onclick="myFunction()" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');"></div>
-      <div id="myDropdown" class="dropdown-content" style="margin-left:-50px;">
-        <a href="/logout" >Log Out</a> 
-      </div>
+      <a href = "/@{{current_user_handle}}"><div class = "menu_badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');"></div></a>
     
     </div>
     </div>
@@ -1714,16 +1710,7 @@ $(document).ready(function () {
       <div class = "post_inner">
       
       
-        {% if post_info['user_id'] == current_user_id %}
-        <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{post_info['post_id']}}" method= "post" >
-          <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
-          <button class = "delete_button" type="submit">
-            <i class="far fa-times-circle"></i>
-          </button>  
-        
-        </form>
-        {% else %}  
-        {% endif %}     
+   
         <div class = "post_info_box">
           <a class= "profile_link" href = "/@{{post_info['handle']}}">
             <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ post_info['profile_photo'] }} ');">
@@ -1737,6 +1724,18 @@ $(document).ready(function () {
               <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{post_info['handle']}}</span>
               </a>  
               <span class="level_details">lvl {{post_info['user_score']}}</span><span class="time_details">{{post_info['time_ago']}}</span>
+
+              {% if post_info['user_id'] == current_user_id %}
+              <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{post_info['post_id']}}" method= "post" >
+                <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+                <button class = "delete_button" type="submit">
+                  <i class="far fa-times-circle"></i>
+                </button>  
+              
+              </form>
+              {% else %}  
+              {% endif %}  
+
             </div>
             <div class = "post_text" style="post_score:{{posts['post_score']}};">
               <span  style="white-space: pre-wrap; font-size:16px;">{{ post_info['post_text']|urlize(30, true) }} </span> 

@@ -117,7 +117,13 @@ color: #222222;
   font-size: 20px;
   font-weight: 500;
   text-decoration: none;
-  color: #222222;
+  background:-moz-linear-gradient(45deg, #f89b29 0%, #ff1cad 100%); 
+  background: -webkit-linear-gradient(45deg, #f89b29 0%, #ff1cad 100%); 
+  background: linear-gradient(45deg, #f89b29 0%, #ff1cad 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color:transparent;
 }
 
 .header_groups::focus { color: #5e5e5e; }
@@ -347,7 +353,6 @@ flex-grow: 1; f
 .menu_badge {
   background-size: cover;
   background-color:#ffffff;
-  border: 1px solid black;
   border-radius: 50%;
   width: 27px;
   height: 27px; 
@@ -1760,10 +1765,7 @@ $(document).ready(function(){
 
     <div>
     
-      <div class = "menu_badge" onclick="myFunction()" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');"></div>
-      <div id="myDropdown" class="dropdown-content" style="margin-left:-50px;">
-        <a href="/logout" >Log Out</a> 
-      </div>
+      <a href = "/@{{current_user_handle}}"><div class = "menu_badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');"></div></a>
     
     </div>
     </div>
@@ -1829,7 +1831,8 @@ $(document).ready(function(){
   <div style="margin:10px;">
     <canvas id='canvas' style = "max-width:85%;"></canvas>
   </div>
-  <div style="padding: 20px;padding-top: 30px;">
+  <div style="padding: 20px;padding-top: 15px;">
+    <h4 style = "padding-left: 10px;">All photos on attabit are pixelated. Choose your pixelation level below.</h4>
     <label for ="handle" >Pixelation:</label>
     <input type="range" min="1" max="6" value="1" class="slider" id="pix_size">
   </div>

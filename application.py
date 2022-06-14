@@ -715,12 +715,12 @@ def profile(username):
                 follow_status = follow['follow_status'][0]
             except:
                 follow_status = 0
-            
+
             data = models.get_notifications(user_id)
             notifications = data[0] 
             unseen_count = data[1]
 
-            return render_template('profile.html', profile_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications=notifications, notification_count=unseen_count)
+            return render_template('profile.html', profile_handle = username, current_user_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications=notifications, notification_count=unseen_count)
         except Exception as e:
             # e holds description of the error
             print(e)
@@ -970,6 +970,8 @@ def search():
                 df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
                 df['user_score'] = df['user_score'].astype(int)
         
+        handle = current_user.get_user_handle()
+
         data = models.get_notifications(user_id)
         notifications = data[0] 
         unseen_count = data[1]
@@ -980,6 +982,7 @@ def search():
                                     q = q, 
                                     current_user_id = user_id,
                                     current_user_profile_photo = current_user_profile_photo,
+                                    current_user_handle = handle,
                                     notifications = notifications,
                                     notification_count = unseen_count)
     else:
@@ -1413,11 +1416,13 @@ def post(post_id):
             else:
                 replys = pd.DataFrame()
             
+            handle = current_user.get_user_handle()
+
             data = models.get_notifications(user_id)
             notifications = data[0] 
             unseen_count = data[1]
 
-            return render_template('post.html', current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, post_info=post_info, posts=df, replys = replys, notifications = notifications, notification_count = unseen_count)
+            return render_template('post.html', current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, current_user_handle = handle, post_info=post_info, posts=df, replys = replys, notifications = notifications, notification_count = unseen_count)
         except Exception as e:
             # e holds description of the error
             error_text = "<p>The error:<br>" + str(e) + "</p>"

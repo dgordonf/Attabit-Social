@@ -318,7 +318,6 @@ flex-grow: 1;
 .menu_badge {
   background-size: cover;
   background-color:#ffffff;
-  border: 1px solid black;
   border-radius: 50%;
   width: 27px;
   height: 27px; 
@@ -1273,6 +1272,18 @@ function callData() {
 }
 
 
+//enable the post button once someone has entered text
+// $("#user_input_textarea").keyup(function(){
+//   if($("#user_input_post_text").val() != ""){
+//     $("#post_submit").prop("disabled", false);
+//   }
+//   else{
+//     $("#post_submit").prop("disabled", true);
+//   }
+// });
+
+
+
 </script>
 
 {% extends "layout.html" %}
@@ -1325,10 +1336,8 @@ function callData() {
     <div>
       
     
-        <div class = "menu_badge" onclick="myFunction()" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');"></div>
-        <div id="myDropdown" class="dropdown-content" style="margin-left:-50px;">
-          <a href="/logout" >Log Out</a> 
-        </div>
+        <a href = "/@{{current_user_handle}}"><div class = "menu_badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');"></div></a>
+
       
     </div>
     </div>
@@ -1352,8 +1361,8 @@ function callData() {
             <input class= hidden name= "update_type" value = "post_text">  
             <input type="hidden" name= "type" value="1">
             <div id = "post_text_icon_container">
-              <div class="grow-wrap" style = "max-width: 500px;width:100%" name= "post_text" >
-                <textarea class = "post_input" style = "max-width: 500px;width:100%"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Post something..."></textarea>
+              <div id="user_input_post_text" class="grow-wrap" style = "max-width: 500px;width:100%" name= "post_text" >
+                <textarea id="user_input_textarea" class = "post_input" style = "max-width: 500px;width:100%"  name= "post_text" onInput="this.parentNode.dataset.replicatedValue = this.value"  spellcheck="true" placeholder="Post something..."></textarea>
               </div>
               
               <div class="image-upload" style = "margin-top: 10px;">
@@ -1366,7 +1375,7 @@ function callData() {
           </form>
         </div>
         <div style="min-height: 35px;margin: 10px;">
-          <button id= "post_submit" type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;">
+          <button id= "post_submit" type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;" disabled>
             <span style="font-size:16px;"> Post </span>
           </button>
         </div>
@@ -1397,7 +1406,7 @@ function callData() {
 
 
    
-        <div class = "post_info_box" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
+        <div class = "post_info_box" >
             <a class= "profile_link" href = "/@{{posts['handle']}}">
               <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
                 
@@ -1425,7 +1434,7 @@ function callData() {
 
               </div>
 
-                <div class = "post_text">
+                <div class = "post_text" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
                   <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(30, true)|emojify|safe }}</span> 
                 </div>
             </div>
