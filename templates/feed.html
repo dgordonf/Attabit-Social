@@ -1273,6 +1273,7 @@ function callData() {
 
 
 //enable the post button once someone has entered text
+
 // $("#user_input_textarea").keyup(function(){
 //   if($("#user_input_post_text").val() != ""){
 //     $("#post_submit").prop("disabled", false);
@@ -1375,7 +1376,7 @@ function callData() {
           </form>
         </div>
         <div style="min-height: 35px;margin: 10px;">
-          <button id= "post_submit" type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;" disabled>
+          <button id= "post_submit" type="submit" form="post_form" class = "post_button glow-on-hover" style= "float:right;">
             <span style="font-size:16px;"> Post </span>
           </button>
         </div>
@@ -1448,7 +1449,7 @@ function callData() {
 
           <div class = "post_icons">
             
-              <div style= "width:30%">  
+              <div style= "width:33%">  
                 <a class="post_link" href = "/post/{{posts['post_id']}}">    
                 <button class = "reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}'>
                   <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{posts['reply_count']}}</span>
@@ -1456,7 +1457,7 @@ function callData() {
                 </a>  
               </div>
             
-              <div style= "width:30%">
+              <div style= "width:33%">
                 <form id="{{posts['post_id']}}" title="" action= "/quickvote" method= "post" class= "form_arrows">
                   
                   <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >

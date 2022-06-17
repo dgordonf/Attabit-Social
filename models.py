@@ -16,7 +16,7 @@ engine = sqlalchemy.create_engine(Config.SQLALCHEMY_DATABASE_URI, pool_recycle=3
 class RegistrationForm(Form):
     email = StringField('Email', [validators.DataRequired(message='Email field is required'), validators.Email(message='Please enter a valid email address')])
     name = StringField('Your Name', [validators.DataRequired(message='Please enter an appearance name for your account'), validators.Length(min=1, max=25, message='Name must be between 1 and 25 characters')])
-    username = StringField('Username', [validators.DataRequired(message='Please enter a username for your account'), validators.Length(min=1, max=25, message='Username must be between 1 and 25 characters')])
+    username = StringField('Username', [validators.DataRequired(message='Please enter a username for your account'), validators.Length(min=1, max=25, message='Username must be between 1 and 25 characters'), validators.Regexp('^[A-Za-z0-9_]+$', message='Username must be alphanumeric with no spaces')])
     password = PasswordField('Password', [
         validators.DataRequired(message='This field cannot be blank'),
         validators.EqualTo('confirm', message='Passwords must match'),

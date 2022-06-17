@@ -1975,7 +1975,7 @@ $(document).ready(function(){
 
       <div class = "post_icons">
 
-        <div style= "width:30%">  
+        <div style= "width:33%">  
           <a class="post_link" href = "/post/{{posts['post_id']}}">
           <button class = "reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}'>
             <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{posts['reply_count']}}</span>
@@ -1983,7 +1983,7 @@ $(document).ready(function(){
           </a>
         </div>
         
-              <div style= "width:30%">
+              <div style= "width:33%">
                 <form id="{{index}}" title="" action= "/quickvote" method= "post" class= "form_arrows">
                   
                   <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >

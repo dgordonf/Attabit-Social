@@ -1745,13 +1745,13 @@ $(document).ready(function () {
         
       <div class = "post_icons">
 
-        <div style= "width:30%">  
+        <div style= "width:33%">  
           <button class = "reply_button" id = "reply_button_{{post_info['post_id']}}" value = '{{post_info['post_id']}}' onclick="reply_reveal(this.value)">
             <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{post_info['reply_count']}}</span>
           </button>  
         </div>
         
-             <div style= "width:30%">
+             <div style= "width:33%">
                 <form id="A{{index}}" title="" action= "/quickvote" method= "post" class= "form_arrows">
                   
                   <input type="hidden" id = "post_id" name= "post_id" value={{post_info['post_id']}} >
