@@ -1436,7 +1436,7 @@ function callData() {
               </div>
 
                 <div class = "post_text" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
-                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(30, true)|emojify|safe }}</span> 
+                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|linkify|urlize(30, true)|emojify|safe }}</span> 
                 </div>
             </div>
         </div>

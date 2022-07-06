@@ -1738,7 +1738,7 @@ $(document).ready(function () {
 
             </div>
             <div class = "post_text" style="post_score:{{posts['post_score']}};">
-              <span  style="white-space: pre-wrap; font-size:16px;">{{ post_info['post_text']|urlize(30, true) }} </span> 
+              <span  style="white-space: pre-wrap; font-size:16px;">{{ post_info['post_text']|linkify|urlize(30, true)|emojify|safe }} </span> 
             </div>
         </div>
       </div>
@@ -1870,7 +1870,7 @@ $(document).ready(function () {
             </div>
 
               <div class = "reply_text" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
-                <span style="white-space: pre-wrap;">{{posts['post_text']|urlize(30, true)}}</span> 
+                <span style="white-space: pre-wrap;">{{posts['post_text']|linkify|urlize(30, true)|emojify|safe}}</span> 
               </div>
           
 
@@ -1965,7 +1965,7 @@ $(document).ready(function () {
         </div>
 
           <div class = "reply_two_text" onclick="window.location='/post/{{replys['post_id']}}'" style="cursor: pointer;" tabindex="1">
-            <span style="white-space: pre-wrap;">{{replys['post_text']|urlize(30, true)}}</span> 
+            <span style="white-space: pre-wrap;">{{replys['post_text']|linkify|urlize(30, true)|emojify|safe}}</span> 
           </div>
       
 

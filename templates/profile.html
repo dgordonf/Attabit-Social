@@ -1891,7 +1891,7 @@ $(document).ready(function(){
 
     </div>
       <div style="margin-top:5px;font-size: 17px;color:#4e4e4e82;line-height: 17px;">{{profile_info['first_name'][0]}}</div>
-      <div style = "margin-top:5px;white-space: pre-wrap;word-wrap: break-word; font-size: 17px;">{{ profile_info['bio'][0]|urlize(30, true) }}</div>
+      <div style = "margin-top:5px;white-space: pre-wrap;word-wrap: break-word; font-size: 17px;">{{ profile_info['bio'][0]|linkify|urlize(30, true)|emojify|safe }}</div>
     </div>
 </div> 
 </div>  
@@ -1962,7 +1962,7 @@ $(document).ready(function(){
             </div>
 
               <div class = "post_text" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
-                <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(30, true) }}</span> 
+                <span  style="white-space: pre-wrap;" >{{ posts['post_text']||linkify|urlize(30, true)|emojify|safe }}</span> 
               </div>
           </div>
       </div>

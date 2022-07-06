@@ -54,7 +54,7 @@
               </div>
 
                 <div class = "post_text">
-                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(30, true)|emojify|safe }}</span> 
+                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|linkify|urlize(30, true)|emojify|safe }}</span> 
                 </div>
             </div>
         </div>

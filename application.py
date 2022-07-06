@@ -1,5 +1,5 @@
 from gzip import READ
-from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, send_from_directory, current_app
+from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, send_from_directory, current_app, Markup
 import requests
 from string import Template
 from flask_sqlalchemy import SQLAlchemy
@@ -131,6 +131,11 @@ application.config['MAIL_USE_TLS'] = False
 application.config['MAIL_USE_SSL'] = True
 
 mail = Mail(application)    
+
+def linkify(text):
+    return Markup(re.sub(r'@([a-zA-Z0-9_]+)', r'<a href="/@\1">@\1</a>', text))
+
+application.jinja_env.filters['linkify'] = linkify
 
 @application.template_filter('emojify')
 def emoji_filter(s):
@@ -277,45 +282,24 @@ def feed():
         reply_to_id = request.form.get('reply_to_id')
                 
         if type == 'post_text':
-            try:
-                media_file = request.files["user_file"]
-                #First check if there is a photo to upload
             
-                if media_file.filename != "":
-                    filename = secure_filename(media_file.filename)
-                    media_id = get_random_string(12)
-                    
-                    #Get image Size
-                    with Image.open(media_file, mode='r') as img:
-                        width, height = img.size
-                    
-                    media_file.seek(0)
-                    s3.upload_fileobj(
-                            media_file,
-                            S3_BUCKET,
-                            "media/" + filename,
-                            ExtraArgs={
-                                "ACL": "public-read",
-                                "ContentType": media_file.content_type
-                                })
-                            
-                    try:
-                        with engine.connect() as connection:
-                            connection.execute('INSERT INTO photos (media_id, photo_url, width, height) VALUES (%s, %s, %s, %s);', (media_id, filename, width, height))
-                    except Exception as e:
-                        # e holds description of the error
-                        error_text = "<p>The error:<br>" + str(e) + "</p>"
-                        hed = '<h1>Something is broken.</h1>'
-                        return hed + error_text 
-                else:
-                    media_id = ""
-
-            except:
-                media_id = ""
-
             try:
                 with engine.connect() as connection:
-                    connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, media_id, post_text) VALUES (%s, %s, %s, %s, %s);', (camp_id, user_id, reply_to_id, media_id, post_text))
+                    connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, post_text) VALUES (%s, %s, %s, %s);', (camp_id, user_id, reply_to_id, post_text))
+
+                # ####NEW CODE CHECK HERE ##
+                # #Check if anyone is mentioned in the post
+                # if '@' in post_text:
+                #     #Get the list of users that are mentioned
+                #     users = re.findall(r'@([a-zA-Z0-9_]+)', post_text)
+                #     for user in users:
+                #         #Get the user_id of the user that is mentioned
+                #         user_id = User.query.filter_by(handle=user).first().get_user_id()
+                #         #Get the post_id of the post that is being replied to
+                #         post_id = Post.query.filter_by(id=reply_to_id).first().get_post_id()
+                #         #Insert the mention into the database
+                #         with engine.connect() as connection:
+                #             connection.execute('INSERT INTO mentions (user_id, post_id) VALUES (%s, %s);', (user_id, post_id))
                 
             except Exception as e:
                 # e holds description of the error
