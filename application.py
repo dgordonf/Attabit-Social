@@ -287,25 +287,14 @@ def feed():
                 with engine.connect() as connection:
                     connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, post_text) VALUES (%s, %s, %s, %s);', (camp_id, user_id, reply_to_id, post_text))
 
-                # ####NEW CODE CHECK HERE ##
-                # #Check if anyone is mentioned in the post
-                # if '@' in post_text:
-                #     #Get the list of users that are mentioned
-                #     users = re.findall(r'@([a-zA-Z0-9_]+)', post_text)
-                #     for user in users:
-                #         #Get the user_id of the user that is mentioned
-                #         user_id = User.query.filter_by(handle=user).first().get_user_id()
-                #         #Get the post_id of the post that is being replied to
-                #         post_id = Post.query.filter_by(id=reply_to_id).first().get_post_id()
-                #         #Insert the mention into the database
-                #         with engine.connect() as connection:
-                #             connection.execute('INSERT INTO mentions (user_id, post_id) VALUES (%s, %s);', (user_id, post_id))
-                
             except Exception as e:
                 # e holds description of the error
                 error_text = "<p>The error:<br>" + str(e) + "</p>"
                 hed = '<h1>Something is broken.</h1>'
                 return hed + error_text 
+
+            #Notify any mentioned users
+            models.notify_mentionted_users(post_text, user_id)
 
         if type == 'post_vote':
             try:
@@ -1072,6 +1061,9 @@ def post(post_id):
                 event_type_id = 2
                 with engine.connect() as connection:
                     connection.execute('INSERT INTO notifications (user_id, triggered_by_user_id, event_type_id, reference_post_id) VALUES (%s, %s, %s, %s);', (post_creator_user_id, user_id, event_type_id, reply_to_id))
+
+            #Notify any mentioned users
+            models.notify_mentionted_users(post_text, user_id)
                     
             
         if type == 'post_vote':

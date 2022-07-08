@@ -285,6 +285,11 @@ def get_notifications(user_id):
                 notifications['text'][i] = "replied to your post"
                 notifications['reference_post_id'][i] = str(round(notifications['reference_post_id'][i], 0))
                 notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])
+
+            if (notifications['event_type_id'][i] == 3):
+                notifications['text'][i] = "mentionted you in a post"
+                notifications['reference_post_id'][i] = str(round(notifications['reference_post_id'][i], 0))
+                notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])    
     
     #Sum count of unseen notifications
     unseen_count = 0
@@ -293,3 +298,41 @@ def get_notifications(user_id):
             unseen_count += 1
     
     return notifications, unseen_count
+
+def notify_mentionted_users(post_text, current_user):
+    if '@' in post_text:
+        #Get the list of users that are mentioned
+        users = re.findall(r'@([a-zA-Z0-9_]+)', post_text)
+        for user in users:
+                #Get user_id of follow account
+            with engine.connect() as connection:
+                ResultProxy = connection.execute('''SELECT u.id 
+                                                    FROM users u 
+                                                    WHERE u.handle = %s; ''', (user))
+
+            df = DataFrame(ResultProxy.fetchall())
+            if len(df) > 0:
+                df.columns = ResultProxy.keys()
+
+                mentioned_user_id = df['id'][0]
+                print(mentioned_user_id)
+
+
+                #Get the post_id of the post
+                with engine.connect() as connection:
+                    ResultProxy = connection.execute('''SELECT p.post_id
+                                                        FROM posts p 
+                                                        WHERE p.user_id = %s 
+                                                        ORDER BY p.post_id DESC
+                                                        LIMIT 1; ''', (current_user))
+                    df = DataFrame(ResultProxy.fetchall())
+                    df.columns = ResultProxy.keys()
+
+                post_id = df['post_id'][0]
+
+                #Notify the user that someone mentioned them
+                event_type_id = 3
+                with engine.connect() as connection:
+                    connection.execute('INSERT INTO notifications (user_id, triggered_by_user_id, event_type_id, reference_post_id) VALUES (%s, %s, %s, %s);',  (mentioned_user_id, current_user, event_type_id, post_id))
+                                   
+            
