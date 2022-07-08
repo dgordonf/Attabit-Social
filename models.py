@@ -9,6 +9,7 @@ from config import Config, S3_KEY, S3_SECRET, S3_BUCKET
 import pandas as pd
 from pandas import DataFrame
 from dateutil import tz
+import re
 
 ##Create SQL Engine Look at this: https://docs.sqlalchemy.org/en/14/core/pooling.html#pool-disconnects
 engine = sqlalchemy.create_engine(Config.SQLALCHEMY_DATABASE_URI, pool_recycle=3600,)
