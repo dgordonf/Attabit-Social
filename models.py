@@ -288,7 +288,7 @@ def get_notifications(user_id):
                 notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])
 
             if (notifications['event_type_id'][i] == 3):
-                notifications['text'][i] = "mentionted you"
+                notifications['text'][i] = "mentioned you"
                 notifications['reference_post_id'][i] = str(round(notifications['reference_post_id'][i], 0))
                 notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])    
     
