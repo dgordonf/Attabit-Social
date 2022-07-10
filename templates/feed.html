@@ -720,6 +720,10 @@ background: transparent;
   border: none;
 }
 
+.arrow_disabled {
+  color: lightgrey;
+}
+
 .pre_vote {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -1464,13 +1468,13 @@ function callData() {
                   {% if posts['current_user_vote'] <= -1 %}
                   
                   <input id = "down_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = 0>
-                  <button id= "down_submit_{{posts['post_id']}}"  type="submit" class="arrow_button">
+                  <button id= "down_submit_{{posts['post_id']}}"  type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
                     <span id = "down_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{posts['post_id']}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% else %}
                   
                   <input id = "down_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = -1>  
-                  <button id= "down_submit_{{posts['post_id']}}" type="submit" class="arrow_button">
+                  <button id= "down_submit_{{posts['post_id']}}" type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
                     <span id = "down_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{posts['post_id']}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% endif %} 
@@ -1485,13 +1489,13 @@ function callData() {
                   {% if posts['current_user_vote'] >= 1 %}
                   
                   <input id = "up_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = 0>
-                  <button id= "up_submit_{{posts['post_id']}}"  type="submit" class="arrow_button">
+                  <button id= "up_submit_{{posts['post_id']}}"  type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
                     <span id = "up_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{posts['post_id']}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% else %}
 
                   <input id = "up_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = 1>  
-                  <button id= "up_submit_{{posts['post_id']}}" type="submit" class="arrow_button">
+                  <button id= "up_submit_{{posts['post_id']}}" type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
                     <span id = "up_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{posts['post_id']}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% endif %} 

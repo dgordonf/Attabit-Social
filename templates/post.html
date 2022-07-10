@@ -1758,13 +1758,13 @@ $(document).ready(function () {
                   {% if post_info['current_user_vote'] <= -1 %}
                   
                   <input id = "down_vote_value_A{{index}}" class= hidden name= "post_vote" value = 0>
-                  <button id= "down_submit_A{{index}}"  type="submit" class="arrow_button">
+                  <button id= "down_submit_A{{index}}"  type="submit" class="arrow_button" {% if post_info['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
                     <span id = "down_vote_wrapper_A{{index}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_A{{index}}">{{post_info['down_votes']}}</span></span>
                   </button>  
                     {% else %}
                   
                   <input id = "down_vote_value_A{{index}}" class= hidden name= "post_vote" value = -1>  
-                  <button id= "down_submit_A{{index}}" type="submit" class="arrow_button">
+                  <button id= "down_submit_A{{index}}" type="submit" class="arrow_button" {% if post_info['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
                     <span id = "down_vote_wrapper_A{{index}}" style="margin-left:22px" class="pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_A{{index}}">{{post_info['down_votes']}}</span></span>
                   </button>  
                     {% endif %} 
@@ -1779,13 +1779,13 @@ $(document).ready(function () {
                   {% if post_info['current_user_vote'] >= 1 %}
                   
                   <input id = "up_vote_value_A{{index}}" class= hidden name= "post_vote" value = 0>
-                  <button id= "up_submit_A{{index}}"  type="submit" class="arrow_button">
+                  <button id= "up_submit_A{{index}}"  type="submit" class="arrow_button" {% if post_info['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
                     <span id = "up_vote_wrapper_A{{index}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_A{{index}}">{{post_info['up_votes']}}</span></span>
                   </button>  
                     {% else %}
 
                   <input id = "up_vote_value_A{{index}}" class= hidden name= "post_vote" value = 1>  
-                  <button id= "up_submit_A{{index}}" type="submit" class="arrow_button">
+                  <button id= "up_submit_A{{index}}" type="submit" class="arrow_button" {% if post_info['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
                     <span id = "up_vote_wrapper_A{{index}}" style="font-size:17px;margin-left:22px" class="pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_A{{index}}">{{post_info['up_votes']}}</span></span>
                   </button>  
                     {% endif %} 
@@ -1889,13 +1889,13 @@ $(document).ready(function () {
                 {% if posts['current_user_vote'] <= -1 %}
                 
                 <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
-                <button id= "down_submit_{{index}}"  type="submit" class="arrow_button">
+                <button id= "down_submit_{{index}}"  type="submit" class="arrow_button" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
                   <span id = "down_vote_wrapper_{{index}}" class = "reply_pre_vote reply_voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i></span><span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span>
                 </button>  
                   {% else %}
                 
                 <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = -1>  
-                <button id= "down_submit_{{index}}" type="submit" class="arrow_button">
+                <button id= "down_submit_{{index}}" type="submit" class="arrow_button" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
                   <span id = "down_vote_wrapper_{{index}}" class = "reply_pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i></span><span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span>
                 </button>  
                   {% endif %} 
@@ -1910,13 +1910,13 @@ $(document).ready(function () {
                 {% if posts['current_user_vote'] >= 1 %}
                 
                 <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
-                <button id= "up_submit_{{index}}"  type="submit" class="arrow_button">
+                <button id= "up_submit_{{index}}"  type="submit" class="arrow_button" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
                   <span id = "up_vote_wrapper_{{index}}" class = "reply_pre_vote reply_voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i></span><span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span>
                 </button>  
                   {% else %}
 
                 <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 1>  
-                <button id= "up_submit_{{index}}" type="submit" class="arrow_button">
+                <button id= "up_submit_{{index}}" type="submit" class="arrow_button" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
                   <span id = "up_vote_wrapper_{{index}}" class = "reply_pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i></span><span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span>
                 </button>  
                   {% endif %} 
@@ -1986,13 +1986,13 @@ $(document).ready(function () {
             {% if replys['current_user_vote'] <= -1 %}
             
             <input id = "down_vote_value_B{{index}}" class= hidden name= "post_vote" value = 0>
-            <button id= "down_submit_B{{index}}"  type="submit" class="arrow_button">
+            <button id= "down_submit_B{{index}}"  type="submit" class="arrow_button" {% if replys['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
               <span id = "down_vote_wrapper_B{{index}}" class = "reply_pre_vote reply_voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i></span><span class = "_8bit_button" id="down_vote_text_B{{index}}">{{replys['down_votes']}}</span>
             </button>  
               {% else %}
             
             <input id = "down_vote_value_B{{index}}" class= hidden name= "post_vote" value = -1>  
-            <button id= "down_submit_B{{index}}" type="submit" class="arrow_button">
+            <button id= "down_submit_B{{index}}" type="submit" class="arrow_button" {% if replys['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
               <span id = "down_vote_wrapper_B{{index}}" class = "reply_pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i></span><span class = "_8bit_button" id="down_vote_text_B{{index}}">{{replys['down_votes']}}</span>
             </button>  
               {% endif %} 
@@ -2007,13 +2007,13 @@ $(document).ready(function () {
             {% if replys['current_user_vote'] >= 1 %}
             
             <input id = "up_vote_value_B{{index}}" class= hidden name= "post_vote" value = 0>
-            <button id= "up_submit_B{{index}}"  type="submit" class="arrow_button">
+            <button id= "up_submit_B{{index}}"  type="submit" class="arrow_button" {% if replys['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
               <span id = "up_vote_wrapper_B{{index}}" class = "reply_pre_vote reply_voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i></span><span class = "_8bit_button" id="up_vote_text_B{{index}}">{{replys['up_votes']}}</span>
             </button>  
               {% else %}
 
             <input id = "up_vote_value_B{{index}}" class= hidden name= "post_vote" value = 1>  
-            <button id= "up_submit_B{{index}}" type="submit" class="arrow_button">
+            <button id= "up_submit_B{{index}}" type="submit" class="arrow_button" {% if replys['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
               <span id = "up_vote_wrapper_B{{index}}" class = "reply_pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i></span><span class = "_8bit_button" id="up_vote_text_B{{index}}">{{replys['up_votes']}}</span>
             </button>  
               {% endif %} 
