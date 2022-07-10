@@ -1680,7 +1680,7 @@ $(document).ready(function () {
                 {% else %}
                 <div  style= "display: flex; justify-content: center; align-content: center; flex-direction: column;">
                 {% endif %}  
-                  <a href="{{ping['redirect']}}"><div><span style="font-weight:600;">{{ping['handle']}}</span> {{ping['text']}}</div></a> 
+                  <a href="{{ping['redirect']}}"><div><span style="font-weight:600;">{{ping['handle']}}</span> {{ping['text']}} <span style="opacity:.65;">{{ping['time_ago']}}</span></div></a> 
                 </div>
               </div>  
               {% endfor %}
