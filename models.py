@@ -10,6 +10,7 @@ import pandas as pd
 from pandas import DataFrame
 from dateutil import tz
 import re
+from dateutil import tz
 
 ##Create SQL Engine Look at this: https://docs.sqlalchemy.org/en/14/core/pooling.html#pool-disconnects
 engine = sqlalchemy.create_engine(Config.SQLALCHEMY_DATABASE_URI, pool_recycle=3600,)
@@ -98,11 +99,11 @@ def time_ago(time=False):
         if second_diff < 10:
             return "just now"
         if second_diff < 60:
-            return str(second_diff) + " sec"
+            return str(second_diff) + "sec"
         if second_diff < 3600:
-            return str(second_diff // 60) + " min"
+            return str(second_diff // 60) + "min"
         if second_diff < 86400:
-            return str(second_diff // 3600) + " hr"
+            return str(second_diff // 3600) + "hr"
     if day_diff == 1:
         return "1d"
     if day_diff < 7:
@@ -276,6 +277,10 @@ def get_notifications(user_id):
         notifications['text'] = ''
         notifications['redirect'] = ''
 
+        #Correct Timezone
+        to_zone = tz.tzlocal()
+
+        notifications['time_ago'] = ''
         #Create text for each notification
         for i in range(len(notifications.index)):
             if (notifications['event_type_id'][i] == 1):
@@ -291,6 +296,8 @@ def get_notifications(user_id):
                 notifications['text'][i] = "mentioned you"
                 notifications['reference_post_id'][i] = str(round(notifications['reference_post_id'][i], 0))
                 notifications['redirect'][i] = "/post/" + str(notifications['reference_post_id'][i])    
+
+            notifications['time_ago'][i] = time_ago(notifications['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
     
     #Sum count of unseen notifications
     unseen_count = 0
