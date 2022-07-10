@@ -1423,24 +1423,34 @@ def quickvote():
     
     post_id = request.form.get('post_id')
 
-    #Check if this user has voted on this already
+    #confirm this user did not create this post
     with engine.connect() as connection:
-        ResultProxy = connection.execute("""SELECT pv.vote_id 
-                                                FROM post_votes pv
-                                                WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
-                                                """, (camp_id, user_id, post_id))
+        ResultProxy = connection.execute("""SELECT p.user_id
+                                                FROM posts p
+                                                WHERE post_id = %s AND p.user_id = %s;
+                                                """, (post_id, user_id))
+        df = DataFrame(ResultProxy.fetchall())
 
-    df = DataFrame(ResultProxy.fetchall())
-    
-    if len(df.index) == 0:
+    if len(df.index) > 0:
+
+        #Check if this user has voted on this already
         with engine.connect() as connection:
-            connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
-    else:
-        with engine.connect() as connection:
-            ResultProxy = connection.execute("""UPDATE post_votes pv
-                                                SET value = %s
-                                                WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
-                                                """, (value, camp_id, user_id, post_id))
+            ResultProxy = connection.execute("""SELECT pv.vote_id 
+                                                    FROM post_votes pv
+                                                    WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
+                                                    """, (camp_id, user_id, post_id))
+
+        df = DataFrame(ResultProxy.fetchall())
+        
+        if len(df.index) == 0:
+            with engine.connect() as connection:
+                connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
+        else:
+            with engine.connect() as connection:
+                ResultProxy = connection.execute("""UPDATE post_votes pv
+                                                    SET value = %s
+                                                    WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
+                                                    """, (value, camp_id, user_id, post_id))
 
     #Get this post now
     with engine.connect() as connection:
