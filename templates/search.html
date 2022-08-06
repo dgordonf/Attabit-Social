@@ -1158,7 +1158,7 @@ $(document).ready(function(){
                   <div>
                     <div style= 'height: 15px;'>
                       <a class= "profile_link" href = "/@{{df['handle']}}">
-                      <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{df['handle']}}</span>
+                      <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{df['handle']|emojify|safe}} {% if df['is_president'] == True %} <i class="fas fa-chess-king president_crown" ></i> {% endif %}</span>
                       </a>  
                     </div>
 

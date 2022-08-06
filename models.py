@@ -114,6 +114,31 @@ def time_ago(time=False):
         return str(day_diff // 30) + "mo"
     return str(day_diff // 365) + "y"
 
+def get_president_user():
+    with engine.connect() as connection:
+        ResultProxy = connection.execute('''SELECT  u.id, u.profile_photo, SUM(p1.value) AS user_score
+                                                FROM users u
+                                                LEFT JOIN posts p ON p.user_id = u.id
+                                                LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                GROUP BY u.id
+                                                ORDER BY user_score DESC
+                                                LIMIT 1;''')
+        df = DataFrame(ResultProxy.fetchall())
+        df.columns = ResultProxy.keys()
+        president_user_id = df['id'][0]
+        return president_user_id
+
+def is_president(list_of_user_ids):
+    president_user_id = get_president_user()
+    #retun list of true or false if users are president
+    is_president = []
+    for user_id in list_of_user_ids:
+        if user_id == president_user_id:
+            is_president.append(True)
+        else:
+            is_president.append(False)
+    return is_president
+
 def get_feed(user_id, last_post_id):
 
     #get max post_id if last_post_id is None
@@ -196,6 +221,9 @@ def get_feed(user_id, last_post_id):
         df2.columns = ResultProxy.keys()
         
         df = pd.merge(df, df2, on=['post_id'], how='left')
+
+        #check if user is president
+        df['is_president'] = is_president(df['user_id'])
         
         return df
 
@@ -342,5 +370,6 @@ def notify_mentionted_users(post_text, current_user):
                 event_type_id = 3
                 with engine.connect() as connection:
                     connection.execute('INSERT INTO notifications (user_id, triggered_by_user_id, event_type_id, reference_post_id) VALUES (%s, %s, %s, %s);',  (mentioned_user_id, current_user, event_type_id, post_id))
+    
                                    
             

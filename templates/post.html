@@ -1721,7 +1721,7 @@ $(document).ready(function () {
           <div class = "handle_score_box">
             <div style= 'height: 18px;'>
               <a class= "profile_link" href = "/@{{post_info['handle']}}">
-              <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{post_info['handle']}}</span>
+              <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{post_info['handle']|emojify|safe}} {% if post_info['is_president'] == True %} <i class="fas fa-chess-king president_crown" ></i> {% endif %}</span>
               </a>  
               <span class="level_details">lvl {{post_info['user_score']}}</span><span class="time_details">{{post_info['time_ago']}}</span>
 
@@ -1851,7 +1851,7 @@ $(document).ready(function () {
           <div class = "handle_score_box">
             <div style= 'height: 18px;'>
               <a class= "profile_link" href = "/@{{posts['handle']}}">
-              <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}}</span>
+              <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']|emojify|safe}} {% if posts['is_president'] == True %} <i class="fas fa-chess-king president_crown" ></i> {% endif %}</span>
               </a>  
               <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
 
@@ -1946,7 +1946,7 @@ $(document).ready(function () {
       <div class = "reply_2_handle_score_box">
         <div style= 'height: 18px;'>
           <a class= "profile_link" href = "/@{{replys['handle']}}">
-          <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{replys['handle']}}</span>
+          <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{replys['handle']|emojify|safe}} {% if replys['is_president'] == True %} <i class="fas fa-chess-king president_crown" ></i> {% endif %}</span>
           </a>  
           <span class="level_details">lvl {{replys['user_score']}}</span><span class="time_details">{{replys['time_ago']}}</span>
 

@@ -137,6 +137,11 @@ def linkify(text):
 
 application.jinja_env.filters['linkify'] = linkify
 
+#def kelly_crown(text):
+#    return Markup(re.sub(r'(Kelly)', r'\1 👑', text))
+#
+#application.jinja_env.filters['kelly_crown'] = kelly_crown
+
 @application.template_filter('emojify')
 def emoji_filter(s):
     return emoji.emojize(s)
@@ -430,95 +435,7 @@ def profile(username):
     profile_info['user_score_bars_print'] = profile_info['user_score_bars'].apply(lambda x: '⬛' * x)
     profile_info['user_score_bars_print'] = profile_info['user_score_bars_print'] + profile_info['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
 
-    if request.method == 'POST':
-        type = request.form.get('update_type')
-        post_text = request.form.get('post_text')
-        reply_to_id = request.form.get('reply_to_id')
-                
-        if type == 'post_text':
-            try:
-                media_file = request.files["user_file"]
-                #First check if there is a photo to upload
-            
-                if media_file.filename != "":
-                    filename = secure_filename(media_file.filename)
-                    media_id = get_random_string(12)
-                    
-                    #Get image Size
-                    with Image.open(media_file, mode='r') as img:
-                        width, height = img.size
-                    
-                    media_file.seek(0)
-                    s3.upload_fileobj(
-                            media_file,
-                            S3_BUCKET,
-                            "media/" + filename,
-                            ExtraArgs={
-                                "ACL": "public-read",
-                                "ContentType": media_file.content_type
-                                })
-                            
-                    try:
-                        with engine.connect() as connection:
-                            connection.execute('INSERT INTO photos (media_id, photo_url, width, height) VALUES (%s, %s, %s, %s);', (media_id, filename, width, height))
-                    except Exception as e:
-                        # e holds description of the error
-                        error_text = "<p>The error:<br>" + str(e) + "</p>"
-                        hed = '<h1>Something is broken.</h1>'
-                        return hed + error_text 
-                else:
-                    media_id = ""
-
-            except:
-                media_id = ""
-
-            try:
-                with engine.connect() as connection:
-                    connection.execute('INSERT INTO posts (camp_id, user_id, reply_to_id, media_id, post_text) VALUES (%s, %s, %s, %s, %s);', (camp_id, user_id, reply_to_id, media_id, post_text))
-                
-            except Exception as e:
-                # e holds description of the error
-                error_text = "<p>The error:<br>" + str(e) + "</p>"
-                hed = '<h1>Something is broken.</h1>'
-                return hed + error_text 
-
-        if type == 'post_vote':
-            try:
-                value = request.form.get('post_vote')
-                value = float(value)
-                if value >= 0:
-                    value = 1
-                else:
-                    value = -1
-                post_id = request.form.get('post_id')
-
-                #Check if this user has voted on this already
-                with engine.connect() as connection:
-                    ResultProxy = connection.execute("""SELECT pv.vote_id 
-                                                            FROM post_votes pv
-                                                            WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
-                                                            """, (camp_id, user_id, post_id))
-
-                df = DataFrame(ResultProxy.fetchall())
-                
-                if len(df.index) > 0:
-                    with engine.connect() as connection:
-                        ResultProxy = connection.execute("""UPDATE post_votes pv
-                                                            SET value = %s
-                                                            WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
-                                                            """, (value, camp_id, user_id, post_id))
-                else:
-                    with engine.connect() as connection:
-                        connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
-                    
-            except Exception as e:
-                # e holds description of the error
-                print(e)
-                error_text = "<p>The error:<br>" + str(e) + "</p>"
-                hed = '<h1>Something is broken.</h1>'
-                return hed + error_text 
-        
-
+    
     ##Get thier color and make sure there is at least 1 post for them to see
     #### Come back to when you have followers table
     with engine.connect() as connection:
@@ -647,6 +564,8 @@ def profile(username):
                                 break
                             char_count += 1
                         df['post_text'][i] = df['post_text'][i][:char_count] + "..."
+
+                df['is_president'] = models.is_president(df['user_id'])
 
                 ##Split into posts and replys
                 posts = df[df["reply_to_id"].isnull()]
@@ -1284,6 +1203,8 @@ def post(post_id):
                 df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '⬛' * x)
                 df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
 
+                df['is_president'] = models.is_president(df['user_id'])
+
                 #Sort by post_score
                 df = df.sort_values(by=['post_score'], ascending=False)
 
@@ -1387,6 +1308,8 @@ def post(post_id):
                         replys['user_score_bars_print'] = replys['user_score_bars'].apply(lambda x: '⬛' * x)
                         replys['user_score_bars_print'] = replys['user_score_bars_print'] + replys['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
 
+                        replys['is_president'] = models.is_president(replys['is_president'])
+
                         #Sort by post_score
                         replys = replys.sort_values(by=['post_score'], ascending=False)    
             else:
@@ -1431,7 +1354,8 @@ def quickvote():
                                                 """, (post_id, user_id))
         df = DataFrame(ResultProxy.fetchall())
 
-    if len(df.index) > 0:
+    #Check that there is nothing in the database that is both this post_id AND the current user_id (meaning: check this user didn't create this post)
+    if len(df.index) == 0:
 
         #Check if this user has voted on this already
         with engine.connect() as connection:
