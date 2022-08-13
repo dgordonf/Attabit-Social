@@ -26,7 +26,6 @@
 <style>
 
 html {
-  scroll-behavior: smooth;
   background: linear-gradient(46deg, #f89b29, #ff1cad);
 	animation: gradient 5s ease infinite;
   background-size: 500% 10%;
@@ -861,7 +860,6 @@ background: transparent;
 }
 
 .president_crown {
-
   background:-moz-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
   background: -webkit-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
   background: linear-gradient(314deg, #f89b29, #ff1cad 100%);
@@ -869,6 +867,37 @@ background: transparent;
   -moz-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color:transparent;
+}
+
+.feed_op_box {
+  display:flex;
+  margin: 0 auto;
+  margin-top: 55px;
+  margin-bottom: 75px;
+}
+
+.feed_op_space {
+  padding:  10px;
+}
+
+.feed_op_active {
+    font-size: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #414141;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+
+  background:-moz-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
+  background: -webkit-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
+  background: linear-gradient(314deg, #f89b29, #ff1cad 100%);
 }
 
 </style>
@@ -1002,25 +1031,6 @@ window.onclick = function(event) {
   }
 }
 
-
-// function myFunction2() {
-//   document.getElementById("notifcations_dropdown").classList.toggle("show");
-// }
-
-// //Close the dropdown menu if the user clicks outside of it
-// window.onclick = function(event) {
-//   if (!event.target.matches('.notifications-content')) {
-//     var dropdowns = document.getElementsByClassName("notifications-content");
-//     var i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('show')) {
-//         openDropdown.classList.remove('show');
-//       }
-//     }
-//   }
-// }
-
 //jquery code to remove notification count and mark them as seen
 $(document).ready(function(){
   //if click on notification_bell, then hide the notification count
@@ -1144,20 +1154,6 @@ $(document).ready(function(){
             $("#up_vote_text_" + id).html(up_votes);
             $("#down_vote_text_" + id).html(down_votes);
 
-            // //Make it fade in and out make it look like it hurt
-
-            // //fade out
-            // $("#post_" + id).animate({
-            //   opacity: .7
-            // }, 200);
-
-            // //fade in
-            // $("#post_" + id).animate({
-            //   opacity: 1
-            // }, 500);
-
-
-
           }
 
          
@@ -1229,13 +1225,6 @@ $("#post_form")[0].reset();
 var currentscrollHeight = 0;
 var count = 0;
 
-// $(document).ready(function ($) {
-//     for (var i = 0; i < 8; i++) {
-//         callData(count);
-//         count++;
-//     }
-// });
-
 $(window).on("scroll", function () {
     const scrollHeight = $(document).height();
     const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
@@ -1270,20 +1259,12 @@ function callData() {
           //append the inside of feed_inner to the feed_inner
           $("#feed_inner").append(data);
 
-          
-          
-          //parse the html data
-          //var html = $.parseHTML(data)
-          //console.log($(data).find("span#new_min_post_id").text());
+               
             
         }
       });
+     
 
-       
-
-  //   req.done(function( data ) {
-  //   $("#feed_inner").html($("#feed_inner", data).html());
-  // });
 }
 
 
@@ -1331,7 +1312,7 @@ function callData() {
               {% for index, ping in notifications.iterrows() %}
               <div style="display: flex;flex-direction: row;">
                 <div>
-                  <a href="{{ping['redirect']}}"><div class="notification_profile_badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ ping['profile_photo'] }} ');"></div></a>
+                  <a href="{{ping['redirect']}}"><div class="notification_profile_badge" style = "width:400px;height:400px;background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ ping['profile_photo'] }} ');"></div></a>
                 </div>
 
                 {% if ping['seen'] == 1 %}
@@ -1360,8 +1341,13 @@ function callData() {
   </div>
 </div>
 
+<div class = "feed_op_box" >
+  <div class = "feed_op_space feed_op_active">Following</div>
+  <div class = "feed_op_space"> | </div>
+  <div class = "feed_op_space">Top Posts</div>
+</div>  
 
-  <div id= "feed">
+<div id= "feed">
   <div class = "user_post_box">
     <div class = "user_post_box_inner"> 
       <div class = "post_inner">

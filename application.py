@@ -612,7 +612,10 @@ def profile(username):
             notifications = data[0] 
             unseen_count = data[1]
 
-            return render_template('profile.html', profile_handle = username, current_user_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, current_user_profile_photo = current_user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications=notifications, notification_count=unseen_count)
+            is_president = models.is_president(profile_info['id'])
+            print(profile_info['id'][0])
+            print(is_president)
+            return render_template('profile.html', profile_handle = username, current_user_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, is_president = is_president, current_user_profile_photo = current_user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications=notifications, notification_count=unseen_count)
         except Exception as e:
             # e holds description of the error
             print(e)
@@ -1104,6 +1107,8 @@ def post(post_id):
             post_info['user_score_bars_print'] = post_info['user_score_bars'].apply(lambda x: '⬛' * x)
             post_info['user_score_bars_print'] = post_info['user_score_bars_print'] + post_info['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
 
+            post_info['is_president'] = models.is_president(post_info['user_id'])
+
             
             #Get all first replies on page
             with engine.connect() as connection:
@@ -1308,7 +1313,7 @@ def post(post_id):
                         replys['user_score_bars_print'] = replys['user_score_bars'].apply(lambda x: '⬛' * x)
                         replys['user_score_bars_print'] = replys['user_score_bars_print'] + replys['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
 
-                        replys['is_president'] = models.is_president(replys['is_president'])
+                        replys['is_president'] = models.is_president(replys['user_id'])
 
                         #Sort by post_score
                         replys = replys.sort_values(by=['post_score'], ascending=False)    

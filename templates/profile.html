@@ -31,7 +31,7 @@
 <style>
 
 html {
-  scroll-behavior: smooth;
+
   background: linear-gradient(46deg, #f89b29, #FC5C6B, #ff1cad);
 	animation: gradient 5s ease infinite;
   background-size: 500% 10%;
@@ -1167,6 +1167,16 @@ body.modal-open {
   border-radius: 5px;
 }
 
+.president_crown {
+background:-moz-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
+background: -webkit-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
+background: linear-gradient(314deg, #f89b29, #ff1cad 100%);
+-webkit-background-clip: text;
+-moz-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color:transparent;
+}
+
 </style>
 
 
@@ -1373,8 +1383,15 @@ $('#fileInput').on( 'change', function(){
             });
 
              $('#btnCrop').click(function() {
+                // Get a snapshot of the crop box in the pre-defined output size.
+                var croppedCanvas = canvas.cropper('getCroppedCanvas', {
+                  width: 400,
+                  height: 400
+                });
+                  
+
                 // Get a string base 64 data url
-                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/jpeg", 0.1); 
+                var croppedImageDataURL = croppedCanvas.toDataURL("image/jpeg", 0.1); 
                 //$result.append( $('<img>').attr('src', croppedImageDataURL) );
 
                 $('#modal2').hide();
@@ -1881,7 +1898,7 @@ $(document).ready(function(){
   <div class = "profile_details">
     <div>
       
-      <div class="main_handle">{{profile_handle}}</div>
+      <div class="main_handle">{{profile_handle}} {% if is_president[0] == True %}<span> <i class="fas fa-chess-king president_crown" ></i> {% endif %}</span></div>
 
       <div class = "handle_score_box">
         <div style="font-size: 19px;">
