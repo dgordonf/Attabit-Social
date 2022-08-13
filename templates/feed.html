@@ -155,7 +155,7 @@ color: #222222;
   max-width:550px;
   min-width: 325px;
   margin: 0 auto;
-  margin-top:55px;
+  margin-top:-0px;
   margin-bottom: 75px;
   min-height: 100vh;
  
@@ -872,21 +872,23 @@ background: transparent;
 .feed_op_box {
   display:flex;
   margin: 0 auto;
-  margin-top: 55px;
-  margin-bottom: 75px;
+  margin-top: 60px;
+  margin-bottom: 15px;
+  justify-content: center;
 }
 
 .feed_op_space {
-  padding:  10px;
+  margin:  10px;
+  padding: 7px;
+
+  font-size: 16px;
 }
 
 .feed_op_active {
-    font-size: 16px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding: 7px;
+
   font-weight: 600;
+  font-size: 16px;
   border: none;
   outline: none;
   color: #fff;
@@ -895,9 +897,15 @@ background: transparent;
   z-index: 0;
   border-radius: 10px;
 
-  background:-moz-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
-  background: -webkit-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
-  background: linear-gradient(314deg, #f89b29, #ff1cad 100%);
+  background:-moz-linear-gradient(314deg, #f89b29E6, #ff1cadE6 100%); 
+  background: -webkit-linear-gradient(314deg, #f89b29E6, #ff1cadE6 100%); 
+  background: linear-gradient(314deg, #f89b29E6, #ff1cadE6 100%);
+}
+
+.feed_op_inactive {
+  padding: 7px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 </style>
@@ -1344,7 +1352,7 @@ function callData() {
 <div class = "feed_op_box" >
   <div class = "feed_op_space feed_op_active">Following</div>
   <div class = "feed_op_space"> | </div>
-  <div class = "feed_op_space">Top Posts</div>
+  <div class = "feed_op_space feed_op_inactive">Top Posts</div>
 </div>  
 
 <div id= "feed">
