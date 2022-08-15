@@ -11,6 +11,9 @@ from pandas import DataFrame
 from dateutil import tz
 import re
 from dateutil import tz
+from datetime import datetime, timedelta
+from dateutil import tz
+import pytz
 
 ##Create SQL Engine Look at this: https://docs.sqlalchemy.org/en/14/core/pooling.html#pool-disconnects
 engine = sqlalchemy.create_engine(Config.SQLALCHEMY_DATABASE_URI, pool_recycle=3600,)
@@ -226,6 +229,127 @@ def get_feed(user_id, last_post_id):
         df['is_president'] = is_president(df['user_id'])
         
         return df
+
+def get_top_feed(user_id, last_post_id, date):
+
+    #get max post_id if last_post_id is None
+    if last_post_id is None:
+        with engine.connect() as connection:
+            result = connection.execute("SELECT MAX(post_id) FROM posts")
+            last_post_id = result.fetchone()[0] + 1
+
+
+    #Determine Date
+    if date == 'today':
+        #Get today and tomorrow
+        date_q1 = datetime.now(pytz.timezone('US/Eastern'))
+        date_q2 = date_q1 + timedelta(days=1)
+
+        #format both
+        date_q1 = date_q1.strftime('%Y-%m-%d')
+        date_q2 = date_q2.strftime('%Y-%m-%d')
+
+    else:
+        #remove anything that isn't a number or "-"
+        date = re.sub('[^0-9-]', '', date)
+        date_q1 = datetime.strptime(date, '%Y-%m-%d')
+        date_q2 = date_q1 + timedelta(days=1)
+
+        date_q1 = date_q1.strftime('%Y-%m-%d')
+        date_q2 = date_q2.strftime('%Y-%m-%d')
+
+    #turn to string
+    date_q1 = str(date_q1) + "T05:00:00.000"
+    date_q2 = str(date_q2) + "T05:00:00.000"
+
+    #Get display dates
+    today = str(datetime.now(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d'))
+    date_selected = str(date_q1)
+
+    with engine.connect() as connection:
+        ResultProxy = connection.execute("""SELECT p.post_id, p.user_id, u.first_name, u.handle, u.profile_photo, p.reply_to_id, p.creation_time, pv.post_score, p.post_text, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote 
+                                                FROM posts p
+                                                LEFT JOIN users u ON u.id = p.user_id 
+                                                LEFT JOIN 
+                                                    (
+                                                        SELECT f.user_id, f.following, f.follow_value
+                                                            FROM follows f
+                                                            WHERE f.user_id = %s AND f.follow_value = 1
+                                                    ) f ON f.following = p.user_id 
+                                                LEFT JOIN
+                                                    (
+                                                        SELECT pv.post_id, SUM(pv.value) AS post_score
+                                                            FROM post_votes pv
+                                                            GROUP BY pv.post_id
+                                                    ) pv ON p.post_id = pv.post_id
+                                                LEFT JOIN
+                                                        (
+                                                            SELECT u.id, SUM(p1.value) AS user_score
+                                                                FROM users u
+                                                                LEFT JOIN posts p ON p.user_id = u.id
+                                                                LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                                GROUP BY u.id
+                                                        ) b ON b.id = u.id
+                                                LEFT JOIN
+                                                        (
+                                                        SELECT p2.post_id, SUM(p2.value) AS current_user_vote
+                                                            FROM post_votes p2
+                                                            WHERE p2.user_id = %s
+                                                            GROUP BY p2.post_id
+                                                        ) c on c.post_id = p.post_id 
+                                                WHERE p.post_id < %s
+                                                AND p.reply_to_id IS NULL AND p.is_deleted = 0
+                                                AND p.creation_time >= %s  
+      											AND p.creation_time <= %s
+                                                ORDER BY pv.post_score DESC
+                                                LIMIT 10;""", (user_id, user_id, last_post_id, date_q1, date_q2))
+    df = DataFrame(ResultProxy.fetchall())
+
+    if len(df.index) > 0:
+        df.columns = ResultProxy.keys()
+
+        #Get comments and scores for each post_id
+        ids = ', '.join(f'{w}' for w in df.post_id)
+        ids = "(" + ids + ")"
+
+        with engine.connect() as connection:
+            ResultProxy = connection.execute("""SELECT p.post_id, p2.reply_count, pv.down_votes, pv2.up_votes
+                                                        FROM posts p
+                                                        LEFT JOIN
+                                                            (
+                                                                SELECT p.reply_to_id, COUNT(p.post_id) AS reply_count
+                                                                    FROM posts p
+                                                                    WHERE p.reply_to_id IN %s AND p.is_deleted = 0
+                                                                    GROUP BY p.reply_to_id
+                                                            ) p2 ON p2.reply_to_id = p.post_id
+                                                        LEFT JOIN
+                                                            (
+                                                                SELECT pv.post_id, COUNT(pv.value) AS down_votes
+                                                                    FROM post_votes pv
+                                                                    WHERE pv.post_id IN %s AND pv.value < 0
+                                                                    GROUP BY pv.post_id
+                                                            ) pv ON pv.post_id = p.post_id
+                                                        LEFT JOIN
+                                                            (
+                                                                SELECT pv.post_id, COUNT(pv.value) AS up_votes
+                                                                    FROM post_votes pv
+                                                                    WHERE pv.post_id IN %s AND pv.value > 0
+                                                                    GROUP BY pv.post_id
+                                                            ) pv2 ON pv2.post_id = p.post_id	
+                                                        WHERE p.post_id IN %s; """ % (ids, ids, ids, ids))
+            
+        df2 = DataFrame(ResultProxy.fetchall())
+        df2.columns = ResultProxy.keys()
+        
+        df = pd.merge(df, df2, on=['post_id'], how='left')
+
+        #check if user is president
+        df['is_president'] = is_president(df['user_id'])
+
+    else:
+        df = DataFrame()
+
+    return df, date_selected, today
 
 def format_feed(df):
     df['reply_count'] = round(df['reply_count'].fillna(0).astype(int), 0)

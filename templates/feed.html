@@ -872,8 +872,8 @@ background: transparent;
 .feed_op_box {
   display:flex;
   margin: 0 auto;
-  margin-top: 60px;
-  margin-bottom: 15px;
+  margin-top: 49px;
+  margin-bottom: 0px;
   justify-content: center;
 }
 
@@ -1320,7 +1320,7 @@ function callData() {
               {% for index, ping in notifications.iterrows() %}
               <div style="display: flex;flex-direction: row;">
                 <div>
-                  <a href="{{ping['redirect']}}"><div class="notification_profile_badge" style = "width:400px;height:400px;background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ ping['profile_photo'] }} ');"></div></a>
+                  <a href="{{ping['redirect']}}"><div class="notification_profile_badge" style = "width:35px;height:35px;background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ ping['profile_photo'] }} ');"></div></a>
                 </div>
 
                 {% if ping['seen'] == 1 %}
@@ -1352,13 +1352,13 @@ function callData() {
 <div class = "feed_op_box" >
   <div class = "feed_op_space feed_op_active">Following</div>
   <div class = "feed_op_space"> | </div>
-  <div class = "feed_op_space feed_op_inactive">Top Posts</div>
+  <a href = "/today" style="text-decoration: none; color: #000000"><div class = "feed_op_space feed_op_inactive">Top Posts</div></a>
 </div>  
 
 <div id= "feed">
   <div class = "user_post_box">
     <div class = "user_post_box_inner"> 
-      <div class = "post_inner">
+      <div class = "post_inner" style="padding-top: 12px;""">
         
         <div style="  display:flex; flex-direction: row; width: 100%;">
           <a href = @{{current_user_handle}}>

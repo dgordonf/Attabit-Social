@@ -26,34 +26,9 @@
 <style>
 
 html {
-  background: linear-gradient(46deg, #f89b29, #ff1cad);
-	animation: gradient 5s ease infinite;
-  background-size: 500% 10%;
-  overflow: auto;
-  overscroll-behavior: none;
+  scroll-behavior: smooth;
 }
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
-body {
-   z-index: 0;
-   font-size:14px;
-   font-family: 'Inter';
-   height: 100%;
-   overflow: auto;
-   overscroll-behavior: none;
-   
-}
 
 ::selection {
   color: #fafafa;
@@ -64,7 +39,12 @@ body {
   background: #181818; /* Gecko Browsers */
 }
 
-
+body {
+  background-color: #ffffff; 
+   z-index: 0;
+   font-size:14px;
+   font-family: 'Inter';
+}
 
 h1 {
    font-size: 50px; 
@@ -150,14 +130,14 @@ color: #222222;
 }
 
 
+
 #feed {
   width: 100%;
   max-width:550px;
   min-width: 325px;
   margin: 0 auto;
-  margin-top:-0px;
+  margin-top:55px;
   margin-bottom: 75px;
-  min-height: 100vh;
  
  }
 
@@ -165,7 +145,7 @@ color: #222222;
 .post_icons {
   display:flex;
   flex-direction: row;
-  margin-left: 40px;
+  margin-left: 8%;
 }
 
 
@@ -191,7 +171,7 @@ flex-grow: 1;
   padding: 7px;
   min-height: 100px;
   font-size: 16px;
-  max-width: 90%;
+
 }
 
 
@@ -216,29 +196,6 @@ flex-grow: 1;
   color: #161616;
   margin-left: 7px;
   font-size: 17px;
-  font-family: "Monda";
-}
-
-.level_details {
-  padding: 4px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    border-radius: 7px;
-    color: white;
-    background-color: #41414145;
-    font-weight: 600;
-    margin-left: 7px;
-    font-size: 12px;
-    font-family: "Monda";
-    background-image: linear-gradient(46deg, #f89b29, #ff1cad);
-    opacity: .80;
-}
-
-.time_details {
-  font-weight: 500;
-  color: #b7b7b7;
-  margin-left: 7px;
-  font-size: 12px;
   font-family: "Monda";
 }
 
@@ -312,32 +269,16 @@ flex-grow: 1;
   height: 60px; 
   position: relative;
   color:rgba(29, 29, 29);
+
 }
 
 .menu_badge {
+  
   background-size: cover;
   background-color:#ffffff;
-  border-radius: 50%;
-  width: 27px;
-  height: 27px; 
-  position: relative;
-  color:rgba(29, 29, 29);
-  margin-left: 10px;
-  cursor: pointer;
-}
+  border: 1px solid black;
 
-.notification_profile_badge {
-  float: left;
-  background-size: cover;
-  background-color:#ffffff;
   border-radius: 50%;
-  width: 35px;
-  height: 35px; 
-  margin: 3px;
-}
-
-.notification_bell {
-  font-size: 20px;
   width: 27px;
   height: 27px; 
   position: relative;
@@ -351,12 +292,15 @@ flex-grow: 1;
   background-size: cover;
   background-color:#ffffff;
   border: 1px solid black;
+  
   border-radius: 50%;
   width: 56px;
   height: 56px; 
   position: relative;
   background:transparent;
 }
+
+
 
 .badge_inner {
   background-size: cover;
@@ -378,6 +322,12 @@ flex-grow: 1;
 
 
 
+.arrow_button {
+  background: none;
+  padding: 0px;
+  border: none;
+
+}
 
 .form_arrows {
 
@@ -431,6 +381,7 @@ flex-grow: 1;
 .user_post_box {
   background: #e1e1e18f;
   border-radius:7px;
+  margin-bottom: 30px;
   border-bottom: #b6b6b673 1px solid;
 
 }
@@ -442,7 +393,7 @@ flex-grow: 1;
 }
 
 .post_box {
-  margin-top: 10px;
+  margin-top: 20px;
   padding:0px;
   border-bottom: #b6b6b673 1px solid;
   background-color: white;
@@ -456,6 +407,12 @@ flex-grow: 1;
   border-radius:0px;
   padding-bottom: 16px;
   min-height: 200px;
+}
+
+.date_box {
+  padding: 23px;
+  background-color: #ffffff;
+  border-radius:7px;
 }
 
 .reply_inner {
@@ -490,18 +447,23 @@ flex-grow: 1;
 
 .border-1 {
   background-color: #efefef;
+  
 }
 .border-2 {
   background-color: #efefef;
+  
 }
 .border-3 {
   background-color: #efefef;
+ 
 }
 .border-4 {
   background-color: #efefef;
+
 }
 .border-5 {
   background-color: #efefef;
+
 }
 
 /*
@@ -667,7 +629,7 @@ background: transparent;
     transition: opacity .1s ease-in-out;
     border-radius: 10px;
 }
-/* 
+
 .glow-on-hover:hover:before {
     opacity: .85;
 }
@@ -696,7 +658,7 @@ background: transparent;
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
-} */
+}
 
 #post_delete {
   float: right;
@@ -705,7 +667,7 @@ background: transparent;
 .delete_button {
   background: transparent;
   border: none;
-  color: lightgrey;
+  color: #585858;
 }
 
 .post_info_box {
@@ -713,39 +675,20 @@ background: transparent;
 
 }
 
-.arrow_button {
-  background: none;
-  padding: 0px;
-  border: none;
-}
-
-.arrow_disabled {
-  color: lightgrey;
-}
-
-.pre_vote {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-weight: 500;
-  font-size: 16px;
-}
-
 .voted_button {
-  font-size: 16px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-weight: 600;
-  border: none;
-  outline: none;
-  color: #fff;
-  background: #414141;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: 600;
+
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #414141;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
 }
 
 .post_link{
@@ -787,6 +730,14 @@ background: transparent;
     border-radius: 5px;
 }
 
+#date_select {
+    border: 2px solid #1b1b1b;
+    outline: none;
+    background: transparent;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -810,108 +761,15 @@ background: transparent;
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: rgb(250, 250, 250)}
 
-
-/* Dropdown Content (Hidden by Default) */
-.ndropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #ffffff;
-  border: 1px solid #bfbfbf;
-  min-width: 225px;
-  box-shadow: 0px 0px 3px 0px rgb(0 0 0 / 20%);
-  z-index: 1;
-  max-height: 300px;
-  overflow: auto;
-}
-
-/* Links inside the dropdown */
-.ndropdown-content a {
-  color: black;
-  padding: 6px 3px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.ndropdown-content div:hover {background-color: rgb(250, 250, 250)}
-
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
 ._8bit_button {
   font-family: "Monda"
 }
-
-.pre_vote_grey {
-  color: lightgrey;
-}
-
-/* Make the badge float in the top right corner of the button */
-#notifications_count {
-  background-image: linear-gradient(46deg, #f89b29, #ff1cad);
-  font-weight:600;
-  border-radius: 2px;
-  color: white;
-  padding: 1px 3px;
-  font-size: 10px;
-  position: absolute;
-  top: -27px;
-  right: 1px;
-}
-
-.president_crown {
-  background:-moz-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
-  background: -webkit-linear-gradient(314deg, #f89b29, #ff1cad 100%); 
-  background: linear-gradient(314deg, #f89b29, #ff1cad 100%);
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color:transparent;
-}
-
-.feed_op_box {
-  display:flex;
-  margin: 0 auto;
-  margin-top: 49px;
-  margin-bottom: 0px;
-  justify-content: center;
-}
-
-.feed_op_space {
-  margin:  10px;
-  padding: 7px;
-
-  font-size: 16px;
-}
-
-.feed_op_active {
-  padding: 7px;
-
-  font-weight: 600;
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: #fff;
-  background: #414141;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
-
-  background:-moz-linear-gradient(314deg, #f89b29E6, #ff1cadE6 100%); 
-  background: -webkit-linear-gradient(314deg, #f89b29E6, #ff1cadE6 100%); 
-  background: linear-gradient(314deg, #f89b29E6, #ff1cadE6 100%);
-}
-
-.feed_op_inactive {
-  padding: 7px;
-  font-weight: 600;
-  font-size: 16px;
-}
-
 </style>
 
 <script>
-
   //Add Comment
   //Wait until Doc is ready
   $(document).ready(function(){
@@ -936,22 +794,34 @@ background: transparent;
   
   });
 
-//Update Image icon when file selected
-// $(document).ready(function(){  
+  //Update Image icon when file selected
+$(document).ready(function(){  
 
-//   $('#file-input').on('input', function() {
-//   var showCheck = $(this).val().trim().length !== 0;
-//   var $group = $(this).closest('#post_form');
+  $('#file-input').on('input', function() {
+  var showCheck = $(this).val().trim().length !== 0;
+  var $group = $(this).closest('#post_form');
   
-//   $group.find('#image_icon').toggleClass('fa-camera-retro fa-images');
-//   $group.find('#image_icon').toggleClass('image-not-loaded image-loaded');
-//   $group.find(".post_input").focus();
-//   $group.find(".post_input").select();
+  $group.find('#image_icon').toggleClass('fa-camera-retro fa-images');
+  $group.find('#image_icon').toggleClass('image-not-loaded image-loaded');
+  $group.find(".post_input").focus();
+  $group.find(".post_input").select();
 
-// });
-// });
+});
+});
 
-</script>
+//Update Date on change
+$(document).ready(function(){  
+
+$('#date_select').on('input', function() {
+    event.preventDefault();
+    var date = $(this).val();
+    //redicrect to new page
+    window.location.href = "/" + date;
+
+});
+});
+
+  </script>
 
 <script>
   //Reveal Reply Box on click
@@ -979,11 +849,9 @@ background: transparent;
     
   }
 
- 
   //Delete Posts
   $(document).ready(function(){
-  $(document).on("submit", ".post_delete", function(event) {  
- 
+  $(".post_delete").submit(function(event){
     event.preventDefault();
 
     var r = confirm("Are you sure you want to delete this post? This cannot be undone");
@@ -992,21 +860,13 @@ background: transparent;
     var $form = $(this),
       url = $form.attr('action');
     
-    var current_url = window.location.href;
-
     req = $.ajax({
         method: "POST",
         url: url,
         data: $(this).serialize(), 
         success:function(){
-          //reload window with ajax
-          req2 = $.ajax({
-            method: "GET",
-            url: current_url,
-            success:function(data){
-              $("#feed_inner").html($("#feed_inner", data).html());
-            }
-          });
+          var loc = window.location;
+          window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search;
         }
     })
     
@@ -1017,65 +877,29 @@ background: transparent;
 </script>
 
 <script>
-/* 
-Profile Menu Dropdown
-When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.menu_badge')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
+  /* 
+  Profile Menu Dropdown
+  When the user clicks on the button,
+  toggle between hiding and showing the dropdown content */
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.menu_badge')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
       }
     }
   }
-}
-
-//jquery code to remove notification count and mark them as seen
-$(document).ready(function(){
-  //if click on notification_bell, then hide the notification count
-  $(document).on("click", ".notification_bell", function(event) {
-    
-    $("#notifcations_dropdown").toggle(0);
-
-    //check value of notifications_count
-    var notifications_count = $("#notifications_count").html();
-    if (notifications_count > 0) {
-      //if notifications_count > 0, post to notifications-seen
-      var url = "/notification_seen";
-      req = $.ajax({
-        method: "POST",
-        url: url,
-        data: {
-          
-        },
-        success:function(){
-
-          //remove notification count
-          $("#notifications_count").html(0);
-          
-          //hide notification count
-          $("#notifications_count").hide();
-
-      }
-        
-      });
-    }
-
-  });
-});
-
-
-</script>
-
+  
+  </script>
 <script>
 
   //Wait until Doc is ready
@@ -1149,7 +973,6 @@ $(document).ready(function(){
           }
 
           if(current_user_vote == -1){
-
             //Remove Class
             $("#up_vote_wrapper_" + id).removeClass("voted_button");
             $("#down_vote_wrapper_" + id).addClass("voted_button");
@@ -1161,7 +984,6 @@ $(document).ready(function(){
             //Update Text
             $("#up_vote_text_" + id).html(up_votes);
             $("#down_vote_text_" + id).html(down_votes);
-
           }
 
          
@@ -1176,51 +998,6 @@ $(document).ready(function(){
     
   });
 
-$(document).ready(function(){
-
-$(document).on("submit", "#post_form", function(event) {
-  event.preventDefault();
-  
-  //disable the post button to stop people from clicking it twice
-  $("#post_submit").prop("disabled", true);
-
-  //get form data and post through ajax
-  var $form = $(this),
-  url = $form.attr('action');
-
-  //post through ajax
-  req = $.ajax({
-        method: "POST",
-        url: url,
-        data: $(this).serialize() //Encode form elements as a string for submission.
-        //If using serialize(), name attribute in form elements is required
-    })
-
-  req.done(function( data ) {
-    $("#feed_inner").html($("#feed_inner", data).html());
-  });
-
-//re-enable the post button
-$("#post_submit").prop("disabled", false);
-
-//clear the form
-$("#post_form")[0].reset();
-
-
-});
-
-});
-
-  
-
-
-
-</script>
-<script>
-  $("a").click(function (event) {
-    event.preventDefault();
-    window.location = $(this).attr("href");
-});
 </script>
 <script>
   //this stops forms from being resubmitted on refresh
@@ -1228,68 +1005,7 @@ $("#post_form")[0].reset();
         window.history.replaceState( null, null, window.location.href );
     }
 </script>
-<script>
-//infinite scroll
-var currentscrollHeight = 0;
-var count = 0;
 
-$(window).on("scroll", function () {
-    const scrollHeight = $(document).height();
-    const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
-    const isBottom = scrollHeight - 300 < scrollPos;
-
-    if (isBottom && currentscrollHeight < scrollHeight) {
-        //alert('calling...');
-        callData();//Once at bottom of page -> call 6 times
-        currentscrollHeight = scrollHeight;
-    }
-});
-
-
-function callData() {
-    //get last_post_id
-    //var min_post_id = $("#min_post_id").text();
-    
-    //get the last post_wrap class and then look for post_id in it
-    var last_post_wrap = $("#feed_inner .post_wrap:last .post_box");
-    var last_post_id = last_post_wrap.attr("id");
-    
-    //remove post_ from last_post_id
-    var last_post_id_num = last_post_id.substring(5);
-
-    console.log(last_post_id_num);
-
-    $.ajax({
-        url: "/topquickfeed?min_post_id=" + last_post_id_num,
-        type: "GET",
-        success: function(data) {
-          
-          //append the inside of feed_inner to the feed_inner
-          $("#feed_inner").append(data);
-
-               
-            
-        }
-      });
-     
-
-}
-
-
-//enable the post button once someone has entered text
-
-// $("#user_input_textarea").keyup(function(){
-//   if($("#user_input_post_text").val() != ""){
-//     $("#post_submit").prop("disabled", false);
-//   }
-//   else{
-//     $("#post_submit").prop("disabled", true);
-//   }
-// });
-
-
-
-</script>
 
 {% extends "layout.html" %}
 {% block body %}
@@ -1300,84 +1016,93 @@ function callData() {
       </div> 
      <div class = "header_icons">
       <div style = "margin-right: 22px">
-        <a href="/"  class = "header_groups"><i class="fas fa-home"></i></a> 
+        <a href="/"  class = "header_groups_inactive"><i class="fas fa-home"></i></a> 
       </div>
-      <div>
+      <div style = "margin-right: 22px">
         <a href="/search" class = "header_groups_inactive"><i class="fas fa-search"></i></a> 
       </div>
-      <div>
-        <div id="notifications_bell" class = "notification_bell" onclick="myFunction2()"><i class="far fa-bell"></i></div>
-        
-        {% if notification_count > 0 %}
-        <div style="position:relative;">
-        <span id="notifications_count" class = "notification_count">{{ notification_count }}</span>
-        </div>
-        {% endif %}
+      <div >
+        <a class = "header_groups" href = "/today"><i class="fas fa-moon"></i></a> 
+      </div>
+    <div>
 
-        <div style="position:relative;">
-          <div id="notifcations_dropdown" class="ndropdown-content" class="notifications-content" style="margin-left:-125px;">
-         
-              {% for index, ping in notifications.iterrows() %}
-              <div style="display: flex;flex-direction: row;">
-                <div>
-                  <a href="{{ping['redirect']}}"><div class="notification_profile_badge" style = "width:35px;height:35px;background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ ping['profile_photo'] }} ');"></div></a>
-                </div>
-
-                {% if ping['seen'] == 1 %}
-                <div  style= "display: flex; justify-content: center; align-content: center; flex-direction: column;opacity: .5;;">
-                {% else %}
-                <div  style= "display: flex; justify-content: center; align-content: center; flex-direction: column;">
-                {% endif %}  
-                  <a href="{{ping['redirect']}}"><div><span style="font-weight:600;">{{ping['handle']}}</span> {{ping['text']}} <span style="opacity:.65;">{{ping['time_ago']}}</span></div></a> 
-                </div>
-              </div>  
-              {% endfor %}
-
-          </div>
-        </div>
+      <div class = "menu_badge" onclick="myFunction()" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');"></div>
+      <div id="myDropdown" class="dropdown-content" style="margin-left:-50px;">
+        <a href="/logout" >Log Out</a> 
       </div>
 
-
-    <div>
-      
-    
-        <a href = "/@{{current_user_handle}}"><div class = "menu_badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{current_user_profile_photo}} ');"></div></a>
-
-      
     </div>
     </div>
   </div>
 </div>
 
-<div class = "feed_op_box" >
-  <a href = "/" style="text-decoration: none; color: #000000""><div class = "feed_op_space feed_op_inactive">Following</div></a>
-  <div class = "feed_op_space"> | </div>
-  <div class = "feed_op_space feed_op_active">Top Posts</div>
-</div>  
-
-<div id= "feed">
-
-
-    <div id = "feed_inner">
-    {% if posts|length == 0 %}
-    <div style="font-size:20px;font-weight:600;margin-top:20px;" class = "post_box border border-0">
-      <div class = "post_inner">
-      No top posts just yet today. You should post something and come back!
+  <div id= "feed" >
+    
+  
+    <div style="font-size: 28px;padding-left:13px;padding-right:13px;">
+        <b>Top posts on  
+                <input type="date" id="date_select"
+                value= "{{date_selected}}"
+                min="2020-01-01" max="{{today}}">
+       
+        </b>
     </div>
 
-    {% else %}
-    {% endif %}
+    <div id = "feed_inner">
 
-     {% for index, posts in posts.iterrows() %}
+      {% if posts['user_id']|length == 0 %}
+
+
+      <div class="post_box border border-0" style="width:80%;">
+        <div class = "date_box" style = "font-weight:600;font-size:20px;">
+        {% if date_selected == today %}
+          Nothing posted yet today! 
+        {% else %}
+          Nothing was posted on {{date_selected}}
+        {% endif %}
+          
+        </div>
+      </div>
+
+      {% endif %}
+
+    {% for index, posts in posts.iterrows() %}
     
-      <div class = "post_wrap">
-      <div id = post_{{posts['post_id']}} class="post_box border border-0">
+    <div class = "post_wrap">
+      
+      <div class="post_box border border-0">
+      {% if (posts['media_id'] in photos.media_id.values) %}
+        {% for key, photo in photos.iterrows() %}
+            {% if photo['media_id'] == posts['media_id'] %}
+              <div id = "img_container" style="padding-bottom: {{photo['bottom-padding']}}%;">
+                <img src="https://hideawayy.s3.amazonaws.com/media/{{photo['photo_url']}}" alt="An image uploaded by a user" >
+              </div>
 
-        <div id= "post_inner_{{posts['post_id']}}" class = "post_inner">
+            {% else %}
+        
+            {% endif %}  
+        {% endfor %}
+      {% endif %}
 
 
-   
-        <div class = "post_info_box" >
+        {% if (posts['media_id'] in photos.media_id.values) %}
+            <div class = "post_inner" style = "border-radius: 0px 0px 10px 10px;">
+          {% else %}  
+            <div class = "post_inner">
+        {% endif %}       
+        
+        
+          {% if posts['user_id'] == current_user_id %}
+          <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
+            <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+            <button class = "delete_button" type="submit">
+              <i class="far fa-times-circle"></i>
+            </button>  
+          
+          </form>
+          {% else %}  
+          {% endif %}     
+        <div class = "post_info_box">
             <a class= "profile_link" href = "/@{{posts['handle']}}">
               <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
                 
@@ -1387,39 +1112,19 @@ function callData() {
             <div class = "handle_score_box">
               <div style= 'height: 18px;'>
                 <a class= "profile_link" href = "/@{{posts['handle']}}">
-                <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']|emojify|safe}} {% if posts['is_president'] == True %} <i class="fas fa-chess-king president_crown" ></i> {% endif %}</span>
+                <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']}}</span>
                 </a>  
-                <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
-                
-                {% if posts['user_id'] == current_user_id %}
-                <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
-                  <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
-                  <button class = "delete_button" type="submit">
-                    <i class="far fa-times-circle"></i>
-                  </button>  
-                
-                </form>
-                {% else %}  
-                {% endif %}  
-
-
               </div>
-
-                <div class = "post_text" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
-                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|linkify|urlize(30, true)|emojify|safe }}</span> 
-                </div>
+            
+              <div class = "post_text">
+                    <span  style="white-space: pre-wrap;" >{{ posts['post_text']|urlize(40, true) }}</span> 
+              </div>
             </div>
-        </div>
-    
-        {% if posts['post_length_flag'] == 1 %}
-        <div style="padding-bottom:5px;margin-bottom: 10px; font-weight:600; opacity: .40; text-align:center;">
-          ------------- more -------------
-        </div>
-        {% endif %}
-
+          </div>
+          
           <div class = "post_icons">
             
-              <div style= "width:33%">  
+              <div style= "width:30%">  
                 <a class="post_link" href = "/post/{{posts['post_id']}}">    
                 <button class = "reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}'>
                   <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{posts['reply_count']}}</span>
@@ -1427,21 +1132,21 @@ function callData() {
                 </a>  
               </div>
             
-              <div style= "width:33%">
-                <form id="{{posts['post_id']}}" title="" action= "/quickvote" method= "post" class= "form_arrows">
+              <div style= "width:30%">
+                <form id="{{index}}" title="" action= "/quickvote" method= "post" class= "form_arrows">
                   
                   <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >
                   {% if posts['current_user_vote'] <= -1 %}
                   
-                  <input id = "down_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = 0>
-                  <button id= "down_submit_{{posts['post_id']}}"  type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
-                    <span id = "down_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{posts['post_id']}}">{{posts['down_votes']}}</span></span>
+                  <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
+                  <button id= "down_submit_{{index}}"  type="submit" class="arrow_button">
+                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% else %}
                   
-                  <input id = "down_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = -1>  
-                  <button id= "down_submit_{{posts['post_id']}}" type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
-                    <span id = "down_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{posts['post_id']}}">{{posts['down_votes']}}</span></span>
+                  <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = -1>  
+                  <button id= "down_submit_{{index}}" type="submit" class="arrow_button">
+                    <span id = "down_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   
@@ -1449,20 +1154,20 @@ function callData() {
               </div>
 
               <div style= "width:30%">
-                <form id="{{posts['post_id']}}" title="" action="/quickvote" method="post" class = "form_arrows">
+                <form id="{{index}}" title="" action="/quickvote" method="post" class = "form_arrows">
                   
                   <input type="hidden" name= "post_id" value={{posts['post_id']}} >
                   {% if posts['current_user_vote'] >= 1 %}
                   
-                  <input id = "up_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = 0>
-                  <button id= "up_submit_{{posts['post_id']}}"  type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
-                    <span id = "up_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{posts['post_id']}}">{{posts['up_votes']}}</span></span>
+                  <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
+                  <button id= "up_submit_{{index}}"  type="submit" class="arrow_button">
+                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px; margin-left:22px" class = "voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% else %}
 
-                  <input id = "up_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = 1>  
-                  <button id= "up_submit_{{posts['post_id']}}" type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
-                    <span id = "up_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{posts['post_id']}}">{{posts['up_votes']}}</span></span>
+                  <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 1>  
+                  <button id= "up_submit_{{index}}" type="submit" class="arrow_button">
+                    <span id = "up_vote_wrapper_{{index}}" style="font-size:17px;margin-left:22px"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   </button>
@@ -1472,8 +1177,7 @@ function callData() {
         </div>  
       </div>
   </div>
-
-
+ 
     {% endfor %}
   </div>
 

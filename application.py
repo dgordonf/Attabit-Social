@@ -77,6 +77,7 @@ class User(db.Model):
     email = db.Column(db.String, primary_key=True)
     id = db.Column(db.String)
     handle = db.Column(db.String)
+    profile_photo = db.Column(db.String)
     password = db.Column(db.String)
     authenticated = db.Column(db.Boolean, default=False)
     
@@ -93,8 +94,11 @@ class User(db.Model):
         return self.id   
 
     def get_user_handle(self):
-        """Return the email address to satisfy Flask-Login's requirements."""
+        """Return the handle."""
         return self.handle         
+    def get_user_profile_photo(self):
+        """Return the Profile Photo of the user."""
+        return self.profile_photo   
         
     def is_authenticated(self):
         """Return True if the user is authenticate#d."""
@@ -1506,195 +1510,38 @@ def notification_seen():
 @application.route('/<date>', methods = ['GET'])
 @login_required
 def top(date):
-    camp_id = 0
-    
     try:
         user_id = current_user.get_user_id()
     except Exception as e:
-        return redirect('/landing')
-    
-    ## Format date
-    if date == 'today':
-        date_q1 = datetime.now(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d')
-
-        #get tomorrow's date
-        date_q2 = (datetime.now(pytz.timezone('US/Eastern')) + timedelta(days=1)).strftime('%Y-%m-%d')
-
-    else:
-        #remove anything that isn't a number or "-"
-        date = re.sub('[^0-9-]', '', date)
-        date_q1 = datetime.strptime(date, '%Y-%m-%d')
-        date_q2 = date_q1 + timedelta(days=1)
-
-        date_q1 = date_q1.strftime('%Y-%m-%d')
-        date_q2 = date_q2.strftime('%Y-%m-%d')
-
-    #Get display dates
-    today = str(datetime.now(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d'))
-    date_selected = str(date_q1)
-
-    #turn to string
-    date_q1 = str(date_q1) + "T05:00:00.000"
-    date_q2 = str(date_q2) + "T05:00:00.000"
-
-    #Not sure we need this
-    with engine.connect() as connection:
-        ResultProxy = connection.execute("""SELECT  u.id, u.profile_photo, SUM(p1.value) AS user_score
-                                                    FROM users u
-                                                    LEFT JOIN posts p ON p.user_id = u.id
-                                                    LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
-                                                    WHERE u.id = %s
-                                                    GROUP BY u.id
-                                                """, (user_id))
-    df = DataFrame(ResultProxy.fetchall())
-
-    #If yes, load page
-    if len(df.index) > 0: 
-        try: 
-            df.columns = ResultProxy.keys()
-            if df['user_score'][0] is None:
-                user_badge_score = 0
-            else:
-                user_badge_score = int(round(df['user_score'][0], 0))
-
-            #Get Profile Photo
-            user_profile_photo = df['profile_photo'][0]
-
-            with engine.connect() as connection:
-                ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.media_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, u.first_name, u.handle, u.profile_photo
-                                                    FROM posts p
-				                                    LEFT JOIN users u ON p.user_id = u.id 
-                                                    LEFT JOIN post_votes pv ON p.camp_id = pv.camp_id AND p.post_id = pv.post_id 
-                                                    LEFT JOIN
-                                                            (
-                                                                SELECT u.id, SUM(p1.value) AS user_score
-																	FROM users u
-																	LEFT JOIN posts p ON p.user_id = u.id
-																	LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
-																	GROUP BY u.id
-                                                            ) b ON b.id = u.id
-                                                    LEFT JOIN
-                                                    		(
-                                                    		SELECT p2.post_id, SUM(p2.value) AS current_user_vote
-																FROM post_votes p2
-																WHERE p2.camp_id = 0 AND p2.user_id = 8
-																GROUP BY p2.post_id
-                                                    		) c on c.post_id = p.post_id 
-                                                    WHERE (p.reply_to_id IS NULL) AND p.is_deleted = 0 
-                                                    AND p.creation_time >= %s  
-      												AND p.creation_time <= %s
-                                                      GROUP BY p.post_id
-                                                    ORDER BY post_score DESC
-                                                    LIMIT 100; """, (date_q1, date_q2))
-            df = DataFrame(ResultProxy.fetchall())
-
-            if len(df.index) > 0:
-                df.columns = ResultProxy.keys()
-
-                #Get comments and scores for each post_id
-                ids = ', '.join(f'{w}' for w in df.post_id)
-                ids = "(" + ids + ")"
-
-                with engine.connect() as connection:
-                    ResultProxy = connection.execute("""SELECT p.post_id, p2.reply_count, pv.down_votes, pv2.up_votes
-                                                                FROM posts p
-                                                                LEFT JOIN
-                                                                    (
-                                                                        SELECT p.reply_to_id, COUNT(p.post_id) AS reply_count
-                                                                            FROM posts p
-                                                                            WHERE p.reply_to_id IN %s AND p.is_deleted = 0
-                                                                            GROUP BY p.reply_to_id
-                                                                    ) p2 ON p2.reply_to_id = p.post_id
-                                                                LEFT JOIN
-                                                                    (
-                                                                        SELECT pv.post_id, COUNT(pv.value) AS down_votes
-                                                                            FROM post_votes pv
-                                                                            WHERE pv.post_id IN %s AND pv.value < 0
-                                                                            GROUP BY pv.post_id
-                                                                    ) pv ON pv.post_id = p.post_id
-                                                                LEFT JOIN
-                                                                    (
-                                                                        SELECT pv.post_id, COUNT(pv.value) AS up_votes
-                                                                            FROM post_votes pv
-                                                                            WHERE pv.post_id IN %s AND pv.value > 0
-                                                                            GROUP BY pv.post_id
-                                                                    ) pv2 ON pv2.post_id = p.post_id	
-                                                                WHERE p.post_id IN %s AND p.camp_id = %s; """ % (ids, ids, ids, ids, camp_id))
-                    
-                    df2 = DataFrame(ResultProxy.fetchall())
-                    df2.columns = ResultProxy.keys()
-                    df2['reply_count'] = round(df2['reply_count'].fillna(0).astype(int), 0)
-                    df2['down_votes'] = round(df2['down_votes'].fillna(0).astype(int), 0)
-                    df2['up_votes'] = round(df2['up_votes'].fillna(0).astype(int), 0)
-
-                    df2['reply_count'] = df2['reply_count'].replace(0, " ")
-                    df2['down_votes'] = df2['down_votes'].replace(0, " ")
-                    df2['up_votes'] = df2['up_votes'].replace(0, " ")
-
-              
-                df = pd.merge(df, df2, on=['post_id'], how='left')
-                #Correct Timezone
-                to_zone = tz.tzlocal()
-
-                df['creation_time'] = pd.to_datetime(df['creation_time'])
-                df['time_ago'] = ""
-                for i in range(len(df.index)):
-                    df['time_ago'][i] = models.time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
-                
-                df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
-                df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
-
-                #Correct Update Post Score (All posts begin at a score of 0) and round
-                df['post_score'] = df['post_score'].fillna(0).astype(int)
-                df['user_score'] = df['user_score'].fillna(0).astype(int)
-
-                #Create User Score bar chart
-                df['user_score'] = df['user_score']/10
-                df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
-                df['user_score'] = df['user_score'].astype(int)
-
-                #Create Score Bar Print
-                df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '⬛' * x)
-                df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
-       
-                ##Split into posts and replys
-                posts = df[df["reply_to_id"].isnull()]
-                posts = posts.sort_values(by=['post_id'], ascending=False)  
-                
-            else:
-                posts = df
- 
-                
-
-            #Get Photos for all IDs
-            if len(posts.index) > 0:
-                ids = ', '.join(f'"{w}"' for w in posts.media_id)
-                ids = "(" + ids + ")"
-                
-                with engine.connect() as connection:
-                    ResultProxy = connection.execute('SELECT * FROM photos ph WHERE ph.media_id IN %s;' % (ids))
-
-                photos = DataFrame(ResultProxy.fetchall())
-                if len(photos.index) > 0:
-                    photos.columns = ResultProxy.keys()
-                    photos['bottom-padding'] = ((photos['height']/photos['width'])*100) - 5
-                else:
-                    photos = pd.DataFrame({"media_id": [0]})
-            else:
-                photos = pd.DataFrame({"media_id": [0]})
-
-            handle = current_user.get_user_handle()
-
-            return render_template('top.html', today = today, date_selected = date_selected, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=posts, photos=photos, camp_id=camp_id)
-        except Exception as e:
-            # e holds description of the error
-            error_text = "<p>The error:<br>" + str(e) + "</p>"
-            hed = '<h1>Something is broken.</h1>'
-            return hed + error_text
-           
-    else:
-        flash('You are not a member of that camp')
+        print(e)
         return redirect('/')
+
+    #Get Posts
+    result = models.get_top_feed(user_id, None, date)
+
+    if result[0] is not None and len(result[0]) > 0:
+        df = result[0]
+        df = models.format_feed(df)
+        
+        #get smalled post_id from df
+        min_post_id = df['post_id'].min()
+    else:
+        df = DataFrame()
+        min_post_id = None
+
+    date_selected = result[1]
+    today = result[2]
+
+    data = models.get_notifications(user_id)
+    notifications = data[0] 
+    unseen_count = data[1]
+
+    handle = current_user.get_user_handle()
+    user_profile_photo = current_user.get_user_profile_photo()   
+
+    return render_template('top.html', posts=df, min_post_id = min_post_id, today = today, date_selected = date_selected, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, notifications = notifications, notification_count = unseen_count)
+
+           
 
 ### Rest User Password Section ###
 @application.route('/account/password/reset', methods = ['GET', 'POST'])
@@ -1834,7 +1681,43 @@ def quickfeed():
     return render_template('quickfeed.html', posts=df, min_post_id = min_post_id)
 
 
+@application.route('/topquickfeed', methods = ['GET'])
+@login_required
+def topquickfeed():
 
+    #get last_post_id from get request
+    min_post_id = request.args.get('min_post_id')
+
+    #get last_post_id from get request
+    date = request.args.get('date')
+
+    #if min_post_id is not int, set to None
+    if min_post_id is not None:
+        try:
+            min_post_id = int(min_post_id)
+        except:
+            min_post_id = None
+
+    try:
+        user_id = current_user.get_user_id()
+    except Exception as e:
+        print(e)
+        return redirect('/landing')
+  
+    #Get Posts
+    result = models.get_top_feed(user_id, None, date)
+
+    if result[0] is not None and len(result[0]) > 0:
+        df = result[0]
+        df = models.format_feed(df)
+        
+        #get smalled post_id from df
+        min_post_id = df['post_id'].min()
+    else:
+        df = DataFrame()
+        min_post_id = None
+
+    return render_template('quickfeed.html', posts=df, min_post_id = min_post_id)
 
 if __name__ == '__main__':
     #Need to make this port 443 in prod
