@@ -1539,6 +1539,8 @@ def top(date):
     handle = current_user.get_user_handle()
     user_profile_photo = current_user.get_user_profile_photo()   
 
+    print(date_selected)
+    print(today)
     return render_template('top.html', posts=df, min_post_id = min_post_id, today = today, date_selected = date_selected, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, notifications = notifications, notification_count = unseen_count)
 
            

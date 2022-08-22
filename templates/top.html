@@ -1276,16 +1276,61 @@ function callData() {
 }
 
 
-//enable the post button once someone has entered text
+//get #prev_date and #next_date to change the date in date_select
+$(document).ready(function(){
+  $("#prev_date").click(function(){
+    var date = $("#date_select").val();
+    var date = new Date(date);
+    date.setDate(date.getDate() - 1);
+    var date = date.toISOString().slice(0,10);
+    $("#date_select").val(date);
 
-// $("#user_input_textarea").keyup(function(){
-//   if($("#user_input_post_text").val() != ""){
-//     $("#post_submit").prop("disabled", false);
-//   }
-//   else{
-//     $("#post_submit").prop("disabled", true);
-//   }
-// });
+    new_top_date();
+  });
+
+  $("#next_date").click(function(){
+    var date = $("#date_select").val();
+    var date = new Date(date);
+    date.setDate(date.getDate() + 1);
+    var date = date.toISOString().slice(0,10);
+    $("#date_select").val(date);
+
+    new_top_date();
+  });
+});
+
+//set function
+function new_top_date(cname, cvalue, exdays) {
+  setTimeout(function(){
+    $("#feed_inner").html("");
+    var date = $("#date_select").val();
+    $.ajax({
+        url: "/topquickfeed?date=" + date,
+        type: "GET",
+        success: function(data) {
+          
+          //append the inside of feed_inner to the feed_inner
+          $("#feed_inner").append(data);
+
+          //update URL without reloading page
+          var newurl = window.location.protocol + "//" + window.location.host + '/' + date;
+          window.history.pushState({path:newurl},'',newurl);
+            
+        }
+      });
+  }, 1500);
+}
+
+
+
+$(document).ready(function(){
+ 
+//on change after 2 seconds of date_select, clear feed, call ajax, and append to feed
+$("#date_select").change(function(){
+    new_top_date();
+});
+
+});
 
 
 
@@ -1355,14 +1400,21 @@ function callData() {
   <div class = "feed_op_space feed_op_active">Top Posts</div>
 </div>  
 
+
+<div class="feed_op_box">
+  <button id="prev_date"><i class="fas fa-angle-left"></i></button> 
+    <input type="date" id="date_select"
+    value= "{{date_selected}}"
+    min="2020-01-01" max="{{today}}">
+  <button id="next_date"><i class="fas fa-angle-right"></i></button>
+</div>
+
 <div id= "feed">
-
-
     <div id = "feed_inner">
     {% if posts|length == 0 %}
     <div style="font-size:20px;font-weight:600;margin-top:20px;" class = "post_box border border-0">
       <div class = "post_inner">
-      No top posts just yet today. You should post something and come back!
+      No top posts to show!
     </div>
 
     {% else %}

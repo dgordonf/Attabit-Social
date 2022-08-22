@@ -258,13 +258,13 @@ def get_top_feed(user_id, last_post_id, date):
         date_q1 = date_q1.strftime('%Y-%m-%d')
         date_q2 = date_q2.strftime('%Y-%m-%d')
 
-    #turn to string
-    date_q1 = str(date_q1) + "T05:00:00.000"
-    date_q2 = str(date_q2) + "T05:00:00.000"
-
     #Get display dates
     today = str(datetime.now(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d'))
     date_selected = str(date_q1)
+
+    #turn to string
+    date_q1 = str(date_q1) + "T05:00:00.000"
+    date_q2 = str(date_q2) + "T05:00:00.000"
 
     with engine.connect() as connection:
         ResultProxy = connection.execute("""SELECT p.post_id, p.user_id, u.first_name, u.handle, u.profile_photo, p.reply_to_id, p.creation_time, pv.post_score, p.post_text, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote 
