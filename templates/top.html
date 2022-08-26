@@ -908,6 +908,38 @@ background: transparent;
   font-size: 16px;
 }
 
+.date_switch_button {
+  font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-weight: 600;
+  border: none;
+  outline: none;
+  color: rgb(43, 43, 43);
+  background: #e7e7e7;
+  position: relative;
+  z-index: 0;
+  border-radius: 15px;
+}
+
+#date_select {
+  font-size: 16px;
+  background-color: #e7e7e7;
+  color: rgb(43, 43, 43);
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#loading_icon {
+  margin-top: 20px;
+  font-size: 25px;
+  margin-left: 47%;
+  margin-top: 20px;
+  color: #ffe397;
+}
+
 </style>
 
 <script>
@@ -1246,34 +1278,37 @@ $(window).on("scroll", function () {
 });
 
 
-function callData() {
-    //get last_post_id
-    //var min_post_id = $("#min_post_id").text();
+// function callData() {
+//     //get last_post_id
+//     //var min_post_id = $("#min_post_id").text();
     
-    //get the last post_wrap class and then look for post_id in it
-    var last_post_wrap = $("#feed_inner .post_wrap:last .post_box");
-    var last_post_id = last_post_wrap.attr("id");
+//     //get the last post_wrap class and then look for post_id in it
+//     var last_post_wrap = $("#feed_inner .post_wrap:last .post_box");
+//     var last_post_id = last_post_wrap.attr("id");
     
-    //remove post_ from last_post_id
-    var last_post_id_num = last_post_id.substring(5);
+//     //remove post_ from last_post_id
+//     var last_post_id_num = last_post_id.substring(5);
 
-    console.log(last_post_id_num);
+//     console.log(last_post_id_num);
 
-    $.ajax({
-        url: "/topquickfeed?min_post_id=" + last_post_id_num,
-        type: "GET",
-        success: function(data) {
+//     //get date from date_select
+//     var date_select = $("#date_select").val();
+
+
+
+//     $.ajax({
+//         url: "/topquickfeed?min_post_id=" + last_post_id_num + "&date=" + date_select,
+//         type: "GET",
+//         success: function(data) {
           
-          //append the inside of feed_inner to the feed_inner
-          $("#feed_inner").append(data);
-
-               
+//           //append the inside of feed_inner to the feed_inner
+//           $("#feed_inner").append(data);
             
-        }
-      });
+//         }
+//       });
      
 
-}
+// }
 
 
 //get #prev_date and #next_date to change the date in date_select
@@ -1301,6 +1336,10 @@ $(document).ready(function(){
 
 //set function
 function new_top_date(cname, cvalue, exdays) {
+  var loading = $("#loading");
+  loading.show();
+  $("#feed_inner").html("");
+
   setTimeout(function(){
     $("#feed_inner").html("");
     var date = $("#date_select").val();
@@ -1309,16 +1348,17 @@ function new_top_date(cname, cvalue, exdays) {
         type: "GET",
         success: function(data) {
           
+          $("#feed_inner").html("");
           //append the inside of feed_inner to the feed_inner
           $("#feed_inner").append(data);
 
           //update URL without reloading page
           var newurl = window.location.protocol + "//" + window.location.host + '/' + date;
           window.history.pushState({path:newurl},'',newurl);
-            
+          loading.hide();
         }
       });
-  }, 1500);
+  }, 500);
 }
 
 
@@ -1401,16 +1441,22 @@ $("#date_select").change(function(){
 </div>  
 
 
-<div class="feed_op_box">
-  <button id="prev_date"><i class="fas fa-angle-left"></i></button> 
+<div class="feed_op_box" style="margin-top: 25px;">
+  <button id="prev_date" class="date_switch_button" style="margin-right:7px;"><i class="fas fa-angle-left"></i></button> 
     <input type="date" id="date_select"
     value= "{{date_selected}}"
     min="2020-01-01" max="{{today}}">
-  <button id="next_date"><i class="fas fa-angle-right"></i></button>
+  <button id="next_date" class="date_switch_button" style="margin-left:7px;"><i class="fas fa-angle-right"></i></button>
+</div>
+
+<div id = "loading" style="display:block;display:none">
+  <i id = "loading_icon" class="fas fa-trophy fa-spin"></i>
 </div>
 
 <div id= "feed">
     <div id = "feed_inner">
+
+
     {% if posts|length == 0 %}
     <div style="font-size:20px;font-weight:600;margin-top:20px;" class = "post_box border border-0">
       <div class = "post_inner">

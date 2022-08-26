@@ -302,7 +302,7 @@ def get_top_feed(user_id, last_post_id, date):
                                                 AND p.creation_time >= %s  
       											AND p.creation_time <= %s
                                                 ORDER BY pv.post_score DESC
-                                                LIMIT 10;""", (user_id, user_id, last_post_id, date_q1, date_q2))
+                                                LIMIT 100;""", (user_id, user_id, last_post_id, date_q1, date_q2))
     df = DataFrame(ResultProxy.fetchall())
 
     if len(df.index) > 0:

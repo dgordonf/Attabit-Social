@@ -1539,8 +1539,6 @@ def top(date):
     handle = current_user.get_user_handle()
     user_profile_photo = current_user.get_user_profile_photo()   
 
-    print(date_selected)
-    print(today)
     return render_template('top.html', posts=df, min_post_id = min_post_id, today = today, date_selected = date_selected, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, notifications = notifications, notification_count = unseen_count)
 
            
@@ -1680,6 +1678,11 @@ def quickfeed():
     #get smalled post_id from df
     min_post_id = df['post_id'].min()
 
+    if df is not None and len(df) > 0:
+        if min_post_id is not None:
+            #return failed status
+            return jsonify({'status': 'failed'})
+
     return render_template('quickfeed.html', posts=df, min_post_id = min_post_id)
 
 
@@ -1707,9 +1710,15 @@ def topquickfeed():
         return redirect('/landing')
   
     #Get Posts
-    result = models.get_top_feed(user_id, None, date)
+    result = models.get_top_feed(user_id, min_post_id, date)
 
-    if result[0] is not None and len(result[0]) > 0:
+    df = result[0]
+
+    if len(df.index) == 0 and min_post_id is not None:
+        return jsonify({'status': 'failed'})
+
+
+    if df is not None and len(result[0]) > 0:
         df = result[0]
         df = models.format_feed(df)
         
