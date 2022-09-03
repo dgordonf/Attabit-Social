@@ -393,25 +393,40 @@ def favicon2():
     return send_from_directory(os.path.join(application.root_path, 'static'), 'favicon.png', mimetype='image/vnd.microsoft.icon')
 
 @application.route('/@<username>', methods = ['POST','GET'])
-@login_required
 def profile(username):
     
     camp_id = 0
     profile_username = username
 
-    try:
-        user_id = current_user.get_user_id()
-    except:
-        user_id = 0
-
-    #Get current user profile photo
+    #Get the user_id of the profile we are looking at
     with engine.connect() as connection:
-        ResultProxy = connection.execute('''SELECT u.profile_photo 
+        ResultProxy = connection.execute('''SELECT u.id 
                                             FROM users u
-                                            WHERE u.id = %s;''', (user_id))
+                                            WHERE u.handle = %s;''', (profile_username))
     df = DataFrame(ResultProxy.fetchall())
     df.columns = ResultProxy.keys()
-    current_user_profile_photo = df['profile_photo'][0]
+    profile_user_id = df['id'][0]
+
+    
+    ### Get the current user id    
+    try:
+        current_user_id = current_user.get_user_id()
+
+        #Get current user profile photo
+        with engine.connect() as connection:
+            ResultProxy = connection.execute('''SELECT u.profile_photo, u.handle
+                                                FROM users u
+                                                WHERE u.id = %s;''', (current_user_id))
+        df = DataFrame(ResultProxy.fetchall())
+        df.columns = ResultProxy.keys()
+        current_user_profile_photo = df['profile_photo'][0]
+        current_user_handle = df['handle'][0]
+    except:
+        current_user_id = 0
+        current_user_profile_photo = None
+        current_user_handle = ""
+
+
 
     #Get Profile Page's User ID
     try:
@@ -438,155 +453,18 @@ def profile(username):
     profile_info['user_score_bars_print'] = profile_info['user_score_bars'].apply(lambda x: '⬛' * x)
     profile_info['user_score_bars_print'] = profile_info['user_score_bars_print'] + profile_info['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
 
+    #Get Posts
+    df = models.get_user_posts(current_user_id, profile_user_id, None)
 
-    with engine.connect() as connection:
-        ResultProxy = connection.execute("""SELECT p.post_id, p.camp_id, p.user_id, p.reply_to_id, p.media_id, p.creation_time, p.post_text, SUM(pv.value) AS post_score, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote, u.first_name, u.handle, u.profile_photo
-                                            FROM posts p 
-                                            LEFT JOIN users u ON p.user_id = u.id 
-                                            LEFT JOIN post_votes pv ON p.camp_id = pv.camp_id AND p.post_id = pv.post_id 
-                                            LEFT JOIN
-                                                    (
-                                                        SELECT u.id, SUM(p1.value) AS user_score
-                                                            FROM users u
-                                                            LEFT JOIN posts p ON p.user_id = u.id
-                                                            LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
-                                                            GROUP BY u.id
-                                                    ) b ON b.id = u.id
-                                            LEFT JOIN
-                                                    (
-                                                    SELECT p2.post_id, SUM(p2.value) AS current_user_vote
-                                                        FROM post_votes p2
-                                                        WHERE p2.camp_id = %s AND p2.user_id = %s
-                                                        GROUP BY p2.post_id
-                                                    ) c on c.post_id = p.post_id     
-                                            WHERE p.camp_id = %s AND p.reply_to_id IS NULL AND u.handle = %s AND p.is_deleted = 0
-                                            GROUP BY p.post_id; """, (camp_id, user_id, camp_id, profile_username))
-    df = DataFrame(ResultProxy.fetchall())
-        
-    if len(df.index) > 0:
-        df.columns = ResultProxy.keys()
-
-        #Get comments and scores for each post_id
-        ids = ', '.join(f'{w}' for w in df.post_id)
-        ids = "(" + ids + ")"
-
-        with engine.connect() as connection:
-            ResultProxy = connection.execute("""SELECT p.post_id, p2.reply_count, pv.down_votes, pv2.up_votes
-                                                        FROM posts p
-                                                        LEFT JOIN
-                                                            (
-                                                                SELECT p.reply_to_id, COUNT(p.post_id) AS reply_count
-                                                                    FROM posts p
-                                                                    WHERE p.reply_to_id IN %s AND p.is_deleted = 0
-                                                                    GROUP BY p.reply_to_id
-                                                            ) p2 ON p2.reply_to_id = p.post_id
-                                                        LEFT JOIN
-                                                            (
-                                                                SELECT pv.post_id, COUNT(pv.value) AS down_votes
-                                                                    FROM post_votes pv
-                                                                    WHERE pv.post_id IN %s AND pv.value < 0
-                                                                    GROUP BY pv.post_id
-                                                            ) pv ON pv.post_id = p.post_id
-                                                        LEFT JOIN
-                                                            (
-                                                                SELECT pv.post_id, COUNT(pv.value) AS up_votes
-                                                                    FROM post_votes pv
-                                                                    WHERE pv.post_id IN %s AND pv.value > 0
-                                                                    GROUP BY pv.post_id
-                                                            ) pv2 ON pv2.post_id = p.post_id	
-                                                        WHERE p.post_id IN %s AND p.camp_id = %s; """ % (ids, ids, ids, ids, camp_id))
-            
-            df2 = DataFrame(ResultProxy.fetchall())
-            df2.columns = ResultProxy.keys()
-            df2['reply_count'] = round(df2['reply_count'].fillna(0).astype(int), 0)
-            df2['down_votes'] = round(df2['down_votes'].fillna(0).astype(int), 0)
-            df2['up_votes'] = round(df2['up_votes'].fillna(0).astype(int), 0)
-
-            df2['reply_count'] = df2['reply_count'].replace(0, " ")
-            df2['down_votes'] = df2['down_votes'].replace(0, " ")
-            df2['up_votes'] = df2['up_votes'].replace(0, " ")
-
-        
-        df = pd.merge(df, df2, on=['post_id'], how='left')
-        #Correct Timezone
-        to_zone = tz.tzlocal()
-                                        
-        df['creation_time'] = pd.to_datetime(df['creation_time'])
-        #Cover to time ago for each post
-        df['time_ago'] = ""
-        for i in range(len(df.index)):
-            df['time_ago'][i] = models.time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
-
-        df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
-        df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
-
-        #Correct Update Post Score (All posts begin at a score of 0) and round
-        df['post_score'] = df['post_score'].fillna(0).astype(int)
-        df['user_score'] = df['user_score'].fillna(0).astype(int)
-        
-        #Create User Score bar chart
-        df['user_score'] = df['user_score']/10
-        df['user_score_bars'] = ((df['user_score'] % 1) * 10).astype(int)
-        df['user_score'] = df['user_score'].astype(int)
-
-        #Create Score Bar Print
-        df['user_score_bars_print'] = df['user_score_bars'].apply(lambda x: '⬛' * x)
-        df['user_score_bars_print'] = df['user_score_bars_print'] + df['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
-                        
-        #Check if post is greater than 400 characters
-        df['post_length'] = 0
-        df['post_length_flag'] = 0
-        for i in range(len(df.index)):
-            df['post_length'][i] = len(df['post_text'][i])
-            if len(df['post_text'][i]) > 400:
-                df['post_length_flag'][i] = 1
-
-        #Cut down any text where post_length_flag is 1
-        for i in range(len(df.index)):
-            if df['post_length_flag'][i] == 1:
-                char_count = 400
-                while char_count < 450 and df['post_length'][i] > char_count:
-                    if df['post_text'][i][char_count] == ' ':
-                        break
-                    char_count += 1
-                df['post_text'][i] = df['post_text'][i][:char_count] + "..."
-
-        df['is_president'] = models.is_president(df['user_id'])
-
-        ##Split into posts and replys
-        posts = df[df["reply_to_id"].isnull()]
-        posts = posts.sort_values(by=['post_id'], ascending=False)  
-        
-        replys = df[df["reply_to_id"].notnull()]
-        replys = replys.sort_values(by=['post_id'], ascending=True)  
-        
-    else:
-        posts = df
-        replys = df
-
-    #Get Photos for all IDs
-    if len(posts.index) > 0:
-        ids = ', '.join(f'"{w}"' for w in posts.media_id)
-        ids = "(" + ids + ")"
-        
-        with engine.connect() as connection:
-            ResultProxy = connection.execute('SELECT * FROM photos ph WHERE ph.media_id IN %s;' % ids)
-
-        photos = DataFrame(ResultProxy.fetchall())
-        if len(photos.index) > 0:
-            photos.columns = ResultProxy.keys()
-            photos['bottom-padding'] = ((photos['height']/photos['width'])*100) - 5
-        else:
-            photos = pd.DataFrame({"media_id": [0]})
-    else:
-        photos = pd.DataFrame({"media_id": [0]})
+    #format posts
+    df = models.format_feed(df)
 
     ##Get Follow Value
     with engine.connect() as connection:
-        ResultProxy = connection.execute("""SELECT u.handle, COALESCE(f.follow_value, 0 ) as follow_status
+        ResultProxy = connection.execute("""SELECT u.id, u.handle, COALESCE(f.follow_value, 0 ) as follow_status
                                                 FROM users u
                                                 LEFT JOIN follows f ON f.following = u.id
-                                                WHERE u.handle = %s AND f.user_id = %s AND f.last_update_time IS NULL; """, (username, user_id))
+                                                WHERE u.id = %s AND f.user_id = %s AND f.last_update_time IS NULL; """, (profile_user_id, current_user_id))
     try:
         follow = DataFrame(ResultProxy.fetchall())
         follow.columns = ResultProxy.keys()
@@ -594,12 +472,13 @@ def profile(username):
     except:
         follow_status = 0
 
-    data = models.get_notifications(user_id)
+    #get notifications
+    data = models.get_notifications(current_user_id)
     notifications = data[0] 
     unseen_count = data[1]
 
     is_president = models.is_president(profile_info['id'])
-    return render_template('profile.html', profile_handle = username, current_user_handle = username, profile_info = profile_info, follow_status = follow_status, current_user_id = user_id, is_president = is_president, current_user_profile_photo = current_user_profile_photo, posts=posts, photos=photos, replys=replys, camp_id=camp_id, notifications=notifications, notification_count=unseen_count)
+    return render_template('profile.html', profile_handle = username, profile_user_id = profile_user_id, current_user_handle = current_user_handle, profile_info = profile_info, follow_status = follow_status, current_user_id = current_user_id, is_president = is_president, current_user_profile_photo = current_user_profile_photo, posts=df, notifications=notifications, notification_count=unseen_count)
 
 
 
@@ -1631,6 +1510,9 @@ def quickfeed():
     #get last_post_id from get request
     min_post_id = request.args.get('min_post_id')
 
+    #get last_post_id from get request
+    profile_user_id = request.args.get('profile_user_id')
+
     #if min_post_id is not int, set to None
     if min_post_id is not None:
         try:
@@ -1638,13 +1520,23 @@ def quickfeed():
         except:
             min_post_id = None
 
+    if profile_user_id is not None:
+        try:
+            profile_user_id = int(profile_user_id)
+        except:
+            profile_user_id = None
+
     try:
         user_id = current_user.get_user_id()
     except:
         user_id = None
   
-    df = models.get_feed(user_id, min_post_id)
-
+    #check if we are getting the normal feed or a profile feed
+    if profile_user_id is not None:
+        #Get Posts
+        df = models.get_user_posts(user_id, profile_user_id, min_post_id)
+    else:
+        df = models.get_feed(user_id, min_post_id)
 
     if df is not None and len(df) > 0:
         df = models.format_feed(df)

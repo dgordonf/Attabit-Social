@@ -1734,6 +1734,63 @@ $(document).ready(function(){
     }
 </script>
 
+<script>
+  //infinite scroll
+  var currentscrollHeight = 0;
+  var count = 0;
+  
+  $(window).on("scroll", function () {
+      const scrollHeight = $(document).height();
+      const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
+      const isBottom = scrollHeight - 300 < scrollPos;
+  
+      if (isBottom && currentscrollHeight < scrollHeight) {
+          //alert('calling...');
+          callData();//Once at bottom of page -> call 6 times
+          currentscrollHeight = scrollHeight;
+      }
+  });
+  
+  
+  function callData() {
+      //get last_post_id
+      //var min_post_id = $("#min_post_id").text();
+      
+      //get the last post_wrap class and then look for post_id in it
+      var last_post_wrap = $("#feed_inner .post_wrap:last .post_box");
+      var last_post_id = last_post_wrap.attr("id");
+      
+      //remove post_ from last_post_id
+      var last_post_id_num = last_post_id.substring(5);
+
+      var profile_user_id = $('#profile_user_id').data();
+      profile_user_id = profile_user_id.name;
+  
+      //stop if last_post_id == 0
+      if(last_post_id_num == 0){
+        return;
+      } else {
+        //call ajax
+  
+      $.ajax({
+          url: "/quickfeed?profile_user_id=" + profile_user_id + "&min_post_id=" + last_post_id_num,
+          type: "GET",
+          success: function(data) {
+            
+            
+            //append the inside of feed_inner to the feed_inner
+            $("#feed_inner").append(data);
+  
+                 
+              
+          }
+        });
+       
+  
+  }
+  }
+</script>
+
 {% extends "layout.html" %}
 {% block body %}
 <div class = "header" id= "header">
@@ -1907,6 +1964,7 @@ $(document).ready(function(){
       </div>
 
     </div>
+    <meta id="profile_user_id" data-name="{{profile_user_id}}">
       <div style="margin-top:5px;font-size: 17px;color:#4e4e4e82;line-height: 17px;">{{profile_info['first_name'][0]}}</div>
       <div style = "margin-top:5px;white-space: pre-wrap;word-wrap: break-word; font-size: 17px;">{{ profile_info['bio'][0]|linkify|urlize(30, true)|emojify|safe }}</div>
     </div>
@@ -1923,98 +1981,80 @@ $(document).ready(function(){
   
     <div id = "feed_inner">
     
-   {% for index, posts in posts.iterrows() %}
-      <div class = "post_wrap">  
-        <div class="post_box border border-0">
+      {% for index, posts in posts.iterrows() %}
+    
+      <div class = "post_wrap">
+      <div id = post_{{posts['post_id']}} class="post_box border border-0">
 
-      
-    {% if (posts['media_id'] in photos.media_id.values) %}
-      {% for key, photo in photos.iterrows() %}
-          {% if photo['media_id'] == posts['media_id'] %}
-            <div id = "img_container" style="padding-bottom: {{photo['bottom-padding']}}%;">
-              <img src="https://hideawayy.s3.amazonaws.com/media/{{photo['photo_url']}}" alt="An image uploaded by a user" >
-            </div>
-
-          {% else %}
-       
-          {% endif %}  
-      {% endfor %}
-    {% endif %}
+        <div id= "post_inner_{{posts['post_id']}}" class = "post_inner">
 
 
-      {% if (posts['media_id'] in photos.media_id.values) %}
-          <div class = "post_inner" style = "border-radius: 0px 0px 10px 10px;">
-        {% else %}  
-          <div class = "post_inner">
-      {% endif %}       
-      
-      
    
         <div class = "post_info_box" >
-          <a class= "profile_link" href = "/@{{posts['handle']}}">
-            <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
-              
-            </div>
-          </a>  
-          
-          
-          <div class = "handle_score_box">
-            <div style= 'height: 18px;'>
-              <a class= "profile_link" href = "/@{{posts['handle']}}">
-              <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']|emojify|safe}} {% if posts['is_president'] == True %} <i class="fas fa-chess-king president_crown" ></i> {% endif %}</span>
-              </a>  
-              <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
-
-            {% if posts['user_id'] == current_user_id %}
-            <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
-              <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
-              <button class = "delete_button" type="submit">
-                <i class="far fa-times-circle"></i>
-              </button>  
-            
-            </form>
-            {% else %}  
-            {% endif %}  
-
-            </div>
-
-              <div class = "post_text" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
-                <span  style="white-space: pre-wrap;" >{{ posts['post_text']|linkify|urlize(30, true)|emojify|safe }}</span> 
+            <a class= "profile_link" href = "/@{{posts['handle']}}">
+              <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
+                
               </div>
-          </div>
-      </div>
-      
-      {% if posts['post_length_flag'] == 1 %}
-      <div style="padding-bottom:5px;margin-bottom: 10px; font-weight:600; opacity: .40; text-align:center;">
-        ------------- more -------------
-      </div>
-      {% endif %}
+            </a>  
+            
+            <div class = "handle_score_box">
+              <div style= 'height: 18px;'>
+                <a class= "profile_link" href = "/@{{posts['handle']}}">
+                <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']|emojify|safe}} {% if posts['is_president'] == True %} <i class="fas fa-chess-king president_crown" ></i> {% endif %}</span>
+                </a>  
+                <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
+                
+                {% if posts['user_id'] == current_user_id %}
+                <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
+                  <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+                  <button class = "delete_button" type="submit">
+                    <i class="far fa-times-circle"></i>
+                  </button>  
+                
+                </form>
+                {% else %}  
+                {% endif %}  
 
-      <div class = "post_icons">
 
-        <div style= "width:33%">  
-          <a class="post_link" href = "/post/{{posts['post_id']}}">
-          <button class = "reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}'>
-            <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{posts['reply_count']}}</span>
-          </button>  
-          </a>
+              </div>
+
+                <div class = "post_text" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
+                  <span  style="white-space: pre-wrap;" >{{ posts['post_text']|linkify|urlize(30, true)|emojify|safe }}</span> 
+                </div>
+            </div>
         </div>
-        
+    
+        {% if posts['post_length_flag'] == 1 %}
+        <div style="padding-bottom:5px;margin-bottom: 10px; font-weight:600; opacity: .40; text-align:center;">
+          ------------- more -------------
+        </div>
+        {% endif %}
+
+          <div class = "post_icons">
+            
+              <div style= "width:33%">  
+                <a class="post_link" href = "/post/{{posts['post_id']}}">    
+                <button class = "reply_button" id = "reply_button_{{posts['post_id']}}" value = '{{posts['post_id']}}'>
+                  <span class = "_8bit_button" style="font-size:15px; opacity:.69; margin-left:7px"><i style="font-size: 17px;" class="far fa-comment"></i> {{posts['reply_count']}}</span>
+                </button>  
+                </a>  
+              </div>
+            
               <div style= "width:33%">
-                <form id="{{index}}" title="" action= "/quickvote" method= "post" class= "form_arrows">
+                <form id="{{posts['post_id']}}" title="" action= "/quickvote" method= "post" class= "form_arrows">
                   
                   <input type="hidden" id = "post_id" name= "post_id" value={{posts['post_id']}} >
                   {% if posts['current_user_vote'] <= -1 %}
                   
-                  <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
-                  <button id= "down_submit_{{index}}"  type="submit" class="arrow_button" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
-                    <span id = "down_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                  <input id = "down_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = 0>
+                  <button id= "down_submit_{{posts['post_id']}}"  type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
+                    <span id = "down_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{posts['post_id']}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% else %}
                   
-                  <input id = "down_vote_value_{{index}}" class= hidden name= "post_vote" value = -1>  
-                  <button id= "down_submit_{{index}}" type="submit" class="arrow_button" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
-                    <span id = "down_vote_wrapper_{{index}}" style="margin-left:22px" class="pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{index}}">{{posts['down_votes']}}</span></span>
+                  <input id = "down_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = -1>  
+                  <button id= "down_submit_{{posts['post_id']}}" type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
+                    <span id = "down_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-down"></i> <span class = "_8bit_button" id="down_vote_text_{{posts['post_id']}}">{{posts['down_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   
@@ -2022,31 +2062,31 @@ $(document).ready(function(){
               </div>
 
               <div style= "width:30%">
-                <form id="{{index}}" title="" action="/quickvote" method="post" class = "form_arrows">
+                <form id="{{posts['post_id']}}" title="" action="/quickvote" method="post" class = "form_arrows">
                   
                   <input type="hidden" name= "post_id" value={{posts['post_id']}} >
                   {% if posts['current_user_vote'] >= 1 %}
                   
-                  <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 0>
-                  <button id= "up_submit_{{index}}"  type="submit" class="arrow_button" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
-                    <span id = "up_vote_wrapper_{{index}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                  <input id = "up_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = 0>
+                  <button id= "up_submit_{{posts['post_id']}}"  type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
+                    <span id = "up_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote voted_button"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{posts['post_id']}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% else %}
 
-                  <input id = "up_vote_value_{{index}}" class= hidden name= "post_vote" value = 1>  
-                  <button id= "up_submit_{{index}}" type="submit" class="arrow_button" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %}>
-                    <span id = "up_vote_wrapper_{{index}}" style="margin-left:22px" class="pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{index}}">{{posts['up_votes']}}</span></span>
+                  <input id = "up_vote_value_{{posts['post_id']}}" class= hidden name= "post_vote" value = 1>  
+                  <button id= "up_submit_{{posts['post_id']}}" type="submit" {% if posts['user_id'] == current_user_id %} class="arrow_button" disabled {% else %} class="arrow_button" {% endif %} >
+                    <span id = "up_vote_wrapper_{{posts['post_id']}}" style="margin-left:22px" class = "pre_vote"><i style="font-size: 17px;" class="fas fa-caret-up"></i> <span class = "_8bit_button" id="up_vote_text_{{posts['post_id']}}">{{posts['up_votes']}}</span></span>
                   </button>  
                     {% endif %} 
                   </button>
                 </form>
               </div>
-
           </div>
         </div>  
-    </div>   
+      </div>
+  </div>
 
-   
+
     {% endfor %}
   </div>
 
