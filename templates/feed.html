@@ -1257,13 +1257,19 @@ function callData() {
     //remove post_ from last_post_id
     var last_post_id_num = last_post_id.substring(5);
 
-    console.log(last_post_id_num);
+    //stop if last_post_id == 0
+    if(last_post_id_num == 0){
+      return;
+    } else {
+      //call ajax
 
     $.ajax({
         url: "/quickfeed?min_post_id=" + last_post_id_num,
         type: "GET",
         success: function(data) {
           
+          
+          console.log(last_post_id_num);
           //append the inside of feed_inner to the feed_inner
           $("#feed_inner").append(data);
 
@@ -1273,6 +1279,7 @@ function callData() {
       });
      
 
+}
 }
 
 

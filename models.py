@@ -230,6 +230,98 @@ def get_feed(user_id, last_post_id):
         
         return df
 
+def get_user_posts(current_user_id, search_user_id, last_post_id):
+
+    #get max post_id if last_post_id is None
+    if last_post_id is None:
+        with engine.connect() as connection:
+            result = connection.execute("""SELECT MAX(post_id) FROM posts
+                                         WHERE user_id = %s;""", search_user_id)
+
+            last_post_id = result.fetchone()[0] + 1
+
+    with engine.connect() as connection:
+        ResultProxy = connection.execute("""SELECT p.post_id, p.user_id, u.first_name, u.handle, u.profile_photo, p.reply_to_id, p.creation_time, pv.post_score, p.post_text, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote 
+                                                FROM posts p
+                                                LEFT JOIN users u ON u.id = p.user_id 
+                                                LEFT JOIN 
+                                                    (
+                                                        SELECT f.user_id, f.following, f.follow_value
+                                                            FROM follows f
+                                                            WHERE f.user_id = %s AND f.follow_value = 1
+                                                    ) f ON f.following = p.user_id 
+                                                LEFT JOIN
+                                                    (
+                                                        SELECT pv.post_id, SUM(pv.value) AS post_score
+                                                            FROM post_votes pv
+                                                            GROUP BY pv.post_id
+                                                    ) pv ON p.post_id = pv.post_id
+                                                LEFT JOIN
+                                                        (
+                                                            SELECT u.id, SUM(p1.value) AS user_score
+                                                                FROM users u
+                                                                LEFT JOIN posts p ON p.user_id = u.id
+                                                                LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                                GROUP BY u.id
+                                                        ) b ON b.id = u.id
+                                                LEFT JOIN
+                                                        (
+                                                        SELECT p2.post_id, SUM(p2.value) AS current_user_vote
+                                                            FROM post_votes p2
+                                                            WHERE p2.user_id = %s
+                                                            GROUP BY p2.post_id
+                                                        ) c on c.post_id = p.post_id 
+                                            WHERE p.post_id < %s
+                                            AND p.user_id = %s
+                                            AND p.reply_to_id IS NULL AND p.is_deleted = 0
+                                            ORDER BY p.post_id DESC
+                                            LIMIT 10; """, (current_user_id, current_user_id, last_post_id, search_user_id))
+        df = DataFrame(ResultProxy.fetchall())
+    
+
+    if len(df.index) > 0:
+        df.columns = ResultProxy.keys()
+
+        #Get comments and scores for each post_id
+        ids = ', '.join(f'{w}' for w in df.post_id)
+        ids = "(" + ids + ")"
+
+        with engine.connect() as connection:
+            ResultProxy = connection.execute("""SELECT p.post_id, p2.reply_count, pv.down_votes, pv2.up_votes
+                                                        FROM posts p
+                                                        LEFT JOIN
+                                                            (
+                                                                SELECT p.reply_to_id, COUNT(p.post_id) AS reply_count
+                                                                    FROM posts p
+                                                                    WHERE p.reply_to_id IN %s AND p.is_deleted = 0
+                                                                    GROUP BY p.reply_to_id
+                                                            ) p2 ON p2.reply_to_id = p.post_id
+                                                        LEFT JOIN
+                                                            (
+                                                                SELECT pv.post_id, COUNT(pv.value) AS down_votes
+                                                                    FROM post_votes pv
+                                                                    WHERE pv.post_id IN %s AND pv.value < 0
+                                                                    GROUP BY pv.post_id
+                                                            ) pv ON pv.post_id = p.post_id
+                                                        LEFT JOIN
+                                                            (
+                                                                SELECT pv.post_id, COUNT(pv.value) AS up_votes
+                                                                    FROM post_votes pv
+                                                                    WHERE pv.post_id IN %s AND pv.value > 0
+                                                                    GROUP BY pv.post_id
+                                                            ) pv2 ON pv2.post_id = p.post_id	
+                                                        WHERE p.post_id IN %s; """ % (ids, ids, ids, ids))
+            
+        df2 = DataFrame(ResultProxy.fetchall())
+        df2.columns = ResultProxy.keys()
+        
+        df = pd.merge(df, df2, on=['post_id'], how='left')
+
+        #check if user is president
+        df['is_president'] = is_president(df['user_id'])
+        
+        return df
+
 def get_top_feed(user_id, last_post_id, date):
 
     #get max post_id if last_post_id is None

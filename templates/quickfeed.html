@@ -5,12 +5,16 @@
   {% block body %}
 
     {% if posts|length == 0 %}
-    <div style="font-size:20px;font-weight:600;margin-top:20px;" class = "post_box border border-0">
+    <div style="font-size:20px;font-weight:600;margin-top:20px;" class = "post_box border">
       <div class = "post_inner">
-      Anyone out there? Posts from people you follow will appear here. 
+        <div class = "post_wrap">
+          <div id = post_0 class="post_box border border-0">
+      This is the begining of your Attabit feed. 
       <br>
       <br>
-      See the <a href = "/search" style = "text-decoration: underline;" >leaderboard</a> to find people to follow.
+      If this is all you see, head over to the <a href = "/search" style = "text-decoration: underline;" >leaderboard</a> or <a href = "/today" style = "text-decoration: underline;" >top page</a> to find people to follow.
+          </div>
+        </div>    
       </div>
     </div>
 
