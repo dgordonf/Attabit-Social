@@ -1742,7 +1742,7 @@ $(document).ready(function(){
   $(window).on("scroll", function () {
       const scrollHeight = $(document).height();
       const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
-      const isBottom = scrollHeight - 300 < scrollPos;
+      const isBottom = scrollHeight - 100 < scrollPos;
   
       if (isBottom && currentscrollHeight < scrollHeight) {
           //alert('calling...');

@@ -519,10 +519,13 @@ def follow(username):
     return redirect("/@" + username)
 
 @application.route('/@<username>/quickfollow', methods = ['POST'])
-@login_required
 def quickfollow(username):
     profile_username = username
     user_id = current_user.get_user_id()
+
+    if user_id is None: 
+        response = jsonify(success=False, new_follow_value=0)
+        return response
     
     follow_value = int(request.form.get('follow_value'))
     if follow_value > 0:
@@ -1504,13 +1507,12 @@ def reset_password_with_token():
     return redirect(url_for('login'))
    
 @application.route('/quickfeed', methods = ['GET'])
-@login_required
 def quickfeed():
 
     #get last_post_id from get request
     min_post_id = request.args.get('min_post_id')
 
-    #get last_post_id from get request
+    #get profile_user_id from get request
     profile_user_id = request.args.get('profile_user_id')
 
     #if min_post_id is not int, set to None
