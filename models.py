@@ -491,6 +491,9 @@ def format_feed(df):
                 char_count += 1
             df['post_text'][i] = df['post_text'][i][:char_count] + "..."
 
+    #order df by post_score
+    df = df.sort_values(by=['post_score'], ascending=False)
+
     return df
 
 ##Get notifications for this user
