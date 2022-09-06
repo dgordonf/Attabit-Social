@@ -322,37 +322,29 @@ def get_user_posts(current_user_id, search_user_id, last_post_id):
         
         return df
 
-def get_top_feed(user_id, last_post_id, date):
+def get_top_feed(user_id, offset):
 
-    #get max post_id if last_post_id is None
-    if last_post_id is None:
-        with engine.connect() as connection:
-            result = connection.execute("SELECT MAX(post_id) FROM posts")
-            last_post_id = result.fetchone()[0] + 1
+    if offset is None:
+        offset = 0
 
+    #Get list of of all dates where there was a post
+    with engine.connect() as connection:
+        ResultProxy = connection.execute('''SELECT DISTINCT DATE(p.creation_time) as date FROM posts p
+                                            WHERE p.reply_to_id IS NULL AND p.is_deleted = 0
+                                            ORDER BY date DESC
+                                            LIMIT 1 OFFSET %s''', (offset))
+        df = DataFrame(ResultProxy.fetchall())
+        df.columns = ResultProxy.keys()
 
-    #Determine Date
-    if date == 'today':
-        #Get today and tomorrow
-        date_q1 = datetime.now(pytz.timezone('US/Eastern'))
-        date_q2 = date_q1 + timedelta(days=1)
+    #Get the date of the day_index
+    date = df['date'][0]
 
-        #format both
-        date_q1 = date_q1.strftime('%Y-%m-%d')
-        date_q2 = date_q2.strftime('%Y-%m-%d')
+    #remove anything that isn't a number or "-"
+    date_q1 = date
+    date_q2 = date_q1 + timedelta(days=1)
 
-    else:
-        #remove anything that isn't a number or "-"
-        date = re.sub('[^0-9-]', '', date)
-        date_q1 = datetime.strptime(date, '%Y-%m-%d')
-        date_q2 = date_q1 + timedelta(days=1)
-
-        date_q1 = date_q1.strftime('%Y-%m-%d')
-        date_q2 = date_q2.strftime('%Y-%m-%d')
-
-    #Get display dates
-    today = str(datetime.now(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d'))
-    date_selected = str(date_q1)
+    date_q1 = date_q1.strftime('%Y-%m-%d')
+    date_q2 = date_q2.strftime('%Y-%m-%d')
 
     #turn to string
     date_q1 = str(date_q1) + "T05:00:00.000"
@@ -389,12 +381,11 @@ def get_top_feed(user_id, last_post_id, date):
                                                             WHERE p2.user_id = %s
                                                             GROUP BY p2.post_id
                                                         ) c on c.post_id = p.post_id 
-                                                WHERE p.post_id < %s
-                                                AND p.reply_to_id IS NULL AND p.is_deleted = 0
+                                                WHERE p.reply_to_id IS NULL AND p.is_deleted = 0
                                                 AND p.creation_time >= %s  
       											AND p.creation_time <= %s
                                                 ORDER BY pv.post_score DESC
-                                                LIMIT 100;""", (user_id, user_id, last_post_id, date_q1, date_q2))
+                                                LIMIT 100;""", (user_id, user_id, date_q1, date_q2))
     df = DataFrame(ResultProxy.fetchall())
 
     if len(df.index) > 0:
@@ -438,10 +429,12 @@ def get_top_feed(user_id, last_post_id, date):
         #check if user is president
         df['is_president'] = is_president(df['user_id'])
 
+        #order by post_score
+        df = df.sort_values(by=['post_score'], ascending=False)
     else:
         df = DataFrame()
 
-    return df, date_selected, today
+    return df
 
 def format_feed(df):
     df['reply_count'] = round(df['reply_count'].fillna(0).astype(int), 0)
@@ -490,9 +483,6 @@ def format_feed(df):
                     break
                 char_count += 1
             df['post_text'][i] = df['post_text'][i][:char_count] + "..."
-
-    #order df by post_score
-    df = df.sort_values(by=['post_score'], ascending=False)
 
     return df
 

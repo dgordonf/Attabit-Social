@@ -1361,31 +1361,26 @@ def notification_seen():
 
     return response
 
-@application.route('/<date>', methods = ['GET'])
+@application.route('/top', methods = ['GET'])
 @login_required
-def top(date):
+def top():
     try:
         user_id = current_user.get_user_id()
-    except Exception as e:
-        print(e)
-        return redirect('/')
+    except:
+        user_id = 0
 
     #Get Posts
-    result = models.get_top_feed(user_id, None, date)
+    df = models.get_top_feed(user_id, None)
 
-    if result[0] is not None and len(result[0]) > 0:
-        df = result[0]
+    if df is not None and len(df) > 0:
         df = models.format_feed(df)
-        
-        #get smalled post_id from df
-        min_post_id = df['post_id'].min()
+
+        #order df by post_score
+        df = df.sort_values(by=['post_score', 'user_score', 'creation_time'], ascending=False)
     else:
         df = DataFrame()
-        min_post_id = None
 
-    date_selected = result[1]
-    today = result[2]
-
+    #Get notifications
     data = models.get_notifications(user_id)
     notifications = data[0] 
     unseen_count = data[1]
@@ -1393,7 +1388,7 @@ def top(date):
     handle = current_user.get_user_handle()
     user_profile_photo = current_user.get_user_profile_photo()   
 
-    return render_template('top.html', posts=df, min_post_id = min_post_id, today = today, date_selected = date_selected, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, notifications = notifications, notification_count = unseen_count)
+    return render_template('top.html', posts=df, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, notifications = notifications, notification_count = unseen_count)
 
            
 
@@ -1509,6 +1504,16 @@ def reset_password_with_token():
 @application.route('/quickfeed', methods = ['GET'])
 def quickfeed():
 
+    #Get type (if listed)
+    df_type = request.args.get('type')
+    offset = request.args.get('offset')
+
+    if offset is not None:
+        try:
+            offset = int(offset)
+        except:
+            offset = 0
+    
     #get last_post_id from get request
     min_post_id = request.args.get('min_post_id')
 
@@ -1528,17 +1533,22 @@ def quickfeed():
         except:
             profile_user_id = None
 
+    #Get current user
     try:
         user_id = current_user.get_user_id()
     except:
         user_id = None
-  
-    #check if we are getting the normal feed or a profile feed
-    if profile_user_id is not None:
-        #Get Posts
-        df = models.get_user_posts(user_id, profile_user_id, min_post_id)
+    
+    #Get Posts
+    if df_type == 'top':
+        df = models.get_top_feed(user_id, offset)
     else:
-        df = models.get_feed(user_id, min_post_id)
+        #check if we are getting the normal feed or a profile feed
+        if profile_user_id is not None:
+            #Get Posts
+            df = models.get_user_posts(user_id, profile_user_id, min_post_id)
+        else:
+            df = models.get_feed(user_id, min_post_id)
 
     if df is not None and len(df) > 0:
         df = models.format_feed(df)

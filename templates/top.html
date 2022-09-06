@@ -971,20 +971,6 @@ background: transparent;
   
   });
 
-//Update Image icon when file selected
-// $(document).ready(function(){  
-
-//   $('#file-input').on('input', function() {
-//   var showCheck = $(this).val().trim().length !== 0;
-//   var $group = $(this).closest('#post_form');
-  
-//   $group.find('#image_icon').toggleClass('fa-camera-retro fa-images');
-//   $group.find('#image_icon').toggleClass('image-not-loaded image-loaded');
-//   $group.find(".post_input").focus();
-//   $group.find(".post_input").select();
-
-// });
-// });
 
 </script>
 
@@ -1281,37 +1267,26 @@ $(window).on("scroll", function () {
 });
 
 
-// function callData() {
-//     //get last_post_id
-//     //var min_post_id = $("#min_post_id").text();
-    
-//     //get the last post_wrap class and then look for post_id in it
-//     var last_post_wrap = $("#feed_inner .post_wrap:last .post_box");
-//     var last_post_id = last_post_wrap.attr("id");
-    
-//     //remove post_ from last_post_id
-//     var last_post_id_num = last_post_id.substring(5);
+function callData() {
 
-//     console.log(last_post_id_num);
+    //get offset
+    var offset = $("#offset").data("offset");
 
-//     //get date from date_select
-//     var date_select = $("#date_select").val();
-
-
-
-//     $.ajax({
-//         url: "/topquickfeed?min_post_id=" + last_post_id_num + "&date=" + date_select,
-//         type: "GET",
-//         success: function(data) {
+    $.ajax({
+        url: "/quickfeed?type=top&offset=" + offset,
+        type: "GET",
+        success: function(data) {
           
-//           //append the inside of feed_inner to the feed_inner
-//           $("#feed_inner").append(data);
-            
-//         }
-//       });
-     
+          //append the inside of feed_inner to the feed_inner
+          $("#feed_inner").append(data);
 
-// }
+          //update offset
+          $("#offset").data("offset", offset + 1);
+            
+        }
+      });
+
+}
 
 
 //get #prev_date and #next_date to change the date in date_select
@@ -1443,14 +1418,7 @@ $("#date_select").change(function(){
   <div class = "feed_op_space feed_op_active">Top Posts</div>
 </div>  
 
-
-<div class="feed_op_box" style="margin-top: 25px;">
-  <button id="prev_date" class="date_switch_button" style="margin-right:7px;"><i class="fas fa-angle-left"></i></button> 
-    <input type="date" id="date_select"
-    value= "{{date_selected}}"
-    min="2020-01-01" max="{{today}}">
-  <button id="next_date" class="date_switch_button" style="margin-left:7px;"><i class="fas fa-angle-right"></i></button>
-</div>
+<meta id="offset" data-offset="1">
 
 <div id = "loading" style="display:none">
   <i id = "loading_icon" class="fas fa-trophy fa-spin"></i>
