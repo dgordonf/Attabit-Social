@@ -1273,10 +1273,13 @@ var count = 0;
 
 $(window).on("scroll", function () {
     const scrollHeight = $(document).height();
+    const document_height = $(document).height();
+    const window_height = $(window).height();
+
     const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
     const isBottom = scrollHeight - 500 < scrollPos;
 
-    if (isBottom && currentscrollHeight < scrollHeight) {
+    if ((isBottom && currentscrollHeight < scrollHeight) | document_height < window_height) {
         //alert('calling...');
         callData(); //Once at bottom of page -> call 6 times
         currentscrollHeight = scrollHeight;
