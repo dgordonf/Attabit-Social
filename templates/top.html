@@ -22,6 +22,16 @@
   <link rel="manifest" href="manifest.json" />
   <title>Attabit</title>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X99CYY4DV5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X99CYY4DV5');
+</script>
+
 <body>
 <style>
 
@@ -943,6 +953,13 @@ background: transparent;
   text-align:center;
 }
 
+.date_display {
+  font-size:20px;
+  font-weight:600;
+  margin-top:20px;
+  text-align: center;
+}
+
 </style>
 
 <script>
@@ -1257,22 +1274,29 @@ var count = 0;
 $(window).on("scroll", function () {
     const scrollHeight = $(document).height();
     const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
-    const isBottom = scrollHeight - 300 < scrollPos;
+    const isBottom = scrollHeight - 500 < scrollPos;
 
     if (isBottom && currentscrollHeight < scrollHeight) {
         //alert('calling...');
-        callData();//Once at bottom of page -> call 6 times
+        callData(); //Once at bottom of page -> call 6 times
         currentscrollHeight = scrollHeight;
     }
 });
 
+jQuery(document).ready(function ($) {
+    callData(count);
+  });
+
 
 function callData() {
+    //get last offset
+    var last_offset = $("#last_offset").data("offset");
 
     //get offset
     var offset = $("#offset").data("offset");
 
-    $.ajax({
+    if (offset > last_offset) {
+      $.ajax({
         url: "/quickfeed?type=top&offset=" + offset,
         type: "GET",
         success: function(data) {
@@ -1282,12 +1306,50 @@ function callData() {
 
           //update offset
           $("#offset").data("offset", offset + 1);
+          $("#last_offset").data("offset", offset );
             
         }
       });
 
+    }
+    
 }
 
+
+// var currentscrollHeight = 0;
+// var count = 0;
+// jQuery(document).ready(function ($) {
+
+//   setTimeout(() => {
+//           callData(count);
+//         }, 1000);//Once at bottom of page -> call 6 times
+//         count++;
+
+// });
+// $(window).on("scroll", function () {
+//     const scrollHeight = $(document).height();
+//     const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
+//     const isBottom = scrollHeight - 100 < scrollPos;
+//     if (isBottom && currentscrollHeight < scrollHeight) {
+//         //alert('calling...');
+//         setTimeout(() => {
+//           callData(count);
+//         }, 1000);//Once at bottom of page -> call 6 times
+//         count++;
+//     }
+// });
+// function callData(counter) {
+//   console.log(counter);
+//   $.ajax({
+//         url: "/quickfeed?type=top&offset=" + counter,
+//         type: "GET",
+//         success: function(data) {
+//           //append the inside of feed_inner to the feed_inner
+//           $("#feed_inner").append(data);
+
+//         }
+//       });
+// }
 
 //get #prev_date and #next_date to change the date in date_select
 $(document).ready(function(){
@@ -1418,6 +1480,7 @@ $("#date_select").change(function(){
   <div class = "feed_op_space feed_op_active">Top Posts</div>
 </div>  
 
+<meta id="last_offset" data-offset="0">
 <meta id="offset" data-offset="1">
 
 <div id = "loading" style="display:none">
@@ -1436,9 +1499,20 @@ $("#date_select").change(function(){
 
     {% else %}
     {% endif %}
-
-     {% for index, posts in posts.iterrows() %}
     
+     {% for index, posts in posts.iterrows() %}
+
+    
+    {% if df_type == 'top' %}
+      {% if index == 0 %}
+      <div class = "post_box date_display">
+            {{posts['date_display']}}
+      </div>
+      {% else %}
+      {% endif %}
+    {% else %}
+    {% endif %}
+
       <div class = "post_wrap">
       <div id = post_{{posts['post_id']}} class="post_box border border-0">
 

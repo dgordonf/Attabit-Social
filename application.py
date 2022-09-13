@@ -275,15 +275,13 @@ def signup():
         return render_template('signup.html', form=form)
 
 @application.route('/', methods = ['POST', 'GET'])
-@login_required
 def feed():
     camp_id = 0
 
     try:
         user_id = current_user.get_user_id()
-    except Exception as e:
-        print(e)
-        return redirect('/landing')
+    except:
+        return redirect('/top')
     
     if request.method == 'POST':
         type = request.form.get('update_type')
@@ -789,7 +787,6 @@ def search():
                                 notification_count = unseen_count)
     
 @application.route('/post/<post_id>', methods = ['GET', 'POST'])
-@login_required
 def post(post_id):
     camp_id = 0
     
@@ -799,7 +796,7 @@ def post(post_id):
         user_id = current_user.get_user_id()
     except Exception as e:
         print(e)
-        return redirect('/landing')
+        return redirect('/login')
 
     #Get current user profile photo
     try:
@@ -1362,7 +1359,6 @@ def notification_seen():
     return response
 
 @application.route('/top', methods = ['GET'])
-@login_required
 def top():
     try:
         user_id = current_user.get_user_id()
@@ -1377,6 +1373,9 @@ def top():
 
         #order df by post_score
         df = df.sort_values(by=['post_score', 'user_score', 'creation_time'], ascending=False)
+
+        #re-index
+        df.index = range(len(df.index))
     else:
         df = DataFrame()
 
@@ -1385,10 +1384,16 @@ def top():
     notifications = data[0] 
     unseen_count = data[1]
 
-    handle = current_user.get_user_handle()
-    user_profile_photo = current_user.get_user_profile_photo()   
+    try:
+        handle = current_user.get_user_handle()
+        user_profile_photo = current_user.get_user_profile_photo() 
+    except:
+        handle = None
+        user_profile_photo = None
 
-    return render_template('top.html', posts=df, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, notifications = notifications, notification_count = unseen_count)
+    df_type = 'top'  
+
+    return render_template('top.html', posts=df, df_type = df_type, current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, notifications = notifications, notification_count = unseen_count)
 
            
 
@@ -1559,7 +1564,7 @@ def quickfeed():
         df = DataFrame()
         min_post_id = None
 
-    return render_template('quickfeed.html', posts=df, min_post_id = min_post_id)
+    return render_template('quickfeed.html', posts=df, min_post_id = min_post_id, df_type = df_type)
 
 
 @application.route('/topquickfeed', methods = ['GET'])

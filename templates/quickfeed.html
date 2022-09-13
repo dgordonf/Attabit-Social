@@ -22,6 +22,16 @@
     {% endif %}
 
      {% for index, posts in posts.iterrows() %}
+
+    {% if df_type == 'top' %}
+     {% if index == 0 %}
+     <div class = "date_display">
+           {{posts['date_display']}}
+     </div>
+     {% else %}
+     {% endif %}
+   {% else %}
+   {% endif %}
     
       <div class = "post_wrap">
       <div id = post_{{posts['post_id']}} class="post_box border">

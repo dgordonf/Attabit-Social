@@ -1,40 +1,48 @@
 -- SQLBook: Code
-
-SELECT DATE(tp.creation_time) as date1
-FROM posts tp
-    LEFT JOIN
-    (
-        SELECT p.post_id, p.user_id, u.first_name, u.handle, u.profile_photo, p.reply_to_id, p.creation_time, DATE(p.creation_time) as date2, pv.post_score, p.post_text, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote 
-            FROM posts p
-            LEFT JOIN users u ON u.id = p.user_id 
-            LEFT JOIN 
-                (
-                    SELECT f.user_id, f.following, f.follow_value
-                        FROM follows f
-                        WHERE f.user_id = 8 AND f.follow_value = 1
-                ) f ON f.following = p.user_id 
-            LEFT JOIN
-                (
-                    SELECT pv.post_id, SUM(pv.value) AS post_score
-                        FROM post_votes pv
-                        GROUP BY pv.post_id
-                ) pv ON p.post_id = pv.post_id
-            LEFT JOIN
-                    (
-                        SELECT u.id, SUM(p1.value) AS user_score
-                            FROM users u
-                            LEFT JOIN posts p ON p.user_id = u.id
-                            LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
-                            GROUP BY u.id
-                    ) b ON b.id = u.id
-            LEFT JOIN
-                    (
-                    SELECT p2.post_id, SUM(p2.value) AS current_user_vote
-                        FROM post_votes p2
-                        WHERE p2.user_id = 8
-                        GROUP BY p2.post_id
-                    ) c on c.post_id = p.post_id 
-            WHERE tp.date1 = p.date2 AND p.reply_to_id IS NULL AND p.is_deleted = 0
-            ORDER BY pv.post_score DESC
-            LIMIT 100
-    ) ON tp.post_id = p.post_id
+-- Active: 1657473344271@@127.0.0.1@3306@meadow
+SELECT p.post_id, p.user_id, u.first_name, u.handle, u.profile_photo, p.reply_to_id, p.creation_time, pv.post_score, p.post_text, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote 
+                                                FROM posts p
+                                                LEFT JOIN users u ON u.id = p.user_id 
+                                                LEFT JOIN 
+                                                    (
+                                                        SELECT f.user_id, f.following, f.follow_value
+                                                            FROM follows f
+                                                            WHERE f.user_id = 8 AND f.follow_value = 1
+                                                    ) f ON f.following = p.user_id 
+                                                LEFT JOIN
+                                                    (
+                                                        SELECT pv.post_id, SUM(pv.value) AS post_score
+                                                            FROM post_votes pv
+                                                            GROUP BY pv.post_id
+                                                    ) pv ON p.post_id = pv.post_id
+                                                LEFT JOIN
+                                                        (
+                                                            SELECT u.id, SUM(p1.value) AS user_score
+                                                                FROM users u
+                                                                LEFT JOIN posts p ON p.user_id = u.id
+                                                                LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
+                                                                GROUP BY u.id
+                                                        ) b ON b.id = u.id
+                                                LEFT JOIN
+                                                        (
+                                                        SELECT p2.post_id, SUM(p2.value) AS current_user_vote
+                                                            FROM post_votes p2
+                                                            WHERE p2.user_id = 8
+                                                            GROUP BY p2.post_id
+                                                        ) c on c.post_id = p.post_id 
+                                                WHERE p.reply_to_id IS NULL AND p.is_deleted = 0
+                                                AND p.creation_time >= '2022-08-29T05:00:00.000' 
+      											AND p.creation_time <= '2022-08-30T05:00:00.000' 
+                                                ORDER BY pv.post_score DESC
+                                                LIMIT 100
+-- SQLBook: Code
+-- Active: 1657473344271@@127.0.0.1@3306@meadow
+SELECT DISTINCT DATE(SUBTIME(p.creation_time, '05:00:00')) as date, p.post_id, p.post_text, p.user_id, p.reply_to_id, p.creation_time
+                                            FROM posts p
+                                            WHERE p.reply_to_id IS NULL AND p.is_deleted = 0
+                                            ORDER BY date DESC
+-- SQLBook: Code
+SELECT DISTINCT DATE(ADDTIME(p.creation_time, '05:00:00')) as date
+                                            FROM posts p
+                                            WHERE p.reply_to_id IS NULL AND p.is_deleted = 0
+                                            ORDER BY date DESC

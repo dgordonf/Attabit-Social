@@ -329,7 +329,8 @@ def get_top_feed(user_id, offset):
 
     #Get list of of all dates where there was a post
     with engine.connect() as connection:
-        ResultProxy = connection.execute('''SELECT DISTINCT DATE(p.creation_time) as date FROM posts p
+        ResultProxy = connection.execute('''SELECT DISTINCT DATE(SUBTIME(p.creation_time, '05:00:00')) as date
+                                            FROM posts p
                                             WHERE p.reply_to_id IS NULL AND p.is_deleted = 0
                                             ORDER BY date DESC
                                             LIMIT 1 OFFSET %s''', (offset))
@@ -347,8 +348,8 @@ def get_top_feed(user_id, offset):
     date_q2 = date_q2.strftime('%Y-%m-%d')
 
     #turn to string
-    date_q1 = str(date_q1) + "T05:00:00.000"
-    date_q2 = str(date_q2) + "T05:00:00.000"
+    date_q1 = str(date_q1) + "T00:00:00.000"
+    date_q2 = str(date_q2) + "T00:00:00.000"
 
     with engine.connect() as connection:
         ResultProxy = connection.execute("""SELECT p.post_id, p.user_id, u.first_name, u.handle, u.profile_photo, p.reply_to_id, p.creation_time, pv.post_score, p.post_text, b.user_score, COALESCE(c.current_user_vote, 0 ) as current_user_vote 
@@ -382,8 +383,8 @@ def get_top_feed(user_id, offset):
                                                             GROUP BY p2.post_id
                                                         ) c on c.post_id = p.post_id 
                                                 WHERE p.reply_to_id IS NULL AND p.is_deleted = 0
-                                                AND p.creation_time >= %s  
-      											AND p.creation_time <= %s
+                                                AND SUBTIME(p.creation_time, '05:00:00') >= %s  
+      											AND SUBTIME(p.creation_time, '05:00:00') <= %s
                                                 ORDER BY pv.post_score DESC
                                                 LIMIT 100;""", (user_id, user_id, date_q1, date_q2))
     df = DataFrame(ResultProxy.fetchall())
@@ -455,6 +456,8 @@ def format_feed(df):
         df['time_ago'][i] = time_ago(df['creation_time'][i].tz_localize('UTC').tz_convert(to_zone))
     
     df['creation_time'] = df['creation_time'].dt.tz_localize('UTC').dt.tz_convert(to_zone)
+    df['est_time'] = df['creation_time'] - timedelta(hours=5)
+    df['date_display'] = df['est_time'].dt.strftime('%m-%d')
     df['creation_time'] = df['creation_time'].dt.strftime('%m-%d-%Y')
 
     #Correct Update Post Score (All posts begin at a score of 0) and round
