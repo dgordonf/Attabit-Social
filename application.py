@@ -150,6 +150,10 @@ application.jinja_env.filters['linkify'] = linkify
 def emoji_filter(s):
     return emoji.emojize(s)
 
+@application.route('/manifest.json')
+def manifest():
+    return send_from_directory('static', 'manifest.json')    
+
 @login_manager.user_loader
 def load_user(user_id):
     """Check if user is logged-in on every page load."""
