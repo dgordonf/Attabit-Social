@@ -1251,22 +1251,23 @@ $(window).on("scroll", function () {
 
     if (isBottom && currentscrollHeight < scrollHeight) {
         //alert('calling...');
-        callData();//Once at bottom of page -> call 6 times
+        //get the last post_wrap class and then look for post_id in it
+        var last_post_wrap = $("#feed_inner .post_wrap:last .post_box");
+        var last_post_id = last_post_wrap.attr("id");
+
+        //remove post_ from last_post_id
+        var last_post_id_num = last_post_id.substring(5);
+
+
+        callData(last_post_id_num);//Once at bottom of page -> call 6 times
         currentscrollHeight = scrollHeight;
     }
 });
 
 
-function callData() {
+function callData(last_post_id_num) {
     //get last_post_id
     //var min_post_id = $("#min_post_id").text();
-    
-    //get the last post_wrap class and then look for post_id in it
-    var last_post_wrap = $("#feed_inner .post_wrap:last .post_box");
-    var last_post_id = last_post_wrap.attr("id");
-    
-    //remove post_ from last_post_id
-    var last_post_id_num = last_post_id.substring(5);
 
     //stop if last_post_id == 0
     if(last_post_id_num == 0){
@@ -1279,19 +1280,19 @@ function callData() {
         type: "GET",
         success: function(data) {
           
-          
-          console.log(last_post_id_num);
           //append the inside of feed_inner to the feed_inner
           $("#feed_inner").append(data);
-
-               
             
         }
       });
-     
 
 }
 }
+
+//on page load, callData once
+$(document).ready(function(){
+  callData(99999999);
+});
 
 
 //enable the post button once someone has entered text
@@ -1412,19 +1413,7 @@ function callData() {
   </div>
 
     <div id = "feed_inner">
-    {% if posts|length == 0 %}
-    <div style="font-size:20px;font-weight:600;margin-top:20px;" class = "post_box border border-0">
-      <div class = "post_inner">
-      Anyone out there? Posts from people you follow will appear here. 
-      <br>
-      <br>
-      See the <a href = "/search" style = "text-decoration: underline;" >leaderboard</a> to find people to follow.
-      </div>
-    </div>
-
-    {% else %}
-    {% endif %}
-
+  
      {% for index, posts in posts.iterrows() %}
     
       <div class = "post_wrap">

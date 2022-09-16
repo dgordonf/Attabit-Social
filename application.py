@@ -103,6 +103,10 @@ class User(db.Model):
     def is_authenticated(self):
         """Return True if the user is authenticate#d."""
         return self.authenticated
+    
+    def get_user_photo(self):
+        """Return True if the user is authenticate#d."""
+        return self.profile_photo
 
 def send_email(app, recipients, sender=None, subject='', text='', html=''):
     ses = boto3.client(
@@ -307,84 +311,29 @@ def feed():
             #Notify any mentioned users
             models.notify_mentionted_users(post_text, user_id)
 
-        if type == 'post_vote':
-            try:
-                value = request.form.get('post_vote')
-                value = float(value)
-                if value >= 0:
-                    value = 1
-                else:
-                    value = -1
-                post_id = request.form.get('post_id')
+    #Get Profile Photo
+    user_profile_photo = current_user.get_user_profile_photo()
 
-                #Check if this user has voted on this already
-                with engine.connect() as connection:
-                    ResultProxy = connection.execute("""SELECT pv.vote_id 
-                                                            FROM post_votes pv
-                                                            WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
-                                                            """, (camp_id, user_id, post_id))
+    #Get Posts
+    #df = models.get_feed(user_id, None)
+    #df = models.format_feed(df)
 
-                df = DataFrame(ResultProxy.fetchall())
-                
-                if len(df.index) > 0:
-                    with engine.connect() as connection:
-                        ResultProxy = connection.execute("""UPDATE post_votes pv
-                                                            SET value = %s
-                                                            WHERE pv.camp_id = %s AND pv.user_id = %s AND post_id = %s;
-                                                            """, (value, camp_id, user_id, post_id))
-                else:
-                    with engine.connect() as connection:
-                        connection.execute('INSERT INTO post_votes (camp_id, user_id, post_id, value) VALUES (%s, %s, %s, %s);', (camp_id, user_id, post_id, value))
-                    
-            except Exception as e:
-                # e holds description of the error
-                error_text = "<p>The error:<br>" + str(e) + "</p>"
-                hed = '<h1>Something is broken.</h1>'
-                return hed + error_text 
+    #create empty dataframe
+    df = pd.DataFrame()
+
+
+    #get smalled post_id from df
+    #min_post_id = df['post_id'].min()
+    min_post_id = None
+
+    handle = current_user.get_user_handle()
+
+    data = models.get_notifications(user_id)
+    notifications = data[0] 
+    unseen_count = data[1]
         
-    ##Get thier color and make sure there is at least 1 post for them to see
-    #### Come back to when you have followers table
-    with engine.connect() as connection:
-        ResultProxy = connection.execute("""SELECT  u.id, u.profile_photo, SUM(p1.value) AS user_score
-                                                    FROM users u
-                                                    LEFT JOIN posts p ON p.user_id = u.id
-                                                    LEFT JOIN post_votes p1 ON p1.post_id = p.post_id
-                                                    WHERE u.id = %s
-                                                    GROUP BY u.id
-                                                """, (user_id))
-    df = DataFrame(ResultProxy.fetchall())
-
-    #If yes, load page
-    if len(df.index) > 0: 
-        try:
-            df.columns = ResultProxy.keys()
-            #Get Profile Photo
-            user_profile_photo = df['profile_photo'][0]
-
-            #Get Posts
-            df = models.get_feed(user_id, None)
-            df = models.format_feed(df)
-
-            #get smalled post_id from df
-            min_post_id = df['post_id'].min()
-
-            handle = current_user.get_user_handle()
-
-            data = models.get_notifications(user_id)
-            notifications = data[0] 
-            unseen_count = data[1]
-            
-            return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=df, min_post_id = min_post_id, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
-        except Exception as e:
-            # e holds description of the error
-            error_text = "<p>The error:<br>" + str(e) + "</p>"
-            hed = '<h1>Something is broken.</h1>'
-            return hed + error_text
-           
-    else:
-        #flash('You are not a member of that camp')
-        return redirect('/landing')
-
+    return render_template('feed.html', current_user_id = user_id, current_user_handle = handle, current_user_profile_photo = user_profile_photo, posts=df, min_post_id = min_post_id, camp_id=camp_id, notifications = notifications, notification_count = unseen_count)
+    
 
 @application.route('/favicon.png') 
 def favicon(): 
