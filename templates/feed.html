@@ -919,6 +919,17 @@ background: transparent;
   font-size: 16px;
 }
 
+#loading_icon {
+  margin-top: 20px;
+  font-size: 25px;
+  color: #4d4d4d;
+  
+}
+
+#loading {
+  text-align:center;
+}
+
 </style>
 
 <script>
@@ -1269,6 +1280,9 @@ function callData(last_post_id_num) {
     //get last_post_id
     //var min_post_id = $("#min_post_id").text();
 
+    var loading = $("#loading");
+    loading.show();
+
     //stop if last_post_id == 0
     if(last_post_id_num == 0){
       return;
@@ -1282,6 +1296,8 @@ function callData(last_post_id_num) {
           
           //append the inside of feed_inner to the feed_inner
           $("#feed_inner").append(data);
+
+          loading.hide();
             
         }
       });
@@ -1523,8 +1539,14 @@ $(document).ready(function(){
     {% endfor %}
   </div>
 
+  <div id = "loading" style="display:none">
+    <i id = "loading_icon" class="fas fa-space-shuttle fa-spin"></i>
+  </div>
+
 {% endblock %}    
 </div>
+
+
 
 </body>
 </html>
