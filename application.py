@@ -38,6 +38,7 @@ import pytz
 from flask_mail import Mail, Message
 import emoji
 
+
 #You build this with this tutorial: https://medium.com/techfront/step-by-step-visual-guide-on-deploying-a-flask-application-on-aws-ec2-8e3e8b82c4f7
 #https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-20-04
 
@@ -108,35 +109,16 @@ class User(db.Model):
         """Return True if the user is authenticate#d."""
         return self.profile_photo
 
-def send_email(app, recipients, sender=None, subject='', text='', html=''):
-    ses = boto3.client(
-        'ses',
-        region_name = SES_REGION_NAME,
-        aws_access_key_id = S3_KEY,
-        aws_secret_access_key = S3_SECRET
-    )
-    if not sender:
-        sender = SES_EMAIL_SOURCE
+#https://postmarkapp.com/send-email/python
+#Look here
 
-    ses.send_email(
-        Source=sender,
-        Destination={'ToAddresses': recipients},
-        Message={
-            'Subject': {'Data': subject},
-            'Body': {
-                'Text': {'Data': text},
-                'Html': {'Data': html}
-            }
-        }
-    )
-
-#Set up mail
-application.config['MAIL_SERVER']='smtp.gmail.com'
-application.config['MAIL_PORT'] = 465
-application.config['MAIL_USERNAME'] = GMAIL_USERNAME
-application.config['MAIL_PASSWORD'] = GMAIL_PASSWORD
-application.config['MAIL_USE_TLS'] = False
-application.config['MAIL_USE_SSL'] = True
+# #Set up mail
+# application.config['MAIL_SERVER']='smtp.postmarkapp.com'
+# application.config['MAIL_PORT'] = 25
+# application.config['MAIL_USERNAME'] = GMAIL_USERNAME
+# application.config['MAIL_PASSWORD'] = GMAIL_PASSWORD
+# application.config['MAIL_USE_TLS'] = False
+# application.config['MAIL_USE_SSL'] = True
 
 mail = Mail(application)    
 
@@ -1517,7 +1499,7 @@ def quickfeed():
         df = DataFrame()
         min_post_id = None
 
-    return render_template('quickfeed.html', posts=df, min_post_id = min_post_id, df_type = df_type)
+    return render_template('quickfeed.html', posts=df, min_post_id = min_post_id, df_type = df_type, current_user_id = user_id)
 
 
 @application.route('/topquickfeed', methods = ['GET'])

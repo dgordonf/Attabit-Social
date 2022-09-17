@@ -38,17 +38,6 @@
 
         <div id= "post_inner_{{posts['post_id']}}" class = "post_inner">
 
-        {% if posts['user_id'] == current_user_id %}
-        <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
-          <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
-          <button class = "delete_button" type="submit">
-            <i class="far fa-times-circle"></i>
-          </button>  
-        
-        </form>
-        {% else %}  
-        {% endif %}  
-   
         <div class = "post_info_box" onclick="window.location='/post/{{posts['post_id']}}'" style="cursor: pointer;" tabindex="1">
             <a class= "profile_link" href = "/@{{posts['handle']}}">
               <div class = "badge" style = "background-image:url('https://hideawayy.s3.amazonaws.com/media/{{ posts['profile_photo'] }} ');">
@@ -62,6 +51,18 @@
                 <span class= "handle"><span style="font-size:14px;margin-right:1px;"></span>{{posts['handle']|emojify|safe}} {% if posts['is_president'] == True %} <i class="fas fa-chess-king president_crown" ></i> {% endif %}</span>
                 </a>  
                 <span class="level_details">lvl {{posts['user_score']}}</span><span class="time_details">{{posts['time_ago']}}</span>
+
+                
+                {% if posts['user_id'] == current_user_id %}
+                <form id="post_delete" class= "post_delete" title="" action= "/post_delete/{{posts['post_id']}}" method= "post" >
+                  <input class= hidden id = "update_type" name= "update_type" value = "post_delete">  
+                  <button class = "delete_button" type="submit">
+                    <i class="far fa-times-circle"></i>
+                  </button>  
+                
+                </form>
+                {% else %}  
+                {% endif %}    
 
 
 

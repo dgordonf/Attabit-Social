@@ -1026,7 +1026,8 @@ background: transparent;
             method: "GET",
             url: current_url,
             success:function(data){
-              $("#feed_inner").html($("#feed_inner", data).html());
+              $("#feed_inner").html('');
+              callData(9999999);
             }
           });
         }
@@ -1219,7 +1220,11 @@ $(document).on("submit", "#post_form", function(event) {
     })
 
   req.done(function( data ) {
-    $("#feed_inner").html($("#feed_inner", data).html());
+    
+    $("#feed_inner").html('');
+    callData(9999999);
+    
+    
   });
 
 //re-enable the post button
