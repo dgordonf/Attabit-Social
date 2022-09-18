@@ -11,7 +11,7 @@ from pandas import DataFrame
 from pandas.util import hash_pandas_object
 import re
 from flask_gtts import gtts
-from config import GMAIL_PASSWORD, GMAIL_USERNAME, Config, S3_KEY, S3_SECRET, S3_BUCKET, SES_REGION_NAME, SES_EMAIL_SOURCE, GMAIL_USERNAME, GMAIL_PASSWORD, SERVER_NAME, SECRET_KEY
+from config import GMAIL_PASSWORD, Config, S3_KEY, S3_SECRET, S3_BUCKET, PASSWORD_RESET_EMAIL, POSTMARK_KEY
 from flask_login import LoginManager
 import models
 from wtforms import validators
@@ -37,6 +37,7 @@ import io
 import pytz
 from flask_mail import Mail, Message
 import emoji
+from postmarker.core import PostmarkClient
 
 
 #You build this with this tutorial: https://medium.com/techfront/step-by-step-visual-guide-on-deploying-a-flask-application-on-aws-ec2-8e3e8b82c4f7
@@ -161,6 +162,10 @@ def unauthorized():
 @application.route('/landing', methods = ['GET'])
 def landing():
     return render_template('landing.html')
+
+# @application.route('/email', methods = ['GET'])
+# def pw_email():
+#     return render_template('reset_pw_email.html')
 
 @application.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -1359,10 +1364,17 @@ def reset_password_request():
             #             html = html
             #             )
             
-            msg = Message(subject, sender = (GMAIL_USERNAME), recipients = recipients)
-            msg.html = html
-            mail.send(msg)
-                
+            # msg = Message(subject, sender = (GMAIL_USERNAME), recipients = recipients)
+            # msg.html = html
+            # mail.send(msg)
+
+            postmark = PostmarkClient(server_token=POSTMARK_KEY)
+            postmark.emails.send(
+                From=PASSWORD_RESET_EMAIL,
+                To=recipients,
+                Subject=subject,
+                HtmlBody=html
+                )
                 
             flash('If an account with that email exists, instructions to reset your password will be sent to that email.')
             return redirect(url_for('login'))
