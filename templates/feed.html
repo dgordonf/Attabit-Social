@@ -466,7 +466,7 @@ flex-grow: 1;
   padding: 23px;
   background-color: #ffffff;
   border-radius:0px;
-  padding-bottom: 16px;
+  padding-top: 20px;
   min-height: 200px;
 }
 
@@ -1264,7 +1264,7 @@ var count = 0;
 $(window).on("scroll", function () {
     const scrollHeight = $(document).height();
     const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
-    const isBottom = scrollHeight - 100 < scrollPos;
+    const isBottom = scrollHeight - 400 < scrollPos;
 
     if (isBottom && currentscrollHeight < scrollHeight) {
         //alert('calling...');

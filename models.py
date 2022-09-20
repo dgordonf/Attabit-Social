@@ -184,7 +184,7 @@ def get_feed(user_id, last_post_id):
                                                 WHERE p.post_id < %s
                                                 AND ((f.follow_value = 1 AND f.user_id = %s) OR p.user_id = %s) AND p.reply_to_id IS NULL AND p.is_deleted = 0
                                                 ORDER BY p.post_id DESC
-                                                LIMIT 10;""", (user_id, user_id, last_post_id, user_id, user_id))
+                                                LIMIT 5;""", (user_id, user_id, last_post_id, user_id, user_id))
     df = DataFrame(ResultProxy.fetchall())
 
     if len(df.index) > 0:
