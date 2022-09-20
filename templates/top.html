@@ -27,7 +27,7 @@
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X99CYY4DV5"></script>
-<script>
+<script async>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -965,7 +965,7 @@ background: transparent;
 
 </style>
 
-<script>
+<script async>
 
   //Add Comment
   //Wait until Doc is ready
@@ -994,7 +994,7 @@ background: transparent;
 
 </script>
 
-<script>
+<script async>
   //Reveal Reply Box on click
   function reply_reveal(id) {
       var reply = "reply_";
@@ -1057,7 +1057,7 @@ background: transparent;
   });
 </script>
 
-<script>
+<script async>
 /* 
 Profile Menu Dropdown
 When the user clicks on the button,
@@ -1117,7 +1117,7 @@ $(document).ready(function(){
 
 </script>
 
-<script>
+<script async>
 
   //Wait until Doc is ready
   $(document).ready(function(){
@@ -1257,19 +1257,19 @@ $("#post_form")[0].reset();
 
 
 </script>
-<script>
+<script async>
   $("a").click(function (event) {
     event.preventDefault();
     window.location = $(this).attr("href");
 });
 </script>
-<script>
+<script async>
   //this stops forms from being resubmitted on refresh
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
     }
 </script>
-<script>
+<script async>
 //infinite scroll
 var currentscrollHeight = 0;
 var count = 0;
@@ -1284,17 +1284,17 @@ $(window).on("scroll", function () {
 
     if ((isBottom && currentscrollHeight < scrollHeight) | document_height < window_height) {
         //alert('calling...');
-        callData(); //Once at bottom of page -> call 6 times
+        callTopData(); //Once at bottom of page -> call 6 times
         currentscrollHeight = scrollHeight;
     }
 });
 
 jQuery(document).ready(function ($) {
-    callData(count);
+    callTopData(count);
   });
 
 
-function callData() {
+function callTopData() {
     //get last offset
     var last_offset = $("#last_offset").data("offset");
 
@@ -1327,7 +1327,7 @@ function callData() {
 // jQuery(document).ready(function ($) {
 
 //   setTimeout(() => {
-//           callData(count);
+//           callTopData(count);
 //         }, 1000);//Once at bottom of page -> call 6 times
 //         count++;
 
@@ -1339,12 +1339,12 @@ function callData() {
 //     if (isBottom && currentscrollHeight < scrollHeight) {
 //         //alert('calling...');
 //         setTimeout(() => {
-//           callData(count);
+//           callTopData(count);
 //         }, 1000);//Once at bottom of page -> call 6 times
 //         count++;
 //     }
 // });
-// function callData(counter) {
+// function callTopData(counter) {
 //   console.log(counter);
 //   $.ajax({
 //         url: "/quickfeed?type=top&offset=" + counter,
@@ -1486,24 +1486,13 @@ $("#date_select").change(function(){
   <div class = "feed_op_space feed_op_active">Top Posts</div>
 </div>  
 
-<meta id="last_offset" data-offset="0">
-<meta id="offset" data-offset="1">
+<meta id="last_offset" data-offset="-1">
+<meta id="offset" data-offset="0">
 
 
 
 <div id= "feed">
     <div id = "feed_inner">
-
-
-    {% if posts|length == 0 %}
-    <div style="font-size:20px;font-weight:600;margin-top:20px;" class = "post_box border border-0">
-      <div class = "post_inner">
-      No top posts to show!
-    </div>
-
-    {% else %}
-    {% endif %}
-    
      {% for index, posts in posts.iterrows() %}
 
     

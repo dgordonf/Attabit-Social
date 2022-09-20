@@ -1305,19 +1305,7 @@ def top():
     except:
         user_id = 0
 
-    #Get Posts
-    df = models.get_top_feed(user_id, None)
-
-    if df is not None and len(df) > 0:
-        df = models.format_feed(df)
-
-        #order df by post_score
-        df = df.sort_values(by=['post_score', 'user_score', 'creation_time'], ascending=False)
-
-        #re-index
-        df.index = range(len(df.index))
-    else:
-        df = DataFrame()
+    df = DataFrame()
 
     #Get notifications
     data = models.get_notifications(user_id)
