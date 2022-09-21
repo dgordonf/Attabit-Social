@@ -2,155 +2,30 @@
 <html>
   <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <title>Attabit</title>
 </head>
-
-<style>
-
-html { 
-
-
-}
-
-
-body {
-  z-index: 0;
-  font-size:14px;
-  font-family: 'Inter';
-  background-color: transparent;
-}
-
-#feed {
-  width: 97%;
-  max-width:400px;
-  min-width: 325px;
-  margin: 0 auto;
-  margin-top:100px;
-}
-
-.container {
-  border: solid 2px black;
-  border-radius: 15px;
-  background-color: white;
-  width: 350px;
-  max-width: 600px;
-  min-width: 300px;
-
-}
-
-.inner_container {
-  margin: 25px;
-
-}
-
-.form {
-  padding: 10px;
-
-}
-
-.inputs {
-  width: 50%;
-
-}
-
-.non-glow {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    font-weight: 600;
-
-    border: none;
-    outline: none;
-    color: #fff;
-    background: #414141;
-    cursor: pointer;
-    position: relative;
-    z-index: 0;
-    border-radius: 10px;
-}
-
-.logo{
-  
-  margin-bottom: 25px;
-}
-
-.logo img {
-  max-height: 40px;
- 
-}
-
-.locked_out_heading {
-  font-size: 30px;
-  font-weight: 600;
-  text-align: center;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  color: rgb(19, 19, 19);
-}
-
-.box {
-  border-radius: 15px;
-  
-  max-width: 650px;
-  min-width: 300px;
-  margin: 0 auto;
-  margin-top: 100px;
-  padding: 25px;
-}
-
-.reset_button {
-  background: linear-gradient(46deg, #f89b29ce, #ff1cadce);
-  background-size: 125% auto;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 10px;
-  margin-bottom: 25px;
-  width: 45%;
-
-
-}
-
-.button_div {
-  text-align: center;
-}
-
-.email_text {
-  font-size: 18px;
-  font-weight: 400;
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-
-</style>
-
 
 {% block body %}
 
 
-<body>
+<body style="z-index: 0;font-size:14px;font-family: 'Inter';background-color: transparent;">
 
-<div class = "box">
+<div style="max-width: 650px;min-width: 300px;margin-top: 25px;padding: 25px;">
 
-  <div class='logo'>
-    <img src='https://www.attabit.com/static/attabit.png'>
+  <div style="margin-bottom: 25px;">
+    <img style = "max-height: 40px;" src='https://www.attabit.com/static/attabit.png'>
   </div>
   <hr>
-  <div class="email_text">
+  <div class="email_text" style="font-size: 18px;font-weight: 400;margin-top: 25px;margin-bottom: 25px;">
     <h3 style="margin-bottom: 30px;">Password Reset</h3>
 
     <p>Hi,</p>
-    <p> We recieved a request to reset your password. 
+    <p> We received a request to reset your password. 
       If this was you, please click below to reset your password and sign into your account: </p>
     
-    <div class = "button_div">
+    <div style="text-align: center;">
       <a href='www.attabit.com/account/password/reset/confirm?token={{token}}'>
-        <button class="reset_button">
+        <button style="background: linear-gradient(46deg, #f89b29ce, #ff1cadce);background-size: 125% auto;  color: white; border: none;border-radius: 10px;padding: 10px;font-size: 16px;font-weight: 600;margin-top: 10px;margin-bottom: 25px;width: 45%; font-size: 20px;">
             Reset Password
         </button>
       </a>

@@ -486,7 +486,10 @@ def format_feed(df):
                     break
                 char_count += 1
             df['post_text'][i] = df['post_text'][i][:char_count] + "..."
-
+        
+    #Check if profile photo is empty and replace with default
+    df['profile_photo'] = df['profile_photo'].fillna('no_image.jpg')
+    
     return df
 
 ##Get notifications for this user
@@ -516,6 +519,8 @@ def get_notifications(user_id):
         
         notifications['text'] = ''
         notifications['redirect'] = ''
+
+        notifications['profile_photo'] = notifications['profile_photo'].fillna('no_image.jpg')
 
         #Correct Timezone
         to_zone = tz.tzlocal()

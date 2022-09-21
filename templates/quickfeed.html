@@ -4,11 +4,11 @@
 <body>
   {% block body %}
 
-    {% if posts|length == 0 %}
+    {% if posts|length == 0 and df_type == 'follow' %}
     <div style="font-size:20px;font-weight:600;margin-top:20px;" class = "post_box border">
       <div class = "post_inner">
         <div class = "post_wrap">
-          <div id = post_0 class="post_box border border-0">
+          <div id = post_0 class="">
       This is the begining of your Attabit feed. 
       <br>
       <br>

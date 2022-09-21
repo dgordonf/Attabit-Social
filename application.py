@@ -100,7 +100,12 @@ class User(db.Model):
         return self.handle         
     def get_user_profile_photo(self):
         """Return the Profile Photo of the user."""
-        return self.profile_photo   
+        profile_photo = self.profile_photo   
+
+        if profile_photo is None or profile_photo == '':
+            profile_photo = 'no_image.jpg'
+
+        return profile_photo
         
     def is_authenticated(self):
         """Return True if the user is authenticate#d."""
@@ -163,9 +168,9 @@ def unauthorized():
 def landing():
     return render_template('landing.html')
 
-# @application.route('/email', methods = ['GET'])
-# def pw_email():
-#     return render_template('reset_pw_email.html')
+@application.route('/email', methods = ['GET'])
+def pw_email():
+    return render_template('reset_pw_email.html')
 
 @application.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -358,13 +363,14 @@ def profile(username):
         df = DataFrame(ResultProxy.fetchall())
         df.columns = ResultProxy.keys()
         current_user_profile_photo = df['profile_photo'][0]
+        if current_user_profile_photo == None:
+            current_user_profile_photo = 'no_image.jpg'
+
         current_user_handle = df['handle'][0]
     except:
         current_user_id = 0
         current_user_profile_photo = None
         current_user_handle = ""
-
-
 
     #Get Profile Page's User ID
     try:
@@ -391,11 +397,14 @@ def profile(username):
     profile_info['user_score_bars_print'] = profile_info['user_score_bars'].apply(lambda x: '⬛' * x)
     profile_info['user_score_bars_print'] = profile_info['user_score_bars_print'] + profile_info['user_score_bars'].apply(lambda x: '⬜' * (10 - x))
 
+    #Check if profile photo is empty and replace with default
+    profile_info['profile_photo'] = profile_info['profile_photo'].fillna('no_image.jpg')
+
     #Get Posts
-    df = models.get_user_posts(current_user_id, profile_user_id, None)
+    #df = models.get_user_posts(current_user_id, profile_user_id, None)
 
     #format posts
-    df = models.format_feed(df)
+    #df = models.format_feed(df)
 
     ##Get Follow Value
     with engine.connect() as connection:
@@ -409,6 +418,9 @@ def profile(username):
         follow_status = follow['follow_status'][0]
     except:
         follow_status = 0
+
+    #empty dataframe for posts
+    df = DataFrame()
 
     #get notifications
     data = models.get_notifications(current_user_id)
@@ -613,16 +625,9 @@ def edit_user(username):
 @login_required
 def search():
     user_id = current_user.get_user_id()
-    q = request.args.get('q')
+    current_user_profile_photo = current_user.get_user_profile_photo()
 
-    #Get current user profile photo
-    with engine.connect() as connection:
-        ResultProxy = connection.execute('''SELECT u.profile_photo 
-                                            FROM users u
-                                            WHERE u.id = %s;''', (user_id))
-    df = DataFrame(ResultProxy.fetchall())
-    df.columns = ResultProxy.keys()
-    current_user_profile_photo = df['profile_photo'][0]
+    q = request.args.get('q')
 
     if q == "" or q == None:
 
@@ -740,13 +745,7 @@ def post(post_id):
 
     #Get current user profile photo
     try:
-        with engine.connect() as connection:
-            ResultProxy = connection.execute('''SELECT u.profile_photo 
-                                                FROM users u
-                                                WHERE u.id = %s;''', (user_id))
-        df = DataFrame(ResultProxy.fetchall())
-        df.columns = ResultProxy.keys()
-        current_user_profile_photo = df['profile_photo'][0]
+        current_user_profile_photo = current_user.get_user_profile_photo()
     except Exception as e:
         print(e)
         return redirect('/landing')
@@ -1446,6 +1445,12 @@ def quickfeed():
 
     #Get type (if listed)
     df_type = request.args.get('type')
+
+    #if df_type is not profile or top, set to feed
+    if df_type != 'profile' and df_type != 'top':
+        df_type = 'follow'
+
+
     offset = request.args.get('offset')
 
     if offset is not None:

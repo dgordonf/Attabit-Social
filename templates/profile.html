@@ -1188,6 +1188,17 @@ background-clip: text;
 -webkit-text-fill-color:transparent;
 }
 
+#loading_icon {
+  margin-top: 20px;
+  font-size: 25px;
+  color: #4d4d4d;
+  
+}
+
+#loading {
+  text-align:center;
+}
+
 </style>
 
 
@@ -1756,50 +1767,65 @@ $(document).ready(function(){
       const isBottom = scrollHeight - 100 < scrollPos;
   
       if (isBottom && currentscrollHeight < scrollHeight) {
+
+          //Get profile id
+          var profile_user_id = $('#profile_user_id').data();
+          profile_user_id = profile_user_id.name;
+
+          var last_post_wrap = $("#feed_inner .post_wrap:last .post_box");
+          var last_post_id = last_post_wrap.attr("id");
+
+          //remove post_ from last_post_id
+          var last_post_id_num = last_post_id.substring(5);
+
           //alert('calling...');
-          callData();//Once at bottom of page -> call 6 times
+          profile_callData(profile_user_id, last_post_id_num);//Once at bottom of page -> call 6 times
           currentscrollHeight = scrollHeight;
       }
   });
-  
-  
-  function callData() {
-      //get last_post_id
-      //var min_post_id = $("#min_post_id").text();
-      
-      //get the last post_wrap class and then look for post_id in it
-      var last_post_wrap = $("#feed_inner .post_wrap:last .post_box");
-      var last_post_id = last_post_wrap.attr("id");
-      
-      //remove post_ from last_post_id
-      var last_post_id_num = last_post_id.substring(5);
 
-      var profile_user_id = $('#profile_user_id').data();
-      profile_user_id = profile_user_id.name;
-  
-      //stop if last_post_id == 0
-      if(last_post_id_num == 0){
-        return;
-      } else {
-        //call ajax
-  
-      $.ajax({
-          url: "/quickfeed?profile_user_id=" + profile_user_id + "&min_post_id=" + last_post_id_num,
-          type: "GET",
-          success: function(data) {
+
+  function profile_callData(profile_user_id, last_post_id_num) {
+    //get last_post_id
+    //var min_post_id = $("#min_post_id").text();
+
+    var loading = $("#loading");
+    loading.show();
+    
+    //stop if last_post_id == 0
+    if(last_post_id_num == 0){
+      return;
+    } else {
+      //call ajax
+
+    $.ajax({
+      url: "/quickfeed?type=profile&profile_user_id=" + profile_user_id + "&min_post_id=" + last_post_id_num,
+        type: "GET",
+        success: function(data) {
+          
+          //append the inside of feed_inner to the feed_inner
+          $("#feed_inner").append(data);
+
+          loading.hide();
             
-            
-            //append the inside of feed_inner to the feed_inner
-            $("#feed_inner").append(data);
+        }
+      });
+
+}
+}
+
+//on page load, callData once
+$(document).ready(function(){
   
-                 
-              
-          }
-        });
-       
-  
-  }
-  }
+  //Get profile id
+  var profile_user_id = $('#profile_user_id').data();
+  profile_user_id = profile_user_id.name;
+
+  profile_callData(profile_user_id, 999999);
+});
+
+
+
 </script>
 
 {% extends "layout.html" %}
@@ -2100,6 +2126,11 @@ $(document).ready(function(){
 
     {% endfor %}
   </div>
+
+  <div id = "loading" style="display:none">
+    <i id = "loading_icon" class="fas fa-space-shuttle fa-spin"></i>
+  </div>
+
 
 {% endblock %}    
 </div>

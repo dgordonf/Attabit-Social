@@ -1290,11 +1290,20 @@ $(window).on("scroll", function () {
 });
 
 jQuery(document).ready(function ($) {
-    callTopData(count);
+    callTopData();
+
+    //wait then call it again
+    setTimeout(function () {
+        callTopData();
+    }, 1000);
   });
 
 
 function callTopData() {
+
+    var loading = $("#loading");
+    loading.show();
+
     //get last offset
     var last_offset = $("#last_offset").data("offset");
 
@@ -1313,6 +1322,8 @@ function callTopData() {
           //update offset
           $("#offset").data("offset", offset + 1);
           $("#last_offset").data("offset", offset );
+
+          loading.hide();
             
         }
       });
@@ -1612,13 +1623,12 @@ $("#date_select").change(function(){
 
     {% endfor %}
   </div>
-
-  </div>
   
   <div id = "loading" style="display:none">
     <i id = "loading_icon" class="fas fa-trophy fa-spin"></i>
   </div>
 
+{% endblock %}    
+</div>
 </body>
 </html>
-{% endblock %}    
