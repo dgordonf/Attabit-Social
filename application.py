@@ -39,14 +39,6 @@ from flask_mail import Mail, Message
 import emoji
 from postmarker.core import PostmarkClient
 
-
-#You build this with this tutorial: https://medium.com/techfront/step-by-step-visual-guide-on-deploying-a-flask-application-on-aws-ec2-8e3e8b82c4f7
-#https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-20-04
-
-#Database fix guide: https://docs.sqlalchemy.org/en/14/core/connections.html
-
-#Removed server upgrades becasue of mysql disconnect: https://askubuntu.com/questions/1037285/starting-daily-apt-upgrade-and-clean-activities-stopping-mysql-service
-
 # Not the entire world, just your best friends. 
 application = Flask(__name__)
 application.secret_key = application.config['SECRET_KEY']
@@ -115,28 +107,12 @@ class User(db.Model):
         """Return True if the user is authenticate#d."""
         return self.profile_photo
 
-#https://postmarkapp.com/send-email/python
-#Look here
-
-# #Set up mail
-# application.config['MAIL_SERVER']='smtp.postmarkapp.com'
-# application.config['MAIL_PORT'] = 25
-# application.config['MAIL_USERNAME'] = GMAIL_USERNAME
-# application.config['MAIL_PASSWORD'] = GMAIL_PASSWORD
-# application.config['MAIL_USE_TLS'] = False
-# application.config['MAIL_USE_SSL'] = True
-
 mail = Mail(application)    
 
 def linkify(text):
     return Markup(re.sub(r'@([a-zA-Z0-9_]+)', r'<a href="/@\1">@\1</a>', text))
 
 application.jinja_env.filters['linkify'] = linkify
-
-#def kelly_crown(text):
-#    return Markup(re.sub(r'(Kelly)', r'\1 👑', text))
-#
-#application.jinja_env.filters['kelly_crown'] = kelly_crown
 
 @application.template_filter('emojify')
 def emoji_filter(s):
@@ -167,10 +143,6 @@ def unauthorized():
 @application.route('/landing', methods = ['GET'])
 def landing():
     return render_template('landing.html')
-
-# @application.route('/email', methods = ['GET'])
-# def pw_email():
-#     return render_template('reset_pw_email.html')
 
 @application.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -225,7 +197,6 @@ def login():
 def logout():
     logout_user()
     return redirect("/login")
-
 
 @application.route('/signup', methods = ['POST', 'GET'])
 def signup(): 
@@ -306,16 +277,9 @@ def feed():
     #Get Profile Photo
     user_profile_photo = current_user.get_user_profile_photo()
 
-    #Get Posts
-    #df = models.get_feed(user_id, None)
-    #df = models.format_feed(df)
-
     #create empty dataframe
     df = pd.DataFrame()
 
-
-    #get smalled post_id from df
-    #min_post_id = df['post_id'].min()
     min_post_id = None
 
     handle = current_user.get_user_handle()
@@ -350,7 +314,6 @@ def profile(username):
     df.columns = ResultProxy.keys()
     profile_user_id = df['id'][0]
 
-    
     ### Get the current user id    
     try:
         current_user_id = current_user.get_user_id()
@@ -399,12 +362,6 @@ def profile(username):
 
     #Check if profile photo is empty and replace with default
     profile_info['profile_photo'] = profile_info['profile_photo'].fillna('no_image.jpg')
-
-    #Get Posts
-    #df = models.get_user_posts(current_user_id, profile_user_id, None)
-
-    #format posts
-    #df = models.format_feed(df)
 
     ##Get Follow Value
     with engine.connect() as connection:
@@ -1344,16 +1301,6 @@ def reset_password_request():
                 subject = 'Attabit - Password Reset'
                 
             html = render_template('reset_pw_email.html', token = token)
-
-            # send_email(application, 
-            #             recipients= recipients, 
-            #             subject = subject, 
-            #             html = html
-            #             )
-            
-            # msg = Message(subject, sender = (GMAIL_USERNAME), recipients = recipients)
-            # msg.html = html
-            # mail.send(msg)
 
             postmark = PostmarkClient(server_token=POSTMARK_KEY)
             postmark.emails.send(
