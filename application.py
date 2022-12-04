@@ -168,9 +168,9 @@ def unauthorized():
 def landing():
     return render_template('landing.html')
 
-@application.route('/email', methods = ['GET'])
-def pw_email():
-    return render_template('reset_pw_email.html')
+# @application.route('/email', methods = ['GET'])
+# def pw_email():
+#     return render_template('reset_pw_email.html')
 
 @application.route('/login', methods = ['POST', 'GET'])
 def login():
